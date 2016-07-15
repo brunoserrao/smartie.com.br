@@ -1,14 +1,14 @@
 /*
-Theme Name:   	Storefront
-Theme URI:    	http://www.woothemes.com/storefront
-Author:       	WooThemes
-Author URI:		http://www.woothemes.com
-Description:  	Storefront is the perfect theme for your next WooCommerce project. Designed and developed by WooThemes, it features a deep integration with our market leading WooCommerce plugin, several layout & color options to personalise your shop, multiple widget regions, a responsive design and much more. Developers will love it's lean and extensible codebase making it a joy to customise and extend. Looking for a WooCommerce theme? Look no further!
-Version:      	1.6.1
-License:      	GNU General Public License v2 or later
-License URI:  	http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain:  	storefront
-Tags:         	black, white, light, two-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template, threaded-comments, accessibility-ready, rtl-language-support
+Theme Name:     Smartie
+Theme URI:      http://www.brunoserrao.com/smartie
+Author:         Bruno Serrao
+Author URI:     http://www.brunoserrao.com
+Description:    Storefront is the perfect theme for your next WooCommerce project. Designed and developed by WooThemes, it features a deep integration with our market leading WooCommerce plugin, several layout & color options to personalise your shop, multiple widget regions, a responsive design and much more. Developers will love it's lean and extensible codebase making it a joy to customise and extend. Looking for a WooCommerce theme? Look no further!
+Version:        1.0.0
+License:        GNU General Public License v2 or later
+License URI:    http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:    storefront
+Tags:           black, white, light, two-columns, left-sidebar, right-sidebar, responsive-layout, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template, threaded-comments, accessibility-ready, rtl-language-support
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
@@ -889,8 +889,8 @@ a {
   .widget-area {
     margin-bottom: 2.618em; }
   /**
-	 * Full width & homepage template
-	 */
+   * Full width & homepage template
+   */
   .page-template-template-fullwidth-php .content-area,
   .page-template-template-homepage-php .content-area {
     width: 100%;
@@ -898,8 +898,8 @@ a {
     margin-left: 0;
     margin-right: 0; }
   /**
-	 * Footer widgets
-	 */
+   * Footer widgets
+   */
   .footer-widgets {
     padding-top: 4.236em;
     border-bottom: 3px solid rgba(0, 0, 0, 0.05); }
@@ -1271,8 +1271,8 @@ fieldset {
   ul.menu li.current-menu-item > a {
     color: #60646c; }
   /**
-	 * Primary Navigation
-	 */
+   * Primary Navigation
+   */
   .main-navigation {
     padding-top: 1.618em; }
     .main-navigation ul.menu > li > a,
@@ -1328,8 +1328,8 @@ fieldset {
     .main-navigation a {
       padding: 0 1em 2.244em; }
   /**
-	 * Secondary Navigation
-	 */
+   * Secondary Navigation
+   */
   .secondary-navigation {
     margin: 0 0 1.618em;
     width: auto;
