@@ -49,7 +49,6 @@ function storefront_custom_logo() {
 /*
 * Get Woocommerce Product Gallery
 */
-
 function woo_gallery_images($product_id){
 	$product = new WC_product($product_id);
 	$attachment_ids = $product->get_gallery_attachment_ids();
@@ -67,4 +66,13 @@ function woo_gallery_images($product_id){
 	}
 
 	return $gallery;
+}
+
+/*
+* Remove Tab reviews
+*/
+add_filter( 'woocommerce_product_tabs', 'wcs_woo_remove_reviews_tab', 98 );
+function wcs_woo_remove_reviews_tab($tabs) {
+	unset($tabs['reviews']);
+	return $tabs;
 }
