@@ -774,7 +774,8 @@ a {
   text-decoration: none;
   font-weight: 700; }
   a:focus {
-    outline: 1px solid #5e5f61; }
+    /*outline: 1px solid #5e5f61;*/
+  }
 
 .storefront-cute * {
   font-family: "Comic Sans MS", sans-serif; }
