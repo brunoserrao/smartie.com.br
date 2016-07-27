@@ -15,6 +15,11 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php wp_head(); ?>
+
+<script src="<?php echo get_template_directory_uri(); ?>/js/jquery.slides.min.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/scripts.js"></script>
+
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -24,6 +29,12 @@
 
 	<header id="masthead" class="site-header" role="banner" <?php if ( get_header_image() != '' ) { echo 'style="background-image: url(' . esc_url( get_header_image() ) . ');"'; } ?>>
 		<div class="col-full">
+
+			<div class="site-branding">
+				<a href="<?php echo get_site_url() ?>" title="<?php echo get_bloginfo('name') ?> | <?php echo get_bloginfo('description') ?>">
+					<img src="<?php echo get_template_directory_uri(); ?>/images/smart.png" alt="">
+				</a>
+			</div>
 
 			<?php
 			/**
