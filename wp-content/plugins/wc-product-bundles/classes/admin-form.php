@@ -17,7 +17,7 @@ class wcpb_product_interface {
 		add_action( 'woocommerce_product_data_panels', array( $this, 'wcpb_add_product_bundle_tab_panel' ), 10, 1 );		
 	}
 	
-	function wcpb_add_product_bundle_type( $ptypes, $ptype ) {
+	function wcpb_add_product_bundle_type( $ptypes ) {
 		$ptypes['wcpb'] = __( 'Bundled', 'wc-product-bundles' );
 		return $ptypes;
 	}
