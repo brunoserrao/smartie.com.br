@@ -10,11 +10,11 @@ jQuery(function() {
 	jQuery('#cart-count').addClass('display-cart-count');
 
 	wrap.on('scroll', function(e) {
-		if (this.scrollY > mastheadHeight) {
-			// jQuery('#site-navigation').addClass('main-navigator-fixed');
+		if (this.scrollY > mastheadHeight + 25) {
+			jQuery('.fixed-navigation').addClass('display-fixed-navigator');
 			jQuery('#cart-count').addClass('display-cart-count');
 		} else {
-			// jQuery('#site-navigation').removeClass('main-navigator-fixed');
+			jQuery('.fixed-navigation').removeClass('display-fixed-navigator');
 			jQuery('#cart-count').removeClass('display-cart-count');
 		}
 	});

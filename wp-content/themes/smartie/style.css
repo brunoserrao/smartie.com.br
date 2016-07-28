@@ -1366,7 +1366,7 @@ fieldset {
       .main-navigation ul.menu ul li:hover > a,
       .main-navigation ul.nav-menu ul a:hover,
       .main-navigation ul.nav-menu ul li:hover > a {
-        background-color: rgba(0, 0, 0, 0.025); }
+        background-color: rgba(0, 0, 0, 0.1); }
     .main-navigation a {
       padding: 0 1em 2.244em; }
   /**
@@ -2257,7 +2257,7 @@ video {
     height: 50px;
     z-index: 100;
     opacity: 0;
-    transition: opacity 0.5s ease-out;
+    transition: opacity 0.15s ease-out;
   }
 
   #cart-count.hide-cart-count{
@@ -2364,39 +2364,6 @@ video {
 }
 
 /*
-* Fixed Main Menu
-*/
-
-@media (min-width: 768px) {
-  #site-navigation.main-navigator-fixed{
-    position: fixed;
-    background-color: red;
-    width: inherit;
-    margin-right: 0;
-  }  
-  
-  #site-navigation.main-navigator-fixed:after{
-    content: "";
-    position: absolute;
-    background-image: url(images/loja-de-planilhas.png);
-    background-size: 80% auto;
-    width: 150px;
-    top: 0px;
-    left: 0;
-    background-color: green;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    text-indent: -1000px;
-    overflow: hidden;
-  }
-
-  #site-navigation.main-navigator-fixed .primary-navigation{
-    margin-left: 150px !important;
-  }
-}
-
-/*
 * Cart Back to Shop
 */
 .woocommerce .woocommerce-message .button{
@@ -2452,4 +2419,56 @@ video {
 */
 ul.products li.product {
      margin-bottom: 2em !important; 
+}
+
+/*
+* Fixed Main Menu
+*/
+
+@media (min-width: 768px) {
+  #site-navigation .fixed-navigation{
+    display: block;
+    position: fixed;
+    background-color: #fec221;
+    width: 978px;
+    transition: top 300ms linear;
+    top: -60px;
+  }
+
+  #site-navigation .fixed-navigation  ul#menu-principal-2:before{
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 49px;
+    top: 0;
+    left: 0;
+    background-image: url(images/loja-de-planilhas.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 75% auto;
+  }
+
+  #site-navigation .fixed-navigation ul li {
+    border-radius: 0px;
+    display: inline;
+    float: left;
+  }  
+
+  #site-navigation .fixed-navigation ul#menu-principal-2 > li:first-child{
+    margin-left: 130px;
+  }
+
+  #site-navigation .fixed-navigation.admin-logged{
+    margin-top: 32px !important; 
+  }
+
+  #site-navigation .display-fixed-navigator{
+    top: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+   #site-navigation .fixed-navigation.admin-logged{
+    margin-top: 46px !important; 
+  }
 }

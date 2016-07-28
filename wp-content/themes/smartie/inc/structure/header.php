@@ -55,14 +55,21 @@ if ( ! function_exists( 'storefront_primary_navigation' ) ) {
 				array(
 					'theme_location'	=> 'primary',
 					'container_class'	=> 'primary-navigation',
-					)
+				)
 			);
 
 			wp_nav_menu(
 				array(
 					'theme_location'	=> 'primary',
 					'container_class'	=> 'handheld-navigation',
-					)
+				)
+			);
+
+			wp_nav_menu(
+				array(
+					'theme_location'	=> 'primary',
+					'container_class'	=> is_admin_bar_showing() ? 'fixed-navigation admin-logged' : 'fixed-navigation'
+				)
 			);
 			?>
 		</nav><!-- #site-navigation -->
