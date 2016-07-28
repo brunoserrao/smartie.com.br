@@ -1425,7 +1425,7 @@ fieldset {
 
 .hentry {
   margin: 0 0 1.236em;
-  padding-bottom: 3.631em;
+  padding-bottom: 2.631em;
   border-bottom: 6px solid rgba(0, 0, 0, 0.05); }
   .hentry .wp-post-image {
     margin-bottom: 1.618em;
@@ -1433,7 +1433,7 @@ fieldset {
     margin-right: auto; }
   .hentry .entry-header {
     border-bottom: 3px solid #60646c;
-    margin-bottom: 3.631em; }
+    margin-bottom: 2.631em; }
     .hentry .entry-header h1 {
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       padding-bottom: .618em;
@@ -1732,8 +1732,8 @@ video {
       margin-left: 0;
       margin-right: 0; }
   .comment-list .comment-content {
-    padding-bottom: 3.631em;
-    margin-bottom: 3.631em; }
+    padding-bottom: 2.631em;
+    margin-bottom: 2.631em; }
   .comment-list .comment-content,
   .comment-list #respond {
     width: 76.4705882353%;
@@ -1817,7 +1817,7 @@ video {
  * Widgets
  */
 .widget {
-  margin: 0 0 3.631em; }
+  margin: 0 0 2.631em; }
   .widget select {
     max-width: 100%; }
   .widget .widget-search .search-submit {
@@ -2246,8 +2246,14 @@ video {
   }  
 }
 
+@media (max-width: 768px) {
+    #cart-count{
+      display: none;
+    }
+}
 @media (min-width: 767px) {
   #cart-count{
+    display: block;
     position: fixed;
     background-color: #fec221;
     right: 10px;
@@ -2470,5 +2476,36 @@ ul.products li.product {
 @media (max-width: 768px) {
    #site-navigation .fixed-navigation.admin-logged{
     margin-top: 46px !important; 
+  }
+}
+
+/*
+* User My Account
+*/
+.woocommerce-MyAccount-navigation{
+
+}
+
+@media (min-width: 768px) {
+  .woocommerce-MyAccount-navigation ul{
+    display: table;
+    width: 100%;
+    margin: 0;
+    /*border: 1px solid #303236;*/
+  }
+
+  .woocommerce-MyAccount-navigation ul li{
+    display: table-cell;
+    text-align: center;
+    border-right: 1px solid #303236;
+    padding: 5px 0;
+  }
+
+  .woocommerce-MyAccount-navigation ul li:last-child{
+    border-right: none;
+  }
+
+  .woocommerce-MyAccount-navigation ul li:hover{
+    background-color: #fec221;
   }
 }
