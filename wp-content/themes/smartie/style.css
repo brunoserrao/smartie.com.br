@@ -1295,7 +1295,7 @@ fieldset {
         position: absolute;
         top: 100%;
         z-index: 99999;
-        background-color: #2c2d33;
+        /*background-color: #2c2d33;*/
         display: none; }
         .main-navigation ul ul li a,
         .secondary-navigation ul ul li a {
@@ -1338,7 +1338,7 @@ fieldset {
       font-weight: inherit; }
     .main-navigation ul.menu ul,
     .main-navigation ul.nav-menu ul {
-      background-color: #2c2d33;
+      /*background-color: #2c2d33;*/
       margin-left: 0; }
       .main-navigation ul.menu ul li,
       .main-navigation ul.nav-menu ul li {
@@ -1349,7 +1349,9 @@ fieldset {
           padding: 0.857em 1em; }
         .main-navigation ul.menu ul li:last-child,
         .main-navigation ul.nav-menu ul li:last-child {
-          border-bottom: 0; }
+          border-bottom: 0;
+          border-radius: 0 0 10px 10px;
+        }
         .main-navigation ul.menu ul li.menu-item-has-children > a:after,
         .main-navigation ul.menu ul li.page_item_has_children > a:after,
         .main-navigation ul.nav-menu ul li.menu-item-has-children > a:after,
