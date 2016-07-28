@@ -20,6 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+// echo preg_replace('/()', $replacement, $string);
+
 foreach ( $items as $item_id => $item ) :
 	$_product     = apply_filters( 'woocommerce_order_item_product', $order->get_product_from_item( $item ), $item );
 	$item_meta    = new WC_Order_Item_Meta( $item, $_product );
@@ -52,10 +54,11 @@ foreach ( $items as $item_id => $item ) :
 
 				// File URLs
 				if ( $show_download_links ) {
+					$base = get_option( 'woocommerce_email_base_color' );
 					ob_start();
 					$order->display_item_downloads( $item );
 					$parse_small = ob_get_clean();
-					$parse_small = str_replace( '<small', '<h3 style="color: inherit; margin: 0;"',  str_replace( '</small', '</h3',  $parse_small ) );
+					$parse_small = str_replace( '<small', '<h3 style="color: inherit; margin: 0; background-color: #737373; color: #fec221; padding: 10px 5px; width: inherit;"',  str_replace( '</small', '</h3',  $parse_small ) );
 					echo $parse_small;
 				}
 
