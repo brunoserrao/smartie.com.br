@@ -2121,7 +2121,11 @@ video {
     }
 
   #slides{
-    margin-bottom: 30px;
+    margin: 1.618em 0;
+  }
+
+  #slides .slidesjs-container{
+    height: 300px !important;
   }
 
   #slides .slides-content img{

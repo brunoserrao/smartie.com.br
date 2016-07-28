@@ -6,9 +6,6 @@
 		?>
 
 		<?php if ($woo_products_featured) { ?>
-			
-			<h1>Destaques</h1>
-
 			<div id="slides">
 				<?php foreach ($woo_products_featured as $product) {?>
 					<?php $woo_product = get_product( $product->ID ); $gallery = woo_gallery_images( $product->ID ); ?>
