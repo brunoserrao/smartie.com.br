@@ -32,7 +32,7 @@
 
 			<div class="site-branding">
 				<a href="<?php echo get_site_url() ?>" title="<?php echo get_bloginfo('name') ?> | <?php echo get_bloginfo('description') ?>">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/smart.png" alt="">
+					<img src="<?php echo get_template_directory_uri(); ?>/images/loja-de-planilhas.png" alt="Logo <?php echo get_bloginfo('name') ?>">
 				</a>
 			</div>
 

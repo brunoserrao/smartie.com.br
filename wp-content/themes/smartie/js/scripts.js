@@ -11,8 +11,10 @@ jQuery(function() {
 
 	wrap.on('scroll', function(e) {
 		if (this.scrollY > mastheadHeight) {
+			// jQuery('#site-navigation').addClass('main-navigator-fixed');
 			jQuery('#cart-count').addClass('display-cart-count');
 		} else {
+			// jQuery('#site-navigation').removeClass('main-navigator-fixed');
 			jQuery('#cart-count').removeClass('display-cart-count');
 		}
 	});

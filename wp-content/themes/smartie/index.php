@@ -6,7 +6,8 @@
 		?>
 
 		<?php if ($woo_products_featured) { ?>
-			<h1>Produtos em destaque</h1>
+			
+			<h1>Destaques</h1>
 
 			<div id="slides">
 				<?php foreach ($woo_products_featured as $product) {?>
@@ -19,12 +20,6 @@
 										<?php echo $woo_product->post->post_title; ?>
 									</a>
 								</h2>
-
-								<p>
-									<a href="<?php echo get_permalink($woo_product->post->ID) ?>" title="<?php echo $woo_product->post->post_title; ?>">
-										<?php echo $woo_product->post->post_excerpt; ?>
-									</a>
-								</p>
 							</div>
 
 							<a href="<?php echo get_permalink($woo_product->post->ID) ?>" title="<?php echo $woo_product->post->post_title; ?>">
