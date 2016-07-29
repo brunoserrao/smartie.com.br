@@ -648,10 +648,12 @@ h1,
   font-size: 2.244em;
   letter-spacing: -1px;
   line-height: 1.214;
-  font-weight: 300; }
+  /*font-weight: 300;*/ 
+}
   h1 a,
   .alpha a {
-    font-weight: 300; }
+    /*font-weight: 300;*/ 
+  }
 
 h2,
 .beta {
