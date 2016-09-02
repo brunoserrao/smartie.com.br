@@ -2399,6 +2399,9 @@ video {
   padding: .5em .2em;
   color: #5e5f61;
   text-transform: uppercase;
+  color : #FFF;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .woocommerce .woocommerce-message .button:hover{
