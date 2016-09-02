@@ -2227,7 +2227,11 @@ video {
     background-color: #25493d !important;
 }
 
-.site-header-cart .product_list_widget a:hover{
+.site-header-cart .product_list_widget a:hover {
+    color: #FFFFFF !important;
+}
+
+.site-header-cart .widget_shopping_cart .mini_cart_item a{
   color: #FFFFFF !important;
 }
 
