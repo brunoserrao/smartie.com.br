@@ -340,7 +340,17 @@ input[type="radio"] {
  */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  height: auto; }
+  height: auto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+}
 
 /**
  * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
@@ -2528,4 +2538,29 @@ ul.products li.product {
   position: absolute;
   top: 10px;
   background-color: #25493d;
+}
+
+/*
+*
+*/
+
+.quantity .minus {
+  border:none;
+  color:#fff;
+  /*background-color:purple;*/
+  /*height:30px;*/
+  /*width:30px;*/
+}
+.quantity .plus {
+  border:none;
+  color:#fff;
+  /*background-color:purple;*/
+  /*height:30px;*/
+  /*width:30px;*/
+}
+.quantity .qty {
+  border: none;
+  /*border:1px solid #25493d;*/
+  /*color:purple;*/
+  /*height:30px;*/
 }

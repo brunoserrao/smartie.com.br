@@ -18,4 +18,18 @@ jQuery(function() {
 			jQuery('#cart-count').removeClass('display-cart-count');
 		}
 	});
+
+	jQuery('.quantity').on('click', '.plus', function(e) {
+		$input = jQuery(this).prev('input.qty');
+		var val = parseInt($input.val());
+		$input.val( val+1 ).change();
+	});
+
+	jQuery('.quantity').on('click', '.minus', function(e) {
+		$input = jQuery(this).next('input.qty');
+		var val = parseInt($input.val());
+		if (val > 0) {
+			$input.val( val-1 ).change();
+		} 
+	});
 });
