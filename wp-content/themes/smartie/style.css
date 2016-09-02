@@ -423,7 +423,7 @@ body {
  * Header
  */
 .site-header {
-  background-color: #fec221;
+  background-color: #25493d;
   padding-top: 1.618em;
   color: #9aa0a7;
   background-position: center center;
@@ -985,9 +985,9 @@ input[type="submit"],
 .added_to_cart {
   border: 0;
   background: none;
-  background-color: #fec221;
-  border-color: #fec221;
-  color: inherit;
+  background-color: #25493d;
+  border-color: #25493d;
+  color: #FFF;
   cursor: pointer;
   /* Improves usability and consistency of cursor style between image-type 'input' and others */
   line-height: 1;
@@ -1013,8 +1013,8 @@ input[type="submit"],
   .button.alt,
   .added_to_cart.cta,
   .added_to_cart.alt {
-    background-color: #fec221;
-    border-color: #fec221; }
+    background-color: #25493d;
+    border-color: #25493d; }
     button.cta:hover,
     button.alt:hover,
     input[type="button"].cta:hover,
@@ -1027,7 +1027,7 @@ input[type="submit"],
     .button.alt:hover,
     .added_to_cart.cta:hover,
     .added_to_cart.alt:hover {
-      background-color: #fec221; }
+      background-color: #25493d; }
   button:hover,
   input[type="button"]:hover,
   input[type="reset"]:hover,
@@ -1041,7 +1041,7 @@ input[type="submit"],
   input[type="submit"]:focus,
   .button:focus,
   .added_to_cart:focus {
-    outline: 2px solid #fec221; }
+    outline: 2px solid #25493d; }
   button.added:after,
   input[type="button"].added:after,
   input[type="reset"].added:after,
@@ -1260,7 +1260,7 @@ fieldset {
       .secondary-navigation ul li {
         position: relative;
         display: inline-block;
-        background-color: #eaaf10;
+        background-color: #307c63;
         text-align: left; }
         .main-navigation ul li a,
         .secondary-navigation ul li a {
@@ -2214,7 +2214,7 @@ video {
 * Carrinho Widget 
 */
 .site-header-cart .widget_shopping_cart {
-    background-color: #fec221 !important;
+    background-color: #25493d !important;
 }
 
 .site-header-cart .product_list_widget a:hover{
@@ -2230,17 +2230,21 @@ video {
 }
 
 .site-header .widget_shopping_cart .button{
-  background-color: #5e5f61;
+  background-color: #307c63;
   border-color: #5e5f61;
 }
 
 #order_review, #order_review_heading {
-    border-color: #fec221 !important;
+    border-color: #25493d !important;
 }
 
 .site-header-cart .cart-contents{
-  background-color: #eaaf10 !important;
+  background-color: #307c63 !important;
   padding: 1em !important;
+}
+
+.site-header-cart a.cart-contents, .site-header-cart {
+  color: #FFF !important;
 }
 
 @media (min-width: 767px) {
@@ -2248,6 +2252,10 @@ video {
     margin-top: 3px;
     border-radius: 10px 10px 0 0;
   }  
+}
+
+#cart-count a{
+  color: #FFF;
 }
 
 @media (max-width: 768px) {
@@ -2259,7 +2267,7 @@ video {
   #cart-count{
     display: block;
     position: fixed;
-    background-color: #fec221;
+    background-color: #25493d;
     right: 10px;
     bottom: 10px;
     border-radius: 50%;
@@ -2377,19 +2385,20 @@ video {
 * Cart Back to Shop
 */
 .woocommerce .woocommerce-message .button{
-  background-color: #fec221;
+  background-color: #25493d;
   padding: .5em .2em;
   color: #5e5f61;
   text-transform: uppercase;
 }
 
 .woocommerce .woocommerce-message .button:hover{
-  background-color: #eaaf10;
+  background-color: #307c63;
 }
 
 .woocommerce .wc-proceed-to-checkout .button.wc-backward {
     background-color: #5e5f61;
     border-color: #5e5f61;
+    color: #FFF;
 }
 
 .woocommerce .wc-proceed-to-checkout{
@@ -2439,7 +2448,7 @@ ul.products li.product {
   #site-navigation .fixed-navigation{
     display: block;
     position: fixed;
-    background-color: #fec221;
+    background-color: #25493d;
     width: 978px;
     transition: top 300ms linear;
     top: -60px;
@@ -2510,7 +2519,7 @@ ul.products li.product {
   }
 
   .woocommerce-MyAccount-navigation ul li:hover{
-    background-color: #fec221;
+    background-color: #25493d;
   }
 }
 
@@ -2518,5 +2527,5 @@ ul.products li.product {
   border: 0px !important;
   position: absolute;
   top: 10px;
-  background-color: #fec221;
+  background-color: #25493d;
 }
