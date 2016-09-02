@@ -2,13 +2,24 @@
 # This file is distributed under the same license as the Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-07-19 18:55:03+0000\n"
+"PO-Revision-Date: 2016-08-03 17:04:29+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: GlotPress/2.1.0-alpha\n"
 "Project-Id-Version: Stable (latest release)\n"
+
+#: includes/admin/views/html-admin-page-status-report.php:390
+msgid "The MaxMind GeoIP Database does not exist - Geolocation will not function. You can download and install it manually from %1$s to the path: %2$s. Scroll down to \\\"Downloads\\\" and download the \\\"Binary / gzip\\\" file next to \\\"GeoLite Country\\\""
+msgstr "O banco de dados GeoIP MaxMind não existe. Função de geolocalização não irá funcionar. Você pode baixar e instalar manualmente a partir de %1$s no caminho: %2$s. Navegue até Downloads e baixe o arquivo \"Binary / gzip\" ao lado de \"GeoLite Country\""
+
+#: includes/api/legacy/v2/class-wc-api-products.php:1847
+#: includes/api/legacy/v3/class-wc-api-products.php:2403
+#: includes/cli/class-wc-cli-product.php:2060
+#: includes/wc-rest-functions.php:106
+msgid "Invalid image type."
+msgstr "Tipo de imagem inválido."
 
 #: includes/admin/settings/views/html-admin-page-shipping-zone-methods.php:41
 msgid "Click \"Add shipping method\" to get started."
@@ -1035,11 +1046,11 @@ msgstr "Nomes de ações do WooCommerce associados com o webhook."
 
 #: includes/api/class-wc-rest-webhooks-controller.php:512
 msgid "The URL where the webhook payload is delivered."
-msgstr "A URL para onde sera disparado o webhook."
+msgstr "A URL para onde será disparado o webhook."
 
 #: includes/api/class-wc-rest-webhooks-controller.php:519
 msgid "Secret key used to generate a hash of the delivered webhook and provided in the request headers. This will default is a MD5 hash from the current user's ID|username if not provided."
-msgstr "Chave secreta para gerar um hash dos dados entregue pelo webhook e disponibilizado no cabeçalho da requisição. Por padrão sera um hash MD5 criado a partir do ID|nome de usuário atual, caso não seja fornecido."
+msgstr "Chave secreta para gerar um hash dos dados entregue pelo webhook e disponibilizado no cabeçalho da requisição. Por padrão será um hash MD5 criado a partir do ID|nome de usuário atual, caso não seja fornecido."
 
 #: includes/api/class-wc-rest-webhooks-controller.php:524
 msgid "The date the webhook was created, in the site's timezone."
@@ -2341,7 +2352,7 @@ msgstr "Descrição do cupom."
 
 #: includes/api/class-wc-rest-coupons-controller.php:464
 msgid "Determines the type of discount that will be applied."
-msgstr "Determina o tipo de desconto que sera aplicado."
+msgstr "Determina o tipo de desconto que será aplicado."
 
 #: includes/api/class-wc-rest-coupons-controller.php:471
 msgid "The amount of discount."
@@ -2684,7 +2695,7 @@ msgstr "Nota do pedido."
 
 #: includes/api/class-wc-rest-order-notes-controller.php:397
 msgid "Shows/define if the note is only for reference or for the customer (the user will be notified)."
-msgstr "Exibe/define se a nota é apenas para referencia ou para o cliente (o usuário sera notificado)."
+msgstr "Exibe/define se a nota é apenas para referencia ou para o cliente (o usuário será notificado)."
 
 #: includes/api/class-wc-rest-order-refunds-controller.php:112
 msgid "Invalid order ID."
@@ -2844,7 +2855,7 @@ msgstr "Modelo de arquivo"
 
 #: includes/admin/views/html-admin-page-status-report.php:724
 msgid "Your theme has a woocommerce.php file, you will not be able to override the woocommerce/archive-product.php custom template since woocommerce.php has priority over archive-product.php. This is intended to prevent display issues."
-msgstr "O seu tema tem um arquivo woocommerce.php, você não sera capaz de sobrescrever o arquivo woocommerce/archive-product.php, desde que a prioridade é para o arquivo woocommerce.php. Este aviso destina-se apenas a prevenir problemas de exibição."
+msgstr "O seu tema tem um arquivo woocommerce.php, você não será capaz de sobrescrever o arquivo woocommerce/archive-product.php, desde que a prioridade é para o arquivo woocommerce.php. Este aviso destina-se apenas a prevenir problemas de exibição."
 
 #: includes/admin/views/html-notice-custom.php:12
 #: includes/admin/views/html-notice-legacy-shipping.php:11
@@ -3032,7 +3043,7 @@ msgstr "Os seguintes métodos de entrega serão aplicados para clientes com ende
 
 #: includes/admin/settings/views/html-admin-page-shipping-zone-methods.php:18
 msgid "Drag and drop to re-order your shipping methods. This is the order in which they will display during checkout."
-msgstr "Arraste e solte para reordenar os seus métodos de entrega. Esta sera a ordem que os métodos de entregam serão exibidos na finalização."
+msgstr "Arraste e solte para reordenar os seus métodos de entrega. Esta será a ordem que os métodos de entregam serão exibidos na finalização."
 
 #: includes/admin/settings/views/html-admin-page-shipping-zone-methods.php:29
 #: includes/admin/settings/views/html-admin-page-shipping-zone-methods.php:93
@@ -3074,7 +3085,7 @@ msgstr "O WooCommerce irá automaticamente seleciona a área de entrega correta 
 
 #: includes/admin/settings/views/html-admin-page-shipping-zones.php:15
 msgid "Drag and drop to re-order your custom zones. This is the order in which they will be matched against the customer address."
-msgstr "Arraste e solte para ordenar as suas áreas personalizadas. Esta sera a ordem que irão combinar com o endereço do cliente."
+msgstr "Arraste e solte para ordenar as suas áreas personalizadas. Esta será a ordem que irão combinar com o endereço do cliente."
 
 #: includes/admin/settings/views/html-admin-page-shipping-zones.php:16
 #: includes/admin/settings/views/html-admin-page-shipping-zones.php:91
@@ -3471,7 +3482,7 @@ msgstr "Os pedidos irão aparecer aqui quando você recebê-los."
 
 #: includes/admin/class-wc-admin-post-types.php:2276
 msgid "Learn more about orders"
-msgstr "Apenda mais sobre pedidos"
+msgstr "Aprenda mais sobre pedidos"
 
 #: includes/admin/class-wc-admin-post-types.php:2281
 msgid "Coupons are a great way to offer discounts and rewards to your customers. They will appear here once created."
@@ -3479,7 +3490,7 @@ msgstr "Cupons são uma boa maneira de oferecer descontos e recompensas para os 
 
 #: includes/admin/class-wc-admin-post-types.php:2282
 msgid "Learn more about coupons"
-msgstr "Apenda mais sobre cupons"
+msgstr "Aprenda mais sobre cupons"
 
 #: includes/admin/class-wc-admin-post-types.php:2287
 msgid "Ready to start selling something awesome?"
@@ -3492,6 +3503,10 @@ msgstr "Se você cobrará impostos sobre vendas ou envio de mercadorias a seus c
 #: includes/admin/class-wc-admin-setup-wizard.php:459
 msgid "The following tax rates will be imported automatically for you. You can read more about taxes in %1$sour documentation%2$s."
 msgstr "As seguintes taxas de impostos serão importadas automaticamente para você. Você pode saber mais sobre taxas em %1$snossa documentação%2$s."
+
+#: includes/admin/class-wc-admin-setup-wizard.php:486
+msgid "You may need to add/edit rates based on your products or business location which can be done from the %1$stax settings%2$s screen. If in doubt, speak to an accountant."
+msgstr "Talvez você precisará adicionar/editar taxas com base na localização dos seus produtos ou negócio, que pode ser feito a partir da página de %1$sconfigurações de taxas%2$s. Em caso de dúvida, fale com um contador."
 
 #: includes/admin/class-wc-admin-setup-wizard.php:569
 #: includes/admin/class-wc-admin-setup-wizard.php:576
@@ -3520,6 +3535,14 @@ msgstr "Cheque"
 #: includes/admin/class-wc-admin-setup-wizard.php:603
 msgid "A simple offline gateway that lets you accept a check as method of payment."
 msgstr "Um método de pagamento offline simples que lhe permite aceitar cheques como forma de pagamento."
+
+#: includes/admin/class-wc-admin-setup-wizard.php:609
+msgid "A simple offline gateway that lets you accept BACS payment."
+msgstr "Um método de pagamento offline simples que lhe permite receber pagamentos por transferência bancária."
+
+#: includes/admin/class-wc-admin-setup-wizard.php:615
+msgid "A simple offline gateway that lets you accept cash on delivery."
+msgstr "Um método de pagamento offline simples que lhe permite aceitar pagamentos em dinheiro na entrega."
 
 #: i18n/continents.php:19
 msgid "Africa"
@@ -10129,7 +10152,7 @@ msgstr "Avaliações de produto"
 
 #: includes/admin/settings/class-wc-settings-products.php:470
 msgid "Enable ratings on reviews"
-msgstr "Permitir avaliações sobre as análises"
+msgstr "Permitir classificações nas avaliações"
 
 #: includes/admin/settings/class-wc-settings-products.php:479
 msgid "Ratings are required to leave a review"
