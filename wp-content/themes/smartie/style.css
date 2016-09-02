@@ -2545,6 +2545,7 @@ ul.products li.product {
   position: absolute;
   top: 10px;
   background-color: #25493d;
+  color: #FFF !important;
 }
 
 /*
