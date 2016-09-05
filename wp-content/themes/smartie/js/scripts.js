@@ -1,7 +1,7 @@
 jQuery(function() {
 	jQuery('#slides').slidesjs({
 		width: 940,
-		height: 528
+		height: 300
 	});
 
 	var wrap = jQuery(window);

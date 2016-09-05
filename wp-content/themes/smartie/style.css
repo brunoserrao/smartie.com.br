@@ -1208,6 +1208,10 @@ fieldset {
 .main-navigation div.menu > ul:not(.nav-menu) {
   display: none; }
 
+.handheld-navigation a{
+  color: #FFF;
+}
+
 .handheld-navigation {
   margin-bottom: 2.244em; }
   .handheld-navigation ul {
@@ -2138,6 +2142,8 @@ video {
 
     #slides .slides-content{
       position: relative;
+      height: 300px;
+      overflow: hidden;
     }
 
     #slides .slides-content .slides-title{
