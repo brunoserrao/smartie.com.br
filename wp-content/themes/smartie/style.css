@@ -1313,11 +1313,11 @@ fieldset {
         .secondary-navigation ul ul li a {
           width: 200px; }
   ul.menu li.current-menu-item > a {
-    color: #000000; 
+    color: #00e4a5; 
   }
 
   ul.menu li.current-menu-item > a, ul.menu li.current-menu-ancestor > a{
-    color: #000000; 
+    color: #00e4a5; 
   }
 
    
