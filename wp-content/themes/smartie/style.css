@@ -2555,20 +2555,17 @@ ul.products li.product {
 .quantity .minus {
   border:none;
   color:#fff;
-  /*background-color:purple;*/
-  /*height:30px;*/
-  /*width:30px;*/
 }
 .quantity .plus {
   border:none;
   color:#fff;
-  /*background-color:purple;*/
-  /*height:30px;*/
-  /*width:30px;*/
 }
 .quantity .qty {
   border: none;
-  /*border:1px solid #25493d;*/
-  /*color:purple;*/
-  /*height:30px;*/
+}
+
+.single-product div.product .price del{
+  font-size: 0.8em;
+  font-weight: normal;
+  opacity: 0.5;
 }
