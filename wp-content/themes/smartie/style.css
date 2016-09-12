@@ -2548,7 +2548,7 @@ ul.products li.product {
 
 .onsale {
   border: 0px !important;
-  position: absolute;
+  /*position: absolute;*/
   top: 10px;
   background-color: #fec221;
   color: #000 !important;
