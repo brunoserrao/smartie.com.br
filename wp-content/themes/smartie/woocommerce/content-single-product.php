@@ -54,7 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			woocommerce_template_single_rating();
 			woocommerce_template_single_price();
 			woocommerce_template_single_excerpt();
-			woocommerce_template_single_meta();
+			// woocommerce_template_single_meta();
 			woocommerce_template_single_add_to_cart();
 			woocommerce_template_single_sharing();
 		?>
