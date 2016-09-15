@@ -2575,3 +2575,24 @@ ul.products li.product {
   font-weight: normal;
   opacity: 0.5;
 }
+
+/*
+* Checkout esconder Moip
+*/
+#payment.woocommerce-checkout-payment .wc_payment_method.payment_method_moip{
+  display: none;
+}
+
+/*
+* Breadcumb
+*/
+.woocommerce-breadcrumb{
+  margin-bottom: 0px !important;
+}
+
+/*
+* Woocommerce Info box
+*/
+.woocommerce-info{
+     background-color: #0f834d !important; 
+}
