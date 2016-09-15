@@ -2596,3 +2596,8 @@ ul.products li.product {
 .woocommerce-info{
      background-color: #0f834d !important; 
 }
+
+.woocommerce-pagination .page-numbers li .page-numbers.current {
+    background-color: #25493d !important;
+    border-color: #25493d !important;
+}
