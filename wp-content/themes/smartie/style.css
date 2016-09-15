@@ -2544,6 +2544,10 @@ ul.products li.product {
   .woocommerce-MyAccount-navigation ul li:hover{
     background-color: #25493d;
   }
+
+  .woocommerce-MyAccount-navigation ul li:hover a{
+    color: #FFF;
+  }
 }
 
 .onsale {
