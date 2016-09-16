@@ -2623,7 +2623,8 @@ ul.products li.product {
   width: 100%;
   padding: 15px;
   float: left;
-  background-color: #25493d;
+  background-color: #307c63;
+  border-radius: 10px;
 }
 
 #form-cadastro p{
@@ -2656,7 +2657,7 @@ ul.products li.product {
 }
 #form-cadastro form .campo.submit input {
   width: 100%;
-  background-color: #307c63;
+  background-color: #25493d;
   padding: 7px 0px;
 }
 
