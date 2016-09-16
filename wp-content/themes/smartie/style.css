@@ -2196,13 +2196,13 @@ video {
 
   /* For tablets & smart phones */
   @media (max-width: 767px) {
-    body {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
     #slides .slides-content {
       width: auto
     }
+
+    #slides .slidesjs-container{
+      height: 180px !important;
+    } 
   }
 
   /* For smartphones */
@@ -2210,12 +2210,20 @@ video {
     #slides .slides-content {
       width: auto
     }
+
+     #slides .slidesjs-container{
+      height: 120px !important;
+    }
   }
 
   /* For smaller displays like laptops */
   @media (min-width: 768px) and (max-width: 979px) {
     #slides .slides-content {
       width: 100%
+    }
+
+    #slides .slidesjs-container{
+      height: 160px !important;
     }
   }
 
@@ -2604,4 +2612,78 @@ ul.products li.product {
 .woocommerce-pagination .page-numbers li .page-numbers.current {
     background-color: #25493d !important;
     border-color: #25493d !important;
+}
+
+
+/*
+* Formulario de cadastro
+*/
+#form-cadastro{
+  display: block;
+  width: 100%;
+  padding: 15px;
+  float: left;
+  background-color: #25493d;
+}
+
+#form-cadastro p{
+  margin: 0px !important;
+}
+
+#form-cadastro form{
+  margin-bottom: 0px !important;
+}
+
+#form-cadastro .texto{
+  width: 100%;
+  float: none;
+  color: #FFF;
+  margin-bottom: 15px;
+}
+
+#form-cadastro form .campo{
+  width: 40%;
+  float: left;
+}
+
+#form-cadastro form .campo input{
+  width: 95%;
+  padding: 5px;
+}
+
+#form-cadastro form .campo.submit{
+  width: 20%
+}
+#form-cadastro form .campo.submit input {
+  width: 100%;
+  background-color: #307c63;
+  padding: 7px 0px;
+}
+
+#form-cadastro .mc4wp-response{
+  display: block;
+  clear: both;
+  float: left;
+  width: 100%;
+}
+
+#form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-error{
+  color: #fec221;
+}
+
+#form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-success, #form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-notice{
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  #form-cadastro form .campo, #form-cadastro form .campo.submit{
+    width: 100%;
+    float: none;
+    margin-bottom: 15px;
+  }
+
+  #form-cadastro form .campo input{
+    padding: 15px;
+    width: 100%;
+  }
 }

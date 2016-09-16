@@ -1,6 +1,12 @@
 <?php get_header(); ?>
 
 	<div id="primary" class="content-area">
+		<div id="form-cadastro">
+			<?php echo do_shortcode('[mc4wp_form]'); ?>
+		</div>
+
+		<div class="clear"></div>
+
 		<?php
 			$woo_products_featured = woo_products_featured();
 		?>
