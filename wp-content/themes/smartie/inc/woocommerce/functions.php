@@ -42,7 +42,7 @@ if ( ! function_exists( 'storefront_after_content' ) ) {
  * @since  1.0.0
  */
 function storefront_loop_columns() {
-	return apply_filters( 'storefront_loop_columns', 3 ); // 3 products per row
+	return apply_filters( 'storefront_loop_columns', 4 ); // 3 products per row
 }
 
 /**
@@ -57,6 +57,33 @@ function storefront_woocommerce_body_class( $classes ) {
 
 	return $classes;
 }
+
+
+/**
+ * Add 'woocommerce-active' class to the body tag
+ * @param  array $classes
+ * @return array $classes modified to include 'woocommerce-active' class
+ */
+function smart_before_product_loops() {
+		?>
+			<div class="woocommerce columns-4">
+
+		<?php
+	}
+
+
+/**
+ * Add 'woocommerce-active' class to the body tag
+ * @param  array $classes
+ * @return array $classes modified to include 'woocommerce-active' class
+ */
+function smart_after_product_loops() {
+		?>
+			</div>
+
+		<?php
+	}
+
 
 /**
  * Cart Fragments

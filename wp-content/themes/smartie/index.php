@@ -30,7 +30,7 @@
 			<?php $woo_categories = woo_categories(); ?>
 			<?php foreach ($woo_categories as $category) { ?>
 				<h1><?php echo $category->name; ?></h1>
-				<?php echo do_shortcode('[product_category category="'.$category->slug.'" per_page="4" columns="4"]') ?>
+				<?php echo do_shortcode('[product_category category="'.$category->slug.'" per_page="4" columns="'.storefront_loop_columns().'"]'); ?>
 			<?php } ?>
 		</main>
 	</div>

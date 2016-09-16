@@ -40,12 +40,14 @@ add_action( 'woocommerce_after_shop_loop', 			'woocommerce_catalog_ordering', 		
 add_action( 'woocommerce_after_shop_loop', 			'woocommerce_result_count', 				20 );
 add_action( 'woocommerce_after_shop_loop', 			'woocommerce_pagination', 					30 );
 add_action( 'woocommerce_after_shop_loop',			'storefront_sorting_wrapper_close',			31 );
+// add_action( 'woocommerce_before_shop_loop',			'smart_after_product_loops',				50 );
 
 add_action( 'woocommerce_before_shop_loop',			'storefront_sorting_wrapper',				9 );
 add_action( 'woocommerce_before_shop_loop', 		'woocommerce_catalog_ordering', 			10 );
 add_action( 'woocommerce_before_shop_loop', 		'woocommerce_result_count', 				20 );
 add_action( 'woocommerce_before_shop_loop', 		'storefront_woocommerce_pagination', 		30 );
 add_action( 'woocommerce_before_shop_loop',			'storefront_sorting_wrapper_close',			31 );
+// add_action( 'woocommerce_before_shop_loop',			'smart_before_product_loops',				50 );
 
 /**
  * Products

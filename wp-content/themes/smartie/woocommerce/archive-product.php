@@ -60,17 +60,20 @@ get_header( 'shop' ); ?>
 				do_action( 'woocommerce_before_shop_loop' );
 			?>
 
-			<?php woocommerce_product_loop_start(); ?>
 
-				<?php woocommerce_product_subcategories(); ?>
+			<div class="woocommerce columns-<?php echo storefront_loop_columns()?>">
+				<?php woocommerce_product_loop_start(); ?>
 
-				<?php while ( have_posts() ) : the_post(); ?>
+					<?php woocommerce_product_subcategories(); ?>
 
-					<?php wc_get_template_part( 'content', 'product' ); ?>
+					<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php endwhile; // end of the loop. ?>
+						<?php wc_get_template_part( 'content', 'product' ); ?>
 
-			<?php woocommerce_product_loop_end(); ?>
+					<?php endwhile; // end of the loop. ?>
+
+				<?php woocommerce_product_loop_end(); ?>
+			</div>
 
 			<?php
 				/**
