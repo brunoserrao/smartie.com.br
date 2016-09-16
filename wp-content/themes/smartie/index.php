@@ -17,17 +17,6 @@
 					<?php $woo_product = get_product( $product->ID ); $gallery = woo_gallery_images( $product->ID ); ?>
 					<?php if (!empty($gallery)) { ?>
 						<div class="slides-content">
-
-							<!--
-							<div class="slides-title">
-								<h2>
-									<a href="<?php echo get_permalink($woo_product->post->ID) ?>" title="<?php echo $woo_product->post->post_title; ?>">
-										<?php echo $woo_product->post->post_title; ?>
-									</a>
-								</h2>
-							</div>
-							-->
-
 							<a href="<?php echo get_permalink($woo_product->post->ID) ?>" title="<?php echo $woo_product->post->post_title; ?>">
 								<img src="<?php echo $gallery[0]['full_url']; ?>" alt="<?php echo $woo_product->post->post_title; ?>">	
 							</a>
