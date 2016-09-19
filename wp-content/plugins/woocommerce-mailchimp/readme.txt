@@ -4,7 +4,7 @@ Donate link: http://ssms.us/hVdk
 Tags: woocommerce, mailchimp
 Requires at least: 3.5.1
 Tested up to: 4.6.1
-Stable tag: 2.0.8
+Stable tag: 2.0.11
 License: GPLv3
 
 Simple and flexible MailChimp integration for WooCommerce.
@@ -37,19 +37,34 @@ Automatically subscribe customers to a designated MailChimp list and, optionally
 
 = Translation Support =
 
-- i18n ready with included woocommerce-mailchimp.pot file
+Would you like to help translate the plugin into more languages? Join our Translations Community at https://translate.wordpress.org/projects/wp-plugins/woocommerce-mailchimp.
+
+WooCommerce MailChimp translation is managed through WordPress language packs here: https://translate.wordpress.org. This allows WooCommerce MailChimp to be translated into other languages. The preferred tool for translating plugins is called [GlotPress](https://make.wordpress.org/polyglots/handbook/tools/glotpress-translate-wordpress-org/). You can [read about how GlotPress works in the WordPress Translator's Handbook](https://make.wordpress.org/polyglots/handbook/tools/glotpress-translate-wordpress-org/).
+
+Thanks in advance for your help on any translation efforts!
+
+We also support bundled translations via:
+
+- Included woocommerce-mailchimp.pot file
 - WPML support via wpml-config.xml
 
 **Included Translations:**
 
-- English (default)
+- English (US) (default)
 - French.
 
 **Custom Translations**
-- Place custom translations in `/wp-content/languages/woocommerce-mailchimp/woocommerce-mailchim_{locale}.[mo|po]`. This ensures they won't get overwritten by plugin updates.
-- If no custom translations are present, the plugin will load them from `/wp-content/plugins/woocommerce-mailchimp/languages/woocommerce-mailchimp_{locale}.[mo|po]`
 
-Thanks in advance for your help on any translation efforts!
+If you don't want to use WordPress language packs or bundled translations, you can use your own custom translations.
+
+- Place custom translations in `/wp-content/languages/woocommerce-mailchimp/woocommerce-mailchimp_{lang}_{country}.mo`. This ensures they won't get overwritten by plugin updates.
+
+**Translation Loading**
+
+If no custom translations are present, languages will be loaded in the following order:
+
+- From WordPress language packs in: `/wp-content/languages/plugins/woocommerce-mailchimp/woocommerce-mailchimp_{lang}_{country}.mo`
+- From the plugin bundled in: `/wp-content/plugins/woocommerce-mailchimp/languages/woocommerce-mailchimp_{lang}_{country}.mo`
 
 = Multisite =
 
@@ -98,11 +113,11 @@ Also, if you enjoy using the software [we'd love it if you could give us a revie
 
 == Changelog ==
 
-#### 2.0 - 2.0.8 - September 17, 2016
-
-**WARNING:** This release contains breaking changes to the plugins action hooks and filters. If you have custom code that hooks into the plugins action hooks and filters, please review the breaking changes below to know how to update your code appropriately.
+#### 2.0 - 2.0.11 - September 19, 2016
 
 **NOTE:** You must upgrade to version 2.X by December 31, 2016 as prior versions of the MailChimp API will stop working at that point.
+
+**WARNING:** This release contains breaking changes to the plugin's action hooks and filters. If you have custom code that hooks into the plugins action hooks and filters, please review the breaking changes below to know how to update your code appropriately.
 
 **Breaking Changes**
 
