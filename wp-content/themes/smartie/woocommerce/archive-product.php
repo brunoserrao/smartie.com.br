@@ -44,15 +44,7 @@ get_header( 'shop' ); ?>
 
 
 		<section class="woocommerce-products-shop">
-			<div id="form-search" class="woocommerce-FormRow form-row form-row-first">
-				<header class="page-header">
-					<h4 class="page-title">Pesquisar planilhas</h4>
-				</header>
-
-				<?php get_product_search_form() ?>
-			</div>
-			
-			<div class="woocommerce-FormRow form-row form-row-last">
+			<div class="woocommerce-FormRow form-row form-row-first">
 				<header class="page-header">
 					<h4 class="page-title">Categorias</h4>
 				</header>
@@ -67,6 +59,14 @@ get_header( 'shop' ); ?>
 						</select>
 					</div> 
 				</form>
+			</div>
+			
+			<div id="form-search" class="woocommerce-FormRow form-row form-row-last">
+				<header class="page-header">
+					<h4 class="page-title">Pesquisar planilhas</h4>
+				</header>
+
+				<?php get_product_search_form() ?>
 			</div>
 		</section>
 
@@ -115,21 +115,16 @@ get_header( 'shop' ); ?>
 		<?php } ?>
 
 		<section class="woocommerce-products-related-and-recents">
-			<header class="page-header">
-				<h1 class="page-title">
-					Recentes
-				</h1>
-			</header>
-
-			<?php echo do_shortcode('[recent_products per_page="4" columns="4"]') ?>
+			<h1 class="page-title">
+				Recentes
+			</h1>
 			
-
-			<header class="page-header">
-				<h1 class="page-title">
-					Destaques
-				</h1>
-			</header>
-
+			<?php echo do_shortcode('[recent_products per_page="4" columns="4"]') ?>
+		
+			<h1 class="page-title">
+				Destaques
+			</h1>
+			
 			<?php echo do_shortcode('[featured_products per_page="4" columns="4"]') ?>
 		</section>
 	</main>
