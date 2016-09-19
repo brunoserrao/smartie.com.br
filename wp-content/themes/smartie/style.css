@@ -2689,6 +2689,9 @@ ul.products li.product {
   }
 }
 
+/*
+* Loja
+*/
 .woocommerce .category_more{
   text-align: center;
   margin-top: 1.68em;
@@ -2741,4 +2744,24 @@ ul.products li.product {
 
   #form-search input[type="submit"]{
     width: 30%;
+  }
+
+
+/*
+* FAQ
+*/
+#faq-smart{
+
+}
+
+  #faq-smart h3:hover{
+    cursor: pointer;
+  }
+
+  #faq-smart .faq-pergunta .resposta{
+    display: none; 
+  }
+
+  #faq-smart .faq-pergunta:first-child > .resposta{
+    display: block; 
   }

@@ -41,4 +41,15 @@ jQuery(function() {
 			window.location.href = jQuery(select).val();
 		}
 	});
+
+	jQuery('.faq-pergunta-link').on('click', function(e){
+		e.preventDefault();
+		link = jQuery(this);
+
+		if (!jQuery(link).next().is(':visible')) {
+			jQuery('#faq-smart .resposta').hide('fast',function(){
+				jQuery(link).next().show('fast');
+			});
+		}
+	});
 });
