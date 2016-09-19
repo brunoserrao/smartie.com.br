@@ -15,9 +15,13 @@
 			<div id="slides">
 				<?php foreach ($banners as $banner) {?>
 					<div class="slides-content">
-						<a href="<?php echo get_permalink($banner->post_excerpt) ?>" title="<?php echo $banner->post_title; ?>">
+						<?php if(!empty($banner->post_excerpt)){ ?>
+							<a href="<?php echo $banner->post_excerpt; ?>" title="<?php echo $banner->post_title; ?>">
+						<?php } ?>
 							<img src="<?php echo $banner->thumb[0]; ?>" alt="<?php echo $banner->post->post_title; ?>">	
-						</a>
+						<?php if(!empty($banner->post_excerpt)){ ?>
+							</a>
+						<?php } ?>
 					</div>
 				<?php } ?>
 			</div>
