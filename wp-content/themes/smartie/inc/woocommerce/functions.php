@@ -182,3 +182,27 @@ function storefront_products_per_page() {
 function is_woocommerce_extension_activated( $extension = 'WC_Bookings' ) {
 	return class_exists( $extension ) ? true : false;
 }
+
+/**
+ * Get Current Category
+ * @var  $extension main extension class name
+ * @return boolean
+ */
+function woocommerce_category_description() {
+    if (is_product_category()) {
+        global $wp_query;
+        $cat = $wp_query->get_queried_object();
+        return $cat;
+    }
+}
+add_action('woocommerce_archive_description', 'woocommerce_category_description', 2);
+
+/**
+ * Get Category URL
+ * @var  $extension main extension class name
+ * @return boolean
+ */
+function woocommerce_category_url($category_id) {
+    $link = get_term_link( $category_id, 'product_cat' );
+    return $link;
+}

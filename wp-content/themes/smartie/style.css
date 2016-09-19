@@ -2688,3 +2688,9 @@ ul.products li.product {
     width: 100%;
   }
 }
+
+.woocommerce .category_more{
+  text-align: center;
+  margin-top: 1.68em;
+  margin-bottom: 1.68em;
+}
