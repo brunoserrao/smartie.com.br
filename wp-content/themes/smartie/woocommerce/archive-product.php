@@ -113,14 +113,6 @@ get_header( 'shop' ); ?>
 				<?php echo do_shortcode('[product_category category="'.$current_category->slug.'" per_page="-1" columns="4"]')?>
 			</section>
 		<?php } ?>
-
-		<section class="woocommerce-products-related-and-recents">
-			<h1 class="page-title">
-				Destaques
-			</h1>
-			
-			<?php echo do_shortcode('[featured_products per_page="4" columns="4"]') ?>
-		</section>
 	</main>
 
 <?php get_footer( 'shop' ); ?>
