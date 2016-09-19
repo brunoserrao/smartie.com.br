@@ -61,7 +61,6 @@ get_header( 'shop' ); ?>
 					<div class="select-style">
 						<select name="" id="woocommerce-product-select-category">
 							<option value="">Selecione uma categoria</option>
-							<option value="<?php  echo get_permalink( woocommerce_get_page_id( 'shop' )); ?>">Voltar para a loja</option>
 							<?php foreach ($woo_categories_by_name as $category) { ?>
 								<option <?php echo $current_category->term_id == $category['term_id'] ? 'selected' : '' ?>  value="<?php echo get_term_link($category['term_id'],'product_cat'); ?>"><?php echo $category['name'];?></option>
 							<?php } ?>
