@@ -116,12 +116,6 @@ get_header( 'shop' ); ?>
 
 		<section class="woocommerce-products-related-and-recents">
 			<h1 class="page-title">
-				Recentes
-			</h1>
-			
-			<?php echo do_shortcode('[recent_products per_page="4" columns="4"]') ?>
-		
-			<h1 class="page-title">
 				Destaques
 			</h1>
 			
