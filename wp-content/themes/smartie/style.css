@@ -2694,3 +2694,51 @@ ul.products li.product {
   margin-top: 1.68em;
   margin-bottom: 1.68em;
 }
+
+
+#woocommerce-product-archive-select{
+
+}
+  #woocommerce-product-archive-select .select-style {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+    background: #fff url(images/arrowdown.gif) no-repeat 99% 50%;
+  }
+  #woocommerce-product-archive-select select{
+    padding: 5px 8px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+  }
+
+  #woocommerce-product-archive-select select:focus{
+    outline: none;
+  }
+  
+  #woocommerce-product-archive-select select option{
+
+  }
+
+#form-search{
+  
+}
+  #form-search{
+    
+  }
+
+  #form-search #woocommerce-product-search-field{
+    width: 70%;
+    float: left;
+  }
+
+  #form-search input[type="submit"]{
+    width: 30%;
+  }

@@ -20,14 +20,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+$woo_categories = woo_categories();
+
+$woo_categories_by_name = array();
+
+foreach ($woo_categories as $category) {
+	$woo_categories_by_name[$category->name] = array(
+		'term_id' => $category->term_id,
+		'name' => $category->name,
+	);
+}
+
 get_header( 'shop' ); ?>
 	<main id="main" class="site-main" role="main">
-		<?php if(is_search()){ ?>
-			<section class="woocommerce-products-search">
+		<header class="page-header">
+			<h1>
+				<?php echo woocommerce_page_title();?>
+			</h1>
+		</header>
+
+
+		<section class="woocommerce-products-shop">
+			<div id="form-search" class="woocommerce-FormRow form-row form-row-first">
 				<header class="page-header">
-					<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
+					<h4 class="page-title">Pesquisar planilhas</h4>
 				</header>
 
+				<?php get_product_search_form() ?>
+			</div>
+			
+			<div class="woocommerce-FormRow form-row form-row-last">
+				<header class="page-header">
+					<h4 class="page-title">Categorias</h4>
+				</header>
+
+				<form id="woocommerce-product-archive-select" action="">
+					<div class="select-style">
+						<select name="" id="woocommerce-product-select-category">
+							<option selected>Selecione uma categoria</option>
+							<?php foreach ($woo_categories_by_name as $category) { ?>
+								<option value="<?php echo get_term_link($category['term_id'],'product_cat'); ?>"><?php echo $category['name'];?></option>
+							<?php } ?>
+						</select>
+					</div> 
+				</form>
+			</div>
+		</section>
+
+		<?php if(is_search()){ ?>
+			<section class="woocommerce-products-search">
 				<?php if ( have_posts() ) { ?>
 					<?php
 						$products_ids = array();
@@ -44,23 +85,13 @@ get_header( 'shop' ); ?>
 					<p>
 						Nenhum produto encontrado com a(s) palavra(s) <strong><?php echo get_search_query(); ?></strong>.
 					</p>
-					
-					<?php get_product_search_form() ?>
-					
+				
 				<?php } ?>
 			</section>
 		<?php } ?>
 			
 		<?php if (is_shop() and !is_search()) { ?>
 			<section class="woocommerce-products-shop">
-				<header class="page-header">
-					<h1>
-						<?php echo woocommerce_page_title();?>
-					</h1>
-				</header>
-
-				<?php $woo_categories = woo_categories(); ?>
-				
 				<?php foreach ($woo_categories as $category) { ?>
 					<h2>
 						<?php echo $category->name; ?> (<?php echo $category->count;?>).
@@ -68,7 +99,7 @@ get_header( 'shop' ); ?>
 							Ver todos
 						</a>
 					</h2>
-					<?php echo do_shortcode('[product_category category="'.$category->slug.'" per_page="8" columns="'.storefront_loop_columns().'"]'); ?>
+					<?php echo do_shortcode('[product_category category="'.$category->slug.'" per_page="4" columns="'.storefront_loop_columns().'"]'); ?>
 
 				<?php } ?>
 			</section>
@@ -77,13 +108,6 @@ get_header( 'shop' ); ?>
 		<?php if (is_product_category() and !is_search()) { ?>
 			<section class="woocommerce-products-category">
 				<?php $current_category = woocommerce_category_description() ?>
-
-				<header class="page-header">
-					<h1 class="page-title">
-						<?php echo $current_category->name ?>
-					</h1>
-				</header>
-
 				<?php echo do_shortcode('[product_category category="'.$current_category->slug.'" per_page="-1" columns="4"]')?>
 			</section>
 		<?php } ?>
@@ -96,6 +120,7 @@ get_header( 'shop' ); ?>
 			</header>
 
 			<?php echo do_shortcode('[recent_products per_page="4" columns="4"]') ?>
+			
 
 			<header class="page-header">
 				<h1 class="page-title">

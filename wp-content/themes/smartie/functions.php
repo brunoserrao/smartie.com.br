@@ -39,14 +39,6 @@ function woo_products_featured($qty = 5){
 }
 
 /*
-* Remove Storefront Logo
-*/
-add_action( 'init', 'storefront_custom_logo' );
-function storefront_custom_logo() {
-	remove_action( 'storefront_header', 'storefront_site_branding', 20 );
-}
-
-/*
 * Get Woocommerce Product Gallery
 */
 function woo_gallery_images($product_id){

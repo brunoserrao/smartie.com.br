@@ -32,4 +32,10 @@ jQuery(function() {
 			$input.val( val-1 ).change();
 		} 
 	});
+
+	jQuery('#woocommerce-product-select-category').on('change',function(e){
+		e.preventDefault();
+		select = jQuery(this);
+		window.location.href = jQuery(select).val();
+	});
 });
