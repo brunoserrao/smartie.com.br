@@ -36,6 +36,9 @@ jQuery(function() {
 	jQuery('#woocommerce-product-select-category').on('change',function(e){
 		e.preventDefault();
 		select = jQuery(this);
-		window.location.href = jQuery(select).val();
+		
+		if (jQuery(select).val()) {
+			window.location.href = jQuery(select).val();
+		}
 	});
 });

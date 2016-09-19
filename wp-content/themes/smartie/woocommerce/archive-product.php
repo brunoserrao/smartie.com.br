@@ -31,6 +31,9 @@ foreach ($woo_categories as $category) {
 	);
 }
 
+if (is_product_category()) {
+	$current_category = woocommerce_category_description();
+}
 get_header( 'shop' ); ?>
 	<main id="main" class="site-main" role="main">
 		<header class="page-header">
@@ -57,9 +60,10 @@ get_header( 'shop' ); ?>
 				<form id="woocommerce-product-archive-select" action="">
 					<div class="select-style">
 						<select name="" id="woocommerce-product-select-category">
-							<option selected>Selecione uma categoria</option>
+							<option value="">Selecione uma categoria</option>
+							<option value="<?php  echo get_permalink( woocommerce_get_page_id( 'shop' )); ?>">Voltar para a loja</option>
 							<?php foreach ($woo_categories_by_name as $category) { ?>
-								<option value="<?php echo get_term_link($category['term_id'],'product_cat'); ?>"><?php echo $category['name'];?></option>
+								<option <?php echo $current_category->term_id == $category['term_id'] ? 'selected' : '' ?>  value="<?php echo get_term_link($category['term_id'],'product_cat'); ?>"><?php echo $category['name'];?></option>
 							<?php } ?>
 						</select>
 					</div> 
@@ -107,7 +111,6 @@ get_header( 'shop' ); ?>
 
 		<?php if (is_product_category() and !is_search()) { ?>
 			<section class="woocommerce-products-category">
-				<?php $current_category = woocommerce_category_description() ?>
 				<?php echo do_shortcode('[product_category category="'.$current_category->slug.'" per_page="-1" columns="4"]')?>
 			</section>
 		<?php } ?>
