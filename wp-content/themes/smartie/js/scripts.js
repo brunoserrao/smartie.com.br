@@ -47,9 +47,8 @@ jQuery(function() {
 		link = jQuery(this);
 
 		if (!jQuery(link).next().is(':visible')) {
-			jQuery('#faq-smart .resposta').hide('fast',function(){
-				jQuery(link).next().show('fast');
-			});
+			jQuery('#faq-smart .resposta').css('display','none');
+			jQuery(link).next().css('display','block');
 		}
 	});
 });
