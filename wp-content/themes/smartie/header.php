@@ -19,7 +19,7 @@
 <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.slides.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/scripts.js"></script>
 
-<?php if ($_SERVER['SERVER_NAME'] == 'lojadeplanilhas.com.br') { ?>
+<?php if ($_SERVER['SERVER_NAME'] == 'www.lojadeplanilhas.com.br') { ?>
 	<!--Start of Zopim Live Chat Script-->
 	<script type="text/javascript">
 		window.$zopim||(function(d,s){var z=$zopim=function(c){
