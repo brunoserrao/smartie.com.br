@@ -37,7 +37,7 @@ class brunoFaq {
 					$list .= 
 					'<li class="faq-pergunta">'
 						.'<h3 class="faq-pergunta-link">'.$faq->post_title.'</h3>'
-						.'<div class="resposta">'.$faq->post_content.'</div>'
+						.'<div class="resposta">'.apply_filters('the_content', $faq->post_content).'</div>'
 					.'</li>';
 				}
 			}
