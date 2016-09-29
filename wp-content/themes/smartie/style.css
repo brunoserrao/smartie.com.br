@@ -2813,3 +2813,8 @@ ul.products li.product {
     width: 100%;
   }
 }
+
+.post .entry-content a{
+  font-style: italic;
+  text-decoration: underline;
+}
