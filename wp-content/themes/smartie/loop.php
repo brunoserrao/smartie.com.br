@@ -9,17 +9,18 @@
  */
 
 do_action( 'storefront_loop_before' );
+$loop = 0;
+?>
 
-while ( have_posts() ) : the_post();
+<div id="loop-posts">
+	<?php while ( have_posts() ) { the_post(); ?>
+		<div class="loop-item loop-<?php echo ($loop % 2) ?>">
+			<?php get_template_part( 'content', get_post_format() ); ?>	
+		</div>
+	<?php $loop++; } ?>
+</div>
 
-	/* Include the Post-Format-specific template for the content.
-	 * If you want to override this in a child theme, then include a file
-	 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-	 */
-	get_template_part( 'content', get_post_format() );
-
-endwhile;
-
+<?php
 /**
  * @hooked storefront_paging_nav - 10
  */

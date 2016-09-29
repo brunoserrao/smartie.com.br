@@ -17,7 +17,7 @@ get_header(); ?>
 
 			<header class="page-header">
 				<h1 class="page-title">
-					<?php the_archive_title(); ?>
+					<?php echo bs_get_the_archive_title(); ?>
 				</h1>
 
 				<?php the_archive_description(); ?>

@@ -74,7 +74,7 @@ function wcs_woo_remove_reviews_tab($tabs) {
 */
 add_action( 'init', 'custom_remove_footer_credit', 10 );
 function custom_remove_footer_credit () {
-    remove_action( 'storefront_footer', 'storefront_credit', 20 );
+	remove_action( 'storefront_footer', 'storefront_credit', 20 );
 }
 
 /*
@@ -130,4 +130,54 @@ function unhook_those_pesky_emails( $email_class ) {
 	// remove_action( 'woocommerce_new_customer_note_notification', array( $email_class->emails['WC_Email_Customer_Note'], 'trigger' ) );
 
 	return $$email_class;
+}
+
+
+/*
+* Custom page title
+*/
+function bs_get_the_archive_title() {
+	if ( is_category() ) {
+		$title = single_cat_title( '', false );
+	} elseif ( is_tag() ) {
+		$title = sprintf( __( 'Tag: %s' ), single_tag_title( '', false ) );
+	} elseif ( is_author() ) {
+		$title = sprintf( __( 'Author: %s' ), '<span class="vcard">' . get_the_author() . '</span>' );
+	} elseif ( is_year() ) {
+		$title = sprintf( __( 'Year: %s' ), get_the_date( _x( 'Y', 'yearly archives date format' ) ) );
+	} elseif ( is_month() ) {
+		$title = sprintf( __( 'Month: %s' ), get_the_date( _x( 'F Y', 'monthly archives date format' ) ) );
+	} elseif ( is_day() ) {
+		$title = sprintf( __( 'Day: %s' ), get_the_date( _x( 'F j, Y', 'daily archives date format' ) ) );
+	} elseif ( is_tax( 'post_format' ) ) {
+		if ( is_tax( 'post_format', 'post-format-aside' ) ) {
+			$title = _x( 'Asides', 'post format archive title' );
+		} elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) {
+			$title = _x( 'Galleries', 'post format archive title' );
+		} elseif ( is_tax( 'post_format', 'post-format-image' ) ) {
+			$title = _x( 'Images', 'post format archive title' );
+		} elseif ( is_tax( 'post_format', 'post-format-video' ) ) {
+			$title = _x( 'Videos', 'post format archive title' );
+		} elseif ( is_tax( 'post_format', 'post-format-quote' ) ) {
+			$title = _x( 'Quotes', 'post format archive title' );
+		} elseif ( is_tax( 'post_format', 'post-format-link' ) ) {
+			$title = _x( 'Links', 'post format archive title' );
+		} elseif ( is_tax( 'post_format', 'post-format-status' ) ) {
+			$title = _x( 'Statuses', 'post format archive title' );
+		} elseif ( is_tax( 'post_format', 'post-format-audio' ) ) {
+			$title = _x( 'Audio', 'post format archive title' );
+		} elseif ( is_tax( 'post_format', 'post-format-chat' ) ) {
+			$title = _x( 'Chats', 'post format archive title' );
+		}
+	} elseif ( is_post_type_archive() ) {
+		$title = sprintf( __( 'Archives: %s' ), post_type_archive_title( '', false ) );
+	} elseif ( is_tax() ) {
+		$tax = get_taxonomy( get_queried_object()->taxonomy );
+		/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
+		$title = sprintf( __( '%1$s: %2$s' ), $tax->labels->singular_name, single_term_title( '', false ) );
+	} else {
+		$title = __( 'Archives' );
+	}
+
+	return $title;
 }

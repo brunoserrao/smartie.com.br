@@ -2766,3 +2766,50 @@ ul.products li.product {
   #faq-smart .faq-pergunta:first-child > .resposta{
     display: block; 
   }
+
+#loop-posts{
+
+}
+
+#loop-posts h1{
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  height: 3.9em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1.5em;
+  border-bottom: initial;
+  margin-bottom: .5em;
+  line-height: 1.2em;
+}
+
+#loop-posts .loop-item{
+  width: 50%;
+  padding: .5em;
+  margin-bottom: 2.5em;
+}
+
+#loop-posts .loop-item.loop-0{
+  float: left;
+}
+
+#loop-posts .loop-item.loop-1{
+  float: right;
+}
+
+#loop-posts .hentry{
+  margin: initial;
+  padding-bottom: initial;
+}
+
+#loop-posts .hentry .entry-header{
+  margin-bottom: 1.5em;
+}
+
+@media (max-width: 768px) {
+  #loop-posts .loop-item{
+    width: 100%;
+  }
+}
