@@ -89,6 +89,16 @@ function themeprefix_back_to_store() {
 	echo '</div>';
 }
 
+/*
+* Is Woocommerce page
+*/
+function is_woocommerce_page(){
+	if (is_woocommerce() or is_home() or is_shop() or is_product_category() or is_product_tag() or is_product() or is_cart() or is_checkout() or is_account_page() or is_wc_endpoint_url()) {
+		return true;
+	} else {
+		return false;
+	}
+}
 /**
  * Code goes in functions.php or a custom plugin.
  */

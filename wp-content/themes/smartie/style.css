@@ -1511,9 +1511,10 @@ fieldset {
     margin-right: 5.8823529412%;
     font-size: .857em; }
   .hentry.type-post .entry-content {
-    width: 76.4705882353%;
-    float: right;
-    margin-right: 0; } }
+    width: 100%;
+    /*float: right;*/
+    /*margin-right: 0; */
+    } }
 
 /**
  * Post Formats
@@ -1638,8 +1639,8 @@ video {
         .pagination .page-numbers li .page-numbers.current,
         .woocommerce-pagination .page-numbers li .page-numbers.current {
           font-weight: 700;
-          background-color: #96588a;
-          border-color: #96588a;
+          background-color: #25493d;
+          border-color: #25493d;
           color: #fff; }
         .pagination .page-numbers li .page-numbers.dots,
         .woocommerce-pagination .page-numbers li .page-numbers.dots {
@@ -1978,7 +1979,7 @@ video {
     color: #60646c;
     font-weight: 400; }
     .widget-area .widget a:hover {
-      color: #96588a; }
+      color: #25493d; }
 
 /**
  * Infinite Scroll

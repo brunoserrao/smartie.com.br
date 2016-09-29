@@ -55,9 +55,11 @@ function storefront_body_classes( $classes ) {
 	}
 
 	// If our main sidebar doesn't contain widgets, adjust the layout to be full-width.
-	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+	// if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+	if (is_woocommerce_page()) {
 		$classes[] = 'storefront-full-width-content';
 	}
+	// }
 
 	return $classes;
 }

@@ -37,15 +37,19 @@ if ( ! function_exists( 'storefront_post_content' ) ) {
 	function storefront_post_content() {
 		?>
 		<div class="entry-content" itemprop="articleBody">
+		<a href="<?php echo get_permalink(); ?>" title="<?php echo get_the_title(); ?>">
+			<?php storefront_post_thumbnail( 'full' ); ?>
+		</a>
 		<?php
-		storefront_post_thumbnail( 'full' );
 
-		the_content(
-			sprintf(
-				__( 'Continue reading %s', 'storefront' ),
-				'<span class="screen-reader-text">' . get_the_title() . '</span>'
-			)
-		);
+		if (is_single()) {
+			the_content(
+				sprintf(
+					__( 'Continue reading %s', 'storefront' ),
+					'<span class="screen-reader-text">' . get_the_title() . '</span>'
+				)
+			);	
+		}
 
 		wp_link_pages( array(
 			'before' => '<div class="page-links">' . __( 'Pages:', 'storefront' ),
@@ -63,6 +67,7 @@ if ( ! function_exists( 'storefront_post_meta' ) ) {
 	 * @since 1.0.0
 	 */
 	function storefront_post_meta() {
+		return;
 		?>
 		<aside class="entry-meta">
 			<?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search ?>
