@@ -17,7 +17,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 	 */
 	class SS_WC_Settings_MailChimp extends WC_Settings_Page  {
 
-		private static $_instance;
+		private static $instance;
 
 		/**
 		 * Singleton instance
@@ -26,11 +26,11 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 		 */
 		public static function get_instance() {
 
-			if ( empty( self::$_instance ) ) {
-				self::$_instance = new self;
+			if ( empty( self::$instance ) ) {
+				self::$instance = new self;
 			}
 
-			return self::$_instance;
+			return self::$instance;
 		}
 
 		/**
@@ -44,7 +44,6 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 			$this->id         = 'mailchimp';
 			$this->namespace  = 'ss_wc_' . $this->id;
 			$this->label      = __( 'MailChimp', 'woocommerce-mailchimp' );
-			
 			$this->init();
 			
 			$this->register_hooks();
@@ -88,13 +87,13 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 		}
 
 		/**
-		 * double_optin function.
+		 * double_opt_in function.
 		 *
 		 * @access public
 		 * @return boolean
 		 */
-		public function double_optin() {
-			return 'yes' === $this->get_option( 'double_optin' );
+		public function double_opt_in() {
+			return 'yes' === $this->get_option( 'double_opt_in' );
 		}
 
 		/**
@@ -277,6 +276,8 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 	 			})(jQuery);
 			");
 
+			do_action( 'ss_wc_mailchimp_after_settings_enqueue_js' );
+
 		}
 
 		/**
@@ -296,7 +297,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 			$sswcmc = SSWCMC();
 			// Trigger reload of plugin settings
 			$settings = $sswcmc->settings( true );
-			$sswcmc->mailchimp( $settings['api_key'] );
+			
 		}
 
 		/**
@@ -305,6 +306,8 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 		 * @return array
 		 */
 		public function get_settings( $current_section = '' ) {
+
+			$settings = array();
 
 			if ( '' === $current_section ) {
 
@@ -373,6 +376,8 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 						'desc_tip'    =>  true,
 					);
 
+				$settings = apply_filters( $this->namespace_prefixed( 'settings_general_after_interest_groups' ), $settings );
+
 				$settings[] = array(
 						'id'          => $this->namespace_prefixed( 'occurs' ),
 						'title'       => __( 'Subscribe Event', 'woocommerce-mailchimp' ),
@@ -389,7 +394,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 					);
 				
 				$settings[] = array(
-						'id'          => $this->namespace_prefixed( 'double_optin' ),
+						'id'          => $this->namespace_prefixed( 'double_opt_in' ),
 						'title'       => __( 'Double Opt-In', 'woocommerce-mailchimp' ),
 						'desc'        => __( 'Enable Double Opt-In', 'woocommerce-mailchimp' ),
 						'type'        => 'checkbox',
@@ -457,9 +462,9 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 						'desc_tip'    =>  true,
 					);
 
-				$settings[] = array( 'type' => 'sectionend', 'id' => 'general_options' );
-
 				$settings = apply_filters( $this->namespace_prefixed( 'settings_general' ), $settings );
+
+				$settings[] = array( 'type' => 'sectionend', 'id' => 'general_options' );
 
 			} elseif ( 'troubleshooting' === $current_section ) {
 

@@ -11,7 +11,13 @@ abstract class SS_WC_MailChimp_Migration {
 	protected $current_version;
 	protected $target_version;
 
-	protected $setting_keys = array(
+	protected $setting_keys;
+
+	protected $settings_key = 'woocommerce_mailchimp_settings';
+
+	public function __construct( $current_version, $target_version ) {
+
+		$this->setting_keys = array(
 			'api_key',
 			'enabled',
 			'list',
@@ -23,10 +29,6 @@ abstract class SS_WC_MailChimp_Migration {
 			'opt_in_checkbox_default_status',
 			'opt_in_checkbox_display_location',
 		);
-
-	protected $settings_key = 'woocommerce_mailchimp_settings';
-
-	public function __construct( $current_version, $target_version ) {
 
 		$this->settings = array();
 
@@ -59,7 +61,7 @@ abstract class SS_WC_MailChimp_Migration {
 
 		} else {
 
-			foreach ( $this->$setting_keys as $key ) {
+			foreach ( $this->setting_keys as $key ) {
 				$this->settings[ $key ] = get_option( $this->namespace_prefixed( $key ) );
 			}
 
@@ -89,7 +91,7 @@ abstract class SS_WC_MailChimp_Migration {
 
 	}
 
-	private function namespace_prefixed( $suffix ) {
+	protected function namespace_prefixed( $suffix ) {
 		return $this->namespace . '_' . $suffix;
 	}
 

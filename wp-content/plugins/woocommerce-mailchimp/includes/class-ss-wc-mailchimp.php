@@ -102,11 +102,11 @@ class SS_WC_MailChimp {
 
 	} //end function get_lists
 
-	public function subscribe( $list_id, $email_address,  $email_type, $merge_fields, $interests, $double_optin ) {
+	public function subscribe( $list_id, $email_address,  $email_type, $merge_fields, $interests, $double_opt_in ) {
 
 		$args = array(
 			'email_address' => $email_address,
-			'status'        => $double_optin ? 'pending' : 'subscribed',
+			'status'        => $double_opt_in ? 'pending' : 'subscribed',
 			'email_type'    => $email_type,
 			'merge_fields'  => $merge_fields,
 		);
@@ -138,21 +138,31 @@ class SS_WC_MailChimp {
 	 */
 	public function get_merge_fields( $list_id ) {
 
-		$resource = "lists/$list_id/merge-fields";
+		if ( ! $results = get_transient( "sswcmc_{$list_id}_merge_fields" ) ) {
 
-		$response = $this->api->get( $resource );
+			$resource = "lists/$list_id/merge-fields";
 
-		if ( ! $response ) {
-			return false;
-		}
+			$response = $this->api->get( $resource );
 
-		$merge_fields = $response['merge_fields'];
+			if ( ! $response ) {
+				return false;
+			}
 
-		$results = array();
+			$merge_fields = $response['merge_fields'];
 
-		foreach ( $merge_fields as $merge_field ) {
+			$results = array();
 
-			$results[ $merge_field['id'] ] = $merge_field['tag'];
+			foreach ( $merge_fields as $merge_field ) {
+
+				$results[ $merge_field['tag'] ] = array(
+					'name' => sprintf( '%s (%s)', $merge_field['name'], $merge_field['tag'] ),
+					'required' => $merge_field['required'],
+				);
+
+			}
+
+			// Cache list merge tags for 15 minutes
+			set_transient( "sswcmc_{$list_id}_merge_fields", $results, 60*15*1 );
 
 		}
 

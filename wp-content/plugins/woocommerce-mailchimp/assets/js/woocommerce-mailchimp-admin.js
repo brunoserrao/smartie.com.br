@@ -57,10 +57,6 @@ var SS_WC_MailChimp = function($) {
 			$interestGroups.attr('disabled','disabled');
 		}
 
-		$apiKey.on('focus', function() {
-			apiKeyChangeTriggered = false;
-		});
-
 		$apiKey.change(function() {
 			checkApiKey($apiKey.val(), true);
 		});
@@ -94,7 +90,7 @@ var SS_WC_MailChimp = function($) {
 		$optInCheckboxLocation.closest('tr').hide();
 		$doubleOptIn.closest('tr').hide();
 		$displayOptIn.change(function() {
-			if ($apiKey.val() === '') return;
+			if ( '' === $apiKey.val() ) return;
 
 			switch ($displayOptIn.val()) {
 				case 'no':
@@ -189,7 +185,8 @@ var SS_WC_MailChimp = function($) {
 					result = $.parseJSON(response);
 				} catch (err) {
 					console.error(err);
-					alert('&nbsp;'+SS_WC_MailChimp_Messages.error_loading_account);
+					$accountIndicator.addClass('error');
+					$accountIndicator.html('&nbsp;'+SS_WC_MailChimp_Messages.error_loading_account);
 					return;
 				}
 
