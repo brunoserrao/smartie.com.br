@@ -277,7 +277,7 @@ msgstr "Excluído!"
 msgid "Deleting..."
 msgstr "Excluindo..."
 
-#: wp-includes/wp-db.php:1792 wp-includes/wp-db.php:1798
+#: wp-includes/wp-db.php:1797 wp-includes/wp-db.php:1803
 msgid "Unable to retrieve the error message from MySQL"
 msgstr "Não foi possível recuperar a mensagem de erro do MySQL"
 
@@ -946,66 +946,66 @@ msgstr "Missão completa. Mensagem %s apagada."
 msgid "Author:"
 msgstr "Autor:"
 
-#: wp-includes/wp-db.php:1585
+#: wp-includes/wp-db.php:1590
 msgid "Are you sure that you have typed the correct hostname?"
 msgstr "Você tem certeza de que digitou o nome do host correto?"
 
-#: wp-includes/wp-db.php:1586 wp-includes/wp-db.php:1689
+#: wp-includes/wp-db.php:1591 wp-includes/wp-db.php:1694
 msgid "Are you sure that the database server is running?"
 msgstr "Você tem certeza que o servidor de banco de dados está funcionando?"
 
-#: wp-includes/wp-db.php:1690
+#: wp-includes/wp-db.php:1695
 msgid "Are you sure that the database server is not under particularly heavy load?"
 msgstr "Você tem certeza que o servidor de banco de dados não está sobrecarregado?"
 
 #. translators: %s: database host
-#: wp-includes/wp-db.php:1684
+#: wp-includes/wp-db.php:1689
 msgid "This means that we lost contact with the database server at %s. This could mean your host&#8217;s database server is down."
 msgstr "Isto significa que nós perdemos contato com o servidor de banco de dados em %s. Isto pode indicar que o servidor de banco de dados está fora do ar."
 
-#: wp-includes/wp-db.php:1680
+#: wp-includes/wp-db.php:1685
 msgid "Error reconnecting to the database"
 msgstr "Erro ao reconectar ao banco de dados"
 
 #. translators: %s: support forums URL
-#: wp-includes/wp-db.php:1591 wp-includes/wp-db.php:1695
+#: wp-includes/wp-db.php:1596 wp-includes/wp-db.php:1700
 msgid "If you&#8217;re unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href=\"%s\">WordPress Support Forums</a>."
 msgstr "Se você não tem certeza do significado desses termos, sugerimos que contate sua hospedagem. Se mesmo assim você precisar de ajuda, você sempre poderá visitar os <a href=\"%s\">fóruns de suporte do WordPress</a>."
 
 #. translators: 1: wp-config.php. 2: database host
-#: wp-includes/wp-db.php:1578
+#: wp-includes/wp-db.php:1583
 msgid "This either means that the username and password information in your %1$s file is incorrect or we can&#8217;t contact the database server at %2$s. This could mean your host&#8217;s database server is down."
 msgstr "Isto indica que seu nome de usuário ou senha estão incorretos em seu arquivo %1$s ou que nós não conseguimos contatar o servidor de banco de dados em %2$s. Isso pode indicar que seu servidor de banco de dados está fora do ar."
 
-#: wp-includes/wp-db.php:1584
+#: wp-includes/wp-db.php:1589
 msgid "Are you sure you have the correct username and password?"
 msgstr "Você tem certeza que o seu nome de usuário e a senha estão corretos?"
 
 #. translators: %s: support forums URL
-#: wp-includes/wp-db.php:1123
+#: wp-includes/wp-db.php:1128
 msgid "If you don&#8217;t know how to set up a database you should <strong>contact your host</strong>. If all else fails you may find help at the <a href=\"%s\">WordPress Support Forums</a>."
 msgstr "Se você não sabe como configurar um banco de dados você deve <strong>entrar em contato com a sua hospedagem</strong>. Se tudo mais falhar, você pode encontrar ajuda no <a href=\"%s\">fórum de suporte do WordPress</a>."
 
-#: wp-includes/wp-db.php:1095
+#: wp-includes/wp-db.php:1100
 msgid "Can&#8217;t select database"
 msgstr "Não foi possível selecionar a base de dados"
 
 #. translators: 1: database user, 2: database name
-#: wp-includes/wp-db.php:1108
+#: wp-includes/wp-db.php:1113
 msgid "Does the user %1$s have permission to use the %2$s database?"
 msgstr "O usuário %1$s tem permissão para utilizar to banco de dados %2$s?"
 
 #. translators: %s: database name
-#: wp-includes/wp-db.php:1115
+#: wp-includes/wp-db.php:1120
 msgid "On some systems the name of your database is prefixed with your username, so it would be like <code>username_%1$s</code>. Could that be the problem?"
 msgstr "Em alguns sistemas o nome do seu banco de dados é prefixado com seu nome de usuário, de modo que seria como <code>username_%1$s</code>. Poderia este ser o problema?"
 
-#: wp-includes/wp-db.php:1104
+#: wp-includes/wp-db.php:1109
 msgid "Are you sure it exists?"
 msgstr "Você tem certeza que isto existe?"
 
 #. translators: %s: database name
-#: wp-includes/wp-db.php:1099
+#: wp-includes/wp-db.php:1104
 msgid "We were able to connect to the database server (which means your username and password is okay) but not able to select the %s database."
 msgstr "Conseguimos conectar ao servidor de banco de dados (o que significa que seu nome de usuário e senha estão ok), mas não é possível selecionar o banco de dados %s."
 
@@ -1551,7 +1551,7 @@ msgstr "O link para redefinir a sua senha expirou. Solicite um novo link abaixo.
 msgid "Your password reset link appears to be invalid. Please request a new link below."
 msgstr "O link para redefinir a sua senha parece ser inválido. Solicite um novo link abaixo."
 
-#: wp-includes/wp-db.php:1376 wp-includes/wp-db.php:1393
+#: wp-includes/wp-db.php:1381 wp-includes/wp-db.php:1398
 msgid "WordPress database error:"
 msgstr "Erro no banco de dados do WordPress:"
 
@@ -2455,7 +2455,7 @@ msgstr "Você precisa passar um array de tipos."
 
 #. translators: %s: database access abstraction class, usually wpdb or a class
 #. extending wpdb
-#: wp-includes/wp-db.php:1175
+#: wp-includes/wp-db.php:1180
 msgid "%s must set a database connection for use with escaping."
 msgstr "%s deve configurar uma conexão com a base de dados para uso com escaping."
 
@@ -3527,7 +3527,7 @@ msgstr "Criar lista de reprodução de áudio"
 msgid "Create a new video playlist"
 msgstr "Criar uma nova lista de reprodução de vídeo"
 
-#: wp-includes/wp-db.php:1291
+#: wp-includes/wp-db.php:1296
 msgid "The query argument of %s must have a placeholder."
 msgstr "O argumento da consulta de %s deve ter um placeholder."
 
@@ -3601,8 +3601,8 @@ msgstr "Justificar"
 msgid "Source code"
 msgstr "Código fonte"
 
-#: wp-includes/admin-bar.php:147 wp-includes/wp-db.php:1124
-#: wp-includes/wp-db.php:1592 wp-includes/wp-db.php:1696 wp-login.php:801
+#: wp-includes/admin-bar.php:147 wp-includes/wp-db.php:1129
+#: wp-includes/wp-db.php:1597 wp-includes/wp-db.php:1701 wp-login.php:801
 msgid "https://wordpress.org/support/"
 msgstr "http://br.forums.wordpress.org"
 
@@ -5219,7 +5219,7 @@ msgid "Database Error"
 msgstr "Erro de Banco de Bados"
 
 #: wp-includes/functions.php:3647 wp-includes/ms-load.php:471
-#: wp-includes/wp-db.php:1574
+#: wp-includes/wp-db.php:1579
 msgid "Error establishing a database connection"
 msgstr "Erro ao estabelecer uma conexão com o Banco de Dados"
 
@@ -6326,11 +6326,11 @@ msgstr "Pingback de %1$s a %2$s registrado. Mantenha a rede conversando! :-)"
 msgid "The specified target URL does not exist."
 msgstr "O URL de destino especificado não existe."
 
-#: wp-includes/wp-db.php:1362
+#: wp-includes/wp-db.php:1367
 msgid "WordPress database error %1$s for query %2$s made by %3$s"
 msgstr "Erro de banco de dados do WordPress %1$s para a consulta %2$s feita por %3$s"
 
-#: wp-includes/wp-db.php:1364
+#: wp-includes/wp-db.php:1369
 msgid "WordPress database error %1$s for query %2$s"
 msgstr "Erro de banco de dados do WordPress %1$s para a consulta %2$s"
 
@@ -7461,7 +7461,7 @@ msgstr[1] "Pendentes <span class=\"count\">(%s)</span>"
 msgid "<strong>ERROR</strong>: Your account has been marked as a spammer."
 msgstr "<strong>ERRO</strong>: Sua conta foi marcada como spammer."
 
-#: wp-includes/wp-db.php:3207
+#: wp-includes/wp-db.php:3212
 msgid "<strong>ERROR</strong>: WordPress %1$s requires MySQL %2$s or higher"
 msgstr "<strong>ERRO</strong>: o WordPress %1$s requer MySQL %2$s ou superior"
 

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Administration package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-08-14 15:53:43+0000\n"
+"PO-Revision-Date: 2016-09-27 23:21:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2822,7 +2822,7 @@ msgstr "Não foi possível incorporar %s."
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:92
 msgctxt "Plugin Installer"
 msgid "Beta Testing"
-msgstr "Teste do Beta"
+msgstr "Betas"
 
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:406
 msgctxt "Plugin installer group title"
