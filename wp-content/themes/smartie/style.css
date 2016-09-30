@@ -2478,7 +2478,7 @@ ul.products li.product {
 
 @media (min-width: 768px) {
   #site-navigation .fixed-navigation{
-    display: block;
+    display: none;
     position: fixed;
     background-color: #307c63;
     width: 978px;
@@ -2516,6 +2516,7 @@ ul.products li.product {
   }
 
   #site-navigation .display-fixed-navigator{
+    display: block;
     top: 0px;
   }
 }
