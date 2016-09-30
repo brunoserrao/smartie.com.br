@@ -2480,10 +2480,11 @@ ul.products li.product {
   #site-navigation .fixed-navigation{
     display: block;
     position: fixed;
-    background-color: #25493d;
+    background-color: #307c63;
     width: 978px;
     transition: top 300ms linear;
     top: -60px;
+    background-color: #307c63;
   }
 
   #site-navigation .fixed-navigation  ul#menu-principal-2:before{
@@ -2497,6 +2498,7 @@ ul.products li.product {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 75% auto;
+    background-color: #25493d;
   }
 
   #site-navigation .fixed-navigation ul li {
