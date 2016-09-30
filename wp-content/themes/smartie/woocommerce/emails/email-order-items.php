@@ -58,8 +58,8 @@ foreach ( $items as $item_id => $item ) :
 					ob_start();
 					$order->display_item_downloads( $item );
 					$parse_small = ob_get_clean();
-					$parse_small = str_replace( '<small', '<h3 style="color: inherit; margin: 0; background-color: #25493d; color: #FFFFFF; padding: 10px 5px; width: inherit;"',  str_replace( '</small', '</h3',  $parse_small ) );
-					$parse_small = str_replace( 'target="_blank"', 'target="_blank" style="color: #FFFFFF !important;"', $parse_small);
+					$parse_small = str_replace( '<small', '<h3 style="color: inherit; margin: 0; background-color: #FFFFFF; border: 2px solid #25493d; color: #25493d; padding: 10px 5px; width: inherit;"',  str_replace( '</small', '</h3',  $parse_small ) );
+					$parse_small = str_replace( 'target="_blank"', 'target="_blank" style="color: #25493d !important;"', $parse_small);
 					echo $parse_small;
 				}
 
