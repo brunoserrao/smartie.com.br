@@ -2777,9 +2777,9 @@ ul.products li.product {
 #loop-posts h1{
   width: 100%;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  height: 3.9em;
+  height: 2.5em;
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 1.5em;
