@@ -37,9 +37,11 @@
 			<?php $woo_categories = woo_categories(); ?>
 			
 			<?php foreach ($woo_categories as $category) { ?>
-				<h1>
-					<?php echo $category->name; ?>
-				</h1>
+				<a href="<?php echo woocommerce_category_url($category->term_id); ?>" title="<?php echo $category->name ?>" class="">
+					<h1>
+						<?php echo $category->name; ?>
+					</h1>
+				</a>				
 				<?php echo do_shortcode('[product_category category="'.$category->slug.'" per_page="4" columns="'.storefront_loop_columns().'"]'); ?>
 			<?php } ?>
 		</main>
