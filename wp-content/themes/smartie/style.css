@@ -2481,7 +2481,7 @@ ul.products li.product {
     display: none;
     position: fixed;
     background-color: #307c63;
-    width: 978px;
+    width: 977px;
     transition: top 300ms linear;
     top: -60px;
     background-color: #307c63;
@@ -2820,4 +2820,8 @@ ul.products li.product {
 .post .entry-content a{
   font-style: italic;
   text-decoration: underline;
+}
+
+.mc4wp-checkbox.mc4wp-checkbox-woocommerce span{
+  padding-left: 10px;
 }

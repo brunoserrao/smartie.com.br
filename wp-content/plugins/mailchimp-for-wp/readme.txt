@@ -2,9 +2,9 @@
 Contributors: Ibericode, DvanKooten, hchouhan, lapzor
 Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-for-wp&utm_campaign=donate-link
 Tags: mailchimp, mc4wp, email, marketing, newsletter, subscribe, widget, mc4wp, contact form 7, woocommerce, buddypress, ibericode, mailchimp forms, mailchimp integrations
-Requires at least: 3.8
+Requires at least: 4.1
 Tested up to: 4.6.1
-Stable tag: 4.0.5
+Stable tag: 4.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,7 +57,7 @@ MailChimp for WordPress helps you add more subscribers to your MailChimp lists u
 <p>MailChimp for WordPress has a Premium add-on which comes with several additional benefits.</p>
 <ul>
 <li>Multiple forms (with AJAX)</li>
-<li>eCommerce360 integration for WooCommerce and Easy Digital Downloads</li>
+<li>Advanced MailChimp e-commerce integration for WooCommerce</li>
 <li>Email notifications</li>
 <li>An easy way to style your forms</li>
 <li>Detailed reports & statistics</li>
@@ -188,6 +188,37 @@ MailChimp for WordPress is being developed on GitHub. If you want to collaborate
 6. Detailed statistics on which methods are generating the most subscribers. **(Pro Feature)**
 
 == Changelog == 
+
+
+#### 4.0.7 - October 25, 2016
+
+**Improvements**
+
+- Obfuscate all email addresses in debug log. Thanks [Sauli Lepola](https://twitter.com/SJLfi).
+- Ask for confirmation before disabling double opt-in, which we do not recommend.
+- Allow vertical resizing of debug log.
+- Failsafe against including JavaScript file twice.
+- No longer wrapping CF7 checkbox in paragraph tags.
+
+**Additions**
+
+- Added `mc4wp_form_api_error` action hook for API errors encountered by forms.
+- Added `element_class` argument to `[mc4wp_form]` shortcode for adding CSS classes.
+
+
+#### 4.0.6 - October 10, 2016
+
+**Fixes**
+
+- Issue with lists not showing when using W3 Total Cache with APCu object cache enabled.
+
+**Improvements**
+
+- We're no longer stripping newlines from text fields.
+
+**Additions**
+
+- Added missing e-commerce related API methods to API class.
 
 
 #### 4.0.5 - September 29, 2016
