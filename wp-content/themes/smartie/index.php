@@ -2,7 +2,10 @@
 
 	<div id="primary" class="content-area">
 		<div id="form-cadastro">
-			<?php echo do_shortcode('[mc4wp_form]'); ?>
+			<div class="texto">
+				Receba a planilha PLANO DE AÇÃO GRATUITAMENTE no seu email. Inscreva-se agora!
+			</div>
+			<?php echo do_shortcode('[yikes-mailchimp form="1"]'); ?>
 		</div>
 
 		<div class="clear"></div>

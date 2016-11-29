@@ -2639,45 +2639,46 @@ ul.products li.product {
   margin-bottom: 0px !important;
 }
 
-#form-cadastro .texto{
+#form-cadastro span{
   width: 100%;
   float: none;
   color: #FFF;
   margin-bottom: 15px;
+  display: none;
 }
 
-#form-cadastro form .campo{
+#form-cadastro .texto{
+  width: 100%;
+  color: #FFF;
+  margin-bottom: 10px;
+}
+
+/*#form-cadastro form label{
   width: 40%;
   float: left;
 }
+#form-cadastro form .yikes-easy-mc-text, #form-cadastro form  .yikes-easy-mc-email  {
+  width: 90%;
+  float: left;
+  border: none;
+}
 
-#form-cadastro form .campo input{
+#form-cadastro form .yikes-easy-mc-text  input{
   width: 95%;
   padding: 5px;
 }
+*/
 
-#form-cadastro form .campo.submit{
-  width: 20%
-}
-#form-cadastro form .campo.submit input {
-  width: 100%;
-  background-color: #25493d;
+#form-cadastro form .yikes-easy-mc-submit-button{
+  /*width: 20%;*/
+  /*margin-top: inherit;*/
+  /*min-height: inherit;*/
   padding: 7px 0px;
+  height: 38px;
 }
 
-#form-cadastro .mc4wp-response{
-  display: block;
-  clear: both;
-  float: left;
-  width: 100%;
-}
-
-#form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-error{
-  color: #fec221;
-}
-
-#form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-success, #form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-notice{
-  color: #FFFFFF;
+#form-cadastro .yikes-easy-mc-success-message, #form-cadastro .yikes-easy-mc-error-message {
+    margin-bottom: 10px !important;
 }
 
 @media (max-width: 768px) {
@@ -2824,4 +2825,8 @@ ul.products li.product {
 
 .mc4wp-checkbox.mc4wp-checkbox-woocommerce span{
   padding-left: 10px;
+}
+
+.button.baixar-demonstracao{
+  margin-right: 10px;
 }
