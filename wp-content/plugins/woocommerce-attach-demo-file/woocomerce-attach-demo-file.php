@@ -34,6 +34,8 @@ class woocommerce_attach_demo_file {
 	 *
 	 */
 	public function woocommerce_attach_file_form_html() {
+		global $post;
+		
 		$woocommerce_attach_upload_file = get_post_meta($post->ID, 'woocommerce_attach_upload_file', true);
 
 		echo '<div class="woocomemrce-attach-upload-file">';
