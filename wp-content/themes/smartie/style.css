@@ -2522,8 +2522,8 @@ ul.products li.product {
 }
 
 @media (max-width: 768px) {
-   #site-navigation .fixed-navigation.admin-logged{
-    margin-top: 46px !important; 
+   #site-navigation .fixed-navigation{
+    display: none;
   }
 }
 
@@ -2625,7 +2625,7 @@ ul.products li.product {
 #form-cadastro{
   display: block;
   width: 100%;
-  padding: 15px;
+  padding: 15px 15px 0px 15px;
   float: left;
   background-color: #307c63;
   border-radius: 10px;
@@ -2647,38 +2647,41 @@ ul.products li.product {
   display: none;
 }
 
-#form-cadastro .texto{
+#form-cadastro .texto, #form-cadastro section{
   width: 100%;
   color: #FFF;
   margin-bottom: 10px;
 }
 
-/*#form-cadastro form label{
-  width: 40%;
-  float: left;
-}
-#form-cadastro form .yikes-easy-mc-text, #form-cadastro form  .yikes-easy-mc-email  {
-  width: 90%;
-  float: left;
-  border: none;
-}
-
-#form-cadastro form .yikes-easy-mc-text  input{
-  width: 95%;
-  padding: 5px;
-}
-*/
-
 #form-cadastro form .yikes-easy-mc-submit-button{
-  /*width: 20%;*/
-  /*margin-top: inherit;*/
-  /*min-height: inherit;*/
   padding: 7px 0px;
   height: 38px;
 }
 
 #form-cadastro .yikes-easy-mc-success-message, #form-cadastro .yikes-easy-mc-error-message {
     margin-bottom: 10px !important;
+    padding: inherit;
+    background-color: transparent;
+}
+
+#form-cadastro .yikes-easy-mc-error-message{
+  color: yellow;
+}
+
+#form-cadastro .yikes-easy-mc-success-message{
+  color: #FFF;
+}
+
+#form-cadastro .yikes-mailchimp-container{
+  width: 100%;
+}
+
+#form-cadastro .yikes-mailchimp-container label.label-inline{
+  margin-bottom: inherit;
+}
+
+#form-cadastro .yikes-mailchimp-container input{
+  margin: inherit;
 }
 
 @media (max-width: 768px) {
@@ -2812,12 +2815,6 @@ ul.products li.product {
   margin-bottom: 1.5em;
 }
 
-@media (max-width: 768px) {
-  #loop-posts .loop-item{
-    width: 100%;
-  }
-}
-
 .post .entry-content a{
   font-style: italic;
   text-decoration: underline;
@@ -2829,4 +2826,39 @@ ul.products li.product {
 
 .button.baixar-demonstracao{
   margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  #loop-posts .loop-item{
+    width: 100%;
+  }
+
+  .button.baixar-demonstracao{
+    position: absolute;
+    right: 0px;
+    margin-top: 45px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+
+#pp_full_res iframe{
+  width: 100%;
+}
+
+#download-demo form{
+  margin: 1.681em 0;
+}
+
+#download-demo .yikes-easy-mc-success-message, #download-demo .yikes-easy-mc-error-message{
+  margin: 1.681em 0;
+  text-align: center;
+}
+
+#download-demo .download-arquivo{
+  width: 100%;
+  text-align: center;
+  padding: 1.2em 0;
 }

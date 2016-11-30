@@ -2,10 +2,7 @@
 
 	<div id="primary" class="content-area">
 		<div id="form-cadastro">
-			<div class="texto">
-				Receba a planilha PLANO DE AÇÃO GRATUITAMENTE no seu email. Inscreva-se agora!
-			</div>
-			<?php echo do_shortcode('[yikes-mailchimp form="1"]'); ?>
+			<?php echo do_shortcode('[yikes-mailchimp description="1" form="1"]'); ?>
 		</div>
 
 		<div class="clear"></div>
