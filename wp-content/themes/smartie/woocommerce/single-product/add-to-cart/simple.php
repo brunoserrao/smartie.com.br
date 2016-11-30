@@ -60,7 +60,8 @@ $woocommerce_attach_upload_file = get_post_meta($product->id, 'woocommerce_attac
 	 	<button type="submit" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
 
 	 	<?php if(!empty($woocommerce_attach_upload_file)){ ?>
-			<a href="<?php echo get_permalink(2); ?>?iframe=true&width=50%&height=70%&href=<?php echo base64_encode($woocommerce_attach_upload_file[0]); ?>" data-rel="prettyPhoto[iframes]" class="button baixar-demonstracao"><?php echo get_the_title(2) ?></a>
+	 		<input type="hidden" id="fhref" value="<?php echo base64_encode($woocommerce_attach_upload_file[0]); ?>"/>
+			<a href="<?php echo get_permalink(2); ?>?iframe=true&width=50%&height=70%" data-rel="prettyPhoto[iframes]" class="button baixar-demonstracao"><?php echo get_the_title(2) ?></a>
 	 	<?php } ?>
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
