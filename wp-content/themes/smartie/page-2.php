@@ -14,7 +14,7 @@
 		<div id="download-demo">
 			<?php the_content(); ?>	
 			<?php if (!empty($_POST)) { ?>
-				<a href="<?php echo  base64_decode(sanitize_text_field($_GET['href'])); ?>" title="<?php echo get_the_title() ?>" class="button download-arquivo">Clique aqui para baixar o arquivo.</a>
+				<a href="<?php echo base64_decode(sanitize_text_field($_GET['href'])); ?>" title="<?php echo get_the_title() ?>" class="button download-arquivo">Clique aqui para baixar o arquivo.</a>
 			<?php } ?>
 		</div>
 	</div>
