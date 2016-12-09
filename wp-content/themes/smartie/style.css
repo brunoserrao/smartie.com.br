@@ -2824,21 +2824,8 @@ ul.products li.product {
   padding-left: 10px;
 }
 
-.button.baixar-demonstracao{
-  margin-right: 10px;
-}
-
 @media (max-width: 768px) {
   #loop-posts .loop-item{
-    width: 100%;
-  }
-
-  .button.baixar-demonstracao{
-    position: absolute;
-    right: 0px;
-    margin-top: 45px;
-    left: 0;
-    text-align: center;
     width: 100%;
   }
 }
@@ -2861,4 +2848,21 @@ ul.products li.product {
   width: 100%;
   text-align: center;
   padding: 1.2em 0;
+}
+
+
+.content-baixar-demonstracao{
+  display: block;
+  float: none;
+  width: 100%;
+  clear: both;
+  height: 65px;
+}
+
+.content-baixar-demonstracao .button.baixar-demonstracao{
+  width: 100%;
+  text-align: center;
+  padding: 20px 0px;
+  background-color: #F9A825 !important;
+  margin-top: -5px;
 }
