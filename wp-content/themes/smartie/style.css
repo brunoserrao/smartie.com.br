@@ -2865,4 +2865,7 @@ ul.products li.product {
   padding: 20px 0px;
   background-color: #F9A825 !important;
   margin-top: -5px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #000;
 }
