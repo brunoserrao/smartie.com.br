@@ -12,6 +12,7 @@ require(dirname(__FILE__) . '/wp-load.php');
 
 /** This filter is documented in wp-admin/options.php */
 if ( ! apply_filters( 'enable_post_by_email_configuration', true ) )
+<<<<<<< HEAD
 	wp_die( __( 'This action has been disabled by the administrator.' ), 403 );
 <<<<<<< HEAD
 
@@ -22,6 +23,9 @@ if ( 'mail.example.com' === $mailserver_url || empty( $mailserver_url ) ) {
 }
 =======
 >>>>>>> origin/master
+=======
+	wp_die( __( 'This action has been disabled by the administrator.' ) );
+>>>>>>> parent of 7ae5549... Worpress updates
 
 /**
  * Fires to allow a plugin to do a complete takeover of Post by Email.
@@ -127,7 +131,6 @@ for ( $i = 1; $i <= $count; $i++ ) {
 					$author = trim($line);
 				$author = sanitize_email($author);
 				if ( is_email($author) ) {
-					/* translators: Post author email address */
 					echo '<p>' . sprintf(__('Author is %s'), $author) . '</p>';
 					$userdata = get_user_by('email', $author);
 					if ( ! empty( $userdata ) ) {

@@ -1,13 +1,18 @@
 === WooCommerce ===
-Contributors: automattic, mikejolley, jameskoster, claudiosanches, jshreve, coderkevin, woothemes, icaleb
+Contributors: automattic, mikejolley, jameskoster, claudiosanches, jshreve, coderkevin, woothemes, BFTrick
 Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, downloadable, downloads, paypal, storefront
 Requires at least: 4.4
+<<<<<<< HEAD
 Tested up to: 4.7
 <<<<<<< HEAD
 Stable tag: 2.6.12
 =======
 Stable tag: 2.6.9
 >>>>>>> origin/master
+=======
+Tested up to: 4.5
+Stable tag: 2.6.4
+>>>>>>> parent of 7ae5549... Worpress updates
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -82,7 +87,7 @@ And there’s plenty more where they came from. Visit our [extensions page](http
 
 When you download WooCommerce, you join a community of more than a million store owners, developers, and WordPress enthusiasts. We’re one of the fastest-growing open source communities online, and whether you’re a n00b or a Ninja, we’d love to have you!
 
-If you’re interested in contributing to WooCommerce we’ve got more than 350 contributors, and there’s always room for more. Head over to the [WooCommerce GitHub Repository](https://github.com/woocommerce/woocommerce) to find out how you can pitch in.
+If you’re interested in contributing to WooCommerce we’ve got more than 350 contributors, and there’s always room for more. Head over to the [WooCommerce GitHub Repository](https://github.com/woothemes/woocommerce) to find out how you can pitch in.
 
 Want to add a new language to WooCommerce? Swell! You can contribute via [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/woocommerce).
 
@@ -130,10 +135,14 @@ For extending or theming WooCommerce, see our [codex](https://docs.woocommerce.c
 If you get stuck, you can ask for help in the [WooCommerce Plugin Forum](https://wordpress.org/support/plugin/woocommerce).
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 For help with premium extensions from WooCommerce.com, use [our helpdesk](https://woocommerce.com/my-account/tickets/).
 =======
 For help with premium extensions from WooThemes, use [our helpdesk](https://support.woothemes.com/).
 >>>>>>> origin/master
+=======
+For help with premium add-ons from WooThemes, use [our helpdesk](https://support.woothemes.com/).
+>>>>>>> parent of 7ae5549... Worpress updates
 
 = Will WooCommerce work with my theme? =
 
@@ -145,15 +154,15 @@ You can vote on and request new features and extensions in our [WooIdeas board](
 
 = Where can I report bugs or contribute to the project? =
 
-Bugs can be reported either in our support forum or preferably on the [WooCommerce GitHub repository](https://github.com/woocommerce/woocommerce/issues).
+Bugs can be reported either in our support forum or preferably on the [WooCommerce GitHub repository](https://github.com/woothemes/woocommerce/issues).
 
 = Where can I find the REST API documentation? =
 
-You can find the documentation of our REST API on the [WooCommerce REST API Docs](https://woocommerce.github.io/woocommerce-rest-api-docs/).
+You can find the documentation of our REST API on the [WooCommerce REST API Docs](https://woothemes.github.io/woocommerce-rest-api-docs/).
 
 = WooCommerce is awesome! Can I contribute? =
 
-Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/woocommerce/) :)
+Yes you can! Join in on our [GitHub repository](http://github.com/woothemes/woocommerce/) :)
 
 == Screenshots ==
 
@@ -166,6 +175,7 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 
 == Changelog ==
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 = 2.6.12 - 2017-01-12 =
 * Fix - Make images shown up on pageload when using ajax variations.
@@ -288,6 +298,9 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 =======
 = 2.6.4 - 26/07/16 =
 >>>>>>> origin/master
+=======
+= 2.6.4 - 26/07/16 =
+>>>>>>> parent of 7ae5549... Worpress updates
 * Fix - Security - Only allow image MIME type upload via REST APIs.
 * Fix - Shipping method title display in COD settings.
 * Fix - Order date input in Edge browser.
@@ -300,7 +313,7 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 * Dev - CLI - Explode tags and category IDs to allow multiple comma separated values.
 * Dev - add $order arg to woocommerce_admin_order_item_class and woocommerce_admin_html_order_item_class filters.
 
-= 2.6.3 - 2016-07-19 =
+= 2.6.3 - 19/07/16 =
 * Fix - Security - Escape captions in product-thumbnail and product-image templates (template versions have been bumped).
 * Fix - Fixed how we calculate shipping tax rates when using more than one tax class.
 * Fix - When duplicating product variations, set title, name, and guid.
@@ -333,7 +346,7 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 * Tweak - Updated all URLs from WooThemes.com to WooCommerce.com.
 * Tweak - Cache the result of WC_Comments::wp_count_comments() in a transient (improves performance).
 
-= 2.6.2 - 2016-06-30 =
+= 2.6.2 - 30/06/16 =
 * Fix - Set max index length on woocommerce_payment_tokenmeta table for utf8mb4 support.
 * Fix - is_available check for legacy shipping methods.
 * Fix - wc_add_to_cart_message() when non-array is passed.
@@ -370,7 +383,7 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 * Tweak - Improve wc_orders_count() performance by running a query to count only posts of the given status.
 * Tweak - To allow my account page tabs to be disabled without code, you can now set the endpoint value to a blank string.
 
-= 2.6.1 - 2016-06-16 =
+= 2.6.1 - 16/06/16 =
 * Fix - Added missing localized format for line taxes in orders screen to prevent total miscalculation in manual orders.
 * Fix - Improved the hour and time fields validation pattern on the orders screen.
 * Fix - PayPal does not allow free products, but paid shipping. Workaround by sending shipping as a line item if it is the only cost.
@@ -390,7 +403,7 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 * Tweak - Allow max_fee in addition to min_fee in flat rate costs fields.
 * Tweak - Wrap order_schema_markup() output in hidden div in case script tag is stripped.
 
-= 2.6.0 - 2016-06-14 =
+= 2.6.0 - 14/06/16 =
 * Feature - Introduced Shipping Zone functionality, and re-usable instance based shipping methods.
 * Feature - Tabbed "My Account" area.
 * Feature - Cart operations now use ajax (item quantities/remove, coupon apply/remove, shipping options).
@@ -435,9 +448,9 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 * Tweak - Allow failed orders to be edited.
 * Tweak - If there are no shipping methods setup, don’t prompt for shipping at checkout.
 * Tweak - Allowed country exclusion, rather than just inclusion, in ‘sell to’ setting.
-* Lots, lots more - [see the comparison here](https://github.com/woocommerce/woocommerce/compare/2.5.5...2.6.0).
+* Lots, lots more - [see the comparison here](https://github.com/woothemes/woocommerce/compare/2.5.5...2.6.0).
 
-[See changelog for all versions](https://raw.githubusercontent.com/woocommerce/woocommerce/master/CHANGELOG.txt).
+[See changelog for all versions](https://raw.githubusercontent.com/woothemes/woocommerce/master/CHANGELOG.txt).
 
 == Upgrade Notice ==
 

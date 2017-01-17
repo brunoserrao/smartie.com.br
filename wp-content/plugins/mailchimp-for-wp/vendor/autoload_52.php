@@ -5,7 +5,11 @@
 require_once dirname(__FILE__) . '/composer'.'/autoload_real_52.php';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 return ComposerAutoloaderInit541c0dc3d2f08af0d23e4f44958746d3::getLoader();
 =======
 return ComposerAutoloaderInite220b9cdf73db6b31110859155e3018a::getLoader();
 >>>>>>> origin/master
+=======
+return ComposerAutoloaderInitdeff78cf13068cc4cc1044ae5bff7bfd::getLoader();
+>>>>>>> parent of 7ae5549... Worpress updates

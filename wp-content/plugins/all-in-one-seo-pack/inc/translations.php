@@ -42,10 +42,6 @@ if ( ! class_exists( 'AIOSEOP_Translations' ) ) :
 
 			$this->current_locale = get_locale();
 
-			if( $this->current_locale === 'en_US'){
-				return;
-			}
-
 			$this->init();
 
 		}

@@ -47,20 +47,11 @@ class MC4WP_API_Exception extends Exception {
             $string .= ' ' . $this->detail;
         }
 
+        if( ! empty( $this->errors ) && ! empty( $this->errors[0]->field ) ) {
 
-        if( ! empty( $this->errors ) && isset( $this->errors[0]->field ) ) {
-
-            // strip off obsolete msg
-            $string = str_replace( 'For field-specific details, see the \'errors\' array.', '', $string );
-
-            // generate list of field errors
             $field_errors = array();
             foreach( $this->errors as $error ) {
-                if( ! empty( $error->field ) ) {
-                    $field_errors[] = sprintf( '- %s : %s', $error->field, $error->message );
-                } else {
-                    $field_errors[] = sprintf( '- %s', $error->message );
-                }
+                $field_errors[] = sprintf( '- %s: %s', $error->field, $error->message );
             }
 
             $string .= " \n" . join( "\n", $field_errors );

@@ -42,6 +42,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml" />
 	<link><?php bloginfo_rss('url') ?></link>
 	<description><?php bloginfo_rss("description") ?></description>
+<<<<<<< HEAD
 	<lastBuildDate><?php
 		$date = get_lastpostmodified( 'GMT' );
 <<<<<<< HEAD
@@ -50,6 +51,9 @@ do_action( 'rss_tag_pre', 'rss2' );
 		echo $date ? mysql2date( 'D, d M Y H:i:s +0000', $date ) : date( 'D, d M Y H:i:s +0000' );
 >>>>>>> origin/master
 	?></lastBuildDate>
+=======
+	<lastBuildDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></lastBuildDate>
+>>>>>>> parent of 7ae5549... Worpress updates
 	<language><?php bloginfo_rss( 'language' ); ?></language>
 	<sy:updatePeriod><?php
 		$duration = 'hourly';

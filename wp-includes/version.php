@@ -5,24 +5,28 @@
  * @global string $wp_version
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 $wp_version = '4.7.1';
 =======
 $wp_version = '4.7';
 >>>>>>> origin/master
+=======
+$wp_version = '4.6.1';
+>>>>>>> parent of 7ae5549... Worpress updates
 
 /**
  * Holds the WordPress DB revision, increments when changes are made to the WordPress DB schema.
  *
  * @global int $wp_db_version
  */
-$wp_db_version = 38590;
+$wp_db_version = 37965;
 
 /**
  * Holds the TinyMCE version
  *
  * @global string $tinymce_version
  */
-$tinymce_version = '4403-20160901';
+$tinymce_version = '4401-20160726';
 
 /**
  * Holds the required PHP version

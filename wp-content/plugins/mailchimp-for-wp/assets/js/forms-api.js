@@ -3,8 +3,9 @@
 
 var mc4wp = window.mc4wp || {};
 
-// bail early if we're on IE8 OR if already inited (when script is included twice)
-if( ! window.addEventListener || mc4wp.ready ) {
+// bail early if we're on IE8..
+// TODO: just don't load in IE8
+if( ! window.addEventListener ) {
 	return;
 }
 
@@ -13,7 +14,7 @@ var Gator = require('gator');
 var forms = require('./forms/forms.js');
 var listeners = window.mc4wp && window.mc4wp.listeners ? window.mc4wp.listeners : [];
 var config = window.mc4wp_forms_config || {};
-var optionalInputs = document.querySelectorAll('.mc4wp-form [data-show-if], .mc4wp-form [data-hide-if]');
+var optionalInputs = document.querySelectorAll('.mc4wp-form [data-show-if]');
 
 // funcs
 function scrollToForm(form) {
@@ -48,44 +49,33 @@ function handleFormRequest(form, action, errors, data){
 		}
 
 		// trigger events
-		forms.trigger('submitted', [form]);
-		forms.trigger(form.id + '.submitted', [form]);
+		forms.trigger( 'submitted', [form]);
 
 		if( errors ) {
 			forms.trigger('error', [form, errors]);
-			forms.trigger(form.id + '.error', [form, errors]);
 		} else {
 			// form was successfully submitted
 			forms.trigger('success', [form, data]);
-			forms.trigger(form.id + ',success', [form, data]);
-
-			// subscribed / unsubscribed
 			forms.trigger(action + "d", [form, data]);
-			forms.trigger(form.id + "." + action + "d", [form, data]);
 		}
 	});
 }
 
-function toggleElement(el, expectedValue, show ) {
+function showIf(el, expectedValue ) {
 	return function() {
 		var value = this.value.trim();
 		var checked = ( this.getAttribute('type') !== 'radio' && this.getAttribute('type') !== 'checked' ) || this.checked;
-		var conditionMet = checked && ( ( value === expectedValue && expectedValue !== "" ) || ( expectedValue === "" && value.length > 0 ) );
-		if(show){
-			el.style.display = ( conditionMet ) ? '' : 'none';
-		}else{
-			el.style.display = ( conditionMet ) ? 'none' : '';
-		}
+		var conditionMet = checked && ( value === expectedValue  || ( expectedValue === "" && value.length > 0 ) );
+		el.style.display = ( conditionMet ) ? '' : 'none';
 	}
 }
 
 // hide fields with [data-show-if] attribute
 [].forEach.call(optionalInputs, function(el) {
-	var show = !!el.getAttribute('data-show-if');
-	var condition = show ? el.getAttribute('data-show-if').split(':') : el.getAttribute('data-hide-if').split(':');
+	var condition = el.getAttribute('data-show-if').split(':');
 	var fields = document.querySelectorAll('.mc4wp-form [name="' + condition[0] + '"]');
 	var expectedValue = condition[1] || "";
-	var callback = toggleElement(el, expectedValue, show);
+	var callback = showIf(el, expectedValue);
 
 	for(var i=0; i<fields.length; i++) {
 		fields[i].addEventListener('change', callback);
@@ -93,7 +83,6 @@ function toggleElement(el, expectedValue, show ) {
 		callback.call(fields[i]);
 	}
 });
-
 
 // register early listeners
 for(var i=0; i<listeners.length;i++) {
@@ -104,7 +93,6 @@ for(var i=0; i<listeners.length;i++) {
 Gator(document.body).on('submit', '.mc4wp-form', function(event) {
 	var form = forms.getByElement(event.target || event.srcElement);
 	forms.trigger('submit', [form, event]);
-	forms.trigger(form.id + '.submit', [ form, event]);
 });
 
 Gator(document.body).on('focus', '.mc4wp-form', function(event) {
@@ -112,7 +100,6 @@ Gator(document.body).on('focus', '.mc4wp-form', function(event) {
 
 	if( ! form.started ) {
 		forms.trigger('started', [form, event]);
-		forms.trigger(form.id + '.started', [form, event]);
 		form.started = true;
 	}
 });
@@ -120,7 +107,6 @@ Gator(document.body).on('focus', '.mc4wp-form', function(event) {
 Gator(document.body).on('change', '.mc4wp-form', function(event) {
 	var form = forms.getByElement(event.target || event.srcElement);
 	forms.trigger('change', [form,event]);
-	forms.trigger(form.id + '.change', [form,event]);
 });
 
 if( config.submitted_form ) {
@@ -134,7 +120,6 @@ if( config.submitted_form ) {
 
 // expose forms object
 mc4wp.forms = forms;
-mc4wp.ready = true;
 window.mc4wp = mc4wp;
 
 },{"./forms/forms.js":3,"gator":5}],2:[function(require,module,exports){
@@ -232,13 +217,25 @@ function all() {
 	return forms;
 }
 
+function on(event,callback) {
+	return events.on(event,callback);
+}
+
+function trigger(event,args) {
+	return events.trigger(event,args);
+}
+
+function off(event,callback) {
+	return events.off(event,callback);
+}
+
 module.exports = {
 	"all": all,
 	"get": get,
 	"getByElement": getByElement,
-	"on": events.on.bind(events),
-	"trigger": events.trigger.bind(events),
-	"off": events.off.bind(events)
+	"on": on,
+	"trigger": trigger,
+	"off": off
 };
 
 

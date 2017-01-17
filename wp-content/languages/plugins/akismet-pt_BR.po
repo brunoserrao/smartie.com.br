@@ -1,5 +1,5 @@
-# Translation of Plugins - Akismet - Stable (latest release) in Portuguese (Brazil)
-# This file is distributed under the same license as the Plugins - Akismet - Stable (latest release) package.
+# Translation of Stable (latest release) in Portuguese (Brazil)
+# This file is distributed under the same license as the Stable (latest release) package.
 msgid ""
 msgstr ""
 "PO-Revision-Date: 2015-08-01 15:57:43+0000\n"
@@ -7,9 +7,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: GlotPress/2.3.0-alpha\n"
-"Language: pt_BR\n"
-"Project-Id-Version: Plugins - Akismet - Stable (latest release)\n"
+"X-Generator: GlotPress/2.1.0-alpha\n"
+"Project-Id-Version: Stable (latest release)\n"
 
 #: views/notice.php:117
 msgid "To continue your service, <a href=\"%s\" target=\"_blank\">upgrade to an Enterprise subscription</a>, which covers an unlimited number of sites."

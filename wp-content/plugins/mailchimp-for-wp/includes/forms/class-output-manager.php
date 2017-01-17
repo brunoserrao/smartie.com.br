@@ -36,7 +36,6 @@ class MC4WP_Form_Output_Manager {
 		'lists' => '',
 		'email_type' => '',
 		'element_id' => '',
-        'element_class' => '',
 	);
 
 	/**
@@ -107,7 +106,6 @@ class MC4WP_Form_Output_Manager {
 
 		$this->count++;
 
-        // set a default element_id if none is given
 		if( empty( $config['element_id'] ) ) {
 			$config['element_id'] = 'mc4wp-form-' . $this->count;
 		}

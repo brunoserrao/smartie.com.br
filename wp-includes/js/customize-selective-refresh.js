@@ -6,13 +6,13 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 
 	self = {
 		ready: $.Deferred(),
-		editShortcutVisibility: new api.Value(),
 		data: {
 			partials: {},
 			renderQueryVar: '',
 			l10n: {
 				shiftClickToEdit: ''
-			}
+			},
+			refreshBuffer: 250
 		},
 		currentRequest: null
 	};
@@ -43,7 +43,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 
 		id: null,
 
-		/**
+		 /**
 		 * Constructor.
 		 *
 		 * @since 4.5.0
@@ -83,9 +83,8 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 		 */
 		ready: function() {
 			var partial = this;
-			_.each( partial.placements(), function( placement ) {
-				$( placement.container ).attr( 'title', self.data.l10n.shiftClickToEdit );
-				partial.createEditShortcutForPlacement( placement );
+			_.each( _.pluck( partial.placements(), 'container' ), function( container ) {
+				$( container ).attr( 'title', self.data.l10n.shiftClickToEdit );
 			} );
 			$( document ).on( 'click', partial.params.selector, function( e ) {
 				if ( ! e.shiftKey ) {
@@ -101,6 +100,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 		},
 
 		/**
+<<<<<<< HEAD
 		 * Create and show the edit shortcut for a given partial placement container.
 		 *
 		 * @since 4.7.0
@@ -243,6 +243,8 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 		},
 
 		/**
+=======
+>>>>>>> parent of 7ae5549... Worpress updates
 		 * Find all placements for this partial int he document.
 		 *
 		 * @since 4.5.0
@@ -323,6 +325,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			if ( ! settingId ) {
 				settingId = _.first( partial.settings() );
 			}
+<<<<<<< HEAD
 			if ( partial.getType() === 'nav_menu' ) {
 <<<<<<< HEAD
 				if ( partial.params.navMenuArgs.theme_location ) {
@@ -336,6 +339,8 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 >>>>>>> origin/master
 				}
 			}
+=======
+>>>>>>> parent of 7ae5549... Worpress updates
 			api.preview.send( 'focus-control-for-setting', settingId );
 		},
 
@@ -476,7 +481,6 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			self.orginalDocumentWrite = null;
 			/* jshint ignore:end */
 
-			partial.createEditShortcutForPlacement( placement );
 			placement.container.removeClass( 'customize-partial-refreshing' );
 
 			// Prevent placement container from being being re-triggered as being rendered among nested partials.
@@ -642,9 +646,8 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 		return {
 			wp_customize: 'on',
 			nonce: api.settings.nonce.preview,
-			customize_theme: api.settings.theme.stylesheet,
-			customized: JSON.stringify( dirtyCustomized ),
-			customize_changeset_uuid: api.settings.changeset.uuid
+			theme: api.settings.theme.stylesheet,
+			customized: JSON.stringify( dirtyCustomized )
 		};
 	};
 
@@ -826,7 +829,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 					self._pendingPartialRequests = {};
 				} );
 			},
-			api.settings.timeouts.selectiveRefresh
+			self.data.refreshBuffer
 		);
 
 		return partialRequest.deferred.promise();
@@ -902,6 +905,11 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 
 	api.bind( 'preview-ready', function() {
 		var handleSettingChange, watchSettingChange, unwatchSettingChange;
+
+		// Polyfill for IE8 to support the document.head attribute.
+		if ( ! document.head ) {
+			document.head = $( 'head:first' )[0];
+		}
 
 		_.extend( self.data, _customizePartialRefreshExports );
 
@@ -1010,17 +1018,6 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 			if ( data.setting_validities ) {
 				api.preview.send( 'selective-refresh-setting-validities', data.setting_validities );
 			}
-		} );
-
-		api.preview.bind( 'edit-shortcut-visibility', function( visibility ) {
-			api.selectiveRefresh.editShortcutVisibility.set( visibility );
-		} );
-		api.selectiveRefresh.editShortcutVisibility.bind( function( visibility ) {
-			var body = $( document.body ), shouldAnimateHide;
-
-			shouldAnimateHide = ( 'hidden' === visibility && body.hasClass( 'customize-partial-edit-shortcuts-shown' ) && ! body.hasClass( 'customize-partial-edit-shortcuts-hidden' ) );
-			body.toggleClass( 'customize-partial-edit-shortcuts-hidden', shouldAnimateHide );
-			body.toggleClass( 'customize-partial-edit-shortcuts-shown', 'visible' === visibility );
 		} );
 
 		api.preview.bind( 'active', function() {

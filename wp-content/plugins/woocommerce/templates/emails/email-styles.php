@@ -59,8 +59,7 @@ $text_lighter_20 = wc_hex_lighter( $text, 20 );
 	font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
-#template_header h1,
-#template_header h1 a {
+#template_header h1 {
 	color: <?php echo esc_attr( $base_text ); ?>;
 }
 

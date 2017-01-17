@@ -9,7 +9,6 @@
 class MC4WP_Tools {
 
 	/**
-     * @deprecated
 	 * @param $datetime
 	 * @param string $format
 	 *
