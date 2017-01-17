@@ -434,6 +434,7 @@ class MC4WP_API_v3 {
 		return $this->client->post( $resource, $args );
 	}
 
+<<<<<<< HEAD
     /**
      * @link http://developer.mailchimp.com/documentation/mailchimp/reference/ecommerce/stores/products/#edit-patch_ecommerce_stores_store_id_products_product_id
      *
@@ -448,6 +449,8 @@ class MC4WP_API_v3 {
         return $this->client->patch( $resource, $args );
     }
 
+=======
+>>>>>>> origin/master
 	/**
 	 * @link http://developer.mailchimp.com/documentation/mailchimp/reference/ecommerce/stores/products/#delete-delete_ecommerce_stores_store_id_products_product_id
 	 *

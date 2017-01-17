@@ -3,7 +3,11 @@ Contributors: automattic, mikejolley, jameskoster, claudiosanches, jshreve, code
 Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, downloadable, downloads, paypal, storefront
 Requires at least: 4.4
 Tested up to: 4.7
+<<<<<<< HEAD
 Stable tag: 2.6.12
+=======
+Stable tag: 2.6.9
+>>>>>>> origin/master
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -125,7 +129,11 @@ For extending or theming WooCommerce, see our [codex](https://docs.woocommerce.c
 
 If you get stuck, you can ask for help in the [WooCommerce Plugin Forum](https://wordpress.org/support/plugin/woocommerce).
 
+<<<<<<< HEAD
 For help with premium extensions from WooCommerce.com, use [our helpdesk](https://woocommerce.com/my-account/tickets/).
+=======
+For help with premium extensions from WooThemes, use [our helpdesk](https://support.woothemes.com/).
+>>>>>>> origin/master
 
 = Will WooCommerce work with my theme? =
 
@@ -158,6 +166,7 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 
 == Changelog ==
 
+<<<<<<< HEAD
 = 2.6.12 - 2017-01-12 =
 * Fix - Make images shown up on pageload when using ajax variations.
 * Fix - Allow variations options to be deselected in IE11.
@@ -179,6 +188,9 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 * Dev - API - Throw error messages when product image ID is not a valid WordPress attachment ID.
 
 = 2.6.9 - 2016-12-07 =
+=======
+= 2.6.9 - 2016/12/07 =
+>>>>>>> origin/master
 * Theme - Added support for Twenty Seventeen Theme.
 * Fix - Excluded webhook delivery logs from comments count.
 * Fix - Included password strength meter in "Lost Password" page.
@@ -196,23 +208,39 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 * Dev - API - Only update categories menu order and display if defined.
 * Dev - Fixed when should deliver wp_trash_post webhooks.
 
+<<<<<<< HEAD
 = 2.6.8 - 2016-11-10 =
+=======
+= 2.6.8 - 10/11/16 =
+>>>>>>> origin/master
 * Fix - REQUEST_URI was missing a trailing slash when being compared in the cache prevention functions.
 * Fix - Prevent issues when sending empty prices to PayPal.
 * Fix - Invalid email check.
 * Tweak - New extensions screen.
 
+<<<<<<< HEAD
 = 2.6.7 - 2016-10-26 =
+=======
+= 2.6.7 - 26/10/16 =
+>>>>>>> origin/master
 * Fix - Use FLOOR and CEIL to get price filter values. Fixes the issue where max price is capped at 99.
 * Fix - Hide "Sales this month" information from Dashboard widget for users that don't have `view_woocommerce_reports` capability.
 * Fix - Remove notices only once on cart so subsequent notices do not remove older notices.
 * Tweak - Improve credit card fields for better mobile experience.
 
+<<<<<<< HEAD
 = 2.6.6 - 2016-10-20 =
 * Fix - Conflict with Local Pickup Plus extension due to 2.7.x code in has_shipping_method().
 * Fix - Shipping method display order on frontend.
 
 = 2.6.5 - 2016-10-19 =
+=======
+= 2.6.6 - 20/10/16 =
+* Fix - Conflict with Local Pickup Plus extension due to 2.7.x code in has_shipping_method().
+* Fix - Shipping method display order on frontend.
+
+= 2.6.5 - 19/10/16 =
+>>>>>>> origin/master
 * Fix - Shipping classes URL in admin.
 * Fix - Notice in reports when using custom date ranges.
 * Fix - When checking needs_shipping, ignore anything after : in the method ID.
@@ -255,7 +283,11 @@ Yes you can! Join in on our [GitHub repository](http://github.com/woocommerce/wo
 * Tweak - Password reset now uses WP functions.
 * Tweak - Format US 9-digit postcodes.
 
+<<<<<<< HEAD
 = 2.6.4 - 2016-07-26 =
+=======
+= 2.6.4 - 26/07/16 =
+>>>>>>> origin/master
 * Fix - Security - Only allow image MIME type upload via REST APIs.
 * Fix - Shipping method title display in COD settings.
 * Fix - Order date input in Edge browser.

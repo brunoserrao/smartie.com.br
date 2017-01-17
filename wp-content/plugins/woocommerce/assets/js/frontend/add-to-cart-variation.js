@@ -177,6 +177,7 @@
 		$( '.product.has-default-attributes > .images' ).fadeTo( 200, 1 );
 	};
 
+<<<<<<< HEAD
 	/**
 	 * Triggered when a variation has been found which matches all attributes.
 	 */
@@ -202,6 +203,34 @@
 		} else {
 			$weight.wc_reset_content();
 		}
+=======
+		// Upon gaining focus
+		.on( 'focusin touchstart', '.variations select', function() {
+			if ( 'ontouchstart' in window || navigator.maxTouchPoints ) {
+				$( this ).find( 'option:selected' ).attr( 'selected', 'selected' );
+
+				if ( ! $use_ajax ) {
+					$form.trigger( 'woocommerce_variation_select_focusin' );
+					$form.trigger( 'check_variations', [ $( this ).data( 'attribute_name' ) || $( this ).attr( 'name' ), true ] );
+				}
+			}
+		} )
+
+		// Show single variation details (price, stock, image)
+		.on( 'found_variation', function( event, variation ) {
+			var $sku        = $product.find( '.product_meta' ).find( '.sku' ),
+				$weight     = $product.find( '.product_weight' ),
+				$dimensions = $product.find( '.product_dimensions' ),
+				$qty        = $single_variation_wrap.find( '.quantity' ),
+				purchasable = true;
+
+			// Display SKU
+			if ( variation.sku ) {
+				$sku.wc_set_content( variation.sku );
+			} else {
+				$sku.wc_reset_content();
+			}
+>>>>>>> origin/master
 
 		if ( variation.dimensions ) {
 			$dimensions.wc_set_content( variation.dimensions );
@@ -363,6 +392,7 @@
 				selected_attr_val_valid = false;
 			}
 
+<<<<<<< HEAD
 			// Detach the placeholder if:
 			// - Valid options exist.
 			// - The current selection is non-empty.
@@ -379,6 +409,22 @@
 			// Finally, copy to DOM and set value.
 			current_attr_select.html( new_attr_select.html() );
 			current_attr_select.find( 'option' + option_gt_filter + ':not(.enabled)' ).prop( 'disabled', true );
+=======
+				var current_attr_name, current_attr_select = $( el ),
+					show_option_none                       = $( el ).data( 'show_option_none' ),
+					option_gt_filter                       = 'no' === show_option_none ? '' : ':gt(0)';
+
+				// Reset options
+				if ( ! current_attr_select.data( 'attribute_options' ) ) {
+					current_attr_select.data( 'attribute_options', current_attr_select.find( 'option' + option_gt_filter ).get() );
+				}
+
+				current_attr_select.find( 'option' + option_gt_filter ).remove();
+				current_attr_select.append( current_attr_select.data( 'attribute_options' ) );
+				current_attr_select.find( 'option' + option_gt_filter ).removeClass( 'attached' );
+				current_attr_select.find( 'option' + option_gt_filter ).removeClass( 'enabled' );
+				current_attr_select.find( 'option' + option_gt_filter ).removeAttr( 'disabled' );
+>>>>>>> origin/master
 
 			// Choose selected value.
 			if ( selected_attr_val ) {
@@ -393,6 +439,7 @@
 			}
 		});
 
+<<<<<<< HEAD
 		// Custom event for when variations have been updated.
 		form.$form.trigger( 'woocommerce_update_variation_values' );
 	};
@@ -409,6 +456,55 @@
 		this.$attributeFields.each( function() {
 			var attribute_name = $( this ).data( 'attribute_name' ) || $( this ).attr( 'name' );
 			var value          = $( this ).val() || '';
+=======
+				// Loop through variations
+				for ( var num in variations ) {
+
+					if ( typeof( variations[ num ] ) !== 'undefined' ) {
+
+						var attributes = variations[ num ].attributes;
+
+						for ( var attr_name in attributes ) {
+							if ( attributes.hasOwnProperty( attr_name ) ) {
+								var attr_val = attributes[ attr_name ];
+
+								if ( attr_name === current_attr_name ) {
+
+									var variation_active = '';
+
+									if ( variations[ num ].variation_is_active ) {
+										variation_active = 'enabled';
+									}
+
+									if ( attr_val ) {
+
+										// Decode entities
+										attr_val = $( '<div/>' ).html( attr_val ).text();
+
+										// Add slashes
+										attr_val = attr_val.replace( /'/g, '\\\'' );
+										attr_val = attr_val.replace( /"/g, '\\\"' );
+
+										// Compare the meerkat
+										current_attr_select.find( 'option[value="' + attr_val + '"]' ).addClass( 'attached ' + variation_active );
+
+									} else {
+
+										current_attr_select.find( 'option' + option_gt_filter ).addClass( 'attached ' + variation_active );
+
+									}
+								}
+							}
+						}
+					}
+				}
+
+				// Detach unattached
+				current_attr_select.find( 'option' + option_gt_filter + ':not(.attached)' ).remove();
+
+				// Grey out disabled
+				current_attr_select.find( 'option' + option_gt_filter + ':not(.enabled)' ).attr( 'disabled', 'disabled' );
+>>>>>>> origin/master
 
 			if ( value.length > 0 ) {
 				chosen ++;

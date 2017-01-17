@@ -1,6 +1,7 @@
 Changelog
 =========
 
+<<<<<<< HEAD
 #### 4.0.12 - January 16, 2017
 
 **Fixes**
@@ -20,6 +21,8 @@ Changelog
 - Throw form specific JavaScript events, like `15.subscribed` to hook into "subscribed" events for form with ID 15.
 
 
+=======
+>>>>>>> origin/master
 #### 4.0.11 - December 9, 2016
 
 **Fixes**

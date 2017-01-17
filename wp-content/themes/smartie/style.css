@@ -2481,7 +2481,7 @@ ul.products li.product {
     display: none;
     position: fixed;
     background-color: #307c63;
-    width: 978px;
+    width: 977px;
     transition: top 300ms linear;
     top: -60px;
     background-color: #307c63;
@@ -2522,8 +2522,8 @@ ul.products li.product {
 }
 
 @media (max-width: 768px) {
-   #site-navigation .fixed-navigation.admin-logged{
-    margin-top: 46px !important; 
+   #site-navigation .fixed-navigation{
+    display: none;
   }
 }
 
@@ -2625,7 +2625,7 @@ ul.products li.product {
 #form-cadastro{
   display: block;
   width: 100%;
-  padding: 15px;
+  padding: 15px 15px 0px 15px;
   float: left;
   background-color: #307c63;
   border-radius: 10px;
@@ -2639,45 +2639,49 @@ ul.products li.product {
   margin-bottom: 0px !important;
 }
 
-#form-cadastro .texto{
+#form-cadastro span{
   width: 100%;
   float: none;
   color: #FFF;
   margin-bottom: 15px;
+  display: none;
 }
 
-#form-cadastro form .campo{
-  width: 40%;
-  float: left;
-}
-
-#form-cadastro form .campo input{
-  width: 95%;
-  padding: 5px;
-}
-
-#form-cadastro form .campo.submit{
-  width: 20%
-}
-#form-cadastro form .campo.submit input {
+#form-cadastro .texto, #form-cadastro section{
   width: 100%;
-  background-color: #25493d;
+  color: #FFF;
+  margin-bottom: 10px;
+}
+
+#form-cadastro form .yikes-easy-mc-submit-button{
   padding: 7px 0px;
+  height: 38px;
 }
 
-#form-cadastro .mc4wp-response{
-  display: block;
-  clear: both;
-  float: left;
+#form-cadastro .yikes-easy-mc-success-message, #form-cadastro .yikes-easy-mc-error-message {
+    margin-bottom: 10px !important;
+    padding: inherit;
+    background-color: transparent;
+}
+
+#form-cadastro .yikes-easy-mc-error-message{
+  color: yellow;
+}
+
+#form-cadastro .yikes-easy-mc-success-message{
+  color: #FFF;
+}
+
+#form-cadastro .yikes-mailchimp-container{
   width: 100%;
 }
 
-#form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-error{
-  color: #fec221;
+#form-cadastro .yikes-mailchimp-container label.label-inline{
+  margin-bottom: inherit;
 }
 
-#form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-success, #form-cadastro .mc4wp-response .mc4wp-alert.mc4wp-notice{
-  color: #FFFFFF;
+#form-cadastro .yikes-mailchimp-container input{
+  margin: inherit;
 }
 
 @media (max-width: 768px) {
@@ -2811,13 +2815,57 @@ ul.products li.product {
   margin-bottom: 1.5em;
 }
 
+.post .entry-content a{
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.mc4wp-checkbox.mc4wp-checkbox-woocommerce span{
+  padding-left: 10px;
+}
+
 @media (max-width: 768px) {
   #loop-posts .loop-item{
     width: 100%;
   }
 }
 
-.post .entry-content a{
-  font-style: italic;
-  text-decoration: underline;
+
+#pp_full_res iframe{
+  width: 100%;
+}
+
+#download-demo form{
+  margin: 1.681em 0;
+}
+
+#download-demo .yikes-easy-mc-success-message, #download-demo .yikes-easy-mc-error-message{
+  margin: 1.681em 0;
+  text-align: center;
+}
+
+#download-demo .download-arquivo{
+  width: 100%;
+  text-align: center;
+  padding: 1.2em 0;
+}
+
+
+.content-baixar-demonstracao{
+  display: block;
+  float: none;
+  width: 100%;
+  clear: both;
+  height: 65px;
+}
+
+.content-baixar-demonstracao .button.baixar-demonstracao{
+  width: 100%;
+  text-align: center;
+  padding: 20px 0px;
+  background-color: #F9A825 !important;
+  margin-top: -5px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #000;
 }

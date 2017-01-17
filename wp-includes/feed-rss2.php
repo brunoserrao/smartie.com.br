@@ -44,7 +44,11 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<description><?php bloginfo_rss("description") ?></description>
 	<lastBuildDate><?php
 		$date = get_lastpostmodified( 'GMT' );
+<<<<<<< HEAD
 		echo $date ? mysql2date( 'D, d M Y H:i:s +0000', $date, false ) : date( 'D, d M Y H:i:s +0000' );
+=======
+		echo $date ? mysql2date( 'D, d M Y H:i:s +0000', $date ) : date( 'D, d M Y H:i:s +0000' );
+>>>>>>> origin/master
 	?></lastBuildDate>
 	<language><?php bloginfo_rss( 'language' ); ?></language>
 	<sy:updatePeriod><?php

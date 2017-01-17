@@ -472,8 +472,11 @@ function wp_using_ext_object_cache( $using = null ) {
  * @access private
  */
 function wp_start_object_cache() {
+<<<<<<< HEAD
 	global $wp_filter;
 
+=======
+>>>>>>> origin/master
 	$first_init = false;
  	if ( ! function_exists( 'wp_cache_init' ) ) {
 		if ( file_exists( WP_CONTENT_DIR . '/object-cache.php' ) ) {
@@ -481,11 +484,14 @@ function wp_start_object_cache() {
 			if ( function_exists( 'wp_cache_init' ) ) {
 				wp_using_ext_object_cache( true );
 			}
+<<<<<<< HEAD
 
 			// Re-initialize any hooks added manually by object-cache.php
 			if ( $wp_filter ) {
 				$wp_filter = WP_Hook::build_preinitialized_hooks( $wp_filter );
 			}
+=======
+>>>>>>> origin/master
 		}
 
 		$first_init = true;

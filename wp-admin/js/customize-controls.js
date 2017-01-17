@@ -5300,7 +5300,11 @@
 				} );
 
 				$textarea.on( 'keydown', function onKeydown( event ) {
+<<<<<<< HEAD
 					var selectionStart, selectionEnd, value, tabKeyCode = 9, escKeyCode = 27;
+=======
+					var selectionStart, selectionEnd, value, scroll, tabKeyCode = 9, escKeyCode = 27;
+>>>>>>> origin/master
 
 					if ( escKeyCode === event.keyCode ) {
 						if ( ! $textarea.data( 'next-tab-blurs' ) ) {
@@ -5325,8 +5329,15 @@
 					value = textarea.value;
 
 					if ( selectionStart >= 0 ) {
+<<<<<<< HEAD
 						textarea.value = value.substring( 0, selectionStart ).concat( '\t', value.substring( selectionEnd ) );
 						$textarea.selectionStart = textarea.selectionEnd = selectionStart + 1;
+=======
+						scroll = $textarea.scrollTop;
+						textarea.value = value.substring( 0, selectionStart ).concat( '\t', value.substring( selectionEnd ) );
+						$textarea.selectionStart = textarea.selectionEnd = selectionStart + 1;
+						textarea.scrollTop = scroll;
+>>>>>>> origin/master
 					}
 
 					event.stopPropagation();
@@ -5409,6 +5420,7 @@
 		api.state( 'editShortcutVisibility' ).bind( function( visibility ) {
 			api.previewer.send( 'edit-shortcut-visibility', visibility );
 		} );
+<<<<<<< HEAD
 
 		// Autosave changeset.
 		( function() {
@@ -5451,6 +5463,50 @@
 				updateChangesetWithReschedule();
 			} );
 
+=======
+
+		// Autosave changeset.
+		( function() {
+			var timeoutId, updateChangesetWithReschedule, scheduleChangesetUpdate, updatePending = false;
+
+			/**
+			 * Request changeset update and then re-schedule the next changeset update time.
+			 *
+			 * @since 4.7.0
+			 * @private
+			 */
+			updateChangesetWithReschedule = function() {
+				if ( ! updatePending ) {
+					updatePending = true;
+					api.requestChangesetUpdate().always( function() {
+						updatePending = false;
+					} );
+				}
+				scheduleChangesetUpdate();
+			};
+
+			/**
+			 * Schedule changeset update.
+			 *
+			 * @since 4.7.0
+			 * @private
+			 */
+			scheduleChangesetUpdate = function() {
+				clearTimeout( timeoutId );
+				timeoutId = setTimeout( function() {
+					updateChangesetWithReschedule();
+				}, api.settings.timeouts.changesetAutoSave );
+			};
+
+			// Start auto-save interval for updating changeset.
+			scheduleChangesetUpdate();
+
+			// Save changeset when focus removed from window.
+			$( window ).on( 'blur.wp-customize-changeset-update', function() {
+				updateChangesetWithReschedule();
+			} );
+
+>>>>>>> origin/master
 			// Save changeset before unloading window.
 			$( window ).on( 'beforeunload.wp-customize-changeset-update', function() {
 				updateChangesetWithReschedule();

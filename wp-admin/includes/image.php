@@ -221,6 +221,7 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 		$fallback_sizes = apply_filters( 'fallback_intermediate_image_sizes', $fallback_sizes, $metadata );
 
 		$sizes = array();
+<<<<<<< HEAD
 		$_wp_additional_image_sizes = wp_get_additional_image_sizes();
 
 		foreach ( $fallback_sizes as $s ) {
@@ -243,6 +244,16 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 				if ( ! 'thumbnail' === $s ) {
 					$sizes[ $s ]['crop'] = get_option( "{$s}_crop" );
 				}
+=======
+
+		foreach ( $fallback_sizes as $s ) {
+			$sizes[ $s ]['width']  = get_option( "{$s}_size_w" );
+			$sizes[ $s ]['height'] = get_option( "{$s}_size_h" );
+
+			// Force thumbnails to be soft crops.
+			if ( ! 'thumbnail' === $s ) {
+				$sizes[ $s ]['crop'] = get_option( "{$s}_crop" );
+>>>>>>> origin/master
 			}
 		}
 

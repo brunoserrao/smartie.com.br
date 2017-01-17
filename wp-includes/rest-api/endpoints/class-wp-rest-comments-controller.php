@@ -392,7 +392,11 @@ class WP_REST_Comments_Controller extends WP_REST_Controller {
 			 *                                 response.
 			 */
 			$allow_anonymous = apply_filters( 'rest_allow_anonymous_comments', false, $request );
+<<<<<<< HEAD
 			if ( ! $allow_anonymous ) {
+=======
+			if ( false === $allow_anonymous ) {
+>>>>>>> origin/master
 				return new WP_Error( 'rest_comment_login_required', __( 'Sorry, you must be logged in to comment.' ), array( 'status' => 401 ) );
 			}
 		}
@@ -664,6 +668,7 @@ class WP_REST_Comments_Controller extends WP_REST_Controller {
 			return $prepared_args;
 		}
 
+<<<<<<< HEAD
 		if ( ! empty( $prepared_args['comment_post_ID'] ) ) {
 			$post = get_post( $prepared_args['comment_post_ID'] );
 			if ( empty( $post ) ) {
@@ -671,6 +676,8 @@ class WP_REST_Comments_Controller extends WP_REST_Controller {
 			}
 		}
 
+=======
+>>>>>>> origin/master
 		if ( empty( $prepared_args ) && isset( $request['status'] ) ) {
 			// Only the comment status is being changed.
 			$change = $this->handle_status_param( $request['status'], $id );
@@ -697,7 +704,11 @@ class WP_REST_Comments_Controller extends WP_REST_Controller {
 
 			$updated = wp_update_comment( wp_slash( (array) $prepared_args ) );
 
+<<<<<<< HEAD
 			if ( false === $updated ) {
+=======
+			if ( 0 === $updated ) {
+>>>>>>> origin/master
 				return new WP_Error( 'rest_comment_failed_edit', __( 'Updating comment failed.' ), array( 'status' => 500 ) );
 			}
 
@@ -1437,7 +1448,11 @@ class WP_REST_Comments_Controller extends WP_REST_Controller {
 		 *
 		 * @since 4.7.0
 		 *
+<<<<<<< HEAD
 		 * @param array $query_params JSON Schema-formatted collection parameters.
+=======
+		 * @param $params JSON Schema-formatted collection parameters.
+>>>>>>> origin/master
 		 */
 		return apply_filters( 'rest_comment_collection_params', $query_params );
 	}

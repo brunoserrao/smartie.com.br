@@ -1554,7 +1554,11 @@ function _custom_background_cb() {
 	$style = $color ? "background-color: #$color;" : '';
 
 	if ( $background ) {
+<<<<<<< HEAD
 		$image = ' background-image: url("' . esc_url_raw( $background ) . '");';
+=======
+		$image = " background-image: url(" . wp_json_encode( $background ) . ");";
+>>>>>>> origin/master
 
 		// Background Position.
 		$position_x = get_theme_mod( 'background_position_x', get_theme_support( 'custom-background', 'default-position-x' ) );
@@ -1567,9 +1571,15 @@ function _custom_background_cb() {
 		if ( ! in_array( $position_y, array( 'top', 'center', 'bottom' ), true ) ) {
 			$position_y = 'top';
 		}
+<<<<<<< HEAD
 
 		$position = " background-position: $position_x $position_y;";
 
+=======
+
+		$position = " background-position: $position_x $position_y;";
+
+>>>>>>> origin/master
 		// Background Size.
 		$size = get_theme_mod( 'background_size', get_theme_support( 'custom-background', 'default-size' ) );
 
@@ -1643,8 +1653,12 @@ function wp_get_custom_css_post( $stylesheet = '' ) {
 		'no_found_rows'          => true,
 		'cache_results'          => true,
 		'update_post_meta_cache' => false,
+<<<<<<< HEAD
 		'update_post_term_cache' => false,
 		'lazy_load_term_meta'    => false,
+=======
+		'update_term_meta_cache' => false,
+>>>>>>> origin/master
 	);
 
 	$post = null;
@@ -1653,6 +1667,7 @@ function wp_get_custom_css_post( $stylesheet = '' ) {
 
 		if ( $post_id > 0 && get_post( $post_id ) ) {
 			$post = get_post( $post_id );
+<<<<<<< HEAD
 		}
 
 		// `-1` indicates no post exists; no query necessary.
@@ -1664,6 +1679,20 @@ function wp_get_custom_css_post( $stylesheet = '' ) {
 			 * @todo This should get cleared if a custom_css post is added/removed.
 			 */
 			set_theme_mod( 'custom_css_post_id', $post ? $post->ID : -1 );
+=======
+		} else {
+			$query = new WP_Query( $custom_css_query_vars );
+			$post = $query->post;
+			/*
+			 * Cache the lookup. See WP_Customize_Custom_CSS_Setting::update().
+			 * @todo This should get cleared if a custom_css post is added/removed.
+			 */
+			if ( $post ) {
+				set_theme_mod( 'custom_css_post_id', $post->ID );
+			} elseif ( -1 !== $post_id ) {
+				set_theme_mod( 'custom_css_post_id', -1 );
+			}
+>>>>>>> origin/master
 		}
 	} else {
 		$query = new WP_Query( $custom_css_query_vars );
@@ -1787,6 +1816,7 @@ function wp_update_custom_css_post( $css, $args = array() ) {
 	} else {
 		$r = wp_insert_post( wp_slash( $post_data ), true );
 
+<<<<<<< HEAD
 		if ( ! is_wp_error( $r ) ) {
 			if ( get_stylesheet() === $args['stylesheet'] ) {
 				set_theme_mod( 'custom_css_post_id', $r );
@@ -1796,6 +1826,11 @@ function wp_update_custom_css_post( $css, $args = array() ) {
 			if ( 0 === count( wp_get_post_revisions( $r ) ) ) {
 				wp_save_post_revision( $r );
 			}
+=======
+		// Trigger creation of a revision. This should be removed once #30854 is resolved.
+		if ( ! is_wp_error( $r ) && 0 === count( wp_get_post_revisions( $r ) ) ) {
+			wp_save_post_revision( $r );
+>>>>>>> origin/master
 		}
 	}
 
@@ -1971,12 +2006,16 @@ function get_theme_starter_content() {
 			) ),
 		),
 		'nav_menus' => array(
+<<<<<<< HEAD
 			'link_home' => array(
 				'type' => 'custom',
 				'title' => _x( 'Home', 'Theme starter content' ),
 				'url' => home_url(),
 			),
 			'page_home' => array( // Deprecated in favor of home_link.
+=======
+			'page_home' => array(
+>>>>>>> origin/master
 				'type' => 'post_type',
 				'object' => 'page',
 				'object_id' => '{{home}}',

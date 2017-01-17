@@ -43,6 +43,7 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 			<a href="freedoms.php" class="nav-tab"><?php _e( 'Freedoms' ); ?></a>
 		</h2>
 
+<<<<<<< HEAD
 		<div class="changelog point-releases">
 			<h3><?php _e( 'Maintenance and Security Release' ); ?></h3>
 			<p><?php printf( _n( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
@@ -51,6 +52,8 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 			</p>
 		</div>
 
+=======
+>>>>>>> origin/master
 		<div class="headline-feature feature-video">
 			<iframe width="1050" height="591" src="<?php echo esc_url( $video_url ); ?>" frameborder="0" allowfullscreen></iframe>
 			<script src="https://videopress.com/videopress-iframe.js"></script>
