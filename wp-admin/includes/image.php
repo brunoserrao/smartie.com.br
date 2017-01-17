@@ -67,8 +67,6 @@ function wp_crop_image( $src, $src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h, $s
  *
  * @since 2.1.0
  *
- * @global array $_wp_additional_image_sizes
- *
  * @param int $attachment_id Attachment Id to process.
  * @param string $file Filepath of the Attached image.
  * @return mixed Metadata for attachment.
@@ -78,7 +76,9 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 
 	$metadata = array();
 	$support = false;
-	if ( preg_match('!^image/!', get_post_mime_type( $attachment )) && file_is_displayable_image($file) ) {
+	$mime_type = get_post_mime_type( $attachment );
+
+	if ( preg_match( '!^image/!', $mime_type ) && file_is_displayable_image( $file ) ) {
 		$imagesize = getimagesize( $file );
 		$metadata['width'] = $imagesize[0];
 		$metadata['height'] = $imagesize[1];
@@ -87,23 +87,34 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 		$metadata['file'] = _wp_relative_upload_path($file);
 
 		// Make thumbnails and other intermediate sizes.
-		global $_wp_additional_image_sizes;
+		$_wp_additional_image_sizes = wp_get_additional_image_sizes();
 
 		$sizes = array();
 		foreach ( get_intermediate_image_sizes() as $s ) {
 			$sizes[$s] = array( 'width' => '', 'height' => '', 'crop' => false );
-			if ( isset( $_wp_additional_image_sizes[$s]['width'] ) )
-				$sizes[$s]['width'] = intval( $_wp_additional_image_sizes[$s]['width'] ); // For theme-added sizes
-			else
-				$sizes[$s]['width'] = get_option( "{$s}_size_w" ); // For default sizes set in options
-			if ( isset( $_wp_additional_image_sizes[$s]['height'] ) )
-				$sizes[$s]['height'] = intval( $_wp_additional_image_sizes[$s]['height'] ); // For theme-added sizes
-			else
-				$sizes[$s]['height'] = get_option( "{$s}_size_h" ); // For default sizes set in options
-			if ( isset( $_wp_additional_image_sizes[$s]['crop'] ) )
-				$sizes[$s]['crop'] = $_wp_additional_image_sizes[$s]['crop']; // For theme-added sizes
-			else
-				$sizes[$s]['crop'] = get_option( "{$s}_crop" ); // For default sizes set in options
+			if ( isset( $_wp_additional_image_sizes[$s]['width'] ) ) {
+				// For theme-added sizes
+				$sizes[$s]['width'] = intval( $_wp_additional_image_sizes[$s]['width'] );
+			} else {
+				// For default sizes set in options
+				$sizes[$s]['width'] = get_option( "{$s}_size_w" );
+			}
+
+			if ( isset( $_wp_additional_image_sizes[$s]['height'] ) ) {
+				// For theme-added sizes
+				$sizes[$s]['height'] = intval( $_wp_additional_image_sizes[$s]['height'] );
+			} else {
+				// For default sizes set in options
+				$sizes[$s]['height'] = get_option( "{$s}_size_h" );
+			}
+
+			if ( isset( $_wp_additional_image_sizes[$s]['crop'] ) ) {
+				// For theme-added sizes
+				$sizes[$s]['crop'] = $_wp_additional_image_sizes[$s]['crop'];
+			} else {
+				// For default sizes set in options
+				$sizes[$s]['crop'] = get_option( "{$s}_crop" );
+			}
 		}
 
 		/**
@@ -192,7 +203,6 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 			}
 		}
 	}
-<<<<<<< HEAD
 	// Try to create image thumbnails for PDFs
 	else if ( 'application/pdf' === $mime_type ) {
 		$fallback_sizes = array(
@@ -268,8 +278,6 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 			}
 		}
 	}
-=======
->>>>>>> parent of 7ae5549... Worpress updates
 
 	// Remove the blob of binary data from the array.
 	if ( $metadata ) {
@@ -632,7 +640,7 @@ function _load_image_to_edit_path( $attachment_id, $size = 'full' ) {
 			 */
 			$filepath = apply_filters( 'load_image_to_edit_filesystempath', path_join( dirname( $filepath ), $data['file'] ), $attachment_id, $size );
 		}
-	} elseif ( function_exists( 'fopen' ) && function_exists( 'ini_get' ) && true == ini_get( 'allow_url_fopen' ) ) {
+	} elseif ( function_exists( 'fopen' ) && true == ini_get( 'allow_url_fopen' ) ) {
 		/**
 		 * Filters the image URL if not in the local filesystem.
 		 *

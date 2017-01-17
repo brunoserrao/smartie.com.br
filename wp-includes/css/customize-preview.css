@@ -10,7 +10,6 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-<<<<<<< HEAD
 
 /* Make shortcut buttons essentially invisible */
 .widget .customize-partial-edit-shortcut,
@@ -269,5 +268,3 @@ body.customize-partial-edit-shortcuts-hidden .customize-partial-edit-shortcut bu
 		left: -30px;
 	}
 }
-=======
->>>>>>> parent of 7ae5549... Worpress updates

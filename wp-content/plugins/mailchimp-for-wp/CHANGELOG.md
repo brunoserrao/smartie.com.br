@@ -2,7 +2,6 @@ Changelog
 =========
 
 <<<<<<< HEAD
-<<<<<<< HEAD
 #### 4.0.12 - January 16, 2017
 
 **Fixes**
@@ -98,8 +97,6 @@ Changelog
 - Added missing e-commerce related API methods to API class.
 
 
-=======
->>>>>>> parent of 7ae5549... Worpress updates
 #### 4.0.5 - September 29, 2016
 
 **Fixes**
