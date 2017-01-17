@@ -77,7 +77,6 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 			'schema' => array( $this, 'get_public_item_schema' ),
 		) );
 
-<<<<<<< HEAD
 		$schema = $this->get_item_schema();
 		$get_item_args = array(
 			'context'  => $this->get_context_param( array( 'default' => 'view' ) ),
@@ -88,24 +87,12 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 				'type'        => 'string',
 			);
 		}
-=======
->>>>>>> origin/master
 		register_rest_route( $this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
 			array(
 				'methods'             => WP_REST_Server::READABLE,
 				'callback'            => array( $this, 'get_item' ),
 				'permission_callback' => array( $this, 'get_item_permissions_check' ),
-<<<<<<< HEAD
 				'args'                => $get_item_args,
-=======
-				'args'                => array(
-					'context'  => $this->get_context_param( array( 'default' => 'view' ) ),
-					'password' => array(
-						'description' => __( 'The password for the post if it is password protected.' ),
-						'type'        => 'string',
-					),
-				),
->>>>>>> origin/master
 			),
 			array(
 				'methods'             => WP_REST_Server::EDITABLE,
@@ -1936,7 +1923,6 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 
 				case 'post-formats':
 					$supports_formats = get_theme_support( 'post-formats' );
-<<<<<<< HEAD
 
 					// Force to an array. Supports formats can return true even if empty in some cases.
 					$supports_formats = is_array( $supports_formats ) ? array_values( $supports_formats[0] ) : array();
@@ -1947,12 +1933,6 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 						'description' => __( 'The format for the object.' ),
 						'type'        => 'string',
 						'enum'        => $supported_formats,
-=======
-					$schema['properties']['format'] = array(
-						'description' => __( 'The format for the object.' ),
-						'type'        => 'string',
-						'enum'        => array_merge( array( 'standard' ), $supports_formats ? array_values( $supports_formats[0] ) : array() ),
->>>>>>> origin/master
 						'context'     => array( 'view', 'edit' ),
 					);
 					break;
@@ -2005,30 +1985,18 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 	 * @return array Collection parameters.
 	 */
 	public function get_collection_params() {
-<<<<<<< HEAD
 		$query_params = parent::get_collection_params();
 
 		$query_params['context']['default'] = 'view';
 
 		$query_params['after'] = array(
-=======
-		$params = parent::get_collection_params();
-
-		$params['context']['default'] = 'view';
-
-		$params['after'] = array(
->>>>>>> origin/master
 			'description'        => __( 'Limit response to posts published after a given ISO8601 compliant date.' ),
 			'type'               => 'string',
 			'format'             => 'date-time',
 		);
 
 		if ( post_type_supports( $this->post_type, 'author' ) ) {
-<<<<<<< HEAD
 			$query_params['author'] = array(
-=======
-			$params['author'] = array(
->>>>>>> origin/master
 				'description'         => __( 'Limit result set to posts assigned to specific authors.' ),
 				'type'                => 'array',
 				'items'               => array(
@@ -2036,11 +2004,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 				),
 				'default'             => array(),
 			);
-<<<<<<< HEAD
 			$query_params['author_exclude'] = array(
-=======
-			$params['author_exclude'] = array(
->>>>>>> origin/master
 				'description'         => __( 'Ensure result set excludes posts assigned to specific authors.' ),
 				'type'                => 'array',
 				'items'               => array(
@@ -2050,21 +2014,13 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 			);
 		}
 
-<<<<<<< HEAD
 		$query_params['before'] = array(
-=======
-		$params['before'] = array(
->>>>>>> origin/master
 			'description'        => __( 'Limit response to posts published before a given ISO8601 compliant date.' ),
 			'type'               => 'string',
 			'format'             => 'date-time',
 		);
 
-<<<<<<< HEAD
 		$query_params['exclude'] = array(
-=======
-		$params['exclude'] = array(
->>>>>>> origin/master
 			'description'        => __( 'Ensure result set excludes specific IDs.' ),
 			'type'               => 'array',
 			'items'              => array(
@@ -2073,11 +2029,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 			'default'            => array(),
 		);
 
-<<<<<<< HEAD
 		$query_params['include'] = array(
-=======
-		$params['include'] = array(
->>>>>>> origin/master
 			'description'        => __( 'Limit result set to specific IDs.' ),
 			'type'               => 'array',
 			'items'              => array(
@@ -2087,41 +2039,25 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 		);
 
 		if ( 'page' === $this->post_type || post_type_supports( $this->post_type, 'page-attributes' ) ) {
-<<<<<<< HEAD
 			$query_params['menu_order'] = array(
-=======
-			$params['menu_order'] = array(
->>>>>>> origin/master
 				'description'        => __( 'Limit result set to posts with a specific menu_order value.' ),
 				'type'               => 'integer',
 			);
 		}
 
-<<<<<<< HEAD
 		$query_params['offset'] = array(
-=======
-		$params['offset'] = array(
->>>>>>> origin/master
 			'description'        => __( 'Offset the result set by a specific number of items.' ),
 			'type'               => 'integer',
 		);
 
-<<<<<<< HEAD
 		$query_params['order'] = array(
-=======
-		$params['order'] = array(
->>>>>>> origin/master
 			'description'        => __( 'Order sort attribute ascending or descending.' ),
 			'type'               => 'string',
 			'default'            => 'desc',
 			'enum'               => array( 'asc', 'desc' ),
 		);
 
-<<<<<<< HEAD
 		$query_params['orderby'] = array(
-=======
-		$params['orderby'] = array(
->>>>>>> origin/master
 			'description'        => __( 'Sort collection by object attribute.' ),
 			'type'               => 'string',
 			'default'            => 'date',
@@ -2136,7 +2072,6 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 		);
 
 		if ( 'page' === $this->post_type || post_type_supports( $this->post_type, 'page-attributes' ) ) {
-<<<<<<< HEAD
 			$query_params['orderby']['enum'][] = 'menu_order';
 		}
 
@@ -2144,15 +2079,6 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 
 		if ( $post_type->hierarchical || 'attachment' === $this->post_type ) {
 			$query_params['parent'] = array(
-=======
-			$params['orderby']['enum'][] = 'menu_order';
-		}
-
-		$post_type_obj = get_post_type_object( $this->post_type );
-
-		if ( $post_type_obj->hierarchical || 'attachment' === $this->post_type ) {
-			$params['parent'] = array(
->>>>>>> origin/master
 				'description'       => __( 'Limit result set to those of particular parent IDs.' ),
 				'type'              => 'array',
 				'items'             => array(
@@ -2160,11 +2086,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 				),
 				'default'           => array(),
 			);
-<<<<<<< HEAD
 			$query_params['parent_exclude'] = array(
-=======
-			$params['parent_exclude'] = array(
->>>>>>> origin/master
 				'description'       => __( 'Limit result set to all items except those of a particular parent ID.' ),
 				'type'              => 'array',
 				'items'             => array(
@@ -2174,11 +2096,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 			);
 		}
 
-<<<<<<< HEAD
 		$query_params['slug'] = array(
-=======
-		$params['slug'] = array(
->>>>>>> origin/master
 			'description'       => __( 'Limit result set to posts with one or more specific slugs.' ),
 			'type'              => 'array',
 			'items'             => array(
@@ -2187,11 +2105,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 			'sanitize_callback' => 'wp_parse_slug_list',
 		);
 
-<<<<<<< HEAD
 		$query_params['status'] = array(
-=======
-		$params['status'] = array(
->>>>>>> origin/master
 			'default'           => 'publish',
 			'description'       => __( 'Limit result set to posts assigned one or more statuses.' ),
 			'type'              => 'array',
@@ -2207,11 +2121,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 		foreach ( $taxonomies as $taxonomy ) {
 			$base = ! empty( $taxonomy->rest_base ) ? $taxonomy->rest_base : $taxonomy->name;
 
-<<<<<<< HEAD
 			$query_params[ $base ] = array(
-=======
-			$params[ $base ] = array(
->>>>>>> origin/master
 				/* translators: %s: taxonomy name */
 				'description'       => sprintf( __( 'Limit result set to all items that have the specified term assigned in the %s taxonomy.' ), $base ),
 				'type'              => 'array',
@@ -2221,11 +2131,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 				'default'           => array(),
 			);
 
-<<<<<<< HEAD
 			$query_params[ $base . '_exclude' ] = array(
-=======
-			$params[ $base . '_exclude' ] = array(
->>>>>>> origin/master
 				/* translators: %s: taxonomy name */
 				'description' => sprintf( __( 'Limit result set to all items except those that have the specified term assigned in the %s taxonomy.' ), $base ),
 				'type'        => 'array',
@@ -2237,11 +2143,7 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 		}
 
 		if ( 'post' === $this->post_type ) {
-<<<<<<< HEAD
 			$query_params['sticky'] = array(
-=======
-			$params['sticky'] = array(
->>>>>>> origin/master
 				'description'       => __( 'Limit result set to items that are sticky.' ),
 				'type'              => 'boolean',
 			);
@@ -2259,17 +2161,10 @@ class WP_REST_Posts_Controller extends WP_REST_Controller {
 		 *
 		 * @since 4.7.0
 		 *
-<<<<<<< HEAD
 		 * @param array        $query_params JSON Schema-formatted collection parameters.
 		 * @param WP_Post_Type $post_type    Post type object.
 		 */
 		return apply_filters( "rest_{$this->post_type}_collection_params", $query_params, $post_type );
-=======
-		 * @param $params JSON Schema-formatted collection parameters.
-		 * @param WP_Post_Type $post_type_obj Post type object.
-		 */
-		return apply_filters( "rest_{$this->post_type}_collection_params", $params, $post_type_obj );
->>>>>>> origin/master
 	}
 
 	/**

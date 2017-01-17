@@ -3582,19 +3582,11 @@ function wp_filter_object_list( $list, $args = array(), $operator = 'and', $fiel
 	$util = new WP_List_Util( $list );
 
 	$util->filter( $args, $operator );
-<<<<<<< HEAD
 
 	if ( $field ) {
 		$util->pluck( $field );
 	}
 
-=======
-
-	if ( $field ) {
-		$util->pluck( $field );
-	}
-
->>>>>>> origin/master
 	return $util->get_output();
 }
 

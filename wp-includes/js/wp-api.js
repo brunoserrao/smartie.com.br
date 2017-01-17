@@ -321,7 +321,6 @@
 				// Create the new getModel model.
 				getModel = new wp.api.models[ modelName ]( attributes );
 
-<<<<<<< HEAD
 				if ( ! getModel.get( embedCheckField ) ) {
 					getModel.fetch( {
 						success: function( getModel ) {
@@ -333,14 +332,6 @@
 					} );
 				} else {
 					// Resolve with the embedded model.
-=======
-				// If we didn’t have an embedded getModel, fetch the getModel data.
-				if ( ! getModel.get( embedCheckField ) ) {
-					getModel.fetch( { success: function( getModel ) {
-						deferred.resolve( getModel );
-					} } );
-				} else {
->>>>>>> origin/master
 					deferred.resolve( getModel );
 				}
 
@@ -406,7 +397,6 @@
 
 				// If we didn’t have embedded getObjects, fetch the getObjects data.
 				if ( _.isUndefined( getObjects.models[0] ) ) {
-<<<<<<< HEAD
 					getObjects.fetch( {
 						success: function( getObjects ) {
 
@@ -418,14 +408,6 @@
 							deferred.reject( response );
 						}
 					} );
-=======
-					getObjects.fetch( { success: function( getObjects ) {
-
-						// Add a helper 'parent_post' attribute onto the model.
-						setHelperParentPost( getObjects, postId );
-						deferred.resolve( getObjects );
-					} } );
->>>>>>> origin/master
 				} else {
 
 					// Add a helper 'parent_post' attribute onto the model.
@@ -1262,13 +1244,9 @@
 						},
 
 						// Specify the model that this collection contains.
-<<<<<<< HEAD
 						model: function( attrs, options ) {
 							return new loadingObjects.models[ modelClassName ]( attrs, options );
 						},
-=======
-						model: loadingObjects.models[ modelClassName ],
->>>>>>> origin/master
 
 						// Include a reference to the original class name.
 						name: collectionClassName,
@@ -1291,13 +1269,9 @@
 						url: routeModel.get( 'apiRoot' ) + routeModel.get( 'versionString' ) + routeName,
 
 						// Specify the model that this collection contains.
-<<<<<<< HEAD
 						model: function( attrs, options ) {
 							return new loadingObjects.models[ modelClassName ]( attrs, options );
 						},
-=======
-						model: loadingObjects.models[ modelClassName ],
->>>>>>> origin/master
 
 						// Include a reference to the original class name.
 						name: collectionClassName,

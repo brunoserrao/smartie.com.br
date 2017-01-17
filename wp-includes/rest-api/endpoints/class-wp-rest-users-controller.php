@@ -248,11 +248,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 		}
 
 		if ( ! current_user_can( 'list_users' ) ) {
-<<<<<<< HEAD
 			$prepared_args['has_published_posts'] = get_post_types( array( 'show_in_rest' => true ), 'names' );
-=======
-			$prepared_args['has_published_posts'] = true;
->>>>>>> origin/master
 		}
 
 		if ( ! empty( $prepared_args['search'] ) ) {
@@ -1355,11 +1351,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 		 *
 		 * @since 4.7.0
 		 *
-<<<<<<< HEAD
 		 * @param array $query_params JSON Schema-formatted collection parameters.
-=======
-		 * @param $params JSON Schema-formatted collection parameters.
->>>>>>> origin/master
 		 */
 		return apply_filters( 'rest_user_collection_params', $query_params );
 	}

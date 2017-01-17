@@ -1631,13 +1631,10 @@ function get_the_password_form( $post = 0 ) {
  * @return bool True on success, false on failure.
  */
 function is_page_template( $template = '' ) {
-<<<<<<< HEAD
 	if ( ! is_singular() ) {
 		return false;
 	}
 
-=======
->>>>>>> origin/master
 	$page_template = get_page_template_slug( get_queried_object_id() );
 
 	if ( empty( $template ) )

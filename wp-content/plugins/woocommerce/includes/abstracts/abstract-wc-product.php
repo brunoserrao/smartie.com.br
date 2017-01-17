@@ -871,7 +871,6 @@ class WC_Product {
 		if ( $price === '' ) {
 			$price = $this->get_price();
 		}
-		$price = (float) $price;
 
 		if ( $this->is_taxable() ) {
 
@@ -932,7 +931,6 @@ class WC_Product {
 		if ( $price === '' ) {
 			$price = $this->get_price();
 		}
-		$price = (float) $price;
 
 		if ( $this->is_taxable() && 'yes' === get_option( 'woocommerce_prices_include_tax' ) ) {
 			$tax_rates  = WC_Tax::get_base_tax_rates( $this->tax_class );

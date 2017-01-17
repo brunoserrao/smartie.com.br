@@ -49,22 +49,14 @@
 		history.replaceState = ( function( nativeReplaceState ) {
 			return function historyReplaceState( data, title, url ) {
 				currentHistoryState = data;
-<<<<<<< HEAD
 				return nativeReplaceState.call( history, data, title, 'string' === typeof url && url.length > 0 ? injectUrlWithState( url ) : url );
-=======
-				return nativeReplaceState.call( history, data, title, injectUrlWithState( url ) );
->>>>>>> origin/master
 			};
 		} )( history.replaceState );
 
 		history.pushState = ( function( nativePushState ) {
 			return function historyPushState( data, title, url ) {
 				currentHistoryState = data;
-<<<<<<< HEAD
 				return nativePushState.call( history, data, title, 'string' === typeof url && url.length > 0 ? injectUrlWithState( url ) : url );
-=======
-				return nativePushState.call( history, data, title, injectUrlWithState( url ) );
->>>>>>> origin/master
 			};
 		} )( history.pushState );
 
@@ -146,11 +138,7 @@
 		 */
 		handleLinkClick: function( event ) {
 			var preview = this, link, isInternalJumpLink;
-<<<<<<< HEAD
 			link = $( event.target ).closest( 'a' );
-=======
-			link = $( event.target );
->>>>>>> origin/master
 
 			// No-op if the anchor is not a link.
 			if ( _.isUndefined( link.attr( 'href' ) ) ) {
