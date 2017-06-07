@@ -3,8 +3,8 @@ Contributors: saintsystems, anderly
 Donate link: http://ssms.us/hVdk
 Tags: woocommerce, mailchimp
 Requires at least: 3.5.1
-Tested up to: 4.6.1
-Stable tag: 2.0.19
+Tested up to: 4.7.2
+Stable tag: 2.1.0
 License: GPLv3
 
 Simple and flexible MailChimp integration for WooCommerce.
@@ -112,6 +112,14 @@ Also, if you enjoy using the software [we'd love it if you could give us a revie
 2. WooCommerce MailChimp troubleshooting screen.
 
 == Changelog ==
+
+#### 2.1.0 - April 26, 2017
+- Added support for WooCommerce 3.0 changes.
+- Added additional options for opt-in checkbox placement.
+
+#### 2.0.20 - February 1, 2017
+
+- Added `woocommerce_mailchimp_admin_email` filter to allow hooking into and overriding email where error messages are sent (defaults to `get_option( 'admin_email' )` ).
 
 **IMPORTANT:** You must upgrade to version 2.X by December 31, 2016 as prior versions of the MailChimp API will stop working at that point.
 
