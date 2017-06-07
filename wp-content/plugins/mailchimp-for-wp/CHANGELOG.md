@@ -1,6 +1,63 @@
 Changelog
 =========
 
+#### 4.1.3 - May 24, 2017
+
+**Improvements**
+
+- Randomise time of cron event that renews MailChimp lists.
+- Always try to show MailChimp list info when API key is given.
+
+
+#### 4.1.2 - May 8, 2017
+
+**Fixes**
+
+- Use earlier hook priority for Ninja Forms 3 integration so action is registered on time.
+
+**Improvements**
+
+- Improved MailChimp list fetching & memory usage for accounts with many lists.
+- Show error message when fetching lists fails.
+- Updated plugin translations.
+
+#### 4.1.1 - April 11, 2017
+
+**Fixes**
+
+- WPML String Translation not working with the checkbox label for sign-up integrations.
+
+**Improvements**
+
+- Use updated order methods when using WooCommerce 3.0, thanks to Liam McArthur.
+- Updated JavaScript dependencies.
+
+
+#### 4.1.0 - March 14, 2017
+
+**Improvements**
+
+- Updated all JavaScript dependencies in the plugin.
+- Failsafed filter hooks to prevent invalid variable types.
+- Explain that greyed out integrations means that specific plugin is not activated.
+- Conditional form elements now uses event delegation, so it works with forms in [Boxzilla pop-ups](https://boxzillaplugin.com/).
+- Updated language files.
+
+**Additions**
+
+- Added support for Ninja Forms 3.
+- Added `mc4wp_integration_show_checkbox` filter.
+
+
+#### 4.0.13 - February 8, 2017
+
+**Improvements**
+
+- Ensure fields are HTML decoded before sending to MailChimp.
+- Better OptimizePress compatibility.
+- Show all address-type fields as required when form contains 1 or more fields of the same address group.
+
+
 #### 4.0.12 - January 16, 2017
 
 **Fixes**
