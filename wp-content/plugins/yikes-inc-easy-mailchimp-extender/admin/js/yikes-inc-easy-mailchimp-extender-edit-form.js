@@ -8,6 +8,13 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 
 	 $( document ).ready( function() {
 
+	 	// On page load, check if there are any fields in the form builder
+	 	// If we find fields, show the field instructions
+	 	// If we don't find fields, hide the field instructions
+	 	if ( jQuery( '#form-builder-container' ).children().length > 0 ) {
+	 		jQuery( '.edit-form-description-form-builder' ).hide();
+	 	}
+
 		/* Initialize Sortable Container */
 		/* Sortable Form Builder - re-arrange field order (edit-form.php) */
 		$( 'body' ).find( '#form-builder-container' ).sortable({
@@ -30,7 +37,7 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 		$( 'body' ).on( 'click' , '.remove-field' , function() {
 			var merge_tag = jQuery( this ).attr( 'alt' );
 			var clicked = jQuery( this );
-			$( this ).parents( '.yikes-mc-settings-expansion-section' ).prev().find( '.dashicons' ).toggleClass( 'dashicons-minus' );
+			$( this ).parents( '.yikes-mc-settings-expansion-section' ).prev().find( '.yikes-mc-expansion-toggle' ).toggleClass( 'dashicons-minus' );
 			$( this ).parents( '.yikes-mc-settings-expansion-section' ).slideToggle( 450 , function() {
 				clicked.parents( '.draggable' ).find( '.expansion-section-title' ).css( 'background' , 'rgb(255, 134, 134)' );
 				clicked.parents( '.draggable' ).fadeOut( 'slow' , function() {
@@ -50,11 +57,10 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 		});
 
 		/*
-		* Hide a field (click 'close')
+		* Hide a [newly-added/unsaved] field (click 'close')
 		*/
 		$( 'body' ).on( 'click' , '.hide-field' , function() {
-			$( this ).parents( '.yikes-mc-settings-expansion-section' ).prev().find( '.dashicons' ).toggleClass( 'dashicons-minus' );
-			$( this ).parents( '.yikes-mc-settings-expansion-section' ).slideToggle( 450 );
+			$( this ).parents( '.yikes-mc-settings-expansion-section' ).slideToggle( 450 ).prev().find( '.yikes-mc-expansion-toggle' ).toggleClass( 'dashicons-minus' );
 			return false;
 		});
 
@@ -63,6 +69,9 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 		* and disable it from the available fields list
 		*/
 		$( 'body' ).on( 'click' , '.add-field-to-editor' , function() {
+
+			// Display our form instructions (we hide these if there are no fields)
+			jQuery( '.edit-form-description-form-builder' ).show();
 
 			$( '.field-to-add-to-form' ).each( function() {
 				/* get the length, to decide if we should clear the html and append, or just append */
@@ -132,7 +141,14 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 			/* get the length, to decide if we should clear the html and append, or just append */
 			var form_builder_length = $( '#form-builder-container' ).find( '.draggable' ).length;
 
-			var group_id = $( '.group-to-add-to-form' ).attr( 'alt' );
+			var interest_groups = [];
+			$( '.group-to-add-to-form' ).each( function() {
+				interest_groups.push({
+					'group_id'  : $( this ).attr( 'alt' ),
+					'field_type': $( this ).attr( 'data-attr-field-type' ),
+					'field_name': $( this ).attr( 'data-attr-field-name' )
+				});
+			});
 
 			/* temporarily disable all of the possible merge variables and interest groups (to prevent some weird stuff happening) */
 			$( '#available-interest-groups' ).children( 'li' ).removeClass( 'available-interest-group' );
@@ -143,9 +159,7 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 			/* build our data */
 			var data = {
 				'action' : 'add_interest_group_to_form',
-				'field_name' : $( '.group-to-add-to-form' ).attr( 'data-attr-field-name' ),
-				'group_id' : group_id,
-				'field_type' : $( '.group-to-add-to-form' ).attr( 'data-attr-field-type' ),
+				'interest_groups': interest_groups,
 				'list_id' : $( '.group-to-add-to-form' ).attr( 'data-attr-form-id' ) /* grab the form ID to query the API for field data */
 			};
 
@@ -190,7 +204,7 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 		/* Toggle settings hidden containers */
 		$( 'body' ).on( 'click' , '.expansion-section-title' , function() {
 			$( this ).next().stop().slideToggle();
-			$( this ).find( '.dashicons' ).toggleClass( 'dashicons-minus' );
+			$( this ).find( '.yikes-mc-expansion-toggle' ).toggleClass( 'dashicons-minus' );
 			return false;
 		});
 
@@ -218,12 +232,16 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 			} else {
 				if( $( this ).hasClass( 'group-to-add-to-form' ) ) {
 					$( this ).removeClass( 'group-to-add-to-form' );
-					$( '.add-interest-group-to-editor' ).stop().fadeOut();
 				} else {
-					$( '.group-to-add-to-form' ).removeClass( 'group-to-add-to-form' );
 					$( this ).toggleClass( 'group-to-add-to-form' );
-					$( '.add-interest-group-to-editor' ).stop().fadeIn();
 				}
+			}
+
+			// Check if we have groups to add still
+			if ( $( '.group-to-add-to-form' ).length > 0 ) {
+				$( '.add-interest-group-to-editor' ).stop().fadeIn();
+			} else {
+				$( '.add-interest-group-to-editor' ).stop().fadeOut();
 			}
 		});
 
@@ -239,7 +257,8 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 
 		/* Close the form when clickcing 'close' */
 		$( 'body' ).on( 'click' , '.close-form-expansion' , function() {
-			$( this ).parents( '.yikes-mc-settings-expansion-section' ).slideToggle().prev().find( '.dashicons' ).toggleClass( 'dashicons-minus' );
+			var expansion_section = $( this ).parents( '.yikes-mc-settings-expansion-section' ).slideToggle();
+			expansion_section.prev().find( '.yikes-mc-expansion-toggle' ).toggleClass( 'dashicons-minus' );
 			return false;
 		});
 
@@ -263,7 +282,7 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 					$( '.mv_ig_list .nav-tab' ).removeClass( 'nav-tab-disabled' );
 				});
 				$( '#interest-groups-container' ).stop().animate({
-					left: '+=268px'
+					left: '+=278px'
 				}, function() {
 					$( '.mv_ig_list .nav-tab' ).removeClass( 'nav-tab-disabled' );
 				});
@@ -274,7 +293,7 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 					$( '.mv_ig_list .nav-tab' ).removeClass( 'nav-tab-disabled' );
 				});
 				$( '#interest-groups-container' ).stop().animate({
-					left: '-=268px'
+					left: '-=278px'
 				}, function() {
 					$( '.mv_ig_list .nav-tab' ).removeClass( 'nav-tab-disabled' );
 				});
@@ -311,10 +330,94 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 		});
 
 		/**
+		* Click the edit pencil dashicon on the expansion-section when the field is expanded
+		*/
+		$( '.yikes-mc-edit-field-label-icon' ).click( function( event ) {
+
+			// Prevent the tab from sliding up
+			yikes_mc_prevent_default_stop_prop( event );
+
+			// Remove the error message
+			jQuery( this ).siblings( '.yikes-mc-edit-field-label-message' ).fadeOut();
+
+			// Store the this var
+			var clicked_element = this;
+
+			// Call our function to toggle the input field / text fields
+			yikes_mc_toggle_field_label_edit( clicked_element );
+		});
+
+		/**
+		* Listen for clicks on the edit field label input field and do not slide tab up/down.
+		*/
+		$( '.yikes-mc-edit-field-label-input' ).click( function( event ) { yikes_mc_prevent_default_stop_prop( event ) } );
+
+		/**
+		* Show the pencil for editing field labels when a user hovers over the expansion section
+		* and hide it when a user's mouse leaves the expansion section
+		*/
+		// $( '.expansion-section-title' ).hover( 
+		// 	function() { $( this ).children( '.yikes-mc-edit-field-label-icon.dashicons-edit' ).show(); },
+		// 	function() { $( this ).children( '.yikes-mc-edit-field-label-icon.dashicons-edit' ).hide(); } 
+		// );
+
+		/**
+		* Save field label edit changes
+		*/
+		$( '.yikes-mc-save-field-label-edits-icon' ).click( function( event ) {
+
+			// Prevent the tab from sliding up
+			yikes_mc_prevent_default_stop_prop( event );
+
+			// Remove the error message
+			jQuery( this ).siblings( '.yikes-mc-edit-field-label-message' ).fadeOut();
+
+			// Store the this var
+			var clicked_element = this;
+
+			// Get the current list ID
+			var list_id = jQuery( '#form-builder-div' ).data( 'list-id' );
+
+			// Capture the field data
+			var field_name	= jQuery( this ).siblings( '.yikes-mc-edit-field-label-input' ).val();
+			var field_id	= jQuery( this ).parents( '.expansion-section-title' ).siblings( '.yikes-mc-settings-expansion-section' ).children( '.yikes-mc-merge-field-id' ).val();		
+			var field_data	= {
+				field_name: field_name,
+				field_id: field_id
+			};
+
+			// Capture the current value of the field label
+			var current_field_name = jQuery( this ).parents( '.expansion-section-title' ).siblings( '.yikes-mc-settings-expansion-section' ).children( '.yikes-mc-merge-field-label' ).val();
+
+			// Do a quick check to make sure the user is actually changing the value
+			// If they're not changing the value (just using the checkmark to cancel) then just run our cancel function
+			if ( current_field_name === field_name ) {
+				yikes_mc_toggle_field_label_edit( jQuery( this ).siblings( '.yikes-mc-edit-field-label-icon' ) );
+				return;
+			}
+
+			// Call our function to save the changes
+			yikes_mc_save_field_label_name( clicked_element, list_id, field_data );
+		});
+
+		/**
 		*	Initialize our date pickers on init
 		*	@since 6.0.3.8
 		*/
 		initialize_form_schedule_time_pickers();
+
+		// If ajax is disabled, hide the 'redirect-new-window' option
+		// Is ajax is enabled and redirect is enabled, show the 'redirect-new-window' option
+		$( '.yikes-enable-disable-ajax' ).click( function() {
+			var is_ajax  = $( '#enable-ajax' ).is( ':checked' );
+			var redirect = $( '#redirect-user' ).is( ':checked' );
+			if ( is_ajax === true && redirect === true ) {
+				$( '.redirect-new-window-div' ).fadeIn();	
+			} else {
+				$( '.redirect-new-window-div' ).fadeOut();
+			}
+			
+		});
 
 	});
 
@@ -326,10 +429,18 @@ window.yikes_mailchimp_edit_form = window.yikes_mailchimp_edit_form || {};
 
 /* Toggle Page Slection for form submission redirection */
 function togglePageRedirection( e ) {
+
+	var is_ajax = jQuery( '#enable-ajax' ).is( ':checked' );
+
 	if( e.value == 1 ) {
 		jQuery( '#redirect-user-to-selection-label' ).fadeIn();
+
+		if ( is_ajax === true ) {
+			jQuery( '.redirect-new-window-div' ).fadeIn();
+		}
+
 	} else {
-		jQuery( '#redirect-user-to-selection-label' ).fadeOut();
+		jQuery( '#redirect-user-to-selection-label, .redirect-new-window-div' ).fadeOut();
 	}
 }
 /* Pass the clicked element for proper populating */
@@ -476,4 +587,107 @@ function yikes_12_to_24_hour_time_conversion( time ) {
  */
 function toggleUpdateEmailContainer( clicked_button ) {
 	jQuery( '.send-update-email' ).stop().fadeToggle();
+}
+
+/**
+* Wrapper function for event.preventDefault and event.stopPropagation
+*/
+function yikes_mc_prevent_default_stop_prop( event ) {
+	event.preventDefault();
+	event.stopPropagation();
+}
+
+/**
+* Toggle the field label edit sections
+*
+* If you're on the normal 'Field Label Text' view: change the pencil icon to an X icon, and replace the field label/type with an input field for field-label editing
+* If you're on the 'Edit Field Label' view: change the X to a pencil, and replace the input field with the field label name and type
+*/
+function yikes_mc_toggle_field_label_edit( clicked ) {
+
+	// Are we canceling the edit or are we initializing the edit? Run some conditional logic
+
+	// Let's populate our input field with the current value of the hidden input field (the currently defined label)
+	jQuery( clicked ).siblings( '.yikes-mc-edit-field-label-input' ).val(
+		jQuery( clicked ).parents( '.expansion-section-title' ).siblings( '.yikes-mc-settings-expansion-section' ).children( '.yikes-mc-merge-field-label' ).val()
+	);
+
+	// Default values
+	var fadeOut_selectors = jQuery( clicked ).siblings( '.yikes-mc-expansion-section-field-label, .field-type-text' );
+	var fadeIn_selectors = jQuery( clicked ).siblings( '.yikes-mc-edit-field-label-input, .yikes-mc-save-field-label-edits-icon' );
+
+	// If clicked element has class 'dashicons-no' we are CANCELING the edit
+	if ( jQuery( clicked ).hasClass( 'dashicons-no' ) ) {
+		fadeOut_selectors = jQuery( clicked ).siblings( '.yikes-mc-edit-field-label-input, .yikes-mc-save-field-label-edits-icon' );
+		fadeIn_selectors = jQuery( clicked ).siblings( '.yikes-mc-expansion-section-field-label, .field-type-text' );
+
+		// Change the dashicon title to something like "Click to edit the label"
+		clicked.title = yikes_mailchimp_edit_form.edit_field_label_pencil_title;
+	} else {
+
+		// Change the dashicon title to something like "Click to cancel editing. Your changes will not be saved."
+		clicked.title = yikes_mailchimp_edit_form.edit_field_label_cancel_title;
+	}
+
+	// Switch label from edit icon to X and vise versa
+	jQuery( clicked ).toggleClass( 'dashicons-no dashicons-edit' );
+
+	// Toggle fading in/fading out the field-label and field type OR the input field and save icon
+	// Use .promise() and .done() to run the callback once for potentially multiple selectors
+	fadeOut_selectors.fadeToggle().promise().done( function() {
+		fadeIn_selectors.fadeToggle();
+	});
+}
+
+function yikes_mc_save_field_label_name( clicked_element, list_id, field_data ) {
+	var data = {
+		action: 'save_field_label_edits',
+		list_id: list_id,
+		field_data: field_data,
+		nonce: yikes_mailchimp_edit_form.save_field_label_nonce
+	}
+
+	jQuery.post( yikes_mailchimp_edit_form.ajax_url, data, function( response ) {
+
+		if ( response !== 'undefined' && response.success !== 'undefined' ) {
+			var success = response.success;
+			if ( success === true ) {
+
+				// Update the field label
+				var field_label = field_data['field_name'];
+				yikes_mc_update_field_label( clicked_element, field_label );
+				yikes_mc_toggle_field_label_edit( jQuery( clicked_element ).siblings( '.dashicons-no' ) );
+			} else {
+
+				// Show error message
+				var message = '';
+				if ( response.data !== 'undefined' && response.data.message !== 'undefined' ) {
+					message = response.data.message;
+					yikes_mc_display_field_label_error_message( clicked_element, message );
+				}
+			}
+		}
+	});
+}
+
+/**
+* Update field label values
+*/
+function yikes_mc_update_field_label( element, field_label ) {
+
+	// Update the hidden input field -- this is what tells the backend to update the field
+	jQuery( element ).parents( '.expansion-section-title' ).siblings( '.yikes-mc-settings-expansion-section' ).children( '.yikes-mc-merge-field-label' ).val( field_label );
+
+	// Update the actual text on the expansion section 
+	// (this is for UI/UX purposes only. On refresh/save, the actual value will be replaced)
+	jQuery( element ).siblings( '.yikes-mc-expansion-section-field-label' ).text( field_label );
+}
+
+/**
+* Display an error message for errors during field label updates
+*/
+function yikes_mc_display_field_label_error_message( element, message ) {
+	jQuery( element ).siblings( '.yikes-mc-edit-field-label-message' ).fadeOut( function() {
+		jQuery( this ).text( message ).fadeIn();
+	});
 }

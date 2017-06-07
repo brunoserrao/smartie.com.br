@@ -41,11 +41,12 @@ class Yikes_Easy_MC_WooCommerce_Checkbox_Class extends Yikes_Easy_MC_Checkbox_In
 	 * @return mixed
 	 */
 	public function add_checkout_field( $fields ) {
+
 		// get checkbox data
 		$checkbox_options = get_option( 'optin-checkbox-init' , '' );
 		// only display the field if a list is set
 		if( isset( $checkbox_options ) && $checkbox_options[$this->type]['associated-list'] != '-' ) {
-			if( $this->is_user_already_subscribed( $this->type ) == '1' ) {
+			if( $this->is_user_already_subscribed( $this->type ) ) {
 				return $fields;
 			}
 			if( isset( $checkbox_options[$this->type]['precheck'] ) && $checkbox_options[$this->type]['precheck'] == 'true' ) {
@@ -54,13 +55,14 @@ class Yikes_Easy_MC_WooCommerce_Checkbox_Class extends Yikes_Easy_MC_Checkbox_In
 				$precheck = '0';
 			}
 			$fields[ 'billing' ]['yikes_mailchimp_checkbox_'.$this->type] = array(
-				'id' => 'yikes_mailchimp_checkbox_'.$this->type,
+				'id' 	  => 'yikes_mailchimp_checkbox_'.$this->type,
 				'type'    => 'checkbox',
-				'class' => array(),
+				'class'   => apply_filters( 'yikes-mailchimp-wooco-integration-checkbox-classes', array( 'form-row-wide' ) ),
 				'label'   => $checkbox_options[$this->type]['label'],
 				'default' => $precheck,
 			);
 		}
+
 		return $fields;
 	}
 	
@@ -94,5 +96,3 @@ class Yikes_Easy_MC_WooCommerce_Checkbox_Class extends Yikes_Easy_MC_Checkbox_In
 	
 }
 new Yikes_Easy_MC_WooCommerce_Checkbox_Class;
-
-?>
