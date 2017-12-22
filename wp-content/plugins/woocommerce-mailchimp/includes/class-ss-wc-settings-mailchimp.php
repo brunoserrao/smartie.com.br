@@ -45,7 +45,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 			$this->namespace  = 'ss_wc_' . $this->id;
 			$this->label      = __( 'MailChimp', 'woocommerce-mailchimp' );
 			$this->init();
-			
+
 			$this->register_hooks();
 
 		} //end function __construct
@@ -197,7 +197,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 			// Check required fields
 			if ( $this->is_enabled() && ! $this->has_api_key() ) {
 				// Show notice
-				echo $this->get_message( sprintf( __( 'WooCommerce MailChimp error: Plugin is enabled but no api key provided. Please enter your api key <a href="%s">here</a>.', 'woocommerce-mailchimp' ), WOOCOMMERCE_MAILCHIMP_SETTINGS_URL )
+				echo $this->get_message( sprintf( __( 'WooCommerce MailChimp error: Plugin is enabled but no api key provided. Please enter your api key <a href="%s">here</a>.', 'woocommerce-mailchimp' ), SS_WC_MAILCHIMP_SETTINGS_URL )
 				);
 			}
 		}
@@ -205,7 +205,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 		public function init() {
 
 			$this->api_key  = $this->get_option( 'api_key' );
-			
+
 			$this->enabled  = $this->get_option( 'enabled' );
 
 		}
@@ -268,7 +268,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 
 	 		$this->wc_enqueue_js("
 	 			(function($){
-	 				
+
 	 				$(document).ready(function() {
 	 					SS_WC_MailChimp.init();
 	 				});
@@ -297,7 +297,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 			$sswcmc = SSWCMC();
 			// Trigger reload of plugin settings
 			$settings = $sswcmc->settings( true );
-			
+
 		}
 
 		/**
@@ -369,7 +369,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 						'default'     => '',
 						'options'     => $interest_groups,
 						'class'       => 'wc-enhanced-select',
-						'custom_attributes' => array( 
+						'custom_attributes' => array(
 							'placeholder' => __( 'Select interest groups...', 'woocommerce-mailchimp' ),
 						),
 						'css'         => 'min-width: 350px;',
@@ -392,7 +392,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 						),
 						'desc_tip'    =>  true,
 					);
-				
+
 				$settings[] = array(
 						'id'          => $this->namespace_prefixed( 'double_opt_in' ),
 						'title'       => __( 'Double Opt-In', 'woocommerce-mailchimp' ),
@@ -458,6 +458,8 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 							'woocommerce_checkout_billing' => __( 'Above billing details', 'woocommerce-mailchimp' ),
 							'woocommerce_checkout_shipping' => __( 'Above shipping details', 'woocommerce-mailchimp' ),
 							'woocommerce_after_checkout_billing_form' => __( 'Below Checkout billing form', 'woocommerce-mailchimp' ),
+							'woocommerce_checkout_before_terms_and_conditions' => __( 'Above Checkout Terms and Conditions', 'woocommerce-mailchimp' ),
+							'woocommerce_checkout_after_terms_and_conditions' => __( 'Below Checkout Terms and Conditions', 'woocommerce-mailchimp' ),
 						),
 						'desc_tip'    =>  true,
 					);
@@ -594,10 +596,10 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 					'' => __( 'Select a list...', 'woocommerce-mailchimp' ),
 				);
 			}
-			$mailchimp_lists = array_merge( $default, $mailchimp_lists );
+			$mailchimp_lists = $default + $mailchimp_lists;
 
 			return $mailchimp_lists;
-			
+
 		}
 
 		/**
@@ -624,7 +626,7 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 			}
 
 			return $interest_groups;
-			
+
 		}
 
 		/**
@@ -644,9 +646,9 @@ if ( ! class_exists( 'SS_WC_Settings_MailChimp' ) ) {
 		public function mailchimp_api_error_msg() {
 			echo $this->get_message(
 				sprintf( __( 'Unable to load lists from MailChimp: (%s) %s. ', 'woocommerce-mailchimp' ), $this->mailchimp()->get_error_code(), $this->mailchimp()->get_error_message() ) .
-				sprintf( __( 'Please check your Settings %ssettings%s.', 'woocommerce-mailchimp' ), '<a href="' . WOOCOMMERCE_MAILCHIMP_SETTINGS_URL .'">', '</a>' )
+				sprintf( __( 'Please check your Settings %ssettings%s.', 'woocommerce-mailchimp' ), '<a href="' . SS_WC_MAILCHIMP_SETTINGS_URL .'">', '</a>' )
 			);
-		} //end function mailchimp_api_error_msg 
+		} //end function mailchimp_api_error_msg
 
 		/**
 		 * Helper log function for debugging
