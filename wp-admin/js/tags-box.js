@@ -74,15 +74,15 @@ var tagBox, array_unique_noempty;
 			tagchecklist.empty();
 
 			$.each( current_tags, function( key, val ) {
-				var span, xbutton;
+				var listItem, xbutton;
 
 				val = $.trim( val );
 
 				if ( ! val )
 					return;
 
-				// Create a new span, and ensure the text is properly escaped.
-				span = $('<span />').text( val );
+				// Create a new list item, and ensure the text is properly escaped.
+				listItem = $( '<li />' ).text( val );
 
 				// If tags editing isn't disabled, create the X button.
 				if ( ! disabled ) {
@@ -92,19 +92,7 @@ var tagBox, array_unique_noempty;
 					 */
 					xbutton = $( '<button type="button" id="' + id + '-check-num-' + key + '" class="ntdelbutton">' +
 						'<span class="remove-tag-icon" aria-hidden="true"></span>' +
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + listItem.html() + '</span>' +
-=======
-						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + span.html() + '</span>' +
->>>>>>> origin/master
-=======
-						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + val + '</span>' +
->>>>>>> parent of 6188f9c... WordPress 4.9.1
-=======
-						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + val + '</span>' +
->>>>>>> parent of 6188f9c... WordPress 4.9.1
 						'</button>' );
 
 					xbutton.on( 'click keypress', function( e ) {
@@ -124,11 +112,11 @@ var tagBox, array_unique_noempty;
 						}
 					});
 
-					span.prepend( '&nbsp;' ).prepend( xbutton );
+					listItem.prepend( '&nbsp;' ).prepend( xbutton );
 				}
 
-				// Append the span to the tag list.
-				tagchecklist.append( span );
+				// Append the list item to the tag list.
+				tagchecklist.append( listItem );
 			});
 			// The buttons list is built now, give feedback to screen reader users.
 			tagBox.screenReadersMessage();
@@ -178,7 +166,7 @@ var tagBox, array_unique_noempty;
 					return;
 				}
 
-				r = $( '<p id="tagcloud-' + tax + '" class="the-tagcloud">' + r + '</p>' );
+				r = $( '<div id="tagcloud-' + tax + '" class="the-tagcloud">' + r + '</div>' );
 
 				$( 'a', r ).click( function() {
 					tagBox.userAction = 'add';
@@ -233,7 +221,7 @@ var tagBox, array_unique_noempty;
 				tagBox.flushTags( $( this ).closest( '.tagsdiv' ) );
 			});
 
-			$( 'input.newtag', ajaxtag ).keyup( function( event ) {
+			$( 'input.newtag', ajaxtag ).keypress( function( event ) {
 				if ( 13 == event.which ) {
 					tagBox.userAction = 'add';
 					tagBox.flushTags( $( this ).closest( '.tagsdiv' ) );
