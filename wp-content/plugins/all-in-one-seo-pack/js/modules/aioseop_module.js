@@ -246,6 +246,7 @@ jQuery( document ).ready(function() {
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @summary Custom jQuery plugin that enables image uploader in wordpress.
  * 
  * @since 2.3.13
@@ -348,6 +349,11 @@ jQuery(document).ready(function($){
  * @since 1.0.0
  * @return boolean.
  */
+=======
+ * @since 1.0.0
+ * @return boolean.
+ */
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 jQuery( document ).ready(function() {
 	var image_field;
 	jQuery( '.aioseop_upload_image_button' ).click(function() {
@@ -365,6 +371,9 @@ jQuery( document ).ready(function() {
 		tb_remove();
 		window.send_to_editor = aioseopStoreSendToEditor;
 	};
+<<<<<<< HEAD
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
+=======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 });
 

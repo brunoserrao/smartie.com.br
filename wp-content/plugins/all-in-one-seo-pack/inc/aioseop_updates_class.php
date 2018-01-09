@@ -59,7 +59,10 @@ class AIOSEOP_Updates {
 			if( ! is_network_admin() || !isset( $_GET['activate-multi'] ) ) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				// Replace this to reactivate update welcome screen.
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 				//set_transient( '_aioseop_activation_redirect', true, 30 ); // Sets 30 second transient for welcome screen redirect on activation.

@@ -957,6 +957,7 @@ function aioseop_woo_upgrade_notice_dismissed() {
 	update_user_meta( get_current_user_id(), 'aioseop_woo_upgrade_notice_dismissed', true );
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 function aioseop_sitemap_max_url_notice_dismissed() {
@@ -1005,5 +1006,7 @@ if ( ! function_exists('aiosp_include_images') ) {
 }
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1

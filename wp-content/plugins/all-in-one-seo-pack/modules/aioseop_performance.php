@@ -290,8 +290,12 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 					}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					if ( ! empty( $_REQUEST['sfwd_update_check'] ) ) {
+=======
+					if ( $_REQUEST['sfwd_update_check'] ) {
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 					if ( $_REQUEST['sfwd_update_check'] ) {
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
@@ -301,7 +305,10 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 						break;
 					}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 					$email = '';
@@ -323,6 +330,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 			$buf   = "<ul class='sfwd_debug_settings'>\n{$page_text}\n</ul>\n<p>\n" .
 			         '<input name="sfwd_debug_send_email" type="text" value="" placeholder="' . __( 'E-mail debug information', 'all-in-one-seo-pack' ) . '"><input name="sfwd_debug_nonce" type="hidden" value="' .
 			         $nonce . '"><input name="sfwd_debug_submit" type="submit" value="' . __( 'Submit', 'all-in-one-seo-pack' ) . '" class="button-primary">';
+<<<<<<< HEAD
 
 			if ( AIOSEOPPRO ) {
 				$buf .= '<p><input name="sfwd_update_check" type="submit" value="' . __( 'Check For Updates', 'all-in-one-seo-pack' ) . '" class="button-primary">';
@@ -334,21 +342,14 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 		function get_exporter_choices() {
 			return array( 1, 2 );
 		}
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 
-		function get_exporter_post_types() {
-			$post_types = $this->get_post_type_titles();
-			$rempost    = array(
-				'customize_changeset' => 1,
-				'custom_css'          => 1,
-				'revision'            => 1,
-				'nav_menu_item'       => 1,
-			);
-			$post_types = array_diff_key(
-				$post_types,
-				$rempost
-			);
+			if ( AIOSEOPPRO ) {
+				$buf .= '<p><input name="sfwd_update_check" type="submit" value="' . __( 'Check For Updates', 'all-in-one-seo-pack' ) . '" class="button-primary">';
+			}
 
-			return array_keys( $post_types );
+			return $buf;
 		}
 	}
 }

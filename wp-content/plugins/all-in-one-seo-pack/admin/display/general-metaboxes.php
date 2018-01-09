@@ -105,12 +105,17 @@ class aiosp_metaboxes {
 						<p><input type="text" value="" name="EMAIL" class="required email" id="mce-EMAIL"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 						          placeholder="<?php _e( 'Email Address', 'all-in-one-seo-pack' ); ?>">
 							<input type="submit" value="<?php _e( 'Subscribe', 'all-in-one-seo-pack' ); ?>" name="subscribe" id="mc-embedded-subscribe"
 =======
 						          placeholder="<?php __( 'Email Address', 'all-in-one-seo-pack' ); ?>">
 							<input type="submit" value="<?php __( 'Subscribe', 'all-in-one-seo-pack' ); ?>" name="subscribe" id="mc-embedded-subscribe"
 >>>>>>> origin/master
+=======
+						          placeholder="Email Address">
+							<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 						          placeholder="Email Address">
 							<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
