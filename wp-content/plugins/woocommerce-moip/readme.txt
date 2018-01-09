@@ -1,10 +1,10 @@
 === WooCommerce Moip ===
 Contributors: claudiosanches
-Donate link: https://claudiosanches.com/doacoes/
+Donate link: http://claudiosmweb.com/doacoes/
 Tags: woocommerce, checkout, moip
 Requires at least: 3.8
-Tested up to: 4.7
-Stable tag: 2.2.11
+Tested up to: 4.5
+Stable tag: 2.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ Please notice that WooCommerce must be installed and active.
 
 = Contribute =
 
-You can contribute to the source code in our [GitHub](https://github.com/claudiosanches/woocommerce-moip) page.
+You can contribute to the source code in our [GitHub](https://github.com/claudiosmweb/woocommerce-moip) page.
 
 ### Descrição em Português: ###
 
@@ -44,13 +44,14 @@ Confira o nosso guia de instalação e configuração do WooCommerce Moip na aba
 
 Você pode esclarecer suas dúvidas usando:
 
-* A nossa sessão de [FAQ](https://wordpress.org/plugins/woocommerce-moip/faq/).
-* Criando um tópico no [fórum de ajuda do WordPress](https://wordpress.org/support/plugin/woocommerce-moip) .
-* Criando um tópico no [GitHub](https://github.com/claudiosanches/woocommerce-moip/issues).
+* A nossa sessão de [FAQ](http://wordpress.org/extend/plugins/woocommerce-moip/faq/).
+* Criando um tópico no [fórum de ajuda do WordPress](http://wordpress.org/support/plugin/woocommerce-moip) (apenas em inglês).
+* Criando um tópico no [GitHub](https://github.com/claudiosmweb/woocommerce-moip/issues).
+* Ou entre em contato com os desenvolvedores do plugin em nossa [página](http://claudiosmweb.com/plugins/moip-para-woocommerce/).
 
 = Colaborar =
 
-Você pode contribuir com código-fonte em nossa página no [GitHub](https://github.com/claudiosanches/woocommerce-moip).
+Você pode contribuir com código-fonte em nossa página no [GitHub](https://github.com/claudiosmweb/woocommerce-moip).
 
 == Installation ==
 
@@ -67,7 +68,7 @@ Você pode contribuir com código-fonte em nossa página no [GitHub](https://git
 
 = Requerimentos: =
 
-É necessário possuir uma conta no [Moip](http://site.moip.com.br/) e instalar a última versão do [WooCommerce](https://wordpress.org/plugins/woocommerce/).
+É necessário possuir uma conta no [Moip](http://site.moip.com.br/) e instalar a última versão do [WooCommerce](http://wordpress.org/extend/plugins/woocommerce/).
 
 = Configurações no Moip: =
 
@@ -160,6 +161,10 @@ Todo gateway de pagamentos no WooCommerce deve mudar o status do pedido para "pr
 
 Para produtos baixáveis a configuração padrão do WooCommerce é permitir o acesso apenas quando o pedido tem o status "concluído", entretanto nas configurações do WooCommerce na aba *Produtos* é possível ativar a opção **"Conceder acesso para download do produto após o pagamento"** e assim liberar o download quando o status do pedido esta como "processando".
 
+= Mais dúvidas relacionadas ao funcionamento do plugin? =
+
+Entre em contato [clicando aqui](http://claudiosmweb.com/plugins/moip-para-woocommerce/).
+
 == Screenshots ==
 
 1. Settings page.
@@ -168,19 +173,13 @@ Para produtos baixáveis a configuração padrão do WooCommerce é permitir o a
 
 == Changelog ==
 
-= 2.2.11 - 2017/03/15 =
-
-* Adicionada opção de pagamento com cartão Elo no Checkout Transparente (obrigado [mixbee](https://wordpress.org/support/users/mixbee/)).
-* Removido método depreciado de pagamento do Banrisul no Checkout Transparente (obrigado [mixbee](https://wordpress.org/support/users/mixbee/)).
-* Adicionado a código de segurança de 5 digitos no Checkout Transparente (obrigado [mixbee](https://wordpress.org/support/users/mixbee/)).
-
 = 2.2.10 - 2016/06/08 =
 
 * Adicionado suporte ao WooCommerce 2.6.
 
 = 2.2.9 - 2014/09/11 =
 
-* Corrigido o parametro de repassar os juros para o cliente (obrigado [bercacula](https://wordpress.org/support/profile/bercacula)).
+* Corrigido o parametro de repassar os juros para o cliente (obrigado [bercacula](http://wordpress.org/support/profile/bercacula)).
 
 = 2.2.8 - 2014/06/20/06 =
 
@@ -223,8 +222,6 @@ Para produtos baixáveis a configuração padrão do WooCommerce é permitir o a
 
 == Upgrade Notice ==
 
-= 2.2.11 =
+= 2.2.10 =
 
-* Adicionada opção de pagamento com cartão Elo no Checkout Transparente (obrigado [mixbee](https://wordpress.org/support/users/mixbee/)).
-* Removido método depreciado de pagamento do Banrisul no Checkout Transparente (obrigado [mixbee](https://wordpress.org/support/users/mixbee/)).
-* Adicionado a código de segurança de 5 digitos no Checkout Transparente (obrigado [mixbee](https://wordpress.org/support/users/mixbee/)).
+* Adicionado suporte ao WooCommerce 2.6.
