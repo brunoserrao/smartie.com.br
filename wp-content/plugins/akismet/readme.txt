@@ -1,6 +1,7 @@
-=== Akismet Anti-Spam ===
-Contributors: matt, ryan, andy, mdawaffe, tellyworth, josephscott, lessbloat, eoigal, cfinke, automattic, jgs, procifer
+=== Akismet ===
+Contributors: matt, ryan, andy, mdawaffe, tellyworth, josephscott, lessbloat, eoigal, cfinke, automattic, jgs
 Tags: akismet, comments, spam, antispam, anti-spam, anti spam, comment moderation, comment spam, contact form spam, spam comments
+<<<<<<< HEAD
 <<<<<<< HEAD
 Requires at least: 4.0
 Tested up to: 4.9.1
@@ -10,13 +11,18 @@ Requires at least: 3.7
 Tested up to: 4.7.4
 Stable tag: 3.3.2
 >>>>>>> origin/master
+=======
+Requires at least: 3.7
+Tested up to: 4.6.1
+Stable tag: 3.2
+>>>>>>> parent of 1f0d26e... Akismet 4.0.2
 License: GPLv2 or later
 
-Akismet checks your comments and contact form submissions against our global database of spam to protect you and your site from malicious content.
+Akismet checks your comments against the Akismet Web service to see if they look like spam or not.
 
 == Description ==
 
-Akismet checks your comments and contact form submissions against our global database of spam to prevent your site from publishing malicious content. You can review the comment spam it catches on your blog's "Comments" admin screen.
+Akismet checks your comments against the Akismet Web service to see if they look like spam or not and lets you review the spam it catches under your blog's "Comments" admin screen.
 
 Major features in Akismet include:
 
@@ -36,6 +42,7 @@ Upload the Akismet plugin to your blog, Activate it, then enter your [Akismet.co
 
 == Changelog ==
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 = 4.0.2 =
 *Release Date - 18 December 2017*
@@ -99,6 +106,8 @@ Upload the Akismet plugin to your blog, Activate it, then enter your [Akismet.co
 * Added a progress indicator to the "Check for Spam" button.
 * Added a success message after manually rechecking the Pending queue for spam.
 
+=======
+>>>>>>> parent of 1f0d26e... Akismet 4.0.2
 = 3.2 =
 *Release Date - 6 September 2016*
 

@@ -3,14 +3,19 @@
  * @package Akismet
  */
 /*
-Plugin Name: Akismet Anti-Spam
+Plugin Name: Akismet
 Plugin URI: https://akismet.com/
+<<<<<<< HEAD
 Description: Used by millions, Akismet is quite possibly the best way in the world to <strong>protect your blog from spam</strong>. It keeps your site protected even while you sleep. To get started: activate the Akismet plugin and then go to your Akismet Settings page to set up your API key.
 <<<<<<< HEAD
 Version: 4.0.2
 =======
 Version: 3.3.2
 >>>>>>> origin/master
+=======
+Description: Used by millions, Akismet is quite possibly the best way in the world to <strong>protect your blog from spam</strong>. It keeps your site protected even while you sleep. To get started: 1) Click the "Activate" link to the left of this description, 2) <a href="https://akismet.com/get/">Sign up for an Akismet plan</a> to get an API key, and 3) Go to your Akismet configuration page, and save your API key.
+Version: 3.2
+>>>>>>> parent of 1f0d26e... Akismet 4.0.2
 Author: Automattic
 Author URI: https://automattic.com/wordpress-plugins/
 License: GPLv2 or later
@@ -42,12 +47,17 @@ if ( !function_exists( 'add_action' ) ) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 define( 'AKISMET_VERSION', '4.0.2' );
 define( 'AKISMET__MINIMUM_WP_VERSION', '4.0' );
 =======
 define( 'AKISMET_VERSION', '3.3.2' );
 define( 'AKISMET__MINIMUM_WP_VERSION', '3.7' );
 >>>>>>> origin/master
+=======
+define( 'AKISMET_VERSION', '3.2' );
+define( 'AKISMET__MINIMUM_WP_VERSION', '3.7' );
+>>>>>>> parent of 1f0d26e... Akismet 4.0.2
 define( 'AKISMET__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AKISMET_DELETE_LIMIT', 100000 );
 
@@ -56,11 +66,8 @@ register_deactivation_hook( __FILE__, array( 'Akismet', 'plugin_deactivation' ) 
 
 require_once( AKISMET__PLUGIN_DIR . 'class.akismet.php' );
 require_once( AKISMET__PLUGIN_DIR . 'class.akismet-widget.php' );
-require_once( AKISMET__PLUGIN_DIR . 'class.akismet-rest-api.php' );
 
 add_action( 'init', array( 'Akismet', 'init' ) );
-
-add_action( 'rest_api_init', array( 'Akismet_REST_API', 'init' ) );
 
 if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 	require_once( AKISMET__PLUGIN_DIR . 'class.akismet-admin.php' );
