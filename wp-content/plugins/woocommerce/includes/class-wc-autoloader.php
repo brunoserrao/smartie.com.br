@@ -1,4 +1,5 @@
 <?php
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -65,33 +66,28 @@ class WC_Autoloader {
 	 */
 	public function autoload( $class ) {
 		$class = strtolower( $class );
-
-		if ( 0 !== strpos( $class, 'wc_' ) ) {
-			return;
-		}
-
 		$file  = $this->get_file_name_from_class( $class );
 		$path  = '';
 
-		if ( 0 === strpos( $class, 'wc_addons_gateway_' )  ) {
+		if ( strpos( $class, 'wc_addons_gateway_' ) === 0 ) {
 			$path = $this->include_path . 'gateways/' . substr( str_replace( '_', '-', $class ), 18 ) . '/';
-		} elseif ( 0 ===  strpos( $class, 'wc_gateway_' ) ) {
+		} elseif ( strpos( $class, 'wc_gateway_' ) === 0 ) {
 			$path = $this->include_path . 'gateways/' . substr( str_replace( '_', '-', $class ), 11 ) . '/';
-		} elseif ( 0 ===  strpos( $class, 'wc_shipping_' ) ) {
+		} elseif ( strpos( $class, 'wc_shipping_' ) === 0 ) {
 			$path = $this->include_path . 'shipping/' . substr( str_replace( '_', '-', $class ), 12 ) . '/';
-		} elseif ( 0 === strpos( $class, 'wc_shortcode_' ) ) {
+		} elseif ( strpos( $class, 'wc_shortcode_' ) === 0 ) {
 			$path = $this->include_path . 'shortcodes/';
-		} elseif ( 0 === strpos( $class, 'wc_meta_box' ) ) {
+		} elseif ( strpos( $class, 'wc_meta_box' ) === 0 ) {
 			$path = $this->include_path . 'admin/meta-boxes/';
-		} elseif ( 0 === strpos( $class, 'wc_admin' ) ) {
+		} elseif ( strpos( $class, 'wc_admin' ) === 0 ) {
 			$path = $this->include_path . 'admin/';
-		} elseif ( 0 === strpos( $class, 'wc_payment_token_' ) ) {
+		} elseif ( strpos( $class, 'wc_cli_' ) === 0 ) {
+			$path = $this->include_path . 'cli/';
+		} elseif ( strpos( $class, 'wc_payment_token_' ) === 0 ) {
 			$path = $this->include_path . 'payment-tokens/';
-		} elseif ( 0 === strpos( $class, 'wc_log_handler_' ) ) {
-			$path = $this->include_path . 'log-handlers/';
 		}
 
-		if ( empty( $path ) || ! $this->load_file( $path . $file ) ) {
+		if ( empty( $path ) || ( ! $this->load_file( $path . $file ) && strpos( $class, 'wc_' ) === 0 ) ) {
 			$this->load_file( $this->include_path . $file );
 		}
 	}

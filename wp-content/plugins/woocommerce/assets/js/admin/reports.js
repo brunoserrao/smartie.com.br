@@ -110,14 +110,14 @@ jQuery(function( $ ) {
 		defaultDate: '',
 		dateFormat: 'yy-mm-dd',
 		numberOfMonths: 1,
-		minDate: '-20Y',
-		maxDate: '+1D',
+		maxDate: '+0D',
 		showButtonPanel: true,
 		showOn: 'focus',
 		buttonImageOnly: true,
-		onSelect: function() {
+		onSelect: function( selectedDate ) {
 			var option = $( this ).is( '.from' ) ? 'minDate' : 'maxDate',
-				date   = $( this ).datepicker( 'getDate' );
+				instance = $( this ).data( 'datepicker' ),
+				date = $.datepicker.parseDate( instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings );
 
 			dates.not( this ).datepicker( 'option', option, date );
 		}
@@ -136,9 +136,8 @@ jQuery(function( $ ) {
 		exclude_series    = exclude_series.split( ',' );
 		var xaxes_label   = $( this ).data( 'xaxes' );
 		var groupby       = $( this ) .data( 'groupby' );
-		var index_type    = $( this ).data( 'index_type' );
 		var export_format = $( this ).data( 'export' );
-		var csv_data      = 'data:text/csv;charset=utf-8,\uFEFF';
+		var csv_data      = 'data:application/csv;charset=utf-8,';
 		var s, series_data, d;
 
 		if ( 'table' === export_format ) {
@@ -218,14 +217,10 @@ jQuery(function( $ ) {
 			$.each( xaxis, function( index, value ) {
 				var date = new Date( parseInt( index, 10 ) );
 
-				if ( 'none' === index_type ) {
-					csv_data += '"' + index + '",';
+				if ( groupby === 'day' ) {
+					csv_data += '"' + date.getUTCFullYear() + '-' + parseInt( date.getUTCMonth() + 1, 10 ) + '-' + date.getUTCDate() + '",';
 				} else {
-					if ( groupby === 'day' ) {
-						csv_data += '"' + date.getUTCFullYear() + '-' + parseInt( date.getUTCMonth() + 1, 10 ) + '-' + date.getUTCDate() + '",';
-					} else {
-						csv_data += '"' + date.getUTCFullYear() + '-' + parseInt( date.getUTCMonth() + 1, 10 ) + '",';
-					}
+					csv_data += '"' + date.getUTCFullYear() + '-' + parseInt( date.getUTCMonth() + 1, 10 ) + '",';
 				}
 
 				for ( var d = 0; d < value.length; ++d ) {

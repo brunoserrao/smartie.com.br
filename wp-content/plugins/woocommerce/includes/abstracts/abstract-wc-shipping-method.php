@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Extended by shipping methods to handle shipping calculations etc.
  *
  * @class       WC_Shipping_Method
- * @version     3.0.0
+ * @version     2.6.0
  * @package     WooCommerce/Abstracts
  * @category    Abstract Class
  * @author      WooThemes
@@ -137,8 +137,6 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 
 	/**
 	 * Called to calculate shipping rates for this method. Rates can be added using the add_rate() method.
-	 *
-	 * @param array $package
 	 */
 	public function calculate_shipping( $package = array() ) {}
 
@@ -147,7 +145,7 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 	 * @return boolean
 	 */
 	public function is_taxable() {
-		return wc_tax_enabled() && 'taxable' === $this->tax_status && ! WC()->customer->get_is_vat_exempt();
+		return wc_tax_enabled() && 'taxable' === $this->tax_status && ! WC()->customer->is_vat_exempt();
 	}
 
 	/**
@@ -255,7 +253,7 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 		$taxes      = $args['taxes'];
 
 		// Taxes - if not an array and not set to false, calc tax based on cost and passed calc_tax variable. This saves shipping methods having to do complex tax calculations.
-		if ( ! is_array( $taxes ) && false !== $taxes && $total_cost > 0 && $this->is_taxable() ) {
+		if ( ! is_array( $taxes ) && $taxes !== false && $total_cost > 0 && $this->is_taxable() ) {
 			$taxes = 'per_item' === $args['calc_tax'] ? $this->get_taxes_per_item( $args['cost'] ) : WC_Tax::calc_shipping_tax( $total_cost, WC_Tax::get_shipping_tax_rates() );
 		}
 
@@ -263,13 +261,7 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 		$total_cost = wc_format_decimal( $total_cost, wc_get_price_decimals() );
 
 		// Create rate object
-		$rate = new WC_Shipping_Rate();
-		$rate->set_id( $args['id'] );
-		$rate->set_method_id( $this->id );
-		$rate->set_instance_id( $this->instance_id );
-		$rate->set_label( $args['label'] );
-		$rate->set_cost( $total_cost );
-		$rate->set_taxes( $taxes );
+		$rate = new WC_Shipping_Rate( $args['id'], $args['label'], $total_cost, $taxes, $this->id );
 
 		if ( ! empty( $args['meta_data'] ) ) {
 			foreach ( $args['meta_data'] as $key => $value ) {
@@ -282,7 +274,7 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 			$items_in_package = array();
 			foreach ( $args['package']['contents'] as $item ) {
 				$product = $item['data'];
-				$items_in_package[] = $product->get_name() . ' &times; ' . $item['quantity'];
+				$items_in_package[] = $product->get_title() . ' &times; ' . $item['quantity'];
 			}
 			$rate->add_meta_data( __( 'Items', 'woocommerce' ), implode( ', ', $items_in_package ) );
 		}
@@ -358,7 +350,7 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 			}
 		}
 
-		return apply_filters( 'woocommerce_shipping_' . $this->id . '_is_available', $available, $package, $this );
+		return apply_filters( 'woocommerce_shipping_' . $this->id . '_is_available', $available, $package );
 	}
 
 	/**

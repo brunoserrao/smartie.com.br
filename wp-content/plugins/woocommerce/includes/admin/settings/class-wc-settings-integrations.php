@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-if ( ! class_exists( 'WC_Settings_Integrations', false ) ) :
+if ( ! class_exists( 'WC_Settings_Integrations' ) ) :
 
 /**
  * WC_Settings_Integrations.
@@ -23,11 +23,15 @@ class WC_Settings_Integrations extends WC_Settings_Page {
 	 * Constructor.
 	 */
 	public function __construct() {
+
 		$this->id    = 'integration';
 		$this->label = __( 'Integration', 'woocommerce' );
 
 		if ( isset( WC()->integrations ) && WC()->integrations->get_integrations() ) {
-			parent::__construct();
+			add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_page' ), 20 );
+			add_action( 'woocommerce_sections_' . $this->id, array( $this, 'output_sections' ) );
+			add_action( 'woocommerce_settings_' . $this->id, array( $this, 'output' ) );
+			add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'save' ) );
 		}
 	}
 
@@ -67,9 +71,8 @@ class WC_Settings_Integrations extends WC_Settings_Page {
 
 		$integrations = WC()->integrations->get_integrations();
 
-		if ( isset( $integrations[ $current_section ] ) ) {
+		if ( isset( $integrations[ $current_section ] ) )
 			$integrations[ $current_section ]->admin_options();
-		}
 	}
 }
 
