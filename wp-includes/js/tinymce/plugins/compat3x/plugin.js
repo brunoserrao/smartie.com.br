@@ -2,7 +2,7 @@
  * plugin.js
  *
  * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
@@ -19,6 +19,7 @@
  *  - No editor.onEvent
  *  - Can't cancel execCommands with beforeExecCommand
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 (function (tinymce) {
   var reported;
@@ -318,6 +319,8 @@
     }
   };
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 (function(tinymce) {
 	var reported;
 
@@ -404,6 +407,7 @@
 	};
 
 	function patchEditor(editor) {
+<<<<<<< HEAD
 
 		function translate(str) {
 			var prefix = editor.settings.language || "en";
@@ -413,6 +417,8 @@
 			return prefixedStr !== translatedStr ? translatedStr : tinymce.i18n.translate(str);
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		function patchEditorEvents(oldEventNames, argsMap) {
 			tinymce.each(oldEventNames.split(" "), function(oldName) {
 				editor["on" + oldName] = new Dispatcher(editor, oldName, argsMap);
@@ -517,13 +523,21 @@
 
 		var originalAddButton = editor.addButton;
 		editor.addButton = function(name, settings) {
+<<<<<<< HEAD
 			var originalOnPostRender;
+=======
+			var originalOnPostRender, string, translated;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			function patchedPostRender() {
 				editor.controlManager.buttons[name] = this;
 
 				if (originalOnPostRender) {
+<<<<<<< HEAD
 					return originalOnPostRender.apply(this, arguments);
+=======
+					return originalOnPostRender.call(this);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				}
 			}
 
@@ -539,7 +553,18 @@
 			}
 
 			if (settings.title) {
+<<<<<<< HEAD
 				settings.title = translate(settings.title);
+=======
+				// WP
+				string = (editor.settings.language || "en") + "." + settings.title;
+				translated = tinymce.i18n.translate(string);
+
+				if ( string !== translated ) {
+					settings.title = translated;
+				}
+				// WP end
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			}
 
 			return originalAddButton.call(this, name, settings);
@@ -602,5 +627,8 @@
 			});
 		}
 	};
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 })(tinymce);

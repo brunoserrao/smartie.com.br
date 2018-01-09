@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 (function () {
 
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
@@ -86,10 +87,13 @@ var defineGlobal = function (id, ref) {
 jsc*/
 defineGlobal("global!window", window);
 defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 /**
- * ResolveGlobal.js
+ * theme.js
  *
  * Released under LGPL License.
+<<<<<<< HEAD
  * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
 =======
 ["tinymce.modern.Theme","global!tinymce.Env","global!tinymce.EditorManager","global!tinymce.ThemeManager","tinymce.modern.modes.Iframe","tinymce.modern.modes.Inline","tinymce.modern.ui.Resize","tinymce.modern.ui.ProgressState","global!tinymce.util.Tools","global!tinymce.ui.Factory","global!tinymce.DOM","tinymce.modern.ui.Toolbar","tinymce.modern.ui.Menubar","tinymce.modern.ui.ContextToolbars","tinymce.modern.ui.A11y","tinymce.modern.ui.Sidebar","tinymce.modern.ui.SkinLoaded","global!tinymce.ui.FloatPanel","global!tinymce.ui.Throbber","global!tinymce.util.Delay","global!tinymce.geom.Rect"]
@@ -106,11 +110,15 @@ defineGlobal("global!tinymce.DOM", tinymce.DOM);
  * Released under LGPL License.
  * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
 >>>>>>> origin/master
+=======
+ * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 define(
   'tinymce.core.AddOnManager',
@@ -413,18 +421,73 @@ define('tinymce.modern.ui.Toolbar', [
 		"bullist numlist outdent indent | link image";
 
 	var createToolbar = function (editor, items, size) {
+=======
+/*global tinymce:true */
+
+tinymce.ThemeManager.add('modern', function(editor) {
+	var self = this, settings = editor.settings, Factory = tinymce.ui.Factory,
+		each = tinymce.each, DOM = tinymce.DOM, Rect = tinymce.geom.Rect, FloatPanel = tinymce.ui.FloatPanel;
+
+	// Default menus
+	var defaultMenus = {
+		file: {title: 'File', items: 'newdocument'},
+		edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
+		insert: {title: 'Insert', items: '|'},
+		view: {title: 'View', items: 'visualaid |'},
+		format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
+		table: {title: 'Table'},
+		tools: {title: 'Tools'}
+	};
+
+	var defaultToolbar = "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | " +
+		"bullist numlist outdent indent | link image";
+
+	function createToolbar(items, size) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		var toolbarItems = [], buttonGroup;
 
 		if (!items) {
 			return;
 		}
 
+<<<<<<< HEAD
 		Tools.each(items.split(/[ ,]/), function(item) {
 			var itemName;
 
 			var bindSelectorChanged = function () {
 				var selection = editor.selection;
 
+=======
+		each(items.split(/[ ,]/), function(item) {
+			var itemName;
+
+			function bindSelectorChanged() {
+				var selection = editor.selection;
+
+				function setActiveItem(name) {
+					return function(state, args) {
+						var nodeName, i = args.parents.length;
+
+						while (i--) {
+							nodeName = args.parents[i].nodeName;
+							if (nodeName == "OL" || nodeName == "UL") {
+								break;
+							}
+						}
+
+						item.active(state && nodeName == name);
+					};
+				}
+
+				if (itemName == "bullist") {
+					selection.selectorChanged('ul > li', setActiveItem("UL"));
+				}
+
+				if (itemName == "numlist") {
+					selection.selectorChanged('ol > li', setActiveItem("OL"));
+				}
+
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				if (item.settings.stateSelector) {
 					selection.selectorChanged(item.settings.stateSelector, function(state) {
 						item.active(state);
@@ -436,7 +499,11 @@ define('tinymce.modern.ui.Toolbar', [
 						item.disabled(state);
 					});
 				}
+<<<<<<< HEAD
 			};
+=======
+			}
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			if (item == "|") {
 				buttonGroup = null;
@@ -481,7 +548,11 @@ define('tinymce.modern.ui.Toolbar', [
 			layout: 'flow',
 			items: toolbarItems
 		};
+<<<<<<< HEAD
 	};
+=======
+	}
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 	/**
 	 * Creates the toolbars from config and returns a toolbar array.
@@ -489,6 +560,7 @@ define('tinymce.modern.ui.Toolbar', [
 	 * @param {String} size Optional toolbar item size.
 	 * @return {Array} Array with toolbars.
 	 */
+<<<<<<< HEAD
 	var createToolbars = function (editor, size) {
 		var toolbars = [], settings = editor.settings;
 
@@ -501,12 +573,30 @@ define('tinymce.modern.ui.Toolbar', [
 
 		// Convert toolbar array to multiple options
 		if (Tools.isArray(settings.toolbar)) {
+=======
+	function createToolbars(size) {
+		var toolbars = [];
+
+		function addToolbar(items) {
+			if (items) {
+				toolbars.push(createToolbar(items, size));
+				return true;
+			}
+		}
+
+		// Convert toolbar array to multiple options
+		if (tinymce.isArray(settings.toolbar)) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			// Empty toolbar array is the same as a disabled toolbar
 			if (settings.toolbar.length === 0) {
 				return;
 			}
 
+<<<<<<< HEAD
 			Tools.each(settings.toolbar, function(toolbar, i) {
+=======
+			tinymce.each(settings.toolbar, function(toolbar, i) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				settings["toolbar" + (i + 1)] = toolbar;
 			});
 
@@ -535,6 +625,7 @@ define('tinymce.modern.ui.Toolbar', [
 				items: toolbars
 			};
 		}
+<<<<<<< HEAD
 	};
 
 	return {
@@ -784,6 +875,94 @@ define('tinymce.modern.ui.Menubar', [
 
 	var createMenuButtons = function (editor) {
 		var name, menuButtons = [], settings = editor.settings;
+=======
+	}
+
+	/**
+	 * Creates the menu buttons based on config.
+	 *
+	 * @return {Array} Menu buttons array.
+	 */
+	function createMenuButtons() {
+		var name, menuButtons = [];
+
+		function createMenuItem(name) {
+			var menuItem;
+
+			if (name == '|') {
+				return {text: '|'};
+			}
+
+			menuItem = editor.menuItems[name];
+
+			return menuItem;
+		}
+
+		function createMenu(context) {
+			var menuButton, menu, menuItems, isUserDefined, removedMenuItems;
+
+			removedMenuItems = tinymce.makeMap((settings.removed_menuitems || '').split(/[ ,]/));
+
+			// User defined menu
+			if (settings.menu) {
+				menu = settings.menu[context];
+				isUserDefined = true;
+			} else {
+				menu = defaultMenus[context];
+			}
+
+			if (menu) {
+				menuButton = {text: menu.title};
+				menuItems = [];
+
+				// Default/user defined items
+				each((menu.items || '').split(/[ ,]/), function(item) {
+					var menuItem = createMenuItem(item);
+
+					if (menuItem && !removedMenuItems[item]) {
+						menuItems.push(createMenuItem(item));
+					}
+				});
+
+				// Added though context
+				if (!isUserDefined) {
+					each(editor.menuItems, function(menuItem) {
+						if (menuItem.context == context) {
+							if (menuItem.separator == 'before') {
+								menuItems.push({text: '|'});
+							}
+
+							if (menuItem.prependToContext) {
+								menuItems.unshift(menuItem);
+							} else {
+								menuItems.push(menuItem);
+							}
+
+							if (menuItem.separator == 'after') {
+								menuItems.push({text: '|'});
+							}
+						}
+					});
+				}
+
+				for (var i = 0; i < menuItems.length; i++) {
+					if (menuItems[i].text == '|') {
+						if (i === 0 || i == menuItems.length - 1) {
+							menuItems.splice(i, 1);
+						}
+					}
+				}
+
+				menuButton.menu = menuItems;
+
+				if (!menuButton.menu.length) {
+					return null;
+				}
+			}
+
+			return menuButton;
+		}
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 		var defaultMenuBar = [];
 		if (settings.menu) {
@@ -799,7 +978,11 @@ define('tinymce.modern.ui.Menubar', [
 		var enabledMenuNames = typeof settings.menubar == "string" ? settings.menubar.split(/[ ,]/) : defaultMenuBar;
 		for (var i = 0; i < enabledMenuNames.length; i++) {
 			var menu = enabledMenuNames[i];
+<<<<<<< HEAD
 			menu = createMenu(editor.menuItems, editor.settings, menu);
+=======
+			menu = createMenu(menu);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			if (menu) {
 				menuButtons.push(menu);
@@ -807,6 +990,7 @@ define('tinymce.modern.ui.Menubar', [
 		}
 
 		return menuButtons;
+<<<<<<< HEAD
 	};
 
 	return {
@@ -1358,11 +1542,102 @@ define('tinymce.modern.ui.ContextToolbars', [
 			var pos, targetRect, root;
 
 			pos = DOM.getPos(editor.getContentAreaContainer());
+=======
+	}
+
+	/**
+	 * Adds accessibility shortcut keys to panel.
+	 *
+	 * @param {tinymce.ui.Panel} panel Panel to add focus to.
+	 */
+	function addAccessibilityKeys(panel) {
+		function focus(type) {
+			var item = panel.find(type)[0];
+
+			if (item) {
+				item.focus(true);
+			}
+		}
+
+		editor.shortcuts.add('Alt+F9', '', function() {
+			focus('menubar');
+		});
+
+		editor.shortcuts.add('Alt+F10', '', function() {
+			focus('toolbar');
+		});
+
+		editor.shortcuts.add('Alt+F11', '', function() {
+			focus('elementpath');
+		});
+
+		panel.on('cancel', function() {
+			editor.focus();
+		});
+	}
+
+	/**
+	 * Resizes the editor to the specified width, height.
+	 */
+	function resizeTo(width, height) {
+		var containerElm, iframeElm, containerSize, iframeSize;
+
+		function getSize(elm) {
+			return {
+				width: elm.clientWidth,
+				height: elm.clientHeight
+			};
+		}
+
+		containerElm = editor.getContainer();
+		iframeElm = editor.getContentAreaContainer().firstChild;
+		containerSize = getSize(containerElm);
+		iframeSize = getSize(iframeElm);
+
+		if (width !== null) {
+			width = Math.max(settings.min_width || 100, width);
+			width = Math.min(settings.max_width || 0xFFFF, width);
+
+			DOM.setStyle(containerElm, 'width', width + (containerSize.width - iframeSize.width));
+			DOM.setStyle(iframeElm, 'width', width);
+		}
+
+		height = Math.max(settings.min_height || 100, height);
+		height = Math.min(settings.max_height || 0xFFFF, height);
+		DOM.setStyle(iframeElm, 'height', height);
+
+		editor.fire('ResizeEditor');
+	}
+
+	function resizeBy(dw, dh) {
+		var elm = editor.getContentAreaContainer();
+		self.resizeTo(elm.clientWidth + dw, elm.clientHeight + dh);
+	}
+
+	/**
+	 * Handles contextual toolbars.
+	 */
+	function addContextualToolbars() {
+		var scrollContainer;
+
+		function getContextToolbars() {
+			return editor.contextToolbars || [];
+		}
+
+		function getElementRect(elm) {
+			var pos, targetRect, root;
+
+			pos = tinymce.DOM.getPos(editor.getContentAreaContainer());
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			targetRect = editor.dom.getRect(elm);
 			root = editor.dom.getRoot();
 
 			// Adjust targetPos for scrolling in the editor
+<<<<<<< HEAD
 			if (root.nodeName === 'BODY') {
+=======
+			if (root.nodeName == 'BODY') {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				targetRect.x -= root.ownerDocument.documentElement.scrollLeft || root.scrollLeft;
 				targetRect.y -= root.ownerDocument.documentElement.scrollTop || root.scrollTop;
 			}
@@ -1371,18 +1646,84 @@ define('tinymce.modern.ui.ContextToolbars', [
 			targetRect.y += pos.y;
 
 			return targetRect;
+<<<<<<< HEAD
 		};
 
 		var reposition = function (match, shouldShow) {
 			var relPos, panelRect, elementRect, contentAreaRect, panel, relRect, testPositions, smallElementWidthThreshold;
 			var handler = settings.inline_toolbar_position_handler;
+=======
+		}
+
+		function hideAllFloatingPanels() {
+			each(editor.contextToolbars, function(toolbar) {
+				if (toolbar.panel) {
+					toolbar.panel.hide();
+				}
+			});
+		}
+
+		function togglePositionClass(panel, relPos, predicate) {
+			relPos = relPos ? relPos.substr(0, 2) : '';
+
+			each({
+				t: 'down',
+				b: 'up'
+			}, function(cls, pos) {
+				panel.classes.toggle('arrow-' + cls, predicate(pos, relPos.substr(0, 1)));
+			});
+
+			each({
+				l: 'left',
+				r: 'right'
+			}, function(cls, pos) {
+				panel.classes.toggle('arrow-' + cls, predicate(pos, relPos.substr(1, 1)));
+			});
+		}
+
+		function toClientRect(geomRect) {
+			return {
+				left: geomRect.x,
+				top: geomRect.y,
+				width: geomRect.w,
+				height: geomRect.h,
+				right: geomRect.x + geomRect.w,
+				bottom: geomRect.y + geomRect.h
+			};
+		}
+
+		function userConstrain(x, y, elementRect, contentAreaRect, panelRect) {
+				panelRect = toClientRect({x: x, y: y, w: panelRect.w, h: panelRect.h});
+
+				if (settings.inline_toolbar_position_handler) {
+					panelRect = settings.inline_toolbar_position_handler({
+						elementRect: toClientRect(elementRect),
+						contentAreaRect: toClientRect(contentAreaRect),
+						panelRect: panelRect
+					});
+				}
+
+				return panelRect;
+		}
+
+		function movePanelTo(panel, pos) {
+			panel.moveTo(pos.left, pos.top);
+		}
+
+		function reposition(match) {
+			var relPos, panelRect, elementRect, contentAreaRect, panel, relRect, testPositions, smallElementWidthThreshold;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			if (editor.removed) {
 				return;
 			}
 
 			if (!match || !match.toolbar.panel) {
+<<<<<<< HEAD
 				hideAllFloatingPanels(editor);
+=======
+				hideAllFloatingPanels();
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				return;
 			}
 
@@ -1393,6 +1734,7 @@ define('tinymce.modern.ui.ContextToolbars', [
 			];
 
 			panel = match.toolbar.panel;
+<<<<<<< HEAD
 
 			// Only show the panel on some events not for example nodeChange since that fires when context menu is opened
 			if (shouldShow) {
@@ -1410,6 +1752,19 @@ define('tinymce.modern.ui.ContextToolbars', [
 				elementRect.w = match.element.clientWidth;
 				elementRect.h = match.element.clientHeight;
 			}
+=======
+			panel.show();
+
+			elementRect = getElementRect(match.element);
+			panelRect = tinymce.DOM.getRect(panel.getEl());
+			contentAreaRect = tinymce.DOM.getRect(editor.getContentAreaContainer() || editor.getBody());
+			smallElementWidthThreshold = 25;
+
+			// We need to use these instead of the rect values since the style
+			// size properites might not be the same as the real size for a table
+			elementRect.w = match.element.clientWidth;
+			elementRect.h = match.element.clientHeight;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			if (!editor.inline) {
 				contentAreaRect.w = editor.getDoc().documentElement.offsetWidth;
@@ -1425,7 +1780,11 @@ define('tinymce.modern.ui.ContextToolbars', [
 
 			if (relPos) {
 				relRect = Rect.relativePosition(panelRect, elementRect, relPos);
+<<<<<<< HEAD
 				movePanelTo(panel, userConstrain(handler, relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
+=======
+				movePanelTo(panel, userConstrain(relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			} else {
 				// Allow overflow below the editor to avoid placing toolbars ontop of tables
 				contentAreaRect.h += panelRect.h;
@@ -1438,9 +1797,15 @@ define('tinymce.modern.ui.ContextToolbars', [
 
 					if (relPos) {
 						relRect = Rect.relativePosition(panelRect, elementRect, relPos);
+<<<<<<< HEAD
 						movePanelTo(panel, userConstrain(handler, relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
 					} else {
 						movePanelTo(panel, userConstrain(handler, elementRect.x, elementRect.y, elementRect, contentAreaRect, panelRect));
+=======
+						movePanelTo(panel, userConstrain(relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
+					} else {
+						movePanelTo(panel, userConstrain(elementRect.x, elementRect.y, elementRect, contentAreaRect, panelRect));
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 					}
 				} else {
 					panel.hide();
@@ -1454,6 +1819,7 @@ define('tinymce.modern.ui.ContextToolbars', [
 			//drawRect(contentAreaRect, 'blue');
 			//drawRect(elementRect, 'red');
 			//drawRect(panelRect, 'green');
+<<<<<<< HEAD
 		};
 
 		var repositionHandler = function (show) {
@@ -1480,6 +1846,32 @@ define('tinymce.modern.ui.ContextToolbars', [
 		};
 
 		var showContextToolbar = function (match) {
+=======
+		}
+
+		function repositionHandler() {
+			function execute() {
+				if (editor.selection) {
+					reposition(findFrontMostMatch(editor.selection.getNode()));
+				}
+			}
+
+			tinymce.util.Delay.requestAnimationFrame(execute);
+		}
+
+		function bindScrollEvent() {
+			if (!scrollContainer) {
+				scrollContainer = editor.selection.getScrollContainer() || editor.getWin();
+				tinymce.$(scrollContainer).on('scroll', repositionHandler);
+
+				editor.on('remove', function() {
+					tinymce.$(scrollContainer).off('scroll');
+				});
+			}
+		}
+
+		function showContextToolbar(match) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			var panel;
 
 			if (match.toolbar.panel) {
@@ -1502,7 +1894,11 @@ define('tinymce.modern.ui.ContextToolbars', [
 				autofix: true,
 				fixed: true,
 				border: 1,
+<<<<<<< HEAD
 				items: Toolbar.createToolbar(editor, match.toolbar.items),
+=======
+				items: createToolbar(match.toolbar.items),
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				oncancel: function() {
 					editor.focus();
 				}
@@ -1511,17 +1907,30 @@ define('tinymce.modern.ui.ContextToolbars', [
 			match.toolbar.panel = panel;
 			panel.renderTo(document.body).reflow();
 			reposition(match);
+<<<<<<< HEAD
 		};
 
 		var hideAllContextToolbars = function () {
 			Tools.each(getContextToolbars(), function(toolbar) {
+=======
+		}
+
+		function hideAllContextToolbars() {
+			tinymce.each(getContextToolbars(), function(toolbar) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				if (toolbar.panel) {
 					toolbar.panel.hide();
 				}
 			});
+<<<<<<< HEAD
 		};
 
 		var findFrontMostMatch = function (targetElm) {
+=======
+		}
+
+		function findFrontMostMatch(targetElm) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			var i, y, parentsAndSelf, toolbars = getContextToolbars();
 
 			parentsAndSelf = editor.$(targetElm).parents().add(targetElm);
@@ -1537,16 +1946,28 @@ define('tinymce.modern.ui.ContextToolbars', [
 			}
 
 			return null;
+<<<<<<< HEAD
 		};
 
 		editor.on('click keyup setContent ObjectResized', function(e) {
 			// Only act on partial inserts
 			if (e.type === 'setcontent' && !e.selection) {
+=======
+		}
+
+		editor.on('click keyup setContent', function(e) {
+			// Only act on partial inserts
+			if (e.type == 'setcontent' && !e.selection) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				return;
 			}
 
 			// Needs to be delayed to avoid Chrome img focus out bug
+<<<<<<< HEAD
 			Delay.setEditorTimeout(editor, function() {
+=======
+			tinymce.util.Delay.setEditorTimeout(editor, function() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				var match;
 
 				match = findFrontMostMatch(editor.selection.getNode());
@@ -1559,7 +1980,11 @@ define('tinymce.modern.ui.ContextToolbars', [
 			});
 		});
 
+<<<<<<< HEAD
 		editor.on('blur hide contextmenu', hideAllContextToolbars);
+=======
+		editor.on('blur hide', hideAllContextToolbars);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 		editor.on('ObjectResizeStart', function() {
 			var match = findFrontMostMatch(editor.selection.getNode());
@@ -1569,11 +1994,18 @@ define('tinymce.modern.ui.ContextToolbars', [
 			}
 		});
 
+<<<<<<< HEAD
 		editor.on('ResizeEditor ResizeWindow', repositionHandler(true));
 		editor.on('nodeChange', repositionHandler(false));
 
 		editor.on('remove', function() {
 			Tools.each(getContextToolbars(), function(toolbar) {
+=======
+		editor.on('nodeChange ResizeEditor ResizeWindow', repositionHandler);
+
+		editor.on('remove', function() {
+			tinymce.each(getContextToolbars(), function(toolbar) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				if (toolbar.panel) {
 					toolbar.panel.remove();
 				}
@@ -1588,6 +2020,7 @@ define('tinymce.modern.ui.ContextToolbars', [
 				match.toolbar.panel.items()[0].focus();
 			}
 		});
+<<<<<<< HEAD
 	};
 
 	return {
@@ -2549,12 +2982,39 @@ define('tinymce.modern.modes.Inline', [
 ], function (Tools, Factory, DOM, FloatPanel, Toolbar, Menubar, ContextToolbars, A11y, SkinLoaded) {
 	var render = function (editor, theme, args) {
 		var panel, inlineToolbarContainer, settings = editor.settings;
+=======
+	}
+
+	function fireSkinLoaded(editor) {
+		return function() {
+			if (editor.initialized) {
+				editor.fire('SkinLoaded');
+			} else {
+				editor.on('init', function() {
+					editor.fire('SkinLoaded');
+				});
+			}
+		};
+	}
+
+	/**
+	 * Renders the inline editor UI.
+	 *
+	 * @return {Object} Name/value object with theme data.
+	 */
+	function renderInlineUI(args) {
+		var panel, inlineToolbarContainer;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 		if (settings.fixed_toolbar_container) {
 			inlineToolbarContainer = DOM.select(settings.fixed_toolbar_container)[0];
 		}
 
+<<<<<<< HEAD
 		var reposition = function () {
+=======
+		function reposition() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			if (panel && panel.moveRel && panel.visible() && !panel._fixed) {
 				// TODO: This is kind of ugly and doesn't handle multiple scrollable elements
 				var scrollContainer = editor.selection.getScrollContainer(), body = editor.getBody();
@@ -2569,17 +3029,29 @@ define('tinymce.modern.modes.Inline', [
 
 				panel.fixed(false).moveRel(body, editor.rtl ? ['tr-br', 'br-tr'] : ['tl-bl', 'bl-tl', 'tr-br']).moveBy(deltaX, deltaY);
 			}
+<<<<<<< HEAD
 		};
 
 		var show = function () {
+=======
+		}
+
+		function show() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			if (panel) {
 				panel.show();
 				reposition();
 				DOM.addClass(editor.getBody(), 'mce-edit-focus');
 			}
+<<<<<<< HEAD
 		};
 
 		var hide = function () {
+=======
+		}
+
+		function hide() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			if (panel) {
 				// We require two events as the inline float panel based toolbar does not have autohide=true
 				panel.hide();
@@ -2589,9 +3061,15 @@ define('tinymce.modern.modes.Inline', [
 
 				DOM.removeClass(editor.getBody(), 'mce-edit-focus');
 			}
+<<<<<<< HEAD
 		};
 
 		var render = function () {
+=======
+		}
+
+		function render() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			if (panel) {
 				if (!panel.visible()) {
 					show();
@@ -2601,7 +3079,11 @@ define('tinymce.modern.modes.Inline', [
 			}
 
 			// Render a plain panel inside the inlineToolbarContainer if it's defined
+<<<<<<< HEAD
 			panel = theme.panel = Factory.create({
+=======
+			panel = self.panel = Factory.create({
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				type: inlineToolbarContainer ? 'panel' : 'floatpanel',
 				role: 'application',
 				classes: 'tinymce tinymce-inline',
@@ -2613,8 +3095,13 @@ define('tinymce.modern.modes.Inline', [
 				fixed: !!inlineToolbarContainer,
 				border: 1,
 				items: [
+<<<<<<< HEAD
 					settings.menubar === false ? null : {type: 'menubar', border: '0 0 1 0', items: Menubar.createMenuButtons(editor)},
 					Toolbar.createToolbars(editor, settings.toolbar_items_size)
+=======
+					settings.menubar === false ? null : {type: 'menubar', border: '0 0 1 0', items: createMenuButtons()},
+					createToolbars(settings.toolbar_items_size)
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				]
 			});
 
@@ -2628,23 +3115,37 @@ define('tinymce.modern.modes.Inline', [
 			editor.fire('BeforeRenderUI');
 			panel.renderTo(inlineToolbarContainer || document.body).reflow();
 
+<<<<<<< HEAD
 			A11y.addKeys(editor, panel);
 			show();
 			ContextToolbars.addContextualToolbars(editor);
+=======
+			addAccessibilityKeys(panel);
+			show();
+			addContextualToolbars();
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			editor.on('nodeChange', reposition);
 			editor.on('activate', show);
 			editor.on('deactivate', hide);
 
 			editor.nodeChanged();
+<<<<<<< HEAD
 		};
+=======
+		}
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 		settings.content_editable = true;
 
 		editor.on('focus', function() {
 			// Render only when the CSS file has been loaded
 			if (args.skinUiCss) {
+<<<<<<< HEAD
 				DOM.styleSheetLoader.load(args.skinUiCss, render, render);
+=======
+				tinymce.DOM.styleSheetLoader.load(args.skinUiCss, render, render);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			} else {
 				render();
 			}
@@ -2662,6 +3163,7 @@ define('tinymce.modern.modes.Inline', [
 
 		// Preload skin css
 		if (args.skinUiCss) {
+<<<<<<< HEAD
 			DOM.styleSheetLoader.load(args.skinUiCss, SkinLoaded.fireSkinLoaded(editor));
 		}
 
@@ -2824,6 +3326,119 @@ define('tinymce.modern.Theme', [
 ], function (Env, EditorManager, ThemeManager, Iframe, Inline, Resize, ProgressState) {
 	var renderUI = function(editor, theme, args) {
 		var settings = editor.settings;
+=======
+			tinymce.DOM.styleSheetLoader.load(args.skinUiCss, fireSkinLoaded(editor));
+		}
+
+		return {};
+	}
+
+	/**
+	 * Renders the iframe editor UI.
+	 *
+	 * @param {Object} args Details about target element etc.
+	 * @return {Object} Name/value object with theme data.
+	 */
+	function renderIframeUI(args) {
+		var panel, resizeHandleCtrl, startSize;
+
+		function switchMode() {
+			return function(e) {
+				if (e.mode == 'readonly') {
+					panel.find('*').disabled(true);
+				} else {
+					panel.find('*').disabled(false);
+				}
+			};
+		}
+
+		if (args.skinUiCss) {
+			tinymce.DOM.styleSheetLoader.load(args.skinUiCss, fireSkinLoaded(editor));
+		}
+
+		// Basic UI layout
+		panel = self.panel = Factory.create({
+			type: 'panel',
+			role: 'application',
+			classes: 'tinymce',
+			style: 'visibility: hidden',
+			layout: 'stack',
+			border: 1,
+			items: [
+				settings.menubar === false ? null : {type: 'menubar', border: '0 0 1 0', items: createMenuButtons()},
+				createToolbars(settings.toolbar_items_size),
+				{type: 'panel', name: 'iframe', layout: 'stack', classes: 'edit-area', html: '', border: '1 0 0 0'}
+			]
+		});
+
+		if (settings.resize !== false) {
+			resizeHandleCtrl = {
+				type: 'resizehandle',
+				direction: settings.resize,
+
+				onResizeStart: function() {
+					var elm = editor.getContentAreaContainer().firstChild;
+
+					startSize = {
+						width: elm.clientWidth,
+						height: elm.clientHeight
+					};
+				},
+
+				onResize: function(e) {
+					if (settings.resize == 'both') {
+						resizeTo(startSize.width + e.deltaX, startSize.height + e.deltaY);
+					} else {
+						resizeTo(null, startSize.height + e.deltaY);
+					}
+				}
+			};
+		}
+
+		// Add statusbar if needed
+		if (settings.statusbar !== false) {
+			panel.add({type: 'panel', name: 'statusbar', classes: 'statusbar', layout: 'flow', border: '1 0 0 0', ariaRoot: true, items: [
+				{type: 'elementpath', editor: editor},
+				resizeHandleCtrl
+			]});
+		}
+
+		editor.fire('BeforeRenderUI');
+		editor.on('SwitchMode', switchMode());
+		panel.renderBefore(args.targetNode).reflow();
+
+		if (settings.readonly) {
+			editor.setMode('readonly');
+		}
+
+		if (settings.width) {
+			tinymce.DOM.setStyle(panel.getEl(), 'width', settings.width);
+		}
+
+		// Remove the panel when the editor is removed
+		editor.on('remove', function() {
+			panel.remove();
+			panel = null;
+		});
+
+		// Add accesibility shortcuts
+		addAccessibilityKeys(panel);
+		addContextualToolbars();
+
+		return {
+			iframeContainer: panel.find('#iframe')[0].getEl(),
+			editorContainer: panel.getEl()
+		};
+	}
+
+	/**
+	 * Renders the UI for the theme. This gets called by the editor.
+	 *
+	 * @param {Object} args Details about target element etc.
+	 * @return {Object} Theme UI data items.
+	 */
+	self.renderUI = function(args) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		var skin = settings.skin !== false ? settings.skin || 'lightgray' : false;
 
 		if (skin) {
@@ -2832,12 +3447,20 @@ define('tinymce.modern.Theme', [
 			if (skinUrl) {
 				skinUrl = editor.documentBaseURI.toAbsolute(skinUrl);
 			} else {
+<<<<<<< HEAD
 				skinUrl = EditorManager.baseURL + '/skins/' + skin;
+=======
+				skinUrl = tinymce.baseURL + '/skins/' + skin;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			}
 
 			// Load special skin for IE7
 			// TODO: Remove this when we drop IE7 support
+<<<<<<< HEAD
 			if (Env.documentMode <= 7) {
+=======
+			if (tinymce.Env.documentMode <= 7) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				args.skinUiCss = skinUrl + '/skin.ie7.min.css';
 			} else {
 				args.skinUiCss = skinUrl + '/skin.min.css';
@@ -2847,6 +3470,7 @@ define('tinymce.modern.Theme', [
 			editor.contentCSS.push(skinUrl + '/content' + (editor.inline ? '.inline' : '') + '.min.css');
 		}
 
+<<<<<<< HEAD
 		ProgressState.setup(editor, theme);
 
 		if (settings.inline) {
@@ -2877,3 +3501,26 @@ define('tinymce.modern.Theme', [
 dem('tinymce.modern.Theme')();
 >>>>>>> origin/master
 })();
+=======
+		// Handle editor setProgressState change
+		editor.on('ProgressState', function(e) {
+			self.throbber = self.throbber || new tinymce.ui.Throbber(self.panel.getEl('body'));
+
+			if (e.state) {
+				self.throbber.show(e.time);
+			} else {
+				self.throbber.hide();
+			}
+		});
+
+		if (settings.inline) {
+			return renderInlineUI(args);
+		}
+
+		return renderIframeUI(args);
+	};
+
+	self.resizeTo = resizeTo;
+	self.resizeBy = resizeBy;
+});
+>>>>>>> parent of 6188f9c... WordPress 4.9.1

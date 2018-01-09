@@ -1,668 +1,84 @@
-(function () {
-
-var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
-
-// Used when there is no 'main' module.
-// The name is probably (hopefully) unique so minification removes for releases.
-var register_3795 = function (id) {
-  var module = dem(id);
-  var fragments = id.split('.');
-  var target = Function('return this;')();
-  for (var i = 0; i < fragments.length - 1; ++i) {
-    if (target[fragments[i]] === undefined)
-      target[fragments[i]] = {};
-    target = target[fragments[i]];
-  }
-  target[fragments[fragments.length - 1]] = module;
-};
-
-var instantiate = function (id) {
-  var actual = defs[id];
-  var dependencies = actual.deps;
-  var definition = actual.defn;
-  var len = dependencies.length;
-  var instances = new Array(len);
-  for (var i = 0; i < len; ++i)
-    instances[i] = dem(dependencies[i]);
-  var defResult = definition.apply(null, instances);
-  if (defResult === undefined)
-     throw 'module [' + id + '] returned undefined';
-  actual.instance = defResult;
-};
-
-var def = function (id, dependencies, definition) {
-  if (typeof id !== 'string')
-    throw 'module id must be a string';
-  else if (dependencies === undefined)
-    throw 'no dependencies for ' + id;
-  else if (definition === undefined)
-    throw 'no definition function for ' + id;
-  defs[id] = {
-    deps: dependencies,
-    defn: definition,
-    instance: undefined
-  };
-};
-
-var dem = function (id) {
-  var actual = defs[id];
-  if (actual === undefined)
-    throw 'module [' + id + '] was undefined';
-  else if (actual.instance === undefined)
-    instantiate(id);
-  return actual.instance;
-};
-
-var req = function (ids, callback) {
-  var len = ids.length;
-  var instances = new Array(len);
-  for (var i = 0; i < len; ++i)
-    instances.push(dem(ids[i]));
-  callback.apply(null, callback);
-};
-
-var ephox = {};
-
-ephox.bolt = {
-  module: {
-    api: {
-      define: def,
-      require: req,
-      demand: dem
-    }
-  }
-};
-
-var define = def;
-var require = req;
-var demand = dem;
-// this helps with minificiation when using a lot of global references
-var defineGlobal = function (id, ref) {
-  define(id, [], function () { return ref; });
-};
-/*jsc
-["tinymce.plugins.paste.Plugin","tinymce.core.PluginManager","tinymce.plugins.paste.api.Events","tinymce.plugins.paste.core.Clipboard","tinymce.plugins.paste.core.CutCopy","tinymce.plugins.paste.core.Quirks","global!tinymce.util.Tools.resolve","tinymce.core.dom.RangeUtils","tinymce.core.Env","tinymce.core.util.Delay","tinymce.core.util.Tools","tinymce.core.util.VK","tinymce.plugins.paste.core.InternalHtml","tinymce.plugins.paste.core.Newlines","tinymce.plugins.paste.core.PasteBin","tinymce.plugins.paste.core.ProcessFilters","tinymce.plugins.paste.core.SmartPaste","tinymce.plugins.paste.core.Utils","tinymce.plugins.paste.core.WordFilter","tinymce.core.html.Entities","tinymce.core.html.DomParser","tinymce.core.html.Schema","tinymce.core.html.Serializer","tinymce.core.html.Node"]
-jsc*/
-defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
 /**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
+ * Compiled inline version. (Library mode)
  */
 
-define(
-  'tinymce.core.PluginManager',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.PluginManager');
-  }
-);
+/*jshint smarttabs:true, undef:true, latedef:true, curly:true, bitwise:true, camelcase:true */
+/*globals $code */
 
-/**
- * Events.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+(function(exports, undefined) {
+	"use strict";
 
-define(
-  'tinymce.plugins.paste.api.Events',
-  [
-  ],
-  function () {
-    var firePastePreProcess = function (editor, html, internal, isWordHtml) {
-      return editor.fire('PastePreProcess', { content: html, internal: internal, wordContent: isWordHtml });
-    };
+	var modules = {};
 
-    var firePastePostProcess = function (editor, node, internal, isWordHtml) {
-      return editor.fire('PastePostProcess', { node: node, internal: internal, wordContent: isWordHtml });
-    };
+	function require(ids, callback) {
+		var module, defs = [];
 
-    var firePastePlainTextToggle = function (editor, state) {
-      return editor.fire('PastePlainTextToggle', { state: state });
-    };
+		for (var i = 0; i < ids.length; ++i) {
+			module = modules[ids[i]] || resolve(ids[i]);
+			if (!module) {
+				throw 'module definition dependecy not found: ' + ids[i];
+			}
 
-    return {
-      firePastePreProcess: firePastePreProcess,
-      firePastePostProcess: firePastePostProcess,
-      firePastePlainTextToggle: firePastePlainTextToggle
-    };
-  }
-);
+			defs.push(module);
+		}
 
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+		callback.apply(null, defs);
+	}
 
-define(
-  'tinymce.core.dom.RangeUtils',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.dom.RangeUtils');
-  }
-);
+	function define(id, dependencies, definition) {
+		if (typeof id !== 'string') {
+			throw 'invalid module definition, module id must be defined and be a string';
+		}
 
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+		if (dependencies === undefined) {
+			throw 'invalid module definition, dependencies must be specified';
+		}
 
-define(
-  'tinymce.core.Env',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.Env');
-  }
-);
+		if (definition === undefined) {
+			throw 'invalid module definition, definition function must be specified';
+		}
 
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+		require(dependencies, function() {
+			modules[id] = definition.apply(null, arguments);
+		});
+	}
 
-define(
-  'tinymce.core.util.Delay',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.Delay');
-  }
-);
+	function defined(id) {
+		return !!modules[id];
+	}
 
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	function resolve(id) {
+		var target = exports;
+		var fragments = id.split(/[.\/]/);
 
-define(
-  'tinymce.core.util.Tools',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.Tools');
-  }
-);
+		for (var fi = 0; fi < fragments.length; ++fi) {
+			if (!target[fragments[fi]]) {
+				return;
+			}
 
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+			target = target[fragments[fi]];
+		}
 
-define(
-  'tinymce.core.util.VK',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.util.VK');
-  }
-);
+		return target;
+	}
 
-/**
- * InternalHtml.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+	function expose(ids) {
+		var i, target, id, fragments, privateModules;
 
-define(
-  'tinymce.plugins.paste.core.InternalHtml',
-  [
-  ],
-  function () {
-    var internalMimeType = 'x-tinymce/html';
-    var internalMark = '<!-- ' + internalMimeType + ' -->';
+		for (i = 0; i < ids.length; i++) {
+			target = exports;
+			id = ids[i];
+			fragments = id.split(/[.\/]/);
 
-    var mark = function (html) {
-      return internalMark + html;
-    };
+			for (var fi = 0; fi < fragments.length - 1; ++fi) {
+				if (target[fragments[fi]] === undefined) {
+					target[fragments[fi]] = {};
+				}
 
-    var unmark = function (html) {
-      return html.replace(internalMark, '');
-    };
+				target = target[fragments[fi]];
+			}
 
-    var isMarked = function (html) {
-      return html.indexOf(internalMark) !== -1;
-    };
-
-    return {
-      mark: mark,
-      unmark: unmark,
-      isMarked: isMarked,
-      internalHtmlMime: function () {
-        return internalMimeType;
-      }
-    };
-  }
-);
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.html.Entities',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.html.Entities');
-  }
-);
-
-/**
- * Newlines.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-/**
- * Newlines class contains utilities to convert newlines (\n or \r\n) tp BRs or to a combination of the specified block element and BRs
- *
- * @class tinymce.Newlines
- * @private
- */
-define(
-  'tinymce.plugins.paste.core.Newlines',
-  [
-    'tinymce.core.util.Tools',
-    'tinymce.core.html.Entities'
-  ],
-  function (Tools, Entities) {
-
-    var isPlainText = function (text) {
-      // so basically any tag that is not one of the "p, div, span, br", or is one of them, but is followed
-      // by some additional characters qualifies the text as not a plain text (having some HTML tags)
-      // <span style="white-space:pre"> and <br /> are added as separate exceptions to the rule
-      return !/<(?:\/?(?!(?:div|p|br|span)>)\w+|(?:(?!(?:span style="white-space:\s?pre;?">)|br\s?\/>))\w+\s[^>]+)>/i.test(text);
-    };
-
-
-    var toBRs = function (text) {
-      return text.replace(/\r?\n/g, '<br>');
-    };
-
-
-    var openContainer = function (rootTag, rootAttrs) {
-      var key, attrs = [];
-      var tag = '<' + rootTag;
-
-      if (typeof rootAttrs === 'object') {
-        for (key in rootAttrs) {
-          if (rootAttrs.hasOwnProperty(key)) {
-            attrs.push(key + '="' + Entities.encodeAllRaw(rootAttrs[key]) + '"');
-          }
-        }
-
-        if (attrs.length) {
-          tag += ' ' + attrs.join(' ');
-        }
-      }
-      return tag + '>';
-    };
-
-
-    var toBlockElements = function (text, rootTag, rootAttrs) {
-      var blocks = text.split(/\n\n/);
-      var tagOpen = openContainer(rootTag, rootAttrs);
-      var tagClose = '</' + rootTag + '>';
-
-      var paragraphs = Tools.map(blocks, function (p) {
-        return p.split(/\n/).join('<br />');
-      });
-
-      var stitch = function (p) {
-        return tagOpen + p + tagClose;
-      };
-
-      return paragraphs.length === 1 ? paragraphs[0] : Tools.map(paragraphs, stitch).join('');
-    };
-
-
-    var convert = function (text, rootTag, rootAttrs) {
-      return rootTag ? toBlockElements(text, rootTag, rootAttrs) : toBRs(text);
-    };
-
-
-    return {
-      isPlainText: isPlainText,
-      convert: convert,
-      toBRs: toBRs,
-      toBlockElements: toBlockElements
-    };
-  }
-);
-/**
- * PasteBin.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-/**
- * @class tinymce.pasteplugin.PasteBin
- * @private
- */
-define(
-  'tinymce.plugins.paste.core.PasteBin',
-  [
-    'tinymce.core.util.Tools',
-    'tinymce.core.Env'
-  ],
-  function (Tools, Env) {
-    return function (editor) {
-      var lastRng;
-      var pasteBinDefaultContent = '%MCEPASTEBIN%';
-
-      /**
-       * Creates a paste bin element as close as possible to the current caret location and places the focus inside that element
-       * so that when the real paste event occurs the contents gets inserted into this element
-       * instead of the current editor selection element.
-       */
-      var create = function () {
-        var dom = editor.dom, body = editor.getBody();
-        var viewport = editor.dom.getViewPort(editor.getWin()), scrollTop = viewport.y, top = 20;
-        var pasteBinElm;
-        var scrollContainer;
-
-        lastRng = editor.selection.getRng();
-
-        if (editor.inline) {
-          scrollContainer = editor.selection.getScrollContainer();
-
-          // Can't always rely on scrollTop returning a useful value.
-          // It returns 0 if the browser doesn't support scrollTop for the element or is non-scrollable
-          if (scrollContainer && scrollContainer.scrollTop > 0) {
-            scrollTop = scrollContainer.scrollTop;
-          }
-        }
-
-        /**
-         * Returns the rect of the current caret if the caret is in an empty block before a
-         * BR we insert a temporary invisible character that we get the rect this way we always get a proper rect.
-         *
-         * TODO: This might be useful in core.
-         */
-        function getCaretRect(rng) {
-          var rects, textNode, node, container = rng.startContainer;
-
-          rects = rng.getClientRects();
-          if (rects.length) {
-            return rects[0];
-          }
-
-          if (!rng.collapsed || container.nodeType != 1) {
-            return;
-          }
-
-          node = container.childNodes[lastRng.startOffset];
-
-          // Skip empty whitespace nodes
-          while (node && node.nodeType == 3 && !node.data.length) {
-            node = node.nextSibling;
-          }
-
-          if (!node) {
-            return;
-          }
-
-          // Check if the location is |<br>
-          // TODO: Might need to expand this to say |<table>
-          if (node.tagName == 'BR') {
-            textNode = dom.doc.createTextNode('\uFEFF');
-            node.parentNode.insertBefore(textNode, node);
-
-            rng = dom.createRng();
-            rng.setStartBefore(textNode);
-            rng.setEndAfter(textNode);
-
-            rects = rng.getClientRects();
-            dom.remove(textNode);
-          }
-
-          if (rects.length) {
-            return rects[0];
-          }
-        }
-
-        // Calculate top cordinate this is needed to avoid scrolling to top of document
-        // We want the paste bin to be as close to the caret as possible to avoid scrolling
-        if (lastRng.getClientRects) {
-          var rect = getCaretRect(lastRng);
-
-          if (rect) {
-            // Client rects gets us closes to the actual
-            // caret location in for example a wrapped paragraph block
-            top = scrollTop + (rect.top - dom.getPos(body).y);
-          } else {
-            top = scrollTop;
-
-            // Check if we can find a closer location by checking the range element
-            var container = lastRng.startContainer;
-            if (container) {
-              if (container.nodeType == 3 && container.parentNode != body) {
-                container = container.parentNode;
-              }
-
-              if (container.nodeType == 1) {
-                top = dom.getPos(container, scrollContainer || body).y;
-              }
-            }
-          }
-        }
-
-        // Create a pastebin
-        pasteBinElm = editor.dom.add(editor.getBody(), 'div', {
-          id: "mcepastebin",
-          contentEditable: true,
-          "data-mce-bogus": "all",
-          style: 'position: absolute; top: ' + top + 'px; width: 10px; height: 10px; overflow: hidden; opacity: 0'
-        }, pasteBinDefaultContent);
-
-        // Move paste bin out of sight since the controlSelection rect gets displayed otherwise on IE and Gecko
-        if (Env.ie || Env.gecko) {
-          dom.setStyle(pasteBinElm, 'left', dom.getStyle(body, 'direction', true) == 'rtl' ? 0xFFFF : -0xFFFF);
-        }
-
-        // Prevent focus events from bubbeling fixed FocusManager issues
-        dom.bind(pasteBinElm, 'beforedeactivate focusin focusout', function (e) {
-          e.stopPropagation();
-        });
-
-        pasteBinElm.focus();
-        editor.selection.select(pasteBinElm, true);
-      };
-
-      /**
-       * Removes the paste bin if it exists.
-       */
-      var remove = function () {
-        if (getEl()) {
-          var pasteBinClone;
-
-          // WebKit/Blink might clone the div so
-          // lets make sure we remove all clones
-          // TODO: Man o man is this ugly. WebKit is the new IE! Remove this if they ever fix it!
-          while ((pasteBinClone = editor.dom.get('mcepastebin'))) {
-            editor.dom.remove(pasteBinClone);
-            editor.dom.unbind(pasteBinClone);
-          }
-
-          if (lastRng) {
-            editor.selection.setRng(lastRng);
-          }
-        }
-
-        lastRng = null;
-      };
-
-
-      var getEl = function () {
-        return editor.dom.get('mcepastebin');
-      };
-
-      /**
-       * Returns the contents of the paste bin as a HTML string.
-       *
-       * @return {String} Get the contents of the paste bin.
-       */
-      var getHtml = function () {
-        var pasteBinElm, pasteBinClones, i, dirtyWrappers, cleanWrapper;
-
-        // Since WebKit/Chrome might clone the paste bin when pasting
-        // for example: <img style="float: right"> we need to check if any of them contains some useful html.
-        // TODO: Man o man is this ugly. WebKit is the new IE! Remove this if they ever fix it!
-
-        var copyAndRemove = function (toElm, fromElm) {
-          toElm.appendChild(fromElm);
-          editor.dom.remove(fromElm, true); // remove, but keep children
-        };
-
-        // find only top level elements (there might be more nested inside them as well, see TINY-1162)
-        pasteBinClones = Tools.grep(editor.getBody().childNodes, function (elm) {
-          return elm.id === 'mcepastebin';
-        });
-        pasteBinElm = pasteBinClones.shift();
-
-        // if clones were found, move their content into the first bin
-        Tools.each(pasteBinClones, function (pasteBinClone) {
-          copyAndRemove(pasteBinElm, pasteBinClone);
-        });
-
-        // TINY-1162: when copying plain text (from notepad for example) WebKit clones
-        // paste bin (with styles and attributes) and uses it as a default  wrapper for
-        // the chunks of the content, here we cycle over the whole paste bin and replace
-        // those wrappers with a basic div
-        dirtyWrappers = editor.dom.select('div[id=mcepastebin]', pasteBinElm);
-        for (i = dirtyWrappers.length - 1; i >= 0; i--) {
-          cleanWrapper = editor.dom.create('div');
-          pasteBinElm.insertBefore(cleanWrapper, dirtyWrappers[i]);
-          copyAndRemove(cleanWrapper, dirtyWrappers[i]);
-        }
-
-        return pasteBinElm ? pasteBinElm.innerHTML : '';
-      };
-
-
-      var getLastRng = function () {
-        return lastRng;
-      };
-
-
-      var isDefaultContent = function (content) {
-        return content === pasteBinDefaultContent;
-      };
-
-
-      var isPasteBin = function (elm) {
-        return elm && elm.id === 'mcepastebin';
-      };
-
-
-      var isDefault = function () {
-        var pasteBinElm = getEl();
-        return isPasteBin(pasteBinElm) && isDefaultContent(pasteBinElm.innerHTML);
-      };
-
-      return {
-        create: create,
-        remove: remove,
-        getEl: getEl,
-        getHtml: getHtml,
-        getLastRng: getLastRng,
-        isDefault: isDefault,
-        isDefaultContent: isDefaultContent
-      };
-    };
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.core.html.DomParser',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.html.DomParser');
-  }
-);
-
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
+<<<<<<< HEAD
 <<<<<<< HEAD
 define(
   'tinymce.core.html.Schema',
@@ -681,52 +97,34 @@ define(
 		if (exports.AMDLC_TESTS) {
 			privateModules = exports.privateModules || {};
 >>>>>>> origin/master
+=======
+			target[fragments[fragments.length - 1]] = modules[id];
+		}
+		
+		// Expose private modules for unit tests
+		if (exports.AMDLC_TESTS) {
+			privateModules = exports.privateModules || {};
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+			for (id in modules) {
+				privateModules[id] = modules[id];
+			}
 
-define(
-  'tinymce.core.html.Serializer',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.html.Serializer');
-  }
-);
+			for (i = 0; i < ids.length; i++) {
+				delete privateModules[ids[i]];
+			}
 
-/**
- * ResolveGlobal.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
+			exports.privateModules = privateModules;
+		}
+	}
 
-define(
-  'tinymce.core.html.Node',
-  [
-    'global!tinymce.util.Tools.resolve'
-  ],
-  function (resolve) {
-    return resolve('tinymce.html.Node');
-  }
-);
+// Included from: js/tinymce/plugins/paste/classes/Utils.js
 
 /**
  * Utils.js
  *
  * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
@@ -737,697 +135,139 @@ define(
  *
  * @class tinymce.pasteplugin.Utils
  */
-define(
-  'tinymce.plugins.paste.core.Utils',
-  [
-    'tinymce.core.util.Tools',
-    'tinymce.core.html.DomParser',
-    'tinymce.core.html.Schema'
-  ],
-  function (Tools, DomParser, Schema) {
-    function filter(content, items) {
-      Tools.each(items, function (v) {
-        if (v.constructor == RegExp) {
-          content = content.replace(v, '');
-        } else {
-          content = content.replace(v[0], v[1]);
-        }
-      });
-
-      return content;
-    }
-
-    /**
-     * Gets the innerText of the specified element. It will handle edge cases
-     * and works better than textContent on Gecko.
-     *
-     * @param {String} html HTML string to get text from.
-     * @return {String} String of text with line feeds.
-     */
-    function innerText(html) {
-      var schema = new Schema(), domParser = new DomParser({}, schema), text = '';
-      var shortEndedElements = schema.getShortEndedElements();
-      var ignoreElements = Tools.makeMap('script noscript style textarea video audio iframe object', ' ');
-      var blockElements = schema.getBlockElements();
-
-      function walk(node) {
-        var name = node.name, currentNode = node;
-
-        if (name === 'br') {
-          text += '\n';
-          return;
-        }
-
-        // img/input/hr
-        if (shortEndedElements[name]) {
-          text += ' ';
-        }
-
-        // Ingore script, video contents
-        if (ignoreElements[name]) {
-          text += ' ';
-          return;
-        }
-
-        if (node.type == 3) {
-          text += node.value;
-        }
-
-        // Walk all children
-        if (!node.shortEnded) {
-          if ((node = node.firstChild)) {
-            do {
-              walk(node);
-            } while ((node = node.next));
-          }
-        }
-
-        // Add \n or \n\n for blocks or P
-        if (blockElements[name] && currentNode.next) {
-          text += '\n';
-
-          if (name == 'p') {
-            text += '\n';
-          }
-        }
-      }
-
-      html = filter(html, [
-        /<!\[[^\]]+\]>/g // Conditional comments
-      ]);
-
-      walk(domParser.parse(html));
-
-      return text;
-    }
-
-    /**
-     * Trims the specified HTML by removing all WebKit fragments, all elements wrapping the body trailing BR elements etc.
-     *
-     * @param {String} html Html string to trim contents on.
-     * @return {String} Html contents that got trimmed.
-     */
-    function trimHtml(html) {
-      function trimSpaces(all, s1, s2) {
-        // WebKit &nbsp; meant to preserve multiple spaces but instead inserted around all inline tags,
-        // including the spans with inline styles created on paste
-        if (!s1 && !s2) {
-          return ' ';
-        }
-
-        return '\u00a0';
-      }
-
-      html = filter(html, [
-        /^[\s\S]*<body[^>]*>\s*|\s*<\/body[^>]*>[\s\S]*$/ig, // Remove anything but the contents within the BODY element
-        /<!--StartFragment-->|<!--EndFragment-->/g, // Inner fragments (tables from excel on mac)
-        [/( ?)<span class="Apple-converted-space">\u00a0<\/span>( ?)/g, trimSpaces],
-        /<br class="Apple-interchange-newline">/g,
-        /<br>$/i // Trailing BR elements
-      ]);
-
-      return html;
-    }
-
-    // TODO: Should be in some global class
-    function createIdGenerator(prefix) {
-      var count = 0;
-
-      return function () {
-        return prefix + (count++);
-      };
-    }
-
-    var isMsEdge = function () {
-      return navigator.userAgent.indexOf(' Edge/') !== -1;
-    };
-
-    return {
-      filter: filter,
-      innerText: innerText,
-      trimHtml: trimHtml,
-      createIdGenerator: createIdGenerator,
-      isMsEdge: isMsEdge
-    };
-  }
-);
-
-/**
- * WordFilter.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-/**
- * This class parses word HTML into proper TinyMCE markup.
- *
- * @class tinymce.pasteplugin.WordFilter
- * @private
- */
-define(
-  'tinymce.plugins.paste.core.WordFilter',
-  [
-    'tinymce.core.util.Tools',
-    'tinymce.core.html.DomParser',
-    'tinymce.core.html.Schema',
-    'tinymce.core.html.Serializer',
-    'tinymce.core.html.Node',
-    'tinymce.plugins.paste.core.Utils'
-  ],
-  function (Tools, DomParser, Schema, Serializer, Node, Utils) {
-    /**
-     * Checks if the specified content is from any of the following sources: MS Word/Office 365/Google docs.
-     */
-    function isWordContent(content) {
-      return (
-        (/<font face="Times New Roman"|class="?Mso|style="[^"]*\bmso-|style='[^'']*\bmso-|w:WordDocument/i).test(content) ||
-        (/class="OutlineElement/).test(content) ||
-        (/id="?docs\-internal\-guid\-/.test(content))
-      );
-    }
-
-    /**
-     * Checks if the specified text starts with "1. " or "a. " etc.
-     */
-    function isNumericList(text) {
-      var found, patterns;
-
-      patterns = [
-        /^[IVXLMCD]{1,2}\.[ \u00a0]/,  // Roman upper case
-        /^[ivxlmcd]{1,2}\.[ \u00a0]/,  // Roman lower case
-        /^[a-z]{1,2}[\.\)][ \u00a0]/,  // Alphabetical a-z
-        /^[A-Z]{1,2}[\.\)][ \u00a0]/,  // Alphabetical A-Z
-        /^[0-9]+\.[ \u00a0]/,          // Numeric lists
-        /^[\u3007\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d]+\.[ \u00a0]/, // Japanese
-        /^[\u58f1\u5f10\u53c2\u56db\u4f0d\u516d\u4e03\u516b\u4e5d\u62fe]+\.[ \u00a0]/  // Chinese
-      ];
-
-      text = text.replace(/^[\u00a0 ]+/, '');
-
-      Tools.each(patterns, function (pattern) {
-        if (pattern.test(text)) {
-          found = true;
-          return false;
-        }
-      });
-
-      return found;
-    }
-
-    function isBulletList(text) {
-      return /^[\s\u00a0]*[\u2022\u00b7\u00a7\u25CF]\s*/.test(text);
-    }
-
-    /**
-     * Converts fake bullet and numbered lists to real semantic OL/UL.
-     *
-     * @param {tinymce.html.Node} node Root node to convert children of.
-     */
-    function convertFakeListsToProperLists(node) {
-      var currentListNode, prevListNode, lastLevel = 1;
-
-      function getText(node) {
-        var txt = '';
-
-        if (node.type === 3) {
-          return node.value;
-        }
-
-        if ((node = node.firstChild)) {
-          do {
-            txt += getText(node);
-          } while ((node = node.next));
-        }
-
-        return txt;
-      }
-
-      function trimListStart(node, regExp) {
-        if (node.type === 3) {
-          if (regExp.test(node.value)) {
-            node.value = node.value.replace(regExp, '');
-            return false;
-          }
-        }
-
-        if ((node = node.firstChild)) {
-          do {
-            if (!trimListStart(node, regExp)) {
-              return false;
-            }
-          } while ((node = node.next));
-        }
-
-        return true;
-      }
-
-      function removeIgnoredNodes(node) {
-        if (node._listIgnore) {
-          node.remove();
-          return;
-        }
-
-        if ((node = node.firstChild)) {
-          do {
-            removeIgnoredNodes(node);
-          } while ((node = node.next));
-        }
-      }
-
-      function convertParagraphToLi(paragraphNode, listName, start) {
-        var level = paragraphNode._listLevel || lastLevel;
-
-        // Handle list nesting
-        if (level != lastLevel) {
-          if (level < lastLevel) {
-            // Move to parent list
-            if (currentListNode) {
-              currentListNode = currentListNode.parent.parent;
-            }
-          } else {
-            // Create new list
-            prevListNode = currentListNode;
-            currentListNode = null;
-          }
-        }
-
-        if (!currentListNode || currentListNode.name != listName) {
-          prevListNode = prevListNode || currentListNode;
-          currentListNode = new Node(listName, 1);
-
-          if (start > 1) {
-            currentListNode.attr('start', '' + start);
-          }
-
-          paragraphNode.wrap(currentListNode);
-        } else {
-          currentListNode.append(paragraphNode);
-        }
-
-        paragraphNode.name = 'li';
-
-        // Append list to previous list if it exists
-        if (level > lastLevel && prevListNode) {
-          prevListNode.lastChild.append(currentListNode);
-        }
-
-        lastLevel = level;
-
-        // Remove start of list item "1. " or "&middot; " etc
-        removeIgnoredNodes(paragraphNode);
-        trimListStart(paragraphNode, /^\u00a0+/);
-        trimListStart(paragraphNode, /^\s*([\u2022\u00b7\u00a7\u25CF]|\w+\.)/);
-        trimListStart(paragraphNode, /^\u00a0+/);
-      }
-
-      // Build a list of all root level elements before we start
-      // altering them in the loop below.
-      var elements = [], child = node.firstChild;
-      while (typeof child !== 'undefined' && child !== null) {
-        elements.push(child);
-
-        child = child.walk();
-        if (child !== null) {
-          while (typeof child !== 'undefined' && child.parent !== node) {
-            child = child.walk();
-          }
-        }
-      }
-
-      for (var i = 0; i < elements.length; i++) {
-        node = elements[i];
-
-        if (node.name == 'p' && node.firstChild) {
-          // Find first text node in paragraph
-          var nodeText = getText(node);
-
-          // Detect unordered lists look for bullets
-          if (isBulletList(nodeText)) {
-            convertParagraphToLi(node, 'ul');
-            continue;
-          }
-
-          // Detect ordered lists 1., a. or ixv.
-          if (isNumericList(nodeText)) {
-            // Parse OL start number
-            var matches = /([0-9]+)\./.exec(nodeText);
-            var start = 1;
-            if (matches) {
-              start = parseInt(matches[1], 10);
-            }
-
-            convertParagraphToLi(node, 'ol', start);
-            continue;
-          }
-
-          // Convert paragraphs marked as lists but doesn't look like anything
-          if (node._listLevel) {
-            convertParagraphToLi(node, 'ul', 1);
-            continue;
-          }
-
-          currentListNode = null;
-        } else {
-          // If the root level element isn't a p tag which can be
-          // processed by convertParagraphToLi, it interrupts the
-          // lists, causing a new list to start instead of having
-          // elements from the next list inserted above this tag.
-          prevListNode = currentListNode;
-          currentListNode = null;
-        }
-      }
-    }
-
-    function filterStyles(editor, validStyles, node, styleValue) {
-      var outputStyles = {}, matches, styles = editor.dom.parseStyle(styleValue);
-
-      Tools.each(styles, function (value, name) {
-        // Convert various MS styles to W3C styles
-        switch (name) {
-          case 'mso-list':
-            // Parse out list indent level for lists
-            matches = /\w+ \w+([0-9]+)/i.exec(styleValue);
-            if (matches) {
-              node._listLevel = parseInt(matches[1], 10);
-            }
-
-            // Remove these nodes <span style="mso-list:Ignore">o</span>
-            // Since the span gets removed we mark the text node and the span
-            if (/Ignore/i.test(value) && node.firstChild) {
-              node._listIgnore = true;
-              node.firstChild._listIgnore = true;
-            }
-
-            break;
-
-          case "horiz-align":
-            name = "text-align";
-            break;
-
-          case "vert-align":
-            name = "vertical-align";
-            break;
-
-          case "font-color":
-          case "mso-foreground":
-            name = "color";
-            break;
-
-          case "mso-background":
-          case "mso-highlight":
-            name = "background";
-            break;
-
-          case "font-weight":
-          case "font-style":
-            if (value != "normal") {
-              outputStyles[name] = value;
-            }
-            return;
-
-          case "mso-element":
-            // Remove track changes code
-            if (/^(comment|comment-list)$/i.test(value)) {
-              node.remove();
-              return;
-            }
-
-            break;
-        }
-
-        if (name.indexOf('mso-comment') === 0) {
-          node.remove();
-          return;
-        }
-
-        // Never allow mso- prefixed names
-        if (name.indexOf('mso-') === 0) {
-          return;
-        }
-
-        // Output only valid styles
-        if (editor.settings.paste_retain_style_properties == "all" || (validStyles && validStyles[name])) {
-          outputStyles[name] = value;
-        }
-      });
-
-      // Convert bold style to "b" element
-      if (/(bold)/i.test(outputStyles["font-weight"])) {
-        delete outputStyles["font-weight"];
-        node.wrap(new Node("b", 1));
-      }
-
-      // Convert italic style to "i" element
-      if (/(italic)/i.test(outputStyles["font-style"])) {
-        delete outputStyles["font-style"];
-        node.wrap(new Node("i", 1));
-      }
-
-      // Serialize the styles and see if there is something left to keep
-      outputStyles = editor.dom.serializeStyle(outputStyles, node.name);
-      if (outputStyles) {
-        return outputStyles;
-      }
-
-      return null;
-    }
-
-    var filterWordContent = function (editor, content) {
-      var retainStyleProperties, validStyles;
-
-      retainStyleProperties = editor.settings.paste_retain_style_properties;
-      if (retainStyleProperties) {
-        validStyles = Tools.makeMap(retainStyleProperties.split(/[, ]/));
-      }
-
-      // Remove basic Word junk
-      content = Utils.filter(content, [
-        // Remove apple new line markers
-        /<br class="?Apple-interchange-newline"?>/gi,
-
-        // Remove google docs internal guid markers
-        /<b[^>]+id="?docs-internal-[^>]*>/gi,
-
-        // Word comments like conditional comments etc
-        /<!--[\s\S]+?-->/gi,
-
-        // Remove comments, scripts (e.g., msoShowComment), XML tag, VML content,
-        // MS Office namespaced tags, and a few other tags
-        /<(!|script[^>]*>.*?<\/script(?=[>\s])|\/?(\?xml(:\w+)?|img|meta|link|style|\w:\w+)(?=[\s\/>]))[^>]*>/gi,
-
-        // Convert <s> into <strike> for line-though
-        [/<(\/?)s>/gi, "<$1strike>"],
-
-        // Replace nsbp entites to char since it's easier to handle
-        [/&nbsp;/gi, "\u00a0"],
-
-        // Convert <span style="mso-spacerun:yes">___</span> to string of alternating
-        // breaking/non-breaking spaces of same length
-        [/<span\s+style\s*=\s*"\s*mso-spacerun\s*:\s*yes\s*;?\s*"\s*>([\s\u00a0]*)<\/span>/gi,
-          function (str, spaces) {
-            return (spaces.length > 0) ?
-              spaces.replace(/./, " ").slice(Math.floor(spaces.length / 2)).split("").join("\u00a0") : "";
-          }
-        ]
-      ]);
-
-      var validElements = editor.settings.paste_word_valid_elements;
-      if (!validElements) {
-        validElements = (
-          '-strong/b,-em/i,-u,-span,-p,-ol,-ul,-li,-h1,-h2,-h3,-h4,-h5,-h6,' +
-          '-p/div,-a[href|name],sub,sup,strike,br,del,table[width],tr,' +
-          'td[colspan|rowspan|width],th[colspan|rowspan|width],thead,tfoot,tbody'
-        );
-      }
-
-      // Setup strict schema
-      var schema = new Schema({
-        valid_elements: validElements,
-        valid_children: '-li[p]'
-      });
-
-      // Add style/class attribute to all element rules since the user might have removed them from
-      // paste_word_valid_elements config option and we need to check them for properties
-      Tools.each(schema.elements, function (rule) {
-        /*eslint dot-notation:0*/
-        if (!rule.attributes["class"]) {
-          rule.attributes["class"] = {};
-          rule.attributesOrder.push("class");
-        }
-
-        if (!rule.attributes.style) {
-          rule.attributes.style = {};
-          rule.attributesOrder.push("style");
-        }
-      });
-
-      // Parse HTML into DOM structure
-      var domParser = new DomParser({}, schema);
-
-      // Filter styles to remove "mso" specific styles and convert some of them
-      domParser.addAttributeFilter('style', function (nodes) {
-        var i = nodes.length, node;
-
-        while (i--) {
-          node = nodes[i];
-          node.attr('style', filterStyles(editor, validStyles, node, node.attr('style')));
-
-          // Remove pointess spans
-          if (node.name == 'span' && node.parent && !node.attributes.length) {
-            node.unwrap();
-          }
-        }
-      });
-
-      // Check the class attribute for comments or del items and remove those
-      domParser.addAttributeFilter('class', function (nodes) {
-        var i = nodes.length, node, className;
-
-        while (i--) {
-          node = nodes[i];
-
-          className = node.attr('class');
-          if (/^(MsoCommentReference|MsoCommentText|msoDel)$/i.test(className)) {
-            node.remove();
-          }
-
-          node.attr('class', null);
-        }
-      });
-
-      // Remove all del elements since we don't want the track changes code in the editor
-      domParser.addNodeFilter('del', function (nodes) {
-        var i = nodes.length;
-
-        while (i--) {
-          nodes[i].remove();
-        }
-      });
-
-      // Keep some of the links and anchors
-      domParser.addNodeFilter('a', function (nodes) {
-        var i = nodes.length, node, href, name;
-
-        while (i--) {
-          node = nodes[i];
-          href = node.attr('href');
-          name = node.attr('name');
-
-          if (href && href.indexOf('#_msocom_') != -1) {
-            node.remove();
-            continue;
-          }
-
-          if (href && href.indexOf('file://') === 0) {
-            href = href.split('#')[1];
-            if (href) {
-              href = '#' + href;
-            }
-          }
-
-          if (!href && !name) {
-            node.unwrap();
-          } else {
-            // Remove all named anchors that aren't specific to TOC, Footnotes or Endnotes
-            if (name && !/^_?(?:toc|edn|ftn)/i.test(name)) {
-              node.unwrap();
-              continue;
-            }
-
-            node.attr({
-              href: href,
-              name: name
-            });
-          }
-        }
-      });
-
-      // Parse into DOM structure
-      var rootNode = domParser.parse(content);
-
-      // Process DOM
-      if (editor.settings.paste_convert_word_fake_lists !== false) {
-        convertFakeListsToProperLists(rootNode);
-      }
-
-      // Serialize DOM back to HTML
-      content = new Serializer({
-        validate: editor.settings.validate
-      }, schema).serialize(rootNode);
-
-      return content;
-    };
-
-    var preProcess = function (editor, content) {
-      return editor.settings.paste_enable_default_filters === false ? content : filterWordContent(editor, content);
-    };
-
-    return {
-      preProcess: preProcess,
-      isWordContent: isWordContent
-    };
-  }
-);
-
-/**
- * ProcessFilters.js
- *
- * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
- *
- * License: http://www.tinymce.com/license
- * Contributing: http://www.tinymce.com/contributing
- */
-
-define(
-  'tinymce.plugins.paste.core.ProcessFilters',
-  [
-    'tinymce.plugins.paste.api.Events',
-    'tinymce.plugins.paste.core.WordFilter'
-  ],
-  function (Events, WordFilter) {
-    var processResult = function (content, cancelled) {
-      return { content: content, cancelled: cancelled };
-    };
-
-    var postProcessFilter = function (editor, html, internal, isWordHtml) {
-      var tempBody = editor.dom.create('div', { style: 'display:none' }, html);
-      var postProcessArgs = Events.firePastePostProcess(editor, tempBody, internal, isWordHtml);
-      return processResult(postProcessArgs.node.innerHTML, postProcessArgs.isDefaultPrevented());
-    };
-
-    var filterContent = function (editor, content, internal, isWordHtml) {
-      var preProcessArgs = Events.firePastePreProcess(editor, content, internal, isWordHtml);
-
-      if (editor.hasEventListeners('PastePostProcess') && !preProcessArgs.isDefaultPrevented()) {
-        return postProcessFilter(editor, preProcessArgs.content, internal, isWordHtml);
-      } else {
-        return processResult(preProcessArgs.content, preProcessArgs.isDefaultPrevented());
-      }
-    };
-
-    var process = function (editor, html, internal) {
-      var isWordHtml = WordFilter.isWordContent(html);
-      var content = isWordHtml ? WordFilter.preProcess(editor, html) : html;
-
-      return filterContent(editor, content, internal, isWordHtml);
-    };
-
-    return {
-      process: process
-    };
-  }
-);
+define("tinymce/pasteplugin/Utils", [
+	"tinymce/util/Tools",
+	"tinymce/html/DomParser",
+	"tinymce/html/Schema"
+], function(Tools, DomParser, Schema) {
+	function filter(content, items) {
+		Tools.each(items, function(v) {
+			if (v.constructor == RegExp) {
+				content = content.replace(v, '');
+			} else {
+				content = content.replace(v[0], v[1]);
+			}
+		});
+
+		return content;
+	}
+
+	/**
+	 * Gets the innerText of the specified element. It will handle edge cases
+	 * and works better than textContent on Gecko.
+	 *
+	 * @param {String} html HTML string to get text from.
+	 * @return {String} String of text with line feeds.
+	 */
+	function innerText(html) {
+		var schema = new Schema(), domParser = new DomParser({}, schema), text = '';
+		var shortEndedElements = schema.getShortEndedElements();
+		var ignoreElements = Tools.makeMap('script noscript style textarea video audio iframe object', ' ');
+		var blockElements = schema.getBlockElements();
+
+		function walk(node) {
+			var name = node.name, currentNode = node;
+
+			if (name === 'br') {
+				text += '\n';
+				return;
+			}
+
+			// img/input/hr
+			if (shortEndedElements[name]) {
+				text += ' ';
+			}
+
+			// Ingore script, video contents
+			if (ignoreElements[name]) {
+				text += ' ';
+				return;
+			}
+
+			if (node.type == 3) {
+				text += node.value;
+			}
+
+			// Walk all children
+			if (!node.shortEnded) {
+				if ((node = node.firstChild)) {
+					do {
+						walk(node);
+					} while ((node = node.next));
+				}
+			}
+
+			// Add \n or \n\n for blocks or P
+			if (blockElements[name] && currentNode.next) {
+				text += '\n';
+
+				if (name == 'p') {
+					text += '\n';
+				}
+			}
+		}
+
+		html = filter(html, [
+			/<!\[[^\]]+\]>/g // Conditional comments
+		]);
+
+		walk(domParser.parse(html));
+
+		return text;
+	}
+
+	/**
+	 * Trims the specified HTML by removing all WebKit fragments, all elements wrapping the body trailing BR elements etc.
+	 *
+	 * @param {String} html Html string to trim contents on.
+	 * @return {String} Html contents that got trimmed.
+	 */
+	function trimHtml(html) {
+		function trimSpaces(all, s1, s2) {
+			// WebKit &nbsp; meant to preserve multiple spaces but instead inserted around all inline tags,
+			// including the spans with inline styles created on paste
+			if (!s1 && !s2) {
+				return ' ';
+			}
+
+			return '\u00a0';
+		}
+
+		html = filter(html, [
+			/^[\s\S]*<body[^>]*>\s*|\s*<\/body[^>]*>[\s\S]*$/g, // Remove anything but the contents within the BODY element
+			/<!--StartFragment-->|<!--EndFragment-->/g, // Inner fragments (tables from excel on mac)
+			[/( ?)<span class="Apple-converted-space">\u00a0<\/span>( ?)/g, trimSpaces],
+			/<br class="Apple-interchange-newline">/g,
+			/<br>$/i // Trailing BR elements
+		]);
+
+		return html;
+	}
+
+	// TODO: Should be in some global class
+	function createIdGenerator(prefix) {
+		var count = 0;
+
+		return function() {
+			return prefix + (count++);
+		};
+	}
+
+	return {
+		filter: filter,
+		innerText: innerText,
+		trimHtml: trimHtml,
+		createIdGenerator: createIdGenerator
+	};
+});
+
+// Included from: js/tinymce/plugins/paste/classes/SmartPaste.js
 
 /**
  * SmartPaste.js
  *
  * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
@@ -1441,88 +281,86 @@ define(
  * @class tinymce.pasteplugin.SmartPaste
  * @private
  */
-define(
-  'tinymce.plugins.paste.core.SmartPaste',
-  [
-    'tinymce.core.util.Tools'
-  ],
-  function (Tools) {
-    var isAbsoluteUrl = function (url) {
-      return /^https?:\/\/[\w\?\-\/+=.&%@~#]+$/i.test(url);
-    };
+define("tinymce/pasteplugin/SmartPaste", [
+	"tinymce/util/Tools"
+], function (Tools) {
+	var isAbsoluteUrl = function (url) {
+		return /^https?:\/\/[\w\?\-\/+=.&%@~#]+$/i.test(url);
+	};
 
-    var isImageUrl = function (url) {
-      return isAbsoluteUrl(url) && /.(gif|jpe?g|png)$/.test(url);
-    };
+	var isImageUrl = function (url) {
+		return isAbsoluteUrl(url) && /.(gif|jpe?g|png)$/.test(url);
+	};
 
-    var createImage = function (editor, url, pasteHtml) {
-      editor.undoManager.extra(function () {
-        pasteHtml(editor, url);
-      }, function () {
-        editor.insertContent('<img src="' + url + '">');
-      });
+	var createImage = function (editor, url, pasteHtml) {
+		editor.undoManager.extra(function () {
+			pasteHtml(editor, url);
+		}, function () {
+			editor.insertContent('<img src="' + url + '">');
+		});
 
-      return true;
-    };
+		return true;
+	};
 
-    var createLink = function (editor, url, pasteHtml) {
-      editor.undoManager.extra(function () {
-        pasteHtml(editor, url);
-      }, function () {
-        editor.execCommand('mceInsertLink', false, url);
-      });
+	var createLink = function (editor, url, pasteHtml) {
+		editor.undoManager.extra(function () {
+			pasteHtml(editor, url);
+		}, function () {
+			editor.execCommand('mceInsertLink', false, url);
+		});
 
-      return true;
-    };
+		return true;
+	};
 
-    var linkSelection = function (editor, html, pasteHtml) {
-      return editor.selection.isCollapsed() === false && isAbsoluteUrl(html) ? createLink(editor, html, pasteHtml) : false;
-    };
+	var linkSelection = function (editor, html, pasteHtml) {
+		return editor.selection.isCollapsed() === false && isAbsoluteUrl(html) ? createLink(editor, html, pasteHtml) : false;
+	};
 
-    var insertImage = function (editor, html, pasteHtml) {
-      return isImageUrl(html) ? createImage(editor, html, pasteHtml) : false;
-    };
+	var insertImage = function (editor, html, pasteHtml) {
+		return isImageUrl(html) ? createImage(editor, html, pasteHtml) : false;
+	};
 
-    var pasteHtml = function (editor, html) {
-      editor.insertContent(html, {
-        merge: editor.settings.paste_merge_formats !== false,
-        paste: true
-      });
+	var pasteHtml = function (editor, html) {
+		editor.insertContent(html, {
+			merge: editor.settings.paste_merge_formats !== false,
+			paste: true
+		});
 
-      return true;
-    };
+		return true;
+	};
 
-    var smartInsertContent = function (editor, html) {
-      Tools.each([
-        linkSelection,
-        insertImage,
-        pasteHtml
-      ], function (action) {
-        return action(editor, html, pasteHtml) !== true;
-      });
-    };
+	var smartInsertContent = function (editor, html) {
+		Tools.each([
+			linkSelection,
+			insertImage,
+			pasteHtml
+		], function (action) {
+			return action(editor, html, pasteHtml) !== true;
+		});
+	};
 
-    var insertContent = function (editor, html) {
-      if (editor.settings.smart_paste === false) {
-        pasteHtml(editor, html);
-      } else {
-        smartInsertContent(editor, html);
-      }
-    };
+	var insertContent = function (editor, html) {
+		if (editor.settings.smart_paste === false) {
+			pasteHtml(editor, html);
+		} else {
+			smartInsertContent(editor, html);
+		}
+	};
 
-    return {
-      isImageUrl: isImageUrl,
-      isAbsoluteUrl: isAbsoluteUrl,
-      insertContent: insertContent
-    };
-  }
-);
+	return {
+		isImageUrl: isImageUrl,
+		isAbsoluteUrl: isAbsoluteUrl,
+		insertContent: insertContent
+	};
+});
+
+// Included from: js/tinymce/plugins/paste/classes/Clipboard.js
 
 /**
  * Clipboard.js
  *
  * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
@@ -1547,6 +385,7 @@ define(
  * @class tinymce.pasteplugin.Clipboard
  * @private
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 define(
   'tinymce.plugins.paste.core.Clipboard',
@@ -2047,6 +886,8 @@ define(
   }
 );
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 define("tinymce/pasteplugin/Clipboard", [
 	"tinymce/Env",
 	"tinymce/dom/RangeUtils",
@@ -2621,8 +1462,12 @@ define("tinymce/pasteplugin/Clipboard", [
 			});
 
 			function isPlainTextFileUrl(content) {
+<<<<<<< HEAD
 				var plainTextContent = content['text/plain'];
 				return plainTextContent ? plainTextContent.indexOf('file://') === 0 : false;
+=======
+				return content['text/plain'].indexOf('file://') === 0;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			}
 
 			editor.on('drop', function(e) {
@@ -2727,136 +1572,519 @@ define("tinymce/pasteplugin/Clipboard", [
 });
 
 // Included from: js/tinymce/plugins/paste/classes/WordFilter.js
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 /**
- * CutCopy.js
+ * WordFilter.js
  *
  * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
 
-define(
-  'tinymce.plugins.paste.core.CutCopy',
-  [
-    'tinymce.core.Env',
-    'tinymce.plugins.paste.core.InternalHtml',
-    'tinymce.plugins.paste.core.Utils'
-  ],
-  function (Env, InternalHtml, Utils) {
-    var noop = function () {
-    };
+/**
+ * This class parses word HTML into proper TinyMCE markup.
+ *
+ * @class tinymce.pasteplugin.WordFilter
+ * @private
+ */
+define("tinymce/pasteplugin/WordFilter", [
+	"tinymce/util/Tools",
+	"tinymce/html/DomParser",
+	"tinymce/html/Schema",
+	"tinymce/html/Serializer",
+	"tinymce/html/Node",
+	"tinymce/pasteplugin/Utils"
+], function(Tools, DomParser, Schema, Serializer, Node, Utils) {
+	/**
+	 * Checks if the specified content is from any of the following sources: MS Word/Office 365/Google docs.
+	 */
+	function isWordContent(content) {
+		return (
+			(/<font face="Times New Roman"|class="?Mso|style="[^"]*\bmso-|style='[^'']*\bmso-|w:WordDocument/i).test(content) ||
+			(/class="OutlineElement/).test(content) ||
+			(/id="?docs\-internal\-guid\-/.test(content))
+		);
+	}
 
-    var hasWorkingClipboardApi = function (clipboardData) {
-      // iOS supports the clipboardData API but it doesn't do anything for cut operations
-      // Edge 15 has a broken HTML Clipboard API see https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/11780845/
-      return Env.iOS === false && clipboardData !== undefined && typeof clipboardData.setData === 'function' && Utils.isMsEdge() !== true;
-    };
+	/**
+	 * Checks if the specified text starts with "1. " or "a. " etc.
+	 */
+	function isNumericList(text) {
+		var found, patterns;
 
-    var setHtml5Clipboard = function (clipboardData, html, text) {
-      if (hasWorkingClipboardApi(clipboardData)) {
-        try {
-          clipboardData.clearData();
-          clipboardData.setData('text/html', html);
-          clipboardData.setData('text/plain', text);
-          clipboardData.setData(InternalHtml.internalHtmlMime(), html);
-          return true;
-        } catch (e) {
-          return false;
-        }
-      } else {
-        return false;
-      }
-    };
+		patterns = [
+			/^[IVXLMCD]{1,2}\.[ \u00a0]/,  // Roman upper case
+			/^[ivxlmcd]{1,2}\.[ \u00a0]/,  // Roman lower case
+			/^[a-z]{1,2}[\.\)][ \u00a0]/,  // Alphabetical a-z
+			/^[A-Z]{1,2}[\.\)][ \u00a0]/,  // Alphabetical A-Z
+			/^[0-9]+\.[ \u00a0]/,          // Numeric lists
+			/^[\u3007\u4e00\u4e8c\u4e09\u56db\u4e94\u516d\u4e03\u516b\u4e5d]+\.[ \u00a0]/, // Japanese
+			/^[\u58f1\u5f10\u53c2\u56db\u4f0d\u516d\u4e03\u516b\u4e5d\u62fe]+\.[ \u00a0]/  // Chinese
+		];
 
-    var setClipboardData = function (evt, data, fallback, done) {
-      if (setHtml5Clipboard(evt.clipboardData, data.html, data.text)) {
-        evt.preventDefault();
-        done();
-      } else {
-        fallback(data.html, done);
-      }
-    };
+		text = text.replace(/^[\u00a0 ]+/, '');
 
-    var fallback = function (editor) {
-      return function (html, done) {
-        var markedHtml = InternalHtml.mark(html);
-        var outer = editor.dom.create('div', {
-          contenteditable: "false",
-          "data-mce-bogus": "all"
-        });
-        var inner = editor.dom.create('div', { contenteditable: "true" }, markedHtml);
-        editor.dom.setStyles(outer, {
-          position: 'fixed',
-          left: '-3000px',
-          width: '1000px',
-          overflow: 'hidden'
-        });
-        outer.appendChild(inner);
-        editor.dom.add(editor.getBody(), outer);
+		Tools.each(patterns, function(pattern) {
+			if (pattern.test(text)) {
+				found = true;
+				return false;
+			}
+		});
 
-        var range = editor.selection.getRng();
-        inner.focus();
+		return found;
+	}
 
-        var offscreenRange = editor.dom.createRng();
-        offscreenRange.selectNodeContents(inner);
-        editor.selection.setRng(offscreenRange);
+	function isBulletList(text) {
+		return /^[\s\u00a0]*[\u2022\u00b7\u00a7\u25CF]\s*/.test(text);
+	}
 
-        setTimeout(function () {
-          outer.parentNode.removeChild(outer);
-          editor.selection.setRng(range);
-          done();
-        }, 0);
-      };
-    };
+	function WordFilter(editor) {
+		var settings = editor.settings;
 
-    var getData = function (editor) {
-      return {
-        html: editor.selection.getContent({ contextual: true }),
-        text: editor.selection.getContent({ format: 'text' })
-      };
-    };
+		editor.on('BeforePastePreProcess', function(e) {
+			var content = e.content, retainStyleProperties, validStyles;
 
-    var cut = function (editor) {
-      return function (evt) {
-        if (editor.selection.isCollapsed() === false) {
-          setClipboardData(evt, getData(editor), fallback(editor), function () {
-            // Chrome fails to execCommand from another execCommand with this message:
-            // "We don't execute document.execCommand() this time, because it is called recursively.""
-            setTimeout(function () { // detach
-              editor.execCommand('Delete');
-            }, 0);
-          });
-        }
-      };
-    };
+			// Remove google docs internal guid markers
+			content = content.replace(/<b[^>]+id="?docs-internal-[^>]*>/gi, '');
+			content = content.replace(/<br class="?Apple-interchange-newline"?>/gi, '');
 
-    var copy = function (editor) {
-      return function (evt) {
-        if (editor.selection.isCollapsed() === false) {
-          setClipboardData(evt, getData(editor), fallback(editor), noop);
-        }
-      };
-    };
+			retainStyleProperties = settings.paste_retain_style_properties;
+			if (retainStyleProperties) {
+				validStyles = Tools.makeMap(retainStyleProperties.split(/[, ]/));
+			}
 
-    var register = function (editor) {
-      editor.on('cut', cut(editor));
-      editor.on('copy', copy(editor));
-    };
+			/**
+			 * Converts fake bullet and numbered lists to real semantic OL/UL.
+			 *
+			 * @param {tinymce.html.Node} node Root node to convert children of.
+			 */
+			function convertFakeListsToProperLists(node) {
+				var currentListNode, prevListNode, lastLevel = 1;
 
-    return {
-      register: register
-    };
-  }
-);
+				function getText(node) {
+					var txt = '';
+
+					if (node.type === 3) {
+						return node.value;
+					}
+
+					if ((node = node.firstChild)) {
+						do {
+							txt += getText(node);
+						} while ((node = node.next));
+					}
+
+					return txt;
+				}
+
+				function trimListStart(node, regExp) {
+					if (node.type === 3) {
+						if (regExp.test(node.value)) {
+							node.value = node.value.replace(regExp, '');
+							return false;
+						}
+					}
+
+					if ((node = node.firstChild)) {
+						do {
+							if (!trimListStart(node, regExp)) {
+								return false;
+							}
+						} while ((node = node.next));
+					}
+
+					return true;
+				}
+
+				function removeIgnoredNodes(node) {
+					if (node._listIgnore) {
+						node.remove();
+						return;
+					}
+
+					if ((node = node.firstChild)) {
+						do {
+							removeIgnoredNodes(node);
+						} while ((node = node.next));
+					}
+				}
+
+				function convertParagraphToLi(paragraphNode, listName, start) {
+					var level = paragraphNode._listLevel || lastLevel;
+
+					// Handle list nesting
+					if (level != lastLevel) {
+						if (level < lastLevel) {
+							// Move to parent list
+							if (currentListNode) {
+								currentListNode = currentListNode.parent.parent;
+							}
+						} else {
+							// Create new list
+							prevListNode = currentListNode;
+							currentListNode = null;
+						}
+					}
+
+					if (!currentListNode || currentListNode.name != listName) {
+						prevListNode = prevListNode || currentListNode;
+						currentListNode = new Node(listName, 1);
+
+						if (start > 1) {
+							currentListNode.attr('start', '' + start);
+						}
+
+						paragraphNode.wrap(currentListNode);
+					} else {
+						currentListNode.append(paragraphNode);
+					}
+
+					paragraphNode.name = 'li';
+
+					// Append list to previous list if it exists
+					if (level > lastLevel && prevListNode) {
+						prevListNode.lastChild.append(currentListNode);
+					}
+
+					lastLevel = level;
+
+					// Remove start of list item "1. " or "&middot; " etc
+					removeIgnoredNodes(paragraphNode);
+					trimListStart(paragraphNode, /^\u00a0+/);
+					trimListStart(paragraphNode, /^\s*([\u2022\u00b7\u00a7\u25CF]|\w+\.)/);
+					trimListStart(paragraphNode, /^\u00a0+/);
+				}
+
+				// Build a list of all root level elements before we start
+				// altering them in the loop below.
+				var elements = [], child = node.firstChild;
+				while (typeof child !== 'undefined' && child !== null) {
+					elements.push(child);
+
+					child = child.walk();
+					if (child !== null) {
+						while (typeof child !== 'undefined' && child.parent !== node) {
+							child = child.walk();
+						}
+					}
+				}
+
+				for (var i = 0; i < elements.length; i++) {
+					node = elements[i];
+
+					if (node.name == 'p' && node.firstChild) {
+						// Find first text node in paragraph
+						var nodeText = getText(node);
+
+						// Detect unordered lists look for bullets
+						if (isBulletList(nodeText)) {
+							convertParagraphToLi(node, 'ul');
+							continue;
+						}
+
+						// Detect ordered lists 1., a. or ixv.
+						if (isNumericList(nodeText)) {
+							// Parse OL start number
+							var matches = /([0-9]+)\./.exec(nodeText);
+							var start = 1;
+							if (matches) {
+								start = parseInt(matches[1], 10);
+							}
+
+							convertParagraphToLi(node, 'ol', start);
+							continue;
+						}
+
+						// Convert paragraphs marked as lists but doesn't look like anything
+						if (node._listLevel) {
+							convertParagraphToLi(node, 'ul', 1);
+							continue;
+						}
+
+						currentListNode = null;
+					} else {
+						// If the root level element isn't a p tag which can be
+						// processed by convertParagraphToLi, it interrupts the
+						// lists, causing a new list to start instead of having
+						// elements from the next list inserted above this tag.
+						prevListNode = currentListNode;
+						currentListNode = null;
+					}
+				}
+			}
+
+			function filterStyles(node, styleValue) {
+				var outputStyles = {}, matches, styles = editor.dom.parseStyle(styleValue);
+
+				Tools.each(styles, function(value, name) {
+					// Convert various MS styles to W3C styles
+					switch (name) {
+						case 'mso-list':
+							// Parse out list indent level for lists
+							matches = /\w+ \w+([0-9]+)/i.exec(styleValue);
+							if (matches) {
+								node._listLevel = parseInt(matches[1], 10);
+							}
+
+							// Remove these nodes <span style="mso-list:Ignore">o</span>
+							// Since the span gets removed we mark the text node and the span
+							if (/Ignore/i.test(value) && node.firstChild) {
+								node._listIgnore = true;
+								node.firstChild._listIgnore = true;
+							}
+
+							break;
+
+						case "horiz-align":
+							name = "text-align";
+							break;
+
+						case "vert-align":
+							name = "vertical-align";
+							break;
+
+						case "font-color":
+						case "mso-foreground":
+							name = "color";
+							break;
+
+						case "mso-background":
+						case "mso-highlight":
+							name = "background";
+							break;
+
+						case "font-weight":
+						case "font-style":
+							if (value != "normal") {
+								outputStyles[name] = value;
+							}
+							return;
+
+						case "mso-element":
+							// Remove track changes code
+							if (/^(comment|comment-list)$/i.test(value)) {
+								node.remove();
+								return;
+							}
+
+							break;
+					}
+
+					if (name.indexOf('mso-comment') === 0) {
+						node.remove();
+						return;
+					}
+
+					// Never allow mso- prefixed names
+					if (name.indexOf('mso-') === 0) {
+						return;
+					}
+
+					// Output only valid styles
+					if (retainStyleProperties == "all" || (validStyles && validStyles[name])) {
+						outputStyles[name] = value;
+					}
+				});
+
+				// Convert bold style to "b" element
+				if (/(bold)/i.test(outputStyles["font-weight"])) {
+					delete outputStyles["font-weight"];
+					node.wrap(new Node("b", 1));
+				}
+
+				// Convert italic style to "i" element
+				if (/(italic)/i.test(outputStyles["font-style"])) {
+					delete outputStyles["font-style"];
+					node.wrap(new Node("i", 1));
+				}
+
+				// Serialize the styles and see if there is something left to keep
+				outputStyles = editor.dom.serializeStyle(outputStyles, node.name);
+				if (outputStyles) {
+					return outputStyles;
+				}
+
+				return null;
+			}
+
+			if (settings.paste_enable_default_filters === false) {
+				return;
+			}
+
+			// Detect is the contents is Word junk HTML
+			if (isWordContent(e.content)) {
+				e.wordContent = true; // Mark it for other processors
+
+				// Remove basic Word junk
+				content = Utils.filter(content, [
+					// Word comments like conditional comments etc
+					/<!--[\s\S]+?-->/gi,
+
+					// Remove comments, scripts (e.g., msoShowComment), XML tag, VML content,
+					// MS Office namespaced tags, and a few other tags
+					/<(!|script[^>]*>.*?<\/script(?=[>\s])|\/?(\?xml(:\w+)?|img|meta|link|style|\w:\w+)(?=[\s\/>]))[^>]*>/gi,
+
+					// Convert <s> into <strike> for line-though
+					[/<(\/?)s>/gi, "<$1strike>"],
+
+					// Replace nsbp entites to char since it's easier to handle
+					[/&nbsp;/gi, "\u00a0"],
+
+					// Convert <span style="mso-spacerun:yes">___</span> to string of alternating
+					// breaking/non-breaking spaces of same length
+					[/<span\s+style\s*=\s*"\s*mso-spacerun\s*:\s*yes\s*;?\s*"\s*>([\s\u00a0]*)<\/span>/gi,
+						function(str, spaces) {
+							return (spaces.length > 0) ?
+								spaces.replace(/./, " ").slice(Math.floor(spaces.length / 2)).split("").join("\u00a0") : "";
+						}
+					]
+				]);
+
+				var validElements = settings.paste_word_valid_elements;
+				if (!validElements) {
+					validElements = (
+						'-strong/b,-em/i,-u,-span,-p,-ol,-ul,-li,-h1,-h2,-h3,-h4,-h5,-h6,' +
+						'-p/div,-a[href|name],sub,sup,strike,br,del,table[width],tr,' +
+						'td[colspan|rowspan|width],th[colspan|rowspan|width],thead,tfoot,tbody'
+					);
+				}
+
+				// Setup strict schema
+				var schema = new Schema({
+					valid_elements: validElements,
+					valid_children: '-li[p]'
+				});
+
+				// Add style/class attribute to all element rules since the user might have removed them from
+				// paste_word_valid_elements config option and we need to check them for properties
+				Tools.each(schema.elements, function(rule) {
+					/*eslint dot-notation:0*/
+					if (!rule.attributes["class"]) {
+						rule.attributes["class"] = {};
+						rule.attributesOrder.push("class");
+					}
+
+					if (!rule.attributes.style) {
+						rule.attributes.style = {};
+						rule.attributesOrder.push("style");
+					}
+				});
+
+				// Parse HTML into DOM structure
+				var domParser = new DomParser({}, schema);
+
+				// Filter styles to remove "mso" specific styles and convert some of them
+				domParser.addAttributeFilter('style', function(nodes) {
+					var i = nodes.length, node;
+
+					while (i--) {
+						node = nodes[i];
+						node.attr('style', filterStyles(node, node.attr('style')));
+
+						// Remove pointess spans
+						if (node.name == 'span' && node.parent && !node.attributes.length) {
+							node.unwrap();
+						}
+					}
+				});
+
+				// Check the class attribute for comments or del items and remove those
+				domParser.addAttributeFilter('class', function(nodes) {
+					var i = nodes.length, node, className;
+
+					while (i--) {
+						node = nodes[i];
+
+						className = node.attr('class');
+						if (/^(MsoCommentReference|MsoCommentText|msoDel)$/i.test(className)) {
+							node.remove();
+						}
+
+						node.attr('class', null);
+					}
+				});
+
+				// Remove all del elements since we don't want the track changes code in the editor
+				domParser.addNodeFilter('del', function(nodes) {
+					var i = nodes.length;
+
+					while (i--) {
+						nodes[i].remove();
+					}
+				});
+
+				// Keep some of the links and anchors
+				domParser.addNodeFilter('a', function(nodes) {
+					var i = nodes.length, node, href, name;
+
+					while (i--) {
+						node = nodes[i];
+						href = node.attr('href');
+						name = node.attr('name');
+
+						if (href && href.indexOf('#_msocom_') != -1) {
+							node.remove();
+							continue;
+						}
+
+						if (href && href.indexOf('file://') === 0) {
+							href = href.split('#')[1];
+							if (href) {
+								href = '#' + href;
+							}
+						}
+
+						if (!href && !name) {
+							node.unwrap();
+						} else {
+							// Remove all named anchors that aren't specific to TOC, Footnotes or Endnotes
+							if (name && !/^_?(?:toc|edn|ftn)/i.test(name)) {
+								node.unwrap();
+								continue;
+							}
+
+							node.attr({
+								href: href,
+								name: name
+							});
+						}
+					}
+				});
+
+				// Parse into DOM structure
+				var rootNode = domParser.parse(content);
+
+				// Process DOM
+				if (settings.paste_convert_word_fake_lists !== false) {
+					convertFakeListsToProperLists(rootNode);
+				}
+
+				// Serialize DOM back to HTML
+				e.content = new Serializer({
+					validate: settings.validate
+				}, schema).serialize(rootNode);
+			}
+		});
+	}
+
+	WordFilter.isWordContent = isWordContent;
+
+	return WordFilter;
+});
+
+// Included from: js/tinymce/plugins/paste/classes/Quirks.js
+
 /**
  * Quirks.js
  *
  * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
@@ -2870,6 +2098,7 @@ define(
  * @class tinymce.pasteplugin.Quirks
  * @private
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 define(
   'tinymce.plugins.paste.core.Quirks',
@@ -3029,6 +2258,8 @@ define(
   }
 );
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 define("tinymce/pasteplugin/Quirks", [
 	"tinymce/Env",
 	"tinymce/util/Tools",
@@ -3044,12 +2275,15 @@ define("tinymce/pasteplugin/Quirks", [
 			});
 		}
 
+<<<<<<< HEAD
 		function addPostProcessFilter(filterFunc) {
 			editor.on('PastePostProcess', function(e) {
 				filterFunc(e.node);
 			});
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		/**
 		 * Removes BR elements after block elements. IE9 has a nasty bug where it puts a BR element after each
 		 * block element when pasting from word. This removes those elements.
@@ -3166,12 +2400,15 @@ define("tinymce/pasteplugin/Quirks", [
 			return content;
 		}
 
+<<<<<<< HEAD
 		function removeUnderlineAndFontInAnchor(root) {
 			editor.$('a', root).find('font,u').each(function(i, node) {
 				editor.dom.remove(node, true);
 			});
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		// Sniff browsers and apply fixes since we can't feature detect
 		if (Env.webkit) {
 			addPreProcessFilter(removeWebKitStyles);
@@ -3179,30 +2416,37 @@ define("tinymce/pasteplugin/Quirks", [
 
 		if (Env.ie) {
 			addPreProcessFilter(removeExplorerBrElementsAfterBlocks);
+<<<<<<< HEAD
 			addPostProcessFilter(removeUnderlineAndFontInAnchor);
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		}
 	};
 });
 
 // Included from: js/tinymce/plugins/paste/classes/Plugin.js
 
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 /**
  * Plugin.js
  *
  * Released under LGPL License.
- * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
+ * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
 
 /**
- * This class contains all core logic for the paste plugin.
+ * This class contains the tinymce plugin logic for the paste plugin.
  *
- * @class tinymce.paste.Plugin
+ * @class tinymce.pasteplugin.Plugin
  * @private
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 define(
   'tinymce.plugins.paste.Plugin',
@@ -3340,6 +2584,8 @@ define(
 dem('tinymce.plugins.paste.Plugin')();
 })();
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 define("tinymce/pasteplugin/Plugin", [
 	"tinymce/PluginManager",
 	"tinymce/pasteplugin/Clipboard",
@@ -3357,15 +2603,27 @@ define("tinymce/pasteplugin/Plugin", [
 
 		function togglePlainTextPaste() {
 			if (clipboard.pasteFormat == "text") {
+<<<<<<< HEAD
+=======
+				this.active(false);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				clipboard.pasteFormat = "html";
 				editor.fire('PastePlainTextToggle', {state: false});
 			} else {
 				clipboard.pasteFormat = "text";
+<<<<<<< HEAD
 				editor.fire('PastePlainTextToggle', {state: true});
 
 				if (!isUserInformedAboutPlainText()) {
 					var message = editor.translate('Paste is now in plain text mode. Contents will now ' +
 					'be pasted as plain text until you toggle this option off.');
+=======
+				this.active(true);
+
+				if (!isUserInformedAboutPlainText()) {
+					var message = editor.translate('Paste is now in plain text mode. Contents will now ' +
+						'be pasted as plain text until you toggle this option off.');
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 					editor.notificationManager.open({
 						text: message,
@@ -3373,12 +2631,17 @@ define("tinymce/pasteplugin/Plugin", [
 					});
 
 					userIsInformed = true;
+<<<<<<< HEAD
+=======
+					editor.fire('PastePlainTextToggle', {state: true});
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				}
 			}
 
 			editor.focus();
 		}
 
+<<<<<<< HEAD
 		function stateChange() {
 			var self = this;
 
@@ -3389,6 +2652,8 @@ define("tinymce/pasteplugin/Plugin", [
 			});
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		// draw back if power version is requested and registered
 		if (/(^|[ ,])powerpaste([, ]|$)/.test(settings.plugins) && PluginManager.get('powerpaste')) {
 			/*eslint no-console:0 */
@@ -3447,25 +2712,40 @@ define("tinymce/pasteplugin/Plugin", [
 			});
 		}
 
+<<<<<<< HEAD
 		editor.addCommand('mceTogglePlainTextPaste', togglePlainTextPaste);
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		editor.addButton('pastetext', {
 			icon: 'pastetext',
 			tooltip: 'Paste as text',
 			onclick: togglePlainTextPaste,
+<<<<<<< HEAD
 			onPostRender: stateChange
+=======
+			active: self.clipboard.pasteFormat == "text"
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		});
 
 		editor.addMenuItem('pastetext', {
 			text: 'Paste as text',
 			selectable: true,
 			active: clipboard.pasteFormat,
+<<<<<<< HEAD
 			onclick: togglePlainTextPaste,
 			onPostRender: stateChange
+=======
+			onclick: togglePlainTextPaste
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		});
 	});
 });
 
 expose(["tinymce/pasteplugin/Utils"]);
+<<<<<<< HEAD
 })(window);
 >>>>>>> origin/master
+=======
+})(this);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1

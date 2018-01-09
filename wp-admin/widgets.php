@@ -346,11 +346,9 @@ $errors = array(
 require_once( ABSPATH . 'wp-admin/admin-header.php' ); ?>
 
 <div class="wrap">
-<h1 class="wp-heading-inline"><?php
-echo esc_html( $title );
-?></h1>
-
+<h1>
 <?php
+<<<<<<< HEAD
 <<<<<<< HEAD
 if ( current_user_can( 'customize' ) ) {
 	printf(
@@ -366,6 +364,8 @@ if ( current_user_can( 'customize' ) ) {
 	);
 }
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	echo esc_html( $title );
 	if ( current_user_can( 'customize' ) ) {
 		printf(
@@ -373,17 +373,23 @@ if ( current_user_can( 'customize' ) ) {
 			esc_url( add_query_arg(
 				array(
 					array( 'autofocus' => array( 'panel' => 'widgets' ) ),
+<<<<<<< HEAD
 					'return' => urlencode( remove_query_arg( wp_removable_query_args(), wp_unslash( $_SERVER['REQUEST_URI'] ) ) )
+=======
+					'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) )
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				),
 				admin_url( 'customize.php' )
 			) ),
 			__( 'Manage with Live Preview' )
 		);
 	}
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 ?>
-
-<hr class="wp-header-end">
+</h1>
 
 <?php if ( isset($_GET['message']) && isset($messages[$_GET['message']]) ) { ?>
 <div id="message" class="updated notice is-dismissible"><p><?php echo $messages[$_GET['message']]; ?></p></div>
@@ -404,10 +410,7 @@ do_action( 'widgets_admin_page' ); ?>
 <div id="widgets-left">
 	<div id="available-widgets" class="widgets-holder-wrap">
 		<div class="sidebar-name">
-			<button type="button" class="handlediv hide-if-no-js" aria-expanded="true">
-				<span class="screen-reader-text"><?php _e( 'Available Widgets' ); ?></span>
-				<span class="toggle-indicator" aria-hidden="true"></span>
-			</button>
+			<div class="sidebar-name-arrow"><br /></div>
 			<h2><?php _e( 'Available Widgets' ); ?> <span id="removing-widget"><?php _ex( 'Deactivate', 'removing-widget' ); ?> <span></span></span></h2>
 		</div>
 		<div class="widget-holder">
