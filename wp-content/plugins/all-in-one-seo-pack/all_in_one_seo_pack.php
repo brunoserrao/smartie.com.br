@@ -1,6 +1,7 @@
 <?php
 /*
 Plugin Name: All In One SEO Pack
+<<<<<<< HEAD
 Plugin URI: https://semperplugins.com/all-in-one-seo-pack-pro-version/
 Description: Out-of-the-box SEO for your WordPress blog. Features like XML Sitemaps, SEO for custom post types, SEO for blogs or business sites, SEO for ecommerce sites, and much more. More than 30 million downloads since 2007.
 <<<<<<< HEAD
@@ -8,14 +9,19 @@ Version: 2.4.3.1
 =======
 Version: 2.3.13.2
 >>>>>>> origin/master
+=======
+Plugin URI: https://semperfiwebdesign.com
+Description: Out-of-the-box SEO for your WordPress blog. Features like XML Sitemaps, SEO for custom post types, SEO for blogs or business sites, SEO for ecommerce sites, and much more. Almost 30 million downloads since 2007.
+Version: 2.3.11.1
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 Author: Michael Torbert
-Author URI: https://semperplugins.com/all-in-one-seo-pack-pro-version/
+Author URI: https://michaeltorbert.com
 Text Domain: all-in-one-seo-pack
 Domain Path: /i18n/
 */
 
 /*
-Copyright (C) 2007-2017 Michael Torbert, https://semperfiwebdesign.com
+Copyright (C) 2007-2016 Michael Torbert, https://semperfiwebdesign.com
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,10 +42,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @package All-in-One-SEO-Pack
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @version 2.4.3.1
 =======
  * @version 2.3.13.2
 >>>>>>> origin/master
+=======
+ * @version 2.3.11.1
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
  */
 
 if ( ! defined( 'AIOSEOPPRO' ) ) {
@@ -47,10 +57,14 @@ if ( ! defined( 'AIOSEOPPRO' ) ) {
 }
 if ( ! defined( 'AIOSEOP_VERSION' ) ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	define( 'AIOSEOP_VERSION', '2.4.3.1' );
 =======
 	define( 'AIOSEOP_VERSION', '2.3.13.2' );
 >>>>>>> origin/master
+=======
+	define( 'AIOSEOP_VERSION', '2.3.11.1' );
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 }
 global $aioseop_plugin_name;
 $aioseop_plugin_name = 'All in One SEO Pack';
@@ -245,7 +259,7 @@ if ( AIOSEOPPRO ) {
 		$aioseop_update_checker->license_key = '';
 	}
 	$aioseop_update_checker->options_page = AIOSEOP_PLUGIN_DIRNAME . "/aioseop_class.php";
-	$aioseop_update_checker->renewal_page = 'https://semperplugins.com/all-in-one-seo-pack-pro-version/';
+	$aioseop_update_checker->renewal_page = 'https://semperplugins.com/all-in-one-seo-pack-pro-support-updates-renewal/';
 
 	$aioseop_update_checker->addQueryArgFilter( array( $aioseop_update_checker, 'add_secret_key' ) );
 }
@@ -289,16 +303,15 @@ if ( ! function_exists( 'aiosp_plugin_row_meta' ) ) {
 	 */
 	function aiosp_plugin_row_meta( $actions, $plugin_file ) {
 
+		if ( ! AIOSEOPPRO ) {
 
 			$action_links = array(
 
-				'settings' => array(
-					'label' => __( 'Feature Request/Bug Report', 'all-in-one-seo-pack' ),
-					'url'   => 'https://github.com/semperfiwebdesign/all-in-one-seo-pack/issues/new' )
-
 			);
 
-
+		} else {
+			$action_links = '';
+		}
 
 		return aiosp_action_links( $actions, $plugin_file, $action_links, 'after' );
 	}
@@ -316,9 +329,6 @@ if ( ! function_exists( 'aiosp_add_action_links' ) ) {
 	 * @return array
 	 */
 	function aiosp_add_action_links( $actions, $plugin_file ) {
-		if ( ! is_array( $actions ) ) {
-			return $actions;
-		}
 
 		$aioseop_plugin_dirname = AIOSEOP_PLUGIN_DIRNAME;
 		$action_links           = array();
@@ -385,12 +395,6 @@ if ( ! function_exists( 'aiosp_action_links' ) ) {
 }
 
 if ( ! function_exists( 'aioseop_init_class' ) ) {
-	/**
-	 * Inits All-in-One-Seo plugin class.
-	 *
-	 * @since ?? // When was this added?
-	 * @since 2.3.12.3 Loads third party compatibility class.
-	 */
 	function aioseop_init_class() {
 		global $aiosp;
 		load_plugin_textdomain( 'all-in-one-seo-pack', false, dirname( plugin_basename( __FILE__ ) ) . '/i18n/' );
@@ -404,13 +408,11 @@ if ( ! function_exists( 'aioseop_init_class' ) ) {
 		require_once( AIOSEOP_PLUGIN_DIR . 'admin/meta_import.php' );
 		require_once( AIOSEOP_PLUGIN_DIR . 'inc/translations.php' );
 		require_once( AIOSEOP_PLUGIN_DIR . 'public/opengraph.php' );
-		require_once( AIOSEOP_PLUGIN_DIR . 'inc/compatability/abstract/aiosep_compatible.php');
 		require_once( AIOSEOP_PLUGIN_DIR . 'inc/compatability/compat-init.php');
 		require_once( AIOSEOP_PLUGIN_DIR . 'public/front.php' );
 		require_once( AIOSEOP_PLUGIN_DIR . 'public/google-analytics.php' );
 		require_once( AIOSEOP_PLUGIN_DIR . 'admin/display/welcome.php' );
 		require_once( AIOSEOP_PLUGIN_DIR . 'admin/display/dashboard_widget.php' );
-		require_once( AIOSEOP_PLUGIN_DIR . 'admin/display/menu.php' );
 
 		$aioseop_welcome = new aioseop_welcome(); // TODO move this to updates file.
 
@@ -479,7 +481,6 @@ if ( is_admin() ) {
 	add_action( 'wp_ajax_aioseo_dismiss_yst_notice', 'aioseop_update_yst_detected_notice' );
 	add_action( 'wp_ajax_aioseo_dismiss_visibility_notice', 'aioseop_update_user_visibilitynotice' );
 	add_action( 'wp_ajax_aioseo_dismiss_woo_upgrade_notice', 'aioseop_woo_upgrade_notice_dismissed' );
-	add_action( 'wp_ajax_aioseo_dismiss_sitemap_max_url_notice', 'aioseop_sitemap_max_url_notice_dismissed' );
 	if ( AIOSEOPPRO ) {
 		add_action( 'wp_ajax_aioseop_ajax_update_oembed', 'aioseop_ajax_update_oembed' );
 	}

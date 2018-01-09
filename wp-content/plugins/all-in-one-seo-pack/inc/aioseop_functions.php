@@ -5,7 +5,6 @@
  * We'll eventually move these to a better place, and figure out ones not being used anymore.
  *
  * @package All-in-One-SEO-Pack
- * @version 2.3.13
  */
 
 if ( ! function_exists( 'aioseop_load_modules' ) ) {
@@ -184,7 +183,7 @@ if ( ! function_exists( 'aioseop_mrt_pcolumns' ) ) {
 if ( ! function_exists( 'aioseop_admin_head' ) ) {
 
 	function aioseop_admin_head() {
-		wp_enqueue_script( 'aioseop_welcome_js', AIOSEOP_PLUGIN_URL . 'js/quickedit_functions.js', array( 'jquery' ), AIOSEOP_VERSION);
+		echo '<script type="text/javascript" src="' . AIOSEOP_PLUGIN_URL . 'js/quickedit_functions.js" ></script>';
 		?>
 		<style>
 			.aioseop_edit_button {
@@ -296,7 +295,7 @@ if ( ! function_exists( 'aioseop_output_notice' ) ) {
 			$class .= ' id="' . esc_attr( $id ) . '"';
 		}
 		$dismiss = ' ';
-		echo "<div{$class}>" . wp_kses_post( $message ) . '</div>';
+		echo "<div{$class}>" . wp_kses_post( $message ) . '<br class=clear /></div>';
 
 		return true;
 	}
@@ -957,6 +956,7 @@ function aioseop_woo_upgrade_notice_dismissed() {
 
 	update_user_meta( get_current_user_id(), 'aioseop_woo_upgrade_notice_dismissed', true );
 }
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 function aioseop_sitemap_max_url_notice_dismissed() {
@@ -1005,3 +1005,5 @@ if ( ! function_exists('aiosp_include_images') ) {
 }
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1

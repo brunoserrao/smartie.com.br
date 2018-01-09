@@ -69,8 +69,7 @@ add_action( 'admin_menu', 'aiosp_seometa_settings_init' );
 /**
  * Intercept POST data from the form submission.
  *
- * Use the intercepted data to convert values in the postmeta table from one platform to another and display feedback to the user about compatible conversion
- * elements and the conversion process.
+ * Use the intercepted data to convert values in the postmeta table from one platform to another.
  */
 function aiosp_seometa_action() {
 
@@ -130,6 +129,11 @@ function aiosp_seometa_action() {
 	printf( '<p><b>%d</b> Records were ignored</p>', isset( $result->ignored ) ? $result->ignored : 0 );
 
 }
+
+/**
+ * This function displays feedback to the user about compatible conversion
+ * elements and the conversion process via the admin_alert hook.
+ */
 
 /**
  * The admin page output
@@ -482,7 +486,6 @@ function aiosp_seometa_import() {
 			'Custom Doctitle'  => '_aioseop_title',
 			'META Description' => '_aioseop_description',
 			'META Keywords'    => '_aioseop_keywords',
-			'Canonical URI'    => '_aioseop_custom_link',
 		),
 		'Greg\'s High Performance SEO' => array(
 			'Custom Doctitle'  => '_ghpseo_secondary_title',
@@ -504,9 +507,6 @@ function aiosp_seometa_import() {
 			'Canonical URI'    => '_wds_canonical',
 			'Redirect URI'     => '_wds_redirect',
 		),
-		'Jetpack'                => array(
-			'META Description' => 'advanced_seo_description',
-		),
 		'Meta SEO Pack'                => array(
 			'META Description' => '_msp_description',
 			'META Keywords'    => '_msp_keywords',
@@ -515,10 +515,6 @@ function aiosp_seometa_import() {
 			'Custom Doctitle'  => 'title',
 			'META Description' => 'description',
 			'META Keywords'    => 'keywords',
-		),
-		'SEOpressor'                 => array(
-			'Custom Doctitle'  => '_seopressor_meta_title',
-			'META Description' => '_seopressor_meta_description',
 		),
 		'SEO Title Tag'                => array(
 			'Custom Doctitle'  => 'title_tag',

@@ -242,20 +242,10 @@ jQuery( document ).ready(function() {
 			aioseop_do_condshow( aiosp_data.condshow );
 		}
 	}
-
-	/**
-     * Turns on image checker on custom url change.
-     * @since 2.3.16
-     */
-	jQuery( '.aioseop_upload_image_label' ).on( 'change', function() {
-		this.checker = jQuery( this ).parent().find( '.aioseop_upload_image_checker' );
-		if ( this.checker.length > 0 ) {
-			this.checker.val( 1 );
-		}
-	} );
 });
 
 /**
+<<<<<<< HEAD
  * @summary Custom jQuery plugin that enables image uploader in wordpress.
  * 
  * @since 2.3.13
@@ -354,6 +344,28 @@ jQuery(document).ready(function($){
 >>>>>>> origin/master
     });
 
+=======
+ * @since 1.0.0
+ * @return boolean.
+ */
+jQuery( document ).ready(function() {
+	var image_field;
+	jQuery( '.aioseop_upload_image_button' ).click(function() {
+		window.send_to_editor = aioseopNewSendToEditor;
+		image_field = jQuery( this ).next();
+		formfield = image_field.attr( 'name' );
+		tb_show( '', 'media-upload.php?type=image&amp;TB_iframe=true' );
+		return false;
+	});
+	aioseopStoreSendToEditor 	= window.send_to_editor;
+	aioseopNewSendToEditor		= function(html) {
+		imgurl = jQuery( 'img',html ).attr( 'src' );
+		if ( typeof( imgurl ) !== undefined )
+			image_field.val( imgurl );
+		tb_remove();
+		window.send_to_editor = aioseopStoreSendToEditor;
+	};
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 });
 
 /**
