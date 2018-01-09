@@ -138,7 +138,7 @@ class MC4WP_BuddyPress_Integration extends MC4WP_User_Integration {
 			return false;
 		}
 
-		$subscribe = true;
+		$subscribe = false;
 
         /**
          * @ignore Documented elsewhere, see MC4WP_BuddyPress_Integration::subscribe_from_form.

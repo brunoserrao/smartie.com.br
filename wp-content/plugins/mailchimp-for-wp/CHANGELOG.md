@@ -2,6 +2,7 @@ Changelog
 =========
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #### 4.1.12 - December 11, 2017
 
 **Fixes**
@@ -170,6 +171,8 @@ Changelog
 - Show all address-type fields as required when form contains 1 or more fields of the same address group.
 
 
+=======
+>>>>>>> parent of 142d053... MailChimp for WordPress
 #### 4.0.12 - January 16, 2017
 
 **Fixes**
@@ -228,7 +231,7 @@ Changelog
 
 **Additions**
 
-- Add `data-hide-if` attribute logic to forms. See [conditionally hide form fields](https://kb.mc4wp.com/conditional-fields-elements/). Thanks to [Kurt Zenisek](http://kurtzenisek.com/).
+- Add `data-hide-if` attribute logic to forms. See [conditionally hide form fields](https://mc4wp.com/kb/conditional-fields-elements/). Thanks to [Kurt Zenisek](http://kurtzenisek.com/).
 - Add hooks for delayed BuddyPress sign-up. Thanks to [Christian Wach](https://profiles.wordpress.org/needle).
 
 
@@ -666,7 +669,7 @@ Added `mc4wp_use_sslverify` filter to disable or explicitly enable SSL certifica
 
 **Improvements**
 
-- Add form-specific classes to preview form element. This allows the [Styles Builder](https://mc4wp.com/premium-features/) to work with the Form Preview.
+- Add form-specific classes to preview form element. This allows the [Styles Builder](https://mc4wp.com/features/) to work with the Form Preview.
 - Form events are now triggered _after_ the page has finished loading, so all scripts are loaded & ready to use.
 - Reset background-color in Form Themes stylesheets.
 

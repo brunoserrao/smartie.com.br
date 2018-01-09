@@ -220,7 +220,7 @@ abstract class MC4WP_Integration {
 	 * Outputs a checkbox
 	 */
 	public function output_checkbox() {
-        echo $this->get_checkbox_html();
+		echo $this->get_checkbox_html();
 	}
 
 	/**
@@ -229,21 +229,6 @@ abstract class MC4WP_Integration {
 	 * @return string
 	 */
 	public function get_checkbox_html() {
-
-        $show_checkbox = empty( $this->options['implicit'] );
-        $integration_slug = $this->slug;
-
-        /**
-         * Filters whether to show the sign-up checkbox for this integration.
-         *
-         * @param bool $show_checkbox
-         * @param string $integration_slug
-         */
-        $show_checkbox = (bool) apply_filters( 'mc4wp_integration_show_checkbox', $show_checkbox, $integration_slug );
-
-        if( ! $show_checkbox ) {
-            return '';
-        }
 
 		ob_start();
 
@@ -354,6 +339,7 @@ abstract class MC4WP_Integration {
 		$slug = $this->slug;
 		$mailchimp = new MC4WP_MailChimp();
 		$log = $this->get_log();
+		$request= $this->get_request();
 		$list_ids = $this->get_lists();
 
 		/** @var MC4WP_MailChimp_Subscriber $subscriber */
@@ -411,7 +397,7 @@ abstract class MC4WP_Integration {
 		foreach( $map as $list_id => $subscriber ) {
 			$subscriber->status = $this->options['double_optin'] ? 'pending' : 'subscribed';
 			$subscriber->email_type = $email_type;
-			$subscriber->ip_signup = mc4wp_get_request_ip_address();
+			$subscriber->ip_signup = $request->get_client_ip();
 
 			/** @ignore (documented elsewhere) */
 			$subscriber = apply_filters( 'mc4wp_subscriber_data', $subscriber );
@@ -523,7 +509,8 @@ abstract class MC4WP_Integration {
 	 * @return array
 	 */
 	public function get_data() {
-		$data = array_merge( $_GET, $_POST );
+		$request = mc4wp('request');
+		$data = $request->params->all();
 		return $data;
 	}
 
@@ -540,4 +527,12 @@ abstract class MC4WP_Integration {
 	protected function get_api() {
 		return mc4wp('api');
 	}
+
+	/**
+	 * @return MC4WP_Request
+	 */
+	protected function get_request() {
+		return mc4wp('request');
+	}
+
 }

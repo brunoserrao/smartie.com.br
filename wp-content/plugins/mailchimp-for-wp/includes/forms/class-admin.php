@@ -25,6 +25,8 @@ class MC4WP_Forms_Admin {
 	public function __construct( MC4WP_Admin_Messages $messages, MC4WP_MailChimp $mailchimp ) {
 		$this->messages = $messages;
 		$this->mailchimp = $mailchimp;
+
+		require dirname( __FILE__ ) . '/admin-functions.php';
 	}
 
 	/**
@@ -37,8 +39,10 @@ class MC4WP_Forms_Admin {
 		add_action( 'mc4wp_admin_edit_form', array( $this, 'process_save_form' ) );
 		add_action( 'mc4wp_admin_add_form', array( $this, 'process_add_form' ) );
 		add_filter( 'mc4wp_admin_menu_items', array( $this, 'add_menu_item' ), 5 );
+
 		add_action( 'mc4wp_admin_show_forms_page-edit-form', array( $this, 'show_edit_page' ) );
 		add_action( 'mc4wp_admin_show_forms_page-add-form', array( $this, 'show_add_page' ) );
+
 		add_action( 'mc4wp_admin_enqueue_assets', array( $this, 'enqueue_assets' ), 10, 2 );
 	}
 
@@ -105,7 +109,7 @@ class MC4WP_Forms_Admin {
 
 		$items['forms'] = array(
 			'title' => __( 'Forms', 'mailchimp-for-wp' ),
-			'text' => __( 'Form', 'mailchimp-for-wp' ),
+			'text' => __( 'Forms', 'mailchimp-for-wp' ),
 			'slug' => 'forms',
 			'callback' => array( $this, 'show_forms_page' ),
 			'load_callback' => array( $this, 'redirect_to_form_action' ),
@@ -224,9 +228,6 @@ class MC4WP_Forms_Admin {
 		// strip <form> tags from content
 		$data['content'] =  preg_replace( '/<\/?form(.|\s)*?>/i', '', $data['content'] );
 
-		// replace lowercased name="name" to prevent 404
-		$data['content'] = str_ireplace( ' name=\"name\"', ' name=\"NAME\"', $data['content'] );
-
 		// sanitize text fields
 		$data['settings']['redirect'] = sanitize_text_field( $data['settings']['redirect'] );
 
@@ -272,7 +273,7 @@ class MC4WP_Forms_Admin {
 
 		$previewer = new MC4WP_Form_Previewer( $form_id );
 
-		$this->messages->flash( __( "<strong>Success!</strong> Form successfully saved.", 'mailchimp-for-wp' ) . sprintf( ' <a href="%s">', esc_attr( $previewer->get_preview_url() ) ) . __( 'Preview form', 'mailchimp-for-wp' ) . '</a>' );
+		$this->messages->flash( __( "<strong>Success!</strong> Form successfully saved.", 'mailchimp-for-wp' ) . sprintf( ' <a href="%s">', $previewer->get_preview_url() ) . __( 'Preview form', 'mailchimp-for-wp' ) . '</a>' );
 	}
 
     /**

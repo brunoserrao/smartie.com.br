@@ -4,15 +4,19 @@ Donate link: https://mc4wp.com/#utm_source=wp-plugin-repo&utm_medium=mailchimp-f
 Tags: mailchimp, mc4wp, email, marketing, newsletter, subscribe, widget, mc4wp, contact form 7, woocommerce, buddypress, ibericode, mailchimp forms, mailchimp integrations
 Requires at least: 4.1
 <<<<<<< HEAD
+<<<<<<< HEAD
 Tested up to: 4.9.1
 Stable tag: 4.1.12
 =======
 Tested up to: 4.7.5
 Stable tag: 4.1.3
 >>>>>>> origin/master
+=======
+Tested up to: 4.7
+Stable tag: 4.0.12
+>>>>>>> parent of 142d053... MailChimp for WordPress
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Requires PHP: 5.2.4
 
 MailChimp for WordPress, the absolute best. Subscribe your WordPress site visitors to your MailChimp lists, with ease.
 
@@ -38,16 +42,21 @@ MailChimp for WordPress helps you add more subscribers to your MailChimp lists u
 	- Contact Form 7
 	- WooCommerce
 <<<<<<< HEAD
+<<<<<<< HEAD
 	- Gravity Forms
 	- Ninja Forms 3
 	- WPForms
 =======
 	- Ninja Forms 3
 >>>>>>> origin/master
+=======
+	- Ninja Forms
+>>>>>>> parent of 142d053... MailChimp for WordPress
 	- BuddyPress
     - MemberPress
 	- Events Manager
 	- Easy Digital Downloads
+
 
 - A multitude of available add-on plugins:
 	- [MailChimp for WordPress Premium](https://mc4wp.com/)
@@ -189,22 +198,19 @@ The plugin is translated using Transifex. If you want to help out, please head o
 
 MailChimp for WordPress is being developed on GitHub. If you want to collaborate, please look at [ibericode/mailchimp-for-wordpress](https://github.com/ibericode/mailchimp-for-wordpress).
 
-#### Customizing the plugin
-
-MailChimp for WordPress comes with many filter & action hooks which allow you to modify the default plugin behavior. We're also maintaining a [collection of common code snippets for MailChimp for WordPress](https://github.com/ibericode/mc4wp-snippets).
-
 == Screenshots ==
 
-1. Create beautiful sign-up forms that blend in with your theme.
-2. Integrate with any other plugin out there.
-3. Add a highly converting top bar form to your site.
-4. Style your form with our Styles Builder (premium feature).
-5. Integrate your WooCommerce store with MailChimp (premium feature).
-6. Dive into detailed sign-up statistics (premium feature).
+1. A static sign-up form in the sidebar of the Twenty Fifteen theme.
+2. Highly effective 1-click subscribe option in your comment, registration or other forms.
+3. Use your own fields or use our Field Builder.
+4. Integrations for many popular plugins.
+5. Don't know CSS? No worries, our Styles Builder will do the heavy lifting for you! **(Pro Feature)**
+6. Detailed statistics on which methods are generating the most subscribers. **(Pro Feature)**
 
 == Changelog == 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #### 4.1.12 - December 11, 2017
 
@@ -374,6 +380,8 @@ MailChimp for WordPress comes with many filter & action hooks which allow you to
 - Show all address-type fields as required when form contains 1 or more fields of the same address group.
 
 
+=======
+>>>>>>> parent of 142d053... MailChimp for WordPress
 #### 4.0.12 - January 16, 2017
 
 **Fixes**
@@ -432,7 +440,7 @@ MailChimp for WordPress comes with many filter & action hooks which allow you to
 
 **Additions**
 
-- Add `data-hide-if` attribute logic to forms. See [conditionally hide form fields](https://kb.mc4wp.com/conditional-fields-elements/). Thanks to [Kurt Zenisek](http://kurtzenisek.com/).
+- Add `data-hide-if` attribute logic to forms. See [conditionally hide form fields](https://mc4wp.com/kb/conditional-fields-elements/). Thanks to [Kurt Zenisek](http://kurtzenisek.com/).
 - Add hooks for delayed BuddyPress sign-up. Thanks to [Christian Wach](https://profiles.wordpress.org/needle).
 
 
@@ -870,7 +878,7 @@ Added `mc4wp_use_sslverify` filter to disable or explicitly enable SSL certifica
 
 **Improvements**
 
-- Add form-specific classes to preview form element. This allows the [Styles Builder](https://mc4wp.com/premium-features/) to work with the Form Preview.
+- Add form-specific classes to preview form element. This allows the [Styles Builder](https://mc4wp.com/features/) to work with the Form Preview.
 - Form events are now triggered _after_ the page has finished loading, so all scripts are loaded & ready to use.
 - Reset background-color in Form Themes stylesheets.
 
@@ -1300,7 +1308,6 @@ Minor improvements and additions for compatibility with the [MailChimp Sync plug
 - Added sign-up checkbox integration for [WooCommerce](https://wordpress.org/plugins/woocommerce/) checkout.
 - Added sign-up checkbox integration for [Easy Digital Downloads](https://wordpress.org/plugins/easy-digital-downloads/) checkout.
 - The entered email will now be appended to the URL when redirecting to another page
-
 == Upgrade Notice ==
 
 = 3.0.3 =

@@ -14,6 +14,11 @@ class MC4WP_Integration_Manager {
 	protected $integrations = array();
 
 	/**
+	 * @var array
+	 */
+	protected $options = array();
+
+	/**
 	 * @var MC4WP_Integration_Tags
 	 */
 	protected $tags;
@@ -22,6 +27,7 @@ class MC4WP_Integration_Manager {
 	* Constructor
 	*/
 	public function __construct() {
+		$this->options = $this->get_options();
 		$this->tags = new MC4WP_Integration_Tags();
 	}
 
@@ -142,11 +148,9 @@ class MC4WP_Integration_Manager {
 	}
 
 	/**
-     * Gets all integration options in a keyed array
-     *
 	 * @return array
 	 */
-	private function load_options() {
+	public function get_options() {
 		$options = (array) get_option( 'mc4wp_integrations', array() );
 
 		/**
@@ -162,18 +166,13 @@ class MC4WP_Integration_Manager {
 	}
 
 	/**
-	 * Gets the raw options for an integration
+	 * Get the raw options for an integration
 	 *
 	 * @param $slug
 	 * @return array
 	 */
 	public function get_integration_options( $slug ) {
-	    static $options;
-	    if( $options === null ) {
-	        $options = $this->load_options();
-        }
-
-		return isset( $options[ $slug ] ) ? $options[ $slug ] : array();
+		return isset( $this->options[ $slug ] ) ? $this->options[ $slug ] : array();
 	}
 
 }

@@ -20,10 +20,13 @@ class MC4WP_Form_Listener {
 
 	/**
 	 * Listen for submitted forms
+	 *
+	 * @param MC4WP_Request $request
 	 * @return bool
 	 */
-	public function listen() {
+	public function listen( MC4WP_Request $request ) {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		$request = array_merge( $_GET, $_POST );
 		if( empty( $request['_mc4wp_form_id'] ) ) {
@@ -31,22 +34,28 @@ class MC4WP_Form_Listener {
 		$form_id = $request->post->get( '_mc4wp_form_id' );
 		if( empty( $form_id ) ) {
 >>>>>>> origin/master
+=======
+		if( ! $request->post->get( '_mc4wp_form_id' ) ) {
+>>>>>>> parent of 142d053... MailChimp for WordPress
 			return false;
 		}
 
-		// get form instance
 		try {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			$form_id = (int) $request['_mc4wp_form_id'];
 =======
 >>>>>>> origin/master
 			$form = mc4wp_get_form( $form_id );
+=======
+			$form = mc4wp_get_form( $request->post->get( '_mc4wp_form_id' ) );
+>>>>>>> parent of 142d053... MailChimp for WordPress
 		} catch( Exception $e ) {
 			return false;
 		}
 
 		// where the magic happens
-		$form->handle_request( $_POST );
+		$form->handle_request( $request );
 		$form->validate();
 
 		// store submitted form
@@ -54,18 +63,16 @@ class MC4WP_Form_Listener {
 
 		// did form have errors?
 		if( ! $form->has_errors() ) {
+
 			// form was valid, do something
 			$method = 'process_' . $form->get_action() . '_form';
-			call_user_func( array( $this, $method ), $form );
+			call_user_func( array( $this, $method ), $form, $request );
 		} else {
-			foreach( $form->errors as $error_code ) {
-				$form->add_notice( $form->get_message( $error_code ), 'error' );
-			}
-
 			$this->get_log()->info( sprintf( "Form %d > Submitted with errors: %s", $form->ID, join( ', ', $form->errors ) ) );
 		}
 
 		$this->respond( $form );
+
 		return true;
 	}
 
@@ -73,13 +80,14 @@ class MC4WP_Form_Listener {
 	 * Process a subscribe form.
 	 *
 	 * @param MC4WP_Form $form
+	 * @param MC4WP_Request $request
 	 */
-	public function process_subscribe_form( MC4WP_Form $form ) {
+	public function process_subscribe_form( MC4WP_Form $form, MC4WP_Request $request ) {
 		$result = false;
 		$mailchimp = new MC4WP_MailChimp();
 		$email_type = $form->get_email_type();
 		$data = $form->get_data();
-		$ip_address = mc4wp_get_request_ip_address();
+		$client_ip = $request->get_client_ip();
 
 		/** @var MC4WP_MailChimp_Subscriber $subscriber */
 		$subscriber = null;
@@ -89,7 +97,7 @@ class MC4WP_Form_Listener {
 		 * @deprecated 4.0
 		 */
 		$data = apply_filters( 'mc4wp_merge_vars', $data );
-
+		
 		/**
 		 * @ignore
 		 * @deprecated 4.0
@@ -104,9 +112,10 @@ class MC4WP_Form_Listener {
 
 		// loop through lists
 		foreach( $map as $list_id => $subscriber ) {
+
 			$subscriber->status = $form->settings['double_optin'] ? 'pending' : 'subscribed';
 			$subscriber->email_type = $email_type;
-			$subscriber->ip_signup = $ip_address;
+			$subscriber->ip_signup = $client_ip;
 
 			/**
 			 * Filters subscriber data before it is sent to MailChimp. Fires for both form & integration requests.
@@ -131,23 +140,23 @@ class MC4WP_Form_Listener {
 		// do stuff on failure
 		if( ! is_object( $result ) || empty( $result->id ) ) {
 
-			$error_code = $mailchimp->get_error_code();
-			$error_message = $mailchimp->get_error_message();
-
+            $error_code = $mailchimp->get_error_code();
+            $error_message = $mailchimp->get_error_message();
+			
 			if( $mailchimp->get_error_code() == 214 ) {
-				$form->add_notice( $form->messages['already_subscribed'], 'notice' );
+				$form->add_error('already_subscribed');
 				$log->warning( sprintf( "Form %d > %s is already subscribed to the selected list(s)", $form->ID, $data['EMAIL'] ) );
 			} else {
-				$form->add_notice( $form->messages['error'], 'error' );
+				$form->add_error('error');
 				$log->error( sprintf( 'Form %d > MailChimp API error: %s %s', $form->ID, $error_code, $error_message ) );
 
-				/**
-				 * Fire action hook so API errors can be hooked into.
-				 *
-				 * @param MC4WP_Form $form
-				 * @param string $error_message
-				 */
-				do_action( 'mc4wp_form_api_error', $form, $error_message );
+                /**
+                 * Fire action hook so API errors can be hooked into.
+                 *
+                 * @param MC4WP_Form $form
+                 * @param string $error_message
+                 */
+                do_action( 'mc4wp_form_api_error', $form, $error_message );
 			}
 
 			// bail
@@ -156,28 +165,15 @@ class MC4WP_Form_Listener {
 
 		// Success! Did we update or newly subscribe?
 		if( $result->status === 'subscribed' && $result->was_already_on_list ) {
-			$form->last_event = 'updated_subscriber';
-			$form->add_notice( $form->messages['updated'], 'success' );
-			$log->info( sprintf( "Form %d > Successfully updated %s", $form->ID, $data['EMAIL'] ) );
-
-			/**
-			 * Fires right after a form was used to update an existing subscriber.
-			 *
-			 * @since 3.0
-			 *
-			 * @param MC4WP_Form $form Instance of the submitted form
-			 * @param string $email
-			 * @param array $data
-			 */
-			do_action( 'mc4wp_form_updated_subscriber', $form, $subscriber->email_address, $data );
+			$form->add_message('updated');
 		} else {
-			$form->last_event = 'subscribed';
-			$form->add_notice( $form->messages['subscribed'], 'success' );
-			$log->info( sprintf( "Form %d > Successfully subscribed %s", $form->ID, $data['EMAIL'] ) );
+			$form->add_message('subscribed');
 		}
 
+		$log->info( sprintf( "Form %d > Successfully subscribed %s", $form->ID, $data['EMAIL'] ) );
+
 		/**
-		 * Fires right after a form was used to add a new subscriber (or update an existing one).
+		 * Fires right after a form was used to subscribe.
 		 *
 		 * @since 3.0
 		 *
@@ -191,31 +187,32 @@ class MC4WP_Form_Listener {
 
 	/**
 	 * @param MC4WP_Form $form
+	 * @param MC4WP_Request $request
 	 */
-	public function process_unsubscribe_form( MC4WP_Form $form ) {
+	public function process_unsubscribe_form( MC4WP_Form $form, MC4WP_Request $request = null ) {
 
 		$mailchimp = new MC4WP_MailChimp();
 		$log = $this->get_log();
 		$result = null;
-		$data = $form->get_data();
+        $data = $form->get_data();
 
-		// unsubscribe from each list
+        // unsubscribe from each list
 		foreach( $form->get_lists() as $list_id ) {
+            // TODO: Check if on list before proceeding with unsubscribe call?
 			$result = $mailchimp->list_unsubscribe( $list_id, $data['EMAIL'] );
 		}
 
 		if( ! $result ) {
-			$form->add_notice( $form->messages['error'], 'error' );
-			$log->error( sprintf( 'Form %d > MailChimp API error: %s', $form->ID, $mailchimp->get_error_message() ) );
+            $form->add_error( 'error' );
+            $log->error( sprintf( 'Form %d > MailChimp API error: %s', $form->ID, $mailchimp->get_error_message() ) );
 
 			// bail
 			return;
 		}
 
 		// Success! Unsubscribed.
-		$form->last_event = 'unsubscribed';
-		$form->add_notice( $form->messages['unsubscribed'], 'notice' );
-		$log->info( sprintf( "Form %d > Successfully unsubscribed %s", $form->ID, $data['EMAIL'] ) );
+        $form->add_message('unsubscribed');
+        $log->info( sprintf( "Form %d > Successfully unsubscribed %s", $form->ID, $data['EMAIL'] ) );
 
 
 		/**
@@ -224,9 +221,8 @@ class MC4WP_Form_Listener {
 		 * @since 3.0
 		 *
 		 * @param MC4WP_Form $form Instance of the submitted form.
-		 * @param string $email
 		 */
-		do_action( 'mc4wp_form_unsubscribed', $form, $data['EMAIL'] );
+		do_action( 'mc4wp_form_unsubscribed', $form );
 	}
 
 	/**
