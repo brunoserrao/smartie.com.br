@@ -94,10 +94,14 @@ var tagBox, array_unique_noempty;
 						'<span class="remove-tag-icon" aria-hidden="true"></span>' +
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + listItem.html() + '</span>' +
 =======
 						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + span.html() + '</span>' +
 >>>>>>> origin/master
+=======
+						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + val + '</span>' +
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + val + '</span>' +
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

@@ -21,6 +21,7 @@
  */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 (function (tinymce) {
   var reported;
 
@@ -321,6 +322,8 @@
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 (function(tinymce) {
 	var reported;
 
@@ -408,6 +411,7 @@
 
 	function patchEditor(editor) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		function translate(str) {
 			var prefix = editor.settings.language || "en";
@@ -417,6 +421,8 @@
 			return prefixedStr !== translatedStr ? translatedStr : tinymce.i18n.translate(str);
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		function patchEditorEvents(oldEventNames, argsMap) {
@@ -524,7 +530,11 @@
 		var originalAddButton = editor.addButton;
 		editor.addButton = function(name, settings) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			var originalOnPostRender;
+=======
+			var originalOnPostRender, string, translated;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			var originalOnPostRender, string, translated;
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -534,7 +544,11 @@
 
 				if (originalOnPostRender) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 					return originalOnPostRender.apply(this, arguments);
+=======
+					return originalOnPostRender.call(this);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 					return originalOnPostRender.call(this);
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -554,8 +568,11 @@
 
 			if (settings.title) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				settings.title = translate(settings.title);
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				// WP
 				string = (editor.settings.language || "en") + "." + settings.title;
 				translated = tinymce.i18n.translate(string);
@@ -564,6 +581,9 @@
 					settings.title = translated;
 				}
 				// WP end
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			}
 
@@ -628,7 +648,10 @@
 		}
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 })(tinymce);

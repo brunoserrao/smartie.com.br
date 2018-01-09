@@ -350,6 +350,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' ); ?>
 <?php
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 if ( current_user_can( 'customize' ) ) {
 	printf(
 		' <a class="page-title-action hide-if-no-customize" href="%1$s">%2$s</a>',
@@ -366,6 +367,8 @@ if ( current_user_can( 'customize' ) ) {
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	echo esc_html( $title );
 	if ( current_user_can( 'customize' ) ) {
 		printf(
@@ -374,7 +377,11 @@ if ( current_user_can( 'customize' ) ) {
 				array(
 					array( 'autofocus' => array( 'panel' => 'widgets' ) ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 					'return' => urlencode( remove_query_arg( wp_removable_query_args(), wp_unslash( $_SERVER['REQUEST_URI'] ) ) )
+=======
+					'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) )
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 					'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) )
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -385,7 +392,10 @@ if ( current_user_can( 'customize' ) ) {
 		);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 ?>

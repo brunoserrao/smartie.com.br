@@ -80,6 +80,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 define(
   'tinymce.core.html.Schema',
   [
@@ -98,12 +99,17 @@ define(
 			privateModules = exports.privateModules || {};
 >>>>>>> origin/master
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			target[fragments[fragments.length - 1]] = modules[id];
 		}
 		
 		// Expose private modules for unit tests
 		if (exports.AMDLC_TESTS) {
 			privateModules = exports.privateModules || {};
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			for (id in modules) {
@@ -385,6 +391,7 @@ define("tinymce/pasteplugin/SmartPaste", [
  * @class tinymce.pasteplugin.Clipboard
  * @private
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 define(
@@ -886,6 +893,8 @@ define(
   }
 );
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 define("tinymce/pasteplugin/Clipboard", [
@@ -1463,8 +1472,12 @@ define("tinymce/pasteplugin/Clipboard", [
 
 			function isPlainTextFileUrl(content) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				var plainTextContent = content['text/plain'];
 				return plainTextContent ? plainTextContent.indexOf('file://') === 0 : false;
+=======
+				return content['text/plain'].indexOf('file://') === 0;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				return content['text/plain'].indexOf('file://') === 0;
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1573,7 +1586,10 @@ define("tinymce/pasteplugin/Clipboard", [
 
 // Included from: js/tinymce/plugins/paste/classes/WordFilter.js
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
@@ -2100,6 +2116,7 @@ define("tinymce/pasteplugin/WordFilter", [
  */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 define(
   'tinymce.plugins.paste.core.Quirks',
   [
@@ -2260,6 +2277,8 @@ define(
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 define("tinymce/pasteplugin/Quirks", [
 	"tinymce/Env",
 	"tinymce/util/Tools",
@@ -2276,12 +2295,15 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		function addPostProcessFilter(filterFunc) {
 			editor.on('PastePostProcess', function(e) {
 				filterFunc(e.node);
 			});
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		/**
@@ -2401,12 +2423,15 @@ define("tinymce/pasteplugin/Quirks", [
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		function removeUnderlineAndFontInAnchor(root) {
 			editor.$('a', root).find('font,u').each(function(i, node) {
 				editor.dom.remove(node, true);
 			});
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		// Sniff browsers and apply fixes since we can't feature detect
@@ -2417,7 +2442,10 @@ define("tinymce/pasteplugin/Quirks", [
 		if (Env.ie) {
 			addPreProcessFilter(removeExplorerBrElementsAfterBlocks);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			addPostProcessFilter(removeUnderlineAndFontInAnchor);
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		}
@@ -2427,7 +2455,10 @@ define("tinymce/pasteplugin/Quirks", [
 // Included from: js/tinymce/plugins/paste/classes/Plugin.js
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 /**
@@ -2446,6 +2477,7 @@ define("tinymce/pasteplugin/Quirks", [
  * @class tinymce.pasteplugin.Plugin
  * @private
  */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 define(
@@ -2586,6 +2618,8 @@ dem('tinymce.plugins.paste.Plugin')();
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 define("tinymce/pasteplugin/Plugin", [
 	"tinymce/PluginManager",
 	"tinymce/pasteplugin/Clipboard",
@@ -2604,6 +2638,10 @@ define("tinymce/pasteplugin/Plugin", [
 		function togglePlainTextPaste() {
 			if (clipboard.pasteFormat == "text") {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				this.active(false);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				this.active(false);
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2612,17 +2650,23 @@ define("tinymce/pasteplugin/Plugin", [
 			} else {
 				clipboard.pasteFormat = "text";
 <<<<<<< HEAD
+<<<<<<< HEAD
 				editor.fire('PastePlainTextToggle', {state: true});
 
 				if (!isUserInformedAboutPlainText()) {
 					var message = editor.translate('Paste is now in plain text mode. Contents will now ' +
 					'be pasted as plain text until you toggle this option off.');
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				this.active(true);
 
 				if (!isUserInformedAboutPlainText()) {
 					var message = editor.translate('Paste is now in plain text mode. Contents will now ' +
 						'be pasted as plain text until you toggle this option off.');
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 					editor.notificationManager.open({
@@ -2632,6 +2676,10 @@ define("tinymce/pasteplugin/Plugin", [
 
 					userIsInformed = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+					editor.fire('PastePlainTextToggle', {state: true});
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 					editor.fire('PastePlainTextToggle', {state: true});
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2641,6 +2689,7 @@ define("tinymce/pasteplugin/Plugin", [
 			editor.focus();
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		function stateChange() {
 			var self = this;
@@ -2652,6 +2701,8 @@ define("tinymce/pasteplugin/Plugin", [
 			});
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		// draw back if power version is requested and registered
@@ -2713,8 +2764,11 @@ define("tinymce/pasteplugin/Plugin", [
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		editor.addCommand('mceTogglePlainTextPaste', togglePlainTextPaste);
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		editor.addButton('pastetext', {
@@ -2722,7 +2776,11 @@ define("tinymce/pasteplugin/Plugin", [
 			tooltip: 'Paste as text',
 			onclick: togglePlainTextPaste,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			onPostRender: stateChange
+=======
+			active: self.clipboard.pasteFormat == "text"
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			active: self.clipboard.pasteFormat == "text"
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2733,8 +2791,12 @@ define("tinymce/pasteplugin/Plugin", [
 			selectable: true,
 			active: clipboard.pasteFormat,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			onclick: togglePlainTextPaste,
 			onPostRender: stateChange
+=======
+			onclick: togglePlainTextPaste
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			onclick: togglePlainTextPaste
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2744,8 +2806,12 @@ define("tinymce/pasteplugin/Plugin", [
 
 expose(["tinymce/pasteplugin/Utils"]);
 <<<<<<< HEAD
+<<<<<<< HEAD
 })(window);
 >>>>>>> origin/master
+=======
+})(this);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 })(this);
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

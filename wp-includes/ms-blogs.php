@@ -470,6 +470,7 @@ function clean_blog_cache( $blog ) {
 	do_action( 'clean_site_cache', $blog_id, $blog, $domain_path_key );
 
 	wp_cache_set( 'last_changed', microtime(), 'sites' );
+<<<<<<< HEAD
 }
 
 /**
@@ -487,6 +488,8 @@ function clean_site_details_cache( $site_id = 0 ) {
 
 	wp_cache_delete( $site_id, 'site-details' );
 	wp_cache_delete( $site_id, 'blog-details' );
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 }
 
 /**

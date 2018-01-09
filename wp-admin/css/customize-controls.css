@@ -295,6 +295,7 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #customize-theme-controls .customize-pane-child.skip-transition {
 <<<<<<< HEAD
 =======
@@ -303,6 +304,8 @@ body {
 	transition: none;
 }
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 #customize-info,
@@ -1226,6 +1229,7 @@ p.customize-section-description {
 @keyframes customize-reload {
 	0%   { opacity: 0; }
 	100% { opacity: 1; }
+<<<<<<< HEAD
 }
 
 /* #customize-container is reused from customize-loader.js, hence the naming. */
@@ -1235,6 +1239,17 @@ p.customize-section-description {
 	animation: customize-reload .75s;
 }
 
+=======
+}
+
+/* #customize-container is reused from customize-loader.js, hence the naming. */
+.wp-customizer .customize-loading #customize-container {
+	display: block;
+	-webkit-animation: customize-reload .75s; /* Can't use `transition` because `display` changes here. */
+	animation: customize-reload .75s;
+}
+
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 #customize-theme-controls .control-section-themes .accordion-section-title:hover, /* Not a focusable element. */
 #customize-theme-controls .control-section-themes .accordion-section-title {
 	cursor: default;
@@ -1292,6 +1307,12 @@ p.customize-section-description {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+<<<<<<< HEAD
+}
+
+#customize-controls .customize-themes-panel .accordion-section-title:first-child {
+	margin-top: 0;
+=======
 }
 
 #customize-controls .customize-themes-panel .accordion-section-title:first-child {
@@ -1335,6 +1356,47 @@ p.customize-section-description {
 .wp-customizer .theme-browser .theme .theme-actions {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	opacity: 1;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+}
+
+#customize-controls .customize-themes-panel .accordion-section-title:nth-child(2) {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+#customize-controls .customize-themes-panel > h2 {
+	padding: 15px 8px 0 8px;
+}
+
+<<<<<<< HEAD
+#customize-theme-controls .customize-themes-panel .accordion-section-content {
+	background: transparent;
+	display: block;
+}
+
+.customize-control.customize-control-theme {
+	margin-bottom: 8px;
+}
+
+#customize-theme-controls .themes.accordion-section-content {
+	position: relative;
+	left: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.wp-customizer .theme-browser .themes {
+	padding-bottom: 8px;
+}
+
+.wp-customizer .theme-browser .theme {
+	margin: 0;
+	width: 100%;
+}
+
+.wp-customizer .theme-browser .theme .theme-actions {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	opacity: 1;
 }
 
 #customize-controls h3.theme-name {
@@ -1345,6 +1407,8 @@ p.customize-section-description {
 	font-size: 32px;
 }
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 .wp-customizer #themes-filter {
 	font-size: 16px;
 	font-weight: 300;

@@ -957,6 +957,7 @@ class WP_Posts_List_Table extends WP_List_Table {
 		if ( ! is_post_type_hierarchical( $this->screen->post_type ) && 'excerpt' === $mode && current_user_can( 'read_post', $post->ID ) ) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ( post_password_required( $post ) ) {
 				echo '<span class="protected-post-excerpt">' . esc_html( get_the_excerpt() ) . '</span>';
 			} else {
@@ -965,6 +966,9 @@ class WP_Posts_List_Table extends WP_List_Table {
 =======
 			echo esc_html( get_the_excerpt() );
 >>>>>>> origin/master
+=======
+			the_excerpt();
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			the_excerpt();
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

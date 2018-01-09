@@ -318,12 +318,15 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 	 */
 	public function get_item( $request ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$term = $this->get_term( $request['id'] );
 <<<<<<< HEAD
 =======
 
 >>>>>>> origin/master
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 		$term = get_term( (int) $request['id'], $this->taxonomy );
 
@@ -331,6 +334,9 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 			return new WP_Error( 'rest_term_invalid', __( "Term doesn't exist." ), array( 'status' => 404 ) );
 		}
 
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		if ( is_wp_error( $term ) ) {
 			return $term;
@@ -965,6 +971,7 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 		$query_params['slug'] = array(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'description'       => __( 'Limit result set to terms with one or more specific slugs.' ),
 =======
 			'description'       => __( 'Limit result set to terms with a specific slug.' ),
@@ -973,6 +980,10 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 			'items'             => array(
 				'type'          => 'string'
 			),
+=======
+			'description'       => __( 'Limit result set to terms with a specific slug.' ),
+			'type'              => 'string',
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			'description'       => __( 'Limit result set to terms with a specific slug.' ),
 			'type'              => 'string',

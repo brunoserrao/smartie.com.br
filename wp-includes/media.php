@@ -3320,6 +3320,7 @@ function wp_enqueue_media( $args = array() ) {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/**
 	 * Allows showing or hiding the "Create Audio Playlist" button in the media library.
 	 *
@@ -3432,6 +3433,8 @@ function wp_enqueue_media( $args = array() ) {
 		", 'attachment' ) );
 	}
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	$has_audio = $wpdb->get_var( "
 		SELECT ID
 		FROM $wpdb->posts
@@ -3452,6 +3455,9 @@ function wp_enqueue_media( $args = array() ) {
 		WHERE post_type = %s
 		ORDER BY post_date DESC
 	", 'attachment' ) );
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 	foreach ( $months as $month_year ) {
 		$month_year->text = sprintf( __( '%1$s %2$d' ), $wp_locale->get_month( $month_year->month ), $month_year->year );
@@ -3795,6 +3801,7 @@ function get_post_galleries( $post, $html = true ) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				$shortcode_attrs = shortcode_parse_atts( $shortcode[3] );
 =======
 				$shortcode_attrs = shortcode_parse_atts( $shortcode[3] ); 
@@ -3808,6 +3815,8 @@ function get_post_galleries( $post, $html = true ) {
 					$shortcode[3] .= ' id="' . intval( $post->ID ) . '"';
 				}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 				$gallery = do_shortcode_tag( $shortcode );

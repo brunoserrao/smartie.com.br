@@ -10,6 +10,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 define(
   'tinymce.core.util.Tools',
   [
@@ -514,6 +515,8 @@ dem('tinymce.plugins.charmap.Plugin')();
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 /*global tinymce:true */
 
 tinymce.PluginManager.add('charmap', function(editor) {
@@ -970,8 +973,12 @@ tinymce.PluginManager.add('charmap', function(editor) {
 		insertChar: insertChar
 	};
 <<<<<<< HEAD
+<<<<<<< HEAD
 });
 >>>>>>> origin/master
+=======
+});
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 });
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

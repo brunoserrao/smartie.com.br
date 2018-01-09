@@ -120,6 +120,7 @@ class WP_Press_This {
 			'post_status'   => 'draft',
 			'post_format'   => ( ! empty( $_POST['post_format'] ) ) ? sanitize_text_field( $_POST['post_format'] ) : '',
 <<<<<<< HEAD
+<<<<<<< HEAD
 		);
 
 		// Only accept categories if the user actually can assign
@@ -143,10 +144,15 @@ class WP_Press_This {
 
 		// Toggle status to pending if user cannot actually publish
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			'tax_input'     => ( ! empty( $_POST['tax_input'] ) ) ? $_POST['tax_input'] : array(),
 			'post_category' => ( ! empty( $_POST['post_category'] ) ) ? $_POST['post_category'] : array(),
 		);
 
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		if ( ! empty( $_POST['post_status'] ) && 'publish' === $_POST['post_status'] ) {
 			if ( current_user_can( 'publish_posts' ) ) {
@@ -479,7 +485,11 @@ class WP_Press_This {
 	 *
 	 * @param string $src Embed source URL.
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * @return string If not from a supported provider, an empty string. Otherwise, a reformatted embed URL.
+=======
+	 * @return string If not from a supported provider, an empty string. Otherwise, a reformattd embed URL.
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 	 * @return string If not from a supported provider, an empty string. Otherwise, a reformattd embed URL.
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -730,11 +740,15 @@ class WP_Press_This {
 			 */
 			if ( empty( $_POST ) && ! empty( $data['u'] ) ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'scan-site' ) ) {
 					$data = $this->source_data_fetch_fallback( $data['u'], $data );
 				} else {
 					$data['errors'] = 'missing nonce';
 				}
+=======
+				$data = $this->source_data_fetch_fallback( $data['u'], $data );
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				$data = $this->source_data_fetch_fallback( $data['u'], $data );
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -891,12 +905,15 @@ class WP_Press_This {
 		$taxonomy = get_taxonomy( 'category' );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		// Bail if user cannot assign terms
 		if ( ! current_user_can( $taxonomy->cap->assign_terms ) ) {
 			return;
 		}
 
 		// Only show "add" if user can edit terms
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		if ( current_user_can( $taxonomy->cap->edit_terms ) ) {
@@ -1258,7 +1275,11 @@ class WP_Press_This {
 			'v' => ! empty( $data['v'] ) ? $data['v'] : '',
 			'u' => ! empty( $data['u'] ) ? $data['u'] : '',
 <<<<<<< HEAD
+<<<<<<< HEAD
 			'hasData' => ! empty( $data ) && ! isset( $data['errors'] ),
+=======
+			'hasData' => ! empty( $data ),
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			'hasData' => ! empty( $data ),
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1323,12 +1344,15 @@ class WP_Press_This {
 		wp_enqueue_script( 'editor' );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$categories_tax   = get_taxonomy( 'category' );
 		$show_categories  = current_user_can( $categories_tax->cap->assign_terms ) || current_user_can( $categories_tax->cap->edit_terms );
 
 		$tag_tax          = get_taxonomy( 'post_tag' );
 		$show_tags        = current_user_can( $tag_tax->cap->assign_terms );
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		$supports_formats = false;
@@ -1397,9 +1421,14 @@ class WP_Press_This {
 		<form method="GET">
 			<label for="url-scan" class="screen-reader-text"><?php _e( 'Scan site for content' ); ?></label>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<input type="url" name="u" id="url-scan" class="scan-url" value="<?php echo esc_attr( $site_data['u'] ) ?>" placeholder="<?php esc_attr_e( 'Enter a URL to scan' ) ?>" />
 			<input type="submit" name="url-scan-submit" id="url-scan-submit" class="scan-submit" value="<?php esc_attr_e( 'Scan' ) ?>" />
 			<?php wp_nonce_field( 'scan-site' ); ?>
+=======
+			<input type="url" name="u" id="url-scan" class="scan-url" value="" placeholder="<?php esc_attr_e( 'Enter a URL to scan' ) ?>" />
+			<input type="submit" name="url-scan-submit" id="url-scan-submit" class="scan-submit" value="<?php esc_attr_e( 'Scan' ) ?>" />
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			<input type="url" name="u" id="url-scan" class="scan-url" value="" placeholder="<?php esc_attr_e( 'Enter a URL to scan' ) ?>" />
 			<input type="submit" name="url-scan-submit" id="url-scan-submit" class="scan-submit" value="<?php esc_attr_e( 'Scan' ) ?>" />
@@ -1489,6 +1518,7 @@ class WP_Press_This {
 				<?php endif; ?>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<?php if ( $show_categories ) : ?>
 					<button type="button" class="button-link post-option">
 						<span class="dashicons dashicons-category"></span>
@@ -1505,6 +1535,8 @@ class WP_Press_This {
 					</button>
 				<?php endif; ?>
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				<button type="button" class="button-link post-option">
 					<span class="dashicons dashicons-category"></span>
 					<span class="post-option-title"><?php _e( 'Categories' ); ?></span>
@@ -1516,6 +1548,9 @@ class WP_Press_This {
 					<span class="post-option-title"><?php _e( 'Tags' ); ?></span>
 					<span class="dashicons post-option-forward"></span>
 				</button>
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			</div>
 
@@ -1530,6 +1565,7 @@ class WP_Press_This {
 				</div>
 			<?php endif; ?>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			<?php if ( $show_categories ) : ?>
 				<div class="setting-modal is-off-screen is-hidden">
@@ -1553,6 +1589,8 @@ class WP_Press_This {
 				</div>
 			<?php endif; ?>
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			<div class="setting-modal is-off-screen is-hidden">
 				<button type="button" class="button-link modal-close">
 					<span class="dashicons post-option-back"></span>
@@ -1570,6 +1608,9 @@ class WP_Press_This {
 				</button>
 				<?php $this->tags_html( $post ); ?>
 			</div>
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		</div><!-- .options-panel -->
 	</div><!-- .wrapper -->

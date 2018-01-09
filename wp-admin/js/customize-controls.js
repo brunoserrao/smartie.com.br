@@ -1410,6 +1410,20 @@
 
 			return control.params.theme;
 		},
+<<<<<<< HEAD
+
+		/**
+		 * Disable buttons when we're viewing the first or last theme.
+		 *
+		 * @since 4.2.0
+		 */
+		updateLimits: function () {
+			if ( ! this.getNextTheme() ) {
+				this.overlay.find( '.right' ).addClass( 'disabled' );
+			}
+			if ( ! this.getPreviousTheme() ) {
+				this.overlay.find( '.left' ).addClass( 'disabled' );
+=======
 
 		/**
 		 * Disable buttons when we're viewing the first or last theme.
@@ -1474,8 +1488,63 @@
 				onceProcessingComplete();
 			} else {
 				api.state( 'processing' ).bind( onceProcessingComplete );
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			}
 
+<<<<<<< HEAD
+		/**
+		 * Load theme preview.
+		 *
+		 * @since 4.7.0
+		 * @access public
+		 *
+		 * @param {string} themeId Theme ID.
+		 * @returns {jQuery.promise} Promise.
+		 */
+		loadThemePreview: function( themeId ) {
+			var deferred = $.Deferred(), onceProcessingComplete, overlay, urlParser;
+
+			urlParser = document.createElement( 'a' );
+			urlParser.href = location.href;
+			urlParser.search = $.param( _.extend(
+				api.utils.parseQueryString( urlParser.search.substr( 1 ) ),
+				{
+					theme: themeId,
+					changeset_uuid: api.settings.changeset.uuid
+				}
+			) );
+
+			overlay = $( '.wp-full-overlay' );
+			overlay.addClass( 'customize-loading' );
+
+			onceProcessingComplete = function() {
+				var request;
+				if ( api.state( 'processing' ).get() > 0 ) {
+					return;
+				}
+
+				api.state( 'processing' ).unbind( onceProcessingComplete );
+
+				request = api.requestChangesetUpdate();
+				request.done( function() {
+					$( window ).off( 'beforeunload.customize-confirm' );
+					top.location.href = urlParser.href;
+					deferred.resolve();
+				} );
+				request.fail( function() {
+					overlay.removeClass( 'customize-loading' );
+					deferred.reject();
+				} );
+			};
+
+			if ( 0 === api.state( 'processing' ).get() ) {
+				onceProcessingComplete();
+			} else {
+				api.state( 'processing' ).bind( onceProcessingComplete );
+			}
+
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			return deferred.promise();
 		},
 
@@ -1799,11 +1868,19 @@
 
 	/**
 	 * A Customizer Control.
+<<<<<<< HEAD
 	 *
 	 * A control provides a UI element that allows a user to modify a Customizer Setting.
 	 *
 	 * @see PHP class WP_Customize_Control.
 	 *
+=======
+	 *
+	 * A control provides a UI element that allows a user to modify a Customizer Setting.
+	 *
+	 * @see PHP class WP_Customize_Control.
+	 *
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	 * @class
 	 * @augments wp.customize.Class
 	 *
@@ -2150,6 +2227,7 @@
 		 * @returns {Boolean} false if already active
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		initialize: function( id, options ) {
 			var control = this, deferredSettingIds = [], settings, gatherSettings;
 
@@ -2299,6 +2377,9 @@
 =======
 		activate: Container.prototype.activate,
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+		activate: Container.prototype.activate,
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 		/**
 		 * Shorthand way to disable the active state.
@@ -2334,6 +2415,7 @@
 				if ( api.utils.isKeydownButNotEnterEvent( event ) ) {
 					return;
 				}
+<<<<<<< HEAD
 
 				event.preventDefault();
 
@@ -2399,6 +2481,73 @@
 				return;
 			}
 
+=======
+
+				event.preventDefault();
+
+				if (!toggleFreeze)
+					control.container.toggleClass('open');
+
+				if ( control.container.hasClass('open') )
+					control.container.parent().parent().find('li.library-selected').focus();
+
+				// Don't want to fire focus and click at same time
+				toggleFreeze = true;
+				setTimeout(function () {
+					toggleFreeze = false;
+				}, 400);
+			});
+
+			this.setting.bind( update );
+			update( this.setting() );
+		},
+
+		/**
+		 * Render the control from its JS template, if it exists.
+		 *
+		 * The control's container must already exist in the DOM.
+		 *
+		 * @since 4.1.0
+		 */
+		renderContent: function () {
+			var template,
+				control = this;
+
+			// Replace the container element's content with the control.
+			if ( 0 !== $( '#tmpl-' + control.templateSelector ).length ) {
+				template = wp.template( control.templateSelector );
+				if ( template && control.container ) {
+					control.container.html( template( control.params ) );
+				}
+			}
+		},
+
+		/**
+		 * Add a new page to a dropdown-pages control reusing menus code for this.
+		 *
+		 * @since 4.7.0
+		 * @access private
+		 * @returns {void}
+		 */
+		addNewPage: function () {
+			var control = this, promise, toggle, container, input, title, select;
+
+			if ( 'dropdown-pages' !== control.params.type || ! control.params.allow_addition || ! api.Menus ) {
+				return;
+			}
+
+			toggle = control.container.find( '.add-new-toggle' );
+			container = control.container.find( '.new-content-item' );
+			input = control.container.find( '.create-item-input' );
+			title = input.val();
+			select = control.container.find( 'select' );
+
+			if ( ! title ) {
+				input.addClass( 'invalid' );
+				return;
+			}
+
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			input.removeClass( 'invalid' );
 			input.attr( 'disabled', 'disabled' );
 
@@ -2729,6 +2878,8 @@
 			}
 		},
 
+<<<<<<< HEAD
+=======
 		// @deprecated
 		success: function() {},
 
@@ -3397,6 +3548,7 @@
 				data.width = width;
 			}
 
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			if (height) {
 				data.height = height;
 			}
@@ -3493,10 +3645,17 @@
 				}
 
 				event.preventDefault(); // Keep this AFTER the key filter above
+<<<<<<< HEAD
 
 				api.section( control.section() ).showDetails( control.params.theme );
 			});
 
+=======
+
+				api.section( control.section() ).showDetails( control.params.theme );
+			});
+
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			control.container.on( 'render-screenshot', function() {
 				var $screenshot = $( this ).find( 'img' ),
 					source = $screenshot.data( 'src' );
@@ -4693,7 +4852,21 @@
 				}
 
 				return deferred.promise();
+<<<<<<< HEAD
 			}
+		});
+
+<<<<<<< HEAD
+		// Ensure preview nonce is included with every customized request, to allow post data to be read.
+		$.ajaxPrefilter( function injectPreviewNonce( options ) {
+			if ( ! /wp_customize=on/.test( options.data ) ) {
+				return;
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+			}
+			options.data += '&' + $.param({
+				customize_preview_nonce: api.settings.nonce.preview
+			});
 		});
 
 <<<<<<< HEAD
@@ -4707,16 +4880,8 @@
 			});
 		});
 
-		// Ensure preview nonce is included with every customized request, to allow post data to be read.
-		$.ajaxPrefilter( function injectPreviewNonce( options ) {
-			if ( ! /wp_customize=on/.test( options.data ) ) {
-				return;
-			}
-			options.data += '&' + $.param({
-				customize_preview_nonce: api.settings.nonce.preview
-			});
-		});
-
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		// Refresh the nonces if the preview sends updated nonces over.
@@ -4869,6 +5034,7 @@
 
 			api.bind( 'change', function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if ( state( 'saved' ).get() ) {
 					state( 'saved' ).set( false );
 <<<<<<< HEAD
@@ -4887,6 +5053,11 @@
 				});
 			}
 
+=======
+				state('saved').set( false );
+			});
+
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				state('saved').set( false );
 			});
@@ -4938,6 +5109,7 @@
 				history.replaceState( {}, document.title, urlParser.href );
 			};
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 			// Show changeset UUID in URL when in branching mode and there is a saved changeset.
@@ -5195,6 +5367,11 @@
 					customize_changeset_uuid: api.settings.changeset.uuid,
 					nonce: api.settings.nonce.dismiss_autosave_or_lock,
 					dismiss_autosave: true
+=======
+			if ( history.replaceState ) {
+				changesetStatus.bind( function( newStatus ) {
+					populateChangesetUuidParam( '' !== newStatus && 'publish' !== newStatus );
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			if ( history.replaceState ) {
 				changesetStatus.bind( function( newStatus ) {

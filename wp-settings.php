@@ -102,9 +102,13 @@ require( ABSPATH . WPINC . '/class-wp-error.php' );
 require( ABSPATH . WPINC . '/pomo/mo.php' );
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 require_once( ABSPATH . WPINC . '/class-phpass.php' );
 >>>>>>> origin/master
+=======
+require( ABSPATH . WPINC . '/class-phpass.php' );
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 require( ABSPATH . WPINC . '/class-phpass.php' );
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

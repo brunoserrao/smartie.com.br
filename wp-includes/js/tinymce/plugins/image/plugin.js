@@ -10,6 +10,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 define(
   'tinymce.core.PluginManager',
   [
@@ -1076,6 +1077,8 @@ dem('tinymce.plugins.image.Plugin')();
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 /*global tinymce:true */
 
 tinymce.PluginManager.add('image', function(editor) {
@@ -1375,10 +1378,13 @@ tinymce.PluginManager.add('image', function(editor) {
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		function onBeforeCall(e) {
 			e.meta = win.toJSON();
 		}
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		imgElm = editor.selection.getNode();
@@ -1464,8 +1470,12 @@ tinymce.PluginManager.add('image', function(editor) {
 				label: 'Source',
 				autofocus: true,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				onchange: srcChange,
 				onbeforecall: onBeforeCall
+=======
+				onchange: srcChange
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				onchange: srcChange
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1721,7 +1731,11 @@ tinymce.PluginManager.add('image', function(editor) {
 	editor.addMenuItem('image', {
 		icon: 'image',
 <<<<<<< HEAD
+<<<<<<< HEAD
 		text: 'Image',
+=======
+		text: 'Insert/edit image',
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		text: 'Insert/edit image',
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1733,6 +1747,9 @@ tinymce.PluginManager.add('image', function(editor) {
 	editor.addCommand('mceImage', createImageList(showDialog));
 });
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

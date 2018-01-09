@@ -186,6 +186,7 @@
 	padding: 0;
 	z-index: 1000;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	cursor: pointer;
 	outline: none;
 <<<<<<< HEAD
@@ -195,10 +196,14 @@
 =======
 	-webkit-transition: color .1s ease-in-out, background .1s ease-in-out;
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+	-webkit-transition: color .1s ease-in-out, background .1s ease-in-out;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	transition: color .1s ease-in-out, background .1s ease-in-out;
 }
 
 .media-modal-close:active {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	color: #00a0d2;
 }
@@ -211,6 +216,10 @@
 	-webkit-box-shadow: 0 0 3px rgba( 0, 115, 170, .8 );
 >>>>>>> origin/master
 	box-shadow: 0 0 3px rgba( 0, 115, 170, .8 );
+=======
+	-webkit-box-shadow: none;
+	box-shadow: none;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 	-webkit-box-shadow: none;
 	box-shadow: none;

@@ -258,6 +258,7 @@
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if ( text.indexOf( '<figcaption' ) !== -1 ) {
 				text = text.replace( /\s*(<figcaption[^>]*>)/g, '$1' );
 				text = text.replace( /<\/figcaption>\s*/g, '</figcaption>' );
@@ -268,6 +269,9 @@
 =======
 			// keep <br> tags inside captions and convert line breaks
 >>>>>>> origin/master
+=======
+			// keep <br> tags inside captions and convert line breaks
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			// keep <br> tags inside captions and convert line breaks
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

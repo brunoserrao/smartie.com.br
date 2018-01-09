@@ -188,6 +188,7 @@ final class WP_Taxonomy {
 
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Whether this taxonomy should appear in the REST API.
 	 *
 	 * Default false. If true, standard endpoints will be registered with
@@ -229,6 +230,8 @@ final class WP_Taxonomy {
 	public $rest_controller_class;
 
 	/**
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 	 * Whether it is a built-in taxonomy.

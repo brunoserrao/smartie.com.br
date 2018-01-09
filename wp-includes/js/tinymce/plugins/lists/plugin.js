@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 (function () {
 
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
@@ -101,6 +102,10 @@ defineGlobal("global!tinymce.util.VK", tinymce.util.VK);
 /**
  * plugin.js
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+/**
+ * plugin.js
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
  *
  * Released under LGPL License.
  * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
@@ -109,6 +114,7 @@ defineGlobal("global!tinymce.util.VK", tinymce.util.VK);
  * Contributing: http://www.tinymce.com/contributing
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 define(
@@ -120,6 +126,10 @@ define(
     return resolve('tinymce.PluginManager');
   }
 );
+=======
+/*global tinymce:true */
+/*eslint consistent-this:0 */
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 /*global tinymce:true */
 /*eslint consistent-this:0 */
@@ -167,6 +177,7 @@ tinymce.PluginManager.add('lists', function(editor) {
 	function getNormalizedEndPoint(container, offset) {
 		var node = tinymce.dom.RangeUtils.getNode(container, offset);
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 define("tinymce.lists.core.NodeType", [
@@ -1635,6 +1646,84 @@ define("tinymce.lists.Plugin", [
 			} else if (cmd === "outdent") {
 				if (Outdent.outdentSelection(editor)) {
 =======
+=======
+		if (isListItemNode(container) && isTextNode(node)) {
+			var textNodeOffset = offset >= container.childNodes.length ? node.data.length : 0;
+			return {container: node, offset: textNodeOffset};
+		}
+
+		return {container: container, offset: offset};
+	}
+
+	function normalizeRange(rng) {
+		var outRng = rng.cloneRange();
+
+		var rangeStart = getNormalizedEndPoint(rng.startContainer, rng.startOffset);
+		outRng.setStart(rangeStart.container, rangeStart.offset);
+
+		var rangeEnd = getNormalizedEndPoint(rng.endContainer, rng.endOffset);
+		outRng.setEnd(rangeEnd.container, rangeEnd.offset);
+
+		return outRng;
+	}
+
+	editor.on('init', function() {
+		var dom = editor.dom, selection = editor.selection;
+
+		function isEmpty(elm, keepBookmarks) {
+			var empty = dom.isEmpty(elm);
+
+			if (keepBookmarks && dom.select('span[data-mce-type=bookmark]').length > 0) {
+				return false;
+			}
+
+			return empty;
+		}
+
+		/**
+		 * Returns a range bookmark. This will convert indexed bookmarks into temporary span elements with
+		 * index 0 so that they can be restored properly after the DOM has been modified. Text bookmarks will not have spans
+		 * added to them since they can be restored after a dom operation.
+		 *
+		 * So this: <p><b>|</b><b>|</b></p>
+		 * becomes: <p><b><span data-mce-type="bookmark">|</span></b><b data-mce-type="bookmark">|</span></b></p>
+		 *
+		 * @param  {DOMRange} rng DOM Range to get bookmark on.
+		 * @return {Object} Bookmark object.
+		 */
+		function createBookmark(rng) {
+			var bookmark = {};
+
+			function setupEndPoint(start) {
+				var offsetNode, container, offset;
+
+				container = rng[start ? 'startContainer' : 'endContainer'];
+				offset = rng[start ? 'startOffset' : 'endOffset'];
+
+				if (container.nodeType == 1) {
+					offsetNode = dom.create('span', {'data-mce-type': 'bookmark'});
+
+					if (container.hasChildNodes()) {
+						offset = Math.min(offset, container.childNodes.length - 1);
+
+						if (start) {
+							container.insertBefore(offsetNode, container.childNodes[offset]);
+						} else {
+							dom.insertAfter(offsetNode, container.childNodes[offset]);
+						}
+					} else {
+						container.appendChild(offsetNode);
+					}
+
+					container = offsetNode;
+					offset = 0;
+				}
+
+				bookmark[start ? 'startContainer' : 'endContainer'] = container;
+				bookmark[start ? 'startOffset' : 'endOffset'] = offset;
+			}
+
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			setupEndPoint(true);
 
 			if (!rng.collapsed) {
@@ -2390,6 +2479,9 @@ define("tinymce.lists.Plugin", [
 				}
 			} else if (cmd == "outdent") {
 				if (outdentSelection()) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 					isHandled = true;
 				}
@@ -2402,6 +2494,7 @@ define("tinymce.lists.Plugin", [
 			}
 		});
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		editor.addCommand('InsertUnorderedList', function (ui, detail) {
 			ToggleList.toggleList(editor, 'UL', detail);
@@ -2427,6 +2520,8 @@ define("tinymce.lists.Plugin", [
 			// Check for tab but not ctrl/cmd+tab since it switches browser tabs
 			if (e.keyCode !== 9 || VK.metaKeyPressed(e)) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		editor.addCommand('InsertUnorderedList', function(ui, detail) {
 			toggleList('UL', detail);
 		});
@@ -2446,6 +2541,9 @@ define("tinymce.lists.Plugin", [
 		editor.on('keydown', function(e) {
 			// Check for tab but not ctrl/cmd+tab since it switches browser tabs
 			if (e.keyCode != 9 || tinymce.util.VK.metaKeyPressed(e)) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 				return;
 			}
@@ -2454,6 +2552,7 @@ define("tinymce.lists.Plugin", [
 				e.preventDefault();
 
 				if (e.shiftKey) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 					Outdent.outdentSelection(editor);
 				} else {
@@ -2542,6 +2641,8 @@ dem('tinymce.lists.Plugin')();
 >>>>>>> origin/master
 })();
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 					outdentSelection();
 				} else {
 					indentSelection();
@@ -2584,4 +2685,7 @@ dem('tinymce.lists.Plugin')();
 		}
 	});
 });
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

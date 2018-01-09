@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 (function () {
 
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
@@ -88,6 +89,8 @@ jsc*/
 defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 /**
  * plugin.js
  *
@@ -98,6 +101,7 @@ defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
  * Contributing: http://www.tinymce.com/contributing
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 define(
   'tinymce.core.html.Node',
@@ -2031,6 +2035,8 @@ define('tinymce.media.core.DataToHtml', [
 		if (!data.source1) {
 			Tools.extend(data, HtmlToData.htmlToData(editor.settings.media_scripts, data.embed));
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 /*jshint maxlen:255 */
 /*eslint max-len:0 */
 /*global tinymce:true */
@@ -2254,6 +2260,9 @@ tinymce.PluginManager.add('media', function(editor, url) {
 
 		if (!data.source1) {
 			tinymce.extend(data, htmlToData(data.embed));
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			if (!data.source1) {
 				return '';
@@ -2271,6 +2280,7 @@ tinymce.PluginManager.add('media', function(editor, url) {
 		data.source1 = editor.convertURL(data.source1, "source");
 		data.source2 = editor.convertURL(data.source2, "source");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		data.source1mime = Mime.guess(data.source1);
 		data.source2mime = Mime.guess(data.source2);
 		data.poster = editor.convertURL(data.poster, "poster");
@@ -2283,6 +2293,8 @@ tinymce.PluginManager.add('media', function(editor, url) {
 
 			if (match) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		data.source1mime = guessMime(data.source1);
 		data.source2mime = guessMime(data.source2);
 		data.poster = editor.convertURL(data.poster, "poster");
@@ -2292,6 +2304,9 @@ tinymce.PluginManager.add('media', function(editor, url) {
 			var match, i, url;
 
 			if ((match = pattern.regex.exec(data.source1))) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 				url = pattern.url;
 
@@ -2299,7 +2314,11 @@ tinymce.PluginManager.add('media', function(editor, url) {
 					/*jshint loopfunc:true*/
 					/*eslint no-loop-func:0 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 					url = url.replace('$' + i, function () {
+=======
+					url = url.replace('$' + i, function() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 					url = url.replace('$' + i, function() {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2317,9 +2336,15 @@ tinymce.PluginManager.add('media', function(editor, url) {
 
 		if (data.embed) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			html = UpdateHtml.updateHtml(data.embed, data, true);
 		} else {
 			var videoScript = VideoScript.getVideoScriptMatch(editor.settings.media_scripts, data.source1);
+=======
+			html = updateHtml(data.embed, data, true);
+		} else {
+			var videoScript = getVideoScriptMatch(data.source1);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			html = updateHtml(data.embed, data, true);
 		} else {
@@ -2334,6 +2359,7 @@ tinymce.PluginManager.add('media', function(editor, url) {
 			data.width = data.width || 300;
 			data.height = data.height || 150;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			Tools.each(data, function (value, key) {
 				data[key] = editor.dom.encode(value);
@@ -2353,6 +2379,8 @@ tinymce.PluginManager.add('media', function(editor, url) {
 					'" height="' + data.height +
 					'" type="application/x-shockwave-flash">';
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			tinymce.each(data, function(value, key) {
 				data[key] = editor.dom.encode(value);
 			});
@@ -2362,6 +2390,9 @@ tinymce.PluginManager.add('media', function(editor, url) {
 				html += '<iframe src="' + data.source1 + '" width="' + data.width + '" height="' + data.height + '"' + allowFullscreen + '></iframe>';
 			} else if (data.source1mime == "application/x-shockwave-flash") {
 				html += '<object data="' + data.source1 + '" width="' + data.width + '" height="' + data.height + '" type="application/x-shockwave-flash">';
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 				if (data.poster) {
@@ -2370,7 +2401,11 @@ tinymce.PluginManager.add('media', function(editor, url) {
 
 				html += '</object>';
 <<<<<<< HEAD
+<<<<<<< HEAD
 			} else if (data.source1mime.indexOf('audio') !== -1) {
+=======
+			} else if (data.source1mime.indexOf('audio') != -1) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			} else if (data.source1mime.indexOf('audio') != -1) {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2379,6 +2414,7 @@ tinymce.PluginManager.add('media', function(editor, url) {
 				} else {
 					html += (
 						'<audio controls="controls" src="' + data.source1 + '">' +
+<<<<<<< HEAD
 <<<<<<< HEAD
 							(
 								data.source2 ?
@@ -2390,11 +2426,16 @@ tinymce.PluginManager.add('media', function(editor, url) {
 				}
 			} else if (data.type === "script") {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 							(data.source2 ? '\n<source src="' + data.source2 + '"' + (data.source2mime ? ' type="' + data.source2mime + '"' : '') + ' />\n' : '') +
 						'</audio>'
 					);
 				}
 			} else if (data.type == "script") {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 				html += '<script src="' + data.source1 + '"></script>';
 			} else {
@@ -2402,6 +2443,7 @@ tinymce.PluginManager.add('media', function(editor, url) {
 					html = editor.settings.video_template_callback(data);
 				} else {
 					html = (
+<<<<<<< HEAD
 <<<<<<< HEAD
 						'<video width="' + data.width +
 							'" height="' + data.height + '"' +
@@ -2415,6 +2457,11 @@ tinymce.PluginManager.add('media', function(editor, url) {
 							'<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' +
 							(data.source2 ? '<source src="' + data.source2 + '"' + (data.source2mime ? ' type="' + data.source2mime + '"' : '') + ' />\n' : '') +
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+						'<video width="' + data.width + '" height="' + data.height + '"' + (data.poster ? ' poster="' + data.poster + '"' : '') + ' controls="controls">\n' +
+							'<source src="' + data.source1 + '"' + (data.source1mime ? ' type="' + data.source1mime + '"' : '') + ' />\n' +
+							(data.source2 ? '<source src="' + data.source2 + '"' + (data.source2mime ? ' type="' + data.source2mime + '"' : '') + ' />\n' : '') +
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 						'</video>'
 					);
 				}
@@ -2422,6 +2469,7 @@ tinymce.PluginManager.add('media', function(editor, url) {
 		}
 
 		return html;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	};
 
@@ -2798,6 +2846,8 @@ define('tinymce.media.core.Sanitize', [
 ], function (Tools, Writer, SaxParser, Schema) {
 	var sanitize = function (editor, html) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	}
 
 	function htmlToData(html) {
@@ -2864,11 +2914,15 @@ define('tinymce.media.core.Sanitize', [
 	}
 
 	function sanitize(html) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		if (editor.settings.media_filter_html === false) {
 			return html;
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		var writer = new Writer();
 		var blocked;
@@ -2879,10 +2933,16 @@ define('tinymce.media.core.Sanitize', [
 
 		new tinymce.html.SaxParser({
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+		var writer = new tinymce.html.Writer(), blocked;
+
+		new tinymce.html.SaxParser({
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			validate: false,
 			allow_conditional_comments: false,
 			special: 'script,noscript',
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 			comment: function (text) {
 				writer.comment(text);
@@ -2901,6 +2961,8 @@ define('tinymce.media.core.Sanitize', [
 
 				if (name === 'script' || name === 'noscript') {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			comment: function(text) {
 				writer.comment(text);
 			},
@@ -2917,6 +2979,9 @@ define('tinymce.media.core.Sanitize', [
 				blocked = true;
 
 				if (name == 'script' || name == 'noscript') {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 					return;
 				}
@@ -2927,7 +2992,11 @@ define('tinymce.media.core.Sanitize', [
 					}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if (attrs[i].name === 'style') {
+=======
+					if (attrs[i].name == 'style') {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 					if (attrs[i].name == 'style') {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2940,7 +3009,11 @@ define('tinymce.media.core.Sanitize', [
 			},
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			end: function (name) {
+=======
+			end: function(name) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			end: function(name) {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2950,6 +3023,7 @@ define('tinymce.media.core.Sanitize', [
 
 				writer.end(name);
 			}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		}, new Schema({})).parse(html);
 
@@ -2982,6 +3056,8 @@ define('tinymce.media.core.Nodes', [
 			style: node.attr('style'),
 			src: Env.transparentSrc,
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		}, new tinymce.html.Schema({})).parse(html);
 
 		return writer.getContent();
@@ -3192,12 +3268,16 @@ define('tinymce.media.core.Nodes', [
 			height: node.attr('height') || (name == "audio" ? "30" : "150"),
 			style: node.attr('style'),
 			src: tinymce.Env.transparentSrc,
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			"data-mce-object": name,
 			"class": "mce-object mce-object-" + name
 		});
 
 		return placeHolder;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	};
 
@@ -3209,12 +3289,17 @@ define('tinymce.media.core.Nodes', [
 
 		previewWrapper = new Node('span', 1);
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	}
 
 	function createPreviewNode(node) {
 		var previewWrapper, previewNode, shimNode, name = node.name;
 
 		previewWrapper = new tinymce.html.Node('span', 1);
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		previewWrapper.attr({
 			contentEditable: 'false',
@@ -3224,9 +3309,15 @@ define('tinymce.media.core.Nodes', [
 		});
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		retainAttributesAndInnerHtml(editor, node, previewWrapper);
 
 		previewNode = new Node(name, 1);
+=======
+		retainAttributesAndInnerHtml(node, previewWrapper);
+
+		previewNode = new tinymce.html.Node(name, 1);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		retainAttributesAndInnerHtml(node, previewWrapper);
 
@@ -3237,17 +3328,23 @@ define('tinymce.media.core.Nodes', [
 			allowfullscreen: node.attr('allowfullscreen'),
 			width: node.attr('width') || "300",
 <<<<<<< HEAD
+<<<<<<< HEAD
 			height: node.attr('height') || (name === "audio" ? "30" : "150"),
 			frameborder: '0'
 		});
 
 		shimNode = new Node('span', 1);
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			height: node.attr('height') || (name == "audio" ? "30" : "150"),
 			frameborder: '0'
 		});
 
 		shimNode = new tinymce.html.Node('span', 1);
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		shimNode.attr('class', 'mce-shim');
 
@@ -3255,6 +3352,7 @@ define('tinymce.media.core.Nodes', [
 		previewWrapper.append(shimNode);
 
 		return previewWrapper;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	};
 
@@ -3307,6 +3405,8 @@ define('tinymce.media.core.Nodes', [
 			var node;
 			var videoScript;
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	}
 
 	editor.on('preInit', function() {
@@ -3328,6 +3428,9 @@ define('tinymce.media.core.Nodes', [
 		// Converts iframe, video etc into placeholder images
 		editor.parser.addNodeFilter('iframe,video,audio,object,embed,script', function(nodes) {
 			var i = nodes.length, node, placeHolder, videoScript;
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			while (i--) {
@@ -3341,8 +3444,13 @@ define('tinymce.media.core.Nodes', [
 				}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if (node.name === 'script') {
 					videoScript = VideoScript.getVideoScriptMatch(editor.settings.media_scripts, node.attr('src'));
+=======
+				if (node.name == 'script') {
+					videoScript = getVideoScriptMatch(node.attr('src'));
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				if (node.name == 'script') {
 					videoScript = getVideoScriptMatch(node.attr('src'));
@@ -3362,6 +3470,7 @@ define('tinymce.media.core.Nodes', [
 					}
 				}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 				if (node.name === 'iframe' && editor.settings.media_live_embeds !== false && Env.ceFalse) {
 					if (!isWithinEphoxEmbed(node)) {
@@ -3774,6 +3883,8 @@ dem('tinymce.media.Plugin')();
 >>>>>>> origin/master
 })();
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 				if (node.name == 'iframe' && editor.settings.media_live_embeds !== false && tinymce.Env.ceFalse) {
 					placeHolder = createPreviewNode(node);
 				} else {
@@ -3911,4 +4022,7 @@ dem('tinymce.media.Plugin')();
 
 	this.showDialog = showDialog;
 });
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

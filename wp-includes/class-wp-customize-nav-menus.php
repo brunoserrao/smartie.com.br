@@ -787,12 +787,17 @@ final class WP_Customize_Nav_Menus {
 	 */
 	public function insert_auto_draft_post( $postarr ) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if ( ! isset( $postarr['post_type'] ) ) {
 <<<<<<< HEAD
 			return new WP_Error( 'unknown_post_type', __( 'Invalid post type.' ) );
 =======
 			return new WP_Error( 'unknown_post_type', __( 'Unknown post type' ) );
 >>>>>>> origin/master
+=======
+		if ( ! isset( $postarr['post_type'] ) || ! post_type_exists( $postarr['post_type'] )  ) {
+			return new WP_Error( 'unknown_post_type', __( 'Unknown post type' ) );
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		if ( ! isset( $postarr['post_type'] ) || ! post_type_exists( $postarr['post_type'] )  ) {
 			return new WP_Error( 'unknown_post_type', __( 'Unknown post type' ) );

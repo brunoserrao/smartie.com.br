@@ -45,6 +45,7 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 
 		<div class="changelog point-releases">
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<h3><?php _e( 'Maintenance and Security Releases' ); ?></h3>
 <<<<<<< HEAD
 			<p>
@@ -85,10 +86,15 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 				<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.7.1' ); ?>
 >>>>>>> origin/master
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			<h3><?php _e( 'Maintenance and Security Release' ); ?></h3>
 			<p><?php printf( _n( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
 					'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.', 62 ), '4.7.1', number_format_i18n( 62 ) ); ?>
 				<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.7.1' ); ?>
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			</p>
 		</div>
@@ -112,11 +118,15 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 		</div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<div class="floating-header-section">
 			<div class="section-header">
 				<h2><?php _e( 'Customizer Workflow Improved' ); ?></h2>
 			</div>
 <<<<<<< HEAD
+=======
+		<hr />
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		<hr />
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -131,6 +141,7 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 				<h3><?php _e( 'Theme Starter Content' ); ?></h3>
 				<p><?php _e( 'To help give you a solid base to build from, individual themes can provide starter content that appears when you go to customize your brand new site. This can range from placing a business information widget in the best location to providing a sample menu with social icon links to a static front page complete with beautiful images. Don&#8217;t worry - nothing new will appear on the live site until you&#8217;re ready to save and publish your initial theme setup.' ); ?></p>
 			</div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			<div class="section-content">
@@ -158,12 +169,19 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			<div class="col">
 				<?php
 				echo wp_video_shortcode( array(
 					'mp4'      => 'https://s.w.org/images/core/4.7/starter-content-v1.mp4',
 					'poster'   => 'https://s.w.org/images/core/4.7/starter-content.jpg?v2',
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+					'loop'     => true,
+					'autoplay' => true,
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 					'loop'     => true,
 					'autoplay' => true,
@@ -174,6 +192,9 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 				) );
 				?>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			</div>
 		</div>
 
@@ -184,6 +205,11 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 				echo wp_video_shortcode( array(
 					'mp4'      => 'https://s.w.org/images/core/4.7/edit-shortcuts-v1.mp4',
 					'poster'   => 'https://s.w.org/images/core/4.7/edit-shortcuts.jpg?v2',
+<<<<<<< HEAD
+=======
+					'loop'     => true,
+					'autoplay' => true,
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 					'width'    => 2520,
 					'height'   => 1454,
 					// 'class'    => 'wp-video-shortcode feature-video',
@@ -197,13 +223,21 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 				echo wp_video_shortcode( array(
 					'mp4'      => 'https://s.w.org/images/core/4.7/header-video-v1.mp4',
 					'poster'   => 'https://s.w.org/images/core/4.7/header-video.jpg?v2',
+<<<<<<< HEAD
+=======
+					'loop'     => true,
+					'autoplay' => true,
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 					'width'    => 2520,
 					'height'   => 1454,
 					// 'class'    => 'wp-video-shortcode feature-video',
 				) );
 				?>
 				<p><?php _e( 'Sometimes a big atmospheric video as a moving header image is just what you need to showcase your wares; go ahead and try it out with Twenty Seventeen. Need some video inspiration? Try searching for sites with video headers available for download and use.' ); ?></p>
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			</div>
@@ -211,6 +245,7 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 
 		<div class="feature-section two-col">
 			<div class="col">
+<<<<<<< HEAD
 				<h3><?php _e( 'Edit Shortcuts' ); ?></h3>
 				<?php
 				echo wp_video_shortcode( array(
@@ -248,6 +283,12 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 				<img src="https://s.w.org/images/core/4.7/nav-menus-760.jpg?v2" srcset="https://s.w.org/images/core/4.7/nav-menus-760.jpg?v2 760w, https://s.w.org/images/core/4.7/nav-menus-280.jpg?v2 280w, https://s.w.org/images/core/4.7/nav-menus-536.jpg?v2 536w, https://s.w.org/images/core/4.7/nav-menus-745.jpg?v2 745w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 781px) calc((100vw - 70px) * .466), (max-width: 959px) calc((100vw - 116px) * .469), (max-width: 1290px) calc((100vw - 240px) * .472), 496px" alt="" />
 				<p><?php _e( 'Many menus for sites contain links to the pages of your site, but what happens when you don&#8217;t have any pages yet? Now you can add new pages while building menus instead of leaving the customizer and abandoning your changes. Once you&#8217;ve published your customizations, you&#8217;ll have new pages ready for you to fill with content.' );?></p>
 			</div>
+=======
+				<h3><?php _e( 'Smoother Menu Building' ); ?></h3>
+				<img src="https://s.w.org/images/core/4.7/nav-menus-760.jpg?v2" srcset="https://s.w.org/images/core/4.7/nav-menus-760.jpg?v2 760w, https://s.w.org/images/core/4.7/nav-menus-280.jpg?v2 280w, https://s.w.org/images/core/4.7/nav-menus-536.jpg?v2 536w, https://s.w.org/images/core/4.7/nav-menus-745.jpg?v2 745w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 781px) calc((100vw - 70px) * .466), (max-width: 959px) calc((100vw - 116px) * .469), (max-width: 1290px) calc((100vw - 240px) * .472), 496px" alt="" />
+				<p><?php _e( 'Many menus for sites contain links to the pages of your site, but what happens when you don&#8217;t have any pages yet? Now you can add new pages while building menus instead of leaving the customizer and abandoning your changes. Once you&#8217;ve published your customizations, you&#8217;ll have new pages ready for you to fill with content.' );?></p>
+			</div>
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			<div class="col">
 				<h3><?php _e( 'Custom CSS' ); ?></h3>
 				<img src="https://s.w.org/images/core/4.7/css-760.jpg?v2" srcset="https://s.w.org/images/core/4.7/css-760.jpg?v2 760w, https://s.w.org/images/core/4.7/css-280.jpg?v2 280w, https://s.w.org/images/core/4.7/css-547.jpg?v2 547w" sizes="(max-width: 500px) calc(100vw - 40px), (max-width: 781px) calc((100vw - 70px) * .466), (max-width: 959px) calc((100vw - 116px) * .469), (max-width: 1290px) calc((100vw - 240px) * .472), 496px" alt="" />

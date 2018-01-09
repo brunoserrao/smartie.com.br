@@ -105,6 +105,7 @@ class WP_Customize_Panel {
 
 	/**
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Auto-expand a section in a panel when the panel is expanded when the panel only has the one section.
 	 *
 	 * @since 4.7.4
@@ -117,6 +118,8 @@ class WP_Customize_Panel {
 	public $auto_expand_sole_section = false;
 
 	/**
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 	 * Customizer sections for this panel.

@@ -889,6 +889,7 @@ function wp_set_auth_cookie( $user_id, $remember = false, $secure = '', $token =
 	 * @param string $scheme           Authentication scheme. Default 'logged_in'.
 	 */
 	do_action( 'set_logged_in_cookie', $logged_in_cookie, $expire, $expiration, $user_id, 'logged_in' );
+<<<<<<< HEAD
 
 	/**
 	 * Allows preventing auth cookies from actually being sent to the client.
@@ -900,6 +901,8 @@ function wp_set_auth_cookie( $user_id, $remember = false, $secure = '', $token =
 	if ( ! apply_filters( 'send_auth_cookies', true ) ) {
 		return;
 	}
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 	setcookie($auth_cookie_name, $auth_cookie, $expire, PLUGINS_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
 	setcookie($auth_cookie_name, $auth_cookie, $expire, ADMIN_COOKIE_PATH, COOKIE_DOMAIN, $secure, true);
@@ -924,6 +927,7 @@ function wp_clear_auth_cookie() {
 	do_action( 'clear_auth_cookie' );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/** This filter is documented in wp-includes/pluggable.php */
 	if ( ! apply_filters( 'send_auth_cookies', true ) ) {
 		return;
@@ -933,6 +937,8 @@ function wp_clear_auth_cookie() {
 	// Auth cookies
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 	setcookie( AUTH_COOKIE,        ' ', time() - YEAR_IN_SECONDS, ADMIN_COOKIE_PATH,   COOKIE_DOMAIN );

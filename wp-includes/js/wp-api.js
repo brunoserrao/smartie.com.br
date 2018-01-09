@@ -1166,11 +1166,15 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 						// Include the array of route endpoints for easy reference.
 						endpoints: modelRoute.route.endpoints
 =======
 						initialize: function( attributes, options ) {
 							wp.api.WPApiBaseModel.prototype.initialize.call( this, attributes, options );
+=======
+						initialize: function() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 						initialize: function() {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1190,7 +1194,10 @@
 							}
 						}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 					} );
@@ -1327,6 +1334,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		args                      = args || {};
 		attributes.nonce          = args.nonce || wpApiSettings.nonce || '';
 		attributes.apiRoot        = args.apiRoot || wpApiSettings.root || '/wp-json';
@@ -1340,10 +1348,15 @@
 		attributes.schema        = args.schema || null;
 >>>>>>> origin/master
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		args                     = args || {};
 		attributes.apiRoot       = args.apiRoot || wpApiSettings.root;
 		attributes.versionString = args.versionString || wpApiSettings.versionString;
 		attributes.schema        = args.schema || null;
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		if ( ! attributes.schema && attributes.apiRoot === wpApiSettings.root && attributes.versionString === wpApiSettings.versionString ) {
 			attributes.schema = wpApiSettings.schema;

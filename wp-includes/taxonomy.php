@@ -1875,6 +1875,7 @@ function wp_get_object_terms($object_ids, $taxonomies, $args = array()) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/**
 	 * Filter arguments for retrieving object terms.
 	 *
@@ -1927,6 +1928,12 @@ function wp_get_object_terms($object_ids, $taxonomies, $args = array()) {
 =======
 	$terms = array_merge( $terms, get_terms( $args ) );
 >>>>>>> origin/master
+=======
+	$args['taxonomy'] = $taxonomies;
+	$args['object_ids'] = $object_ids;
+
+	$terms = get_terms( $args );
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 	$args['taxonomy'] = $taxonomies;
 	$args['object_ids'] = $object_ids;

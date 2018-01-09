@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 (function () {
 
 var defs = {}; // id -> {dependencies, definition, instance (possibly undefined)}
@@ -89,10 +90,13 @@ defineGlobal("global!window", window);
 defineGlobal("global!tinymce.util.Tools.resolve", tinymce.util.Tools.resolve);
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 /**
  * theme.js
  *
  * Released under LGPL License.
+<<<<<<< HEAD
 <<<<<<< HEAD
  * Copyright (c) 1999-2017 Ephox Corp. All rights reserved
 =======
@@ -113,11 +117,15 @@ defineGlobal("global!tinymce.DOM", tinymce.DOM);
 =======
  * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+ * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
  *
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 define(
@@ -422,6 +430,8 @@ define('tinymce.modern.ui.Toolbar', [
 
 	var createToolbar = function (editor, items, size) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 /*global tinymce:true */
 
 tinymce.ThemeManager.add('modern', function(editor) {
@@ -443,6 +453,9 @@ tinymce.ThemeManager.add('modern', function(editor) {
 		"bullist numlist outdent indent | link image";
 
 	function createToolbar(items, size) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		var toolbarItems = [], buttonGroup;
 
@@ -451,6 +464,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		Tools.each(items.split(/[ ,]/), function(item) {
 			var itemName;
 
@@ -458,6 +472,8 @@ tinymce.ThemeManager.add('modern', function(editor) {
 				var selection = editor.selection;
 
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		each(items.split(/[ ,]/), function(item) {
 			var itemName;
 
@@ -487,6 +503,9 @@ tinymce.ThemeManager.add('modern', function(editor) {
 					selection.selectorChanged('ol > li', setActiveItem("OL"));
 				}
 
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 				if (item.settings.stateSelector) {
 					selection.selectorChanged(item.settings.stateSelector, function(state) {
@@ -500,7 +519,11 @@ tinymce.ThemeManager.add('modern', function(editor) {
 					});
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			};
+=======
+			}
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			}
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -549,7 +572,11 @@ tinymce.ThemeManager.add('modern', function(editor) {
 			items: toolbarItems
 		};
 <<<<<<< HEAD
+<<<<<<< HEAD
 	};
+=======
+	}
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 	}
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -560,6 +587,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	 * @param {String} size Optional toolbar item size.
 	 * @return {Array} Array with toolbars.
 	 */
+<<<<<<< HEAD
 <<<<<<< HEAD
 	var createToolbars = function (editor, size) {
 		var toolbars = [], settings = editor.settings;
@@ -574,6 +602,8 @@ tinymce.ThemeManager.add('modern', function(editor) {
 		// Convert toolbar array to multiple options
 		if (Tools.isArray(settings.toolbar)) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	function createToolbars(size) {
 		var toolbars = [];
 
@@ -586,6 +616,9 @@ tinymce.ThemeManager.add('modern', function(editor) {
 
 		// Convert toolbar array to multiple options
 		if (tinymce.isArray(settings.toolbar)) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			// Empty toolbar array is the same as a disabled toolbar
 			if (settings.toolbar.length === 0) {
@@ -593,7 +626,11 @@ tinymce.ThemeManager.add('modern', function(editor) {
 			}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			Tools.each(settings.toolbar, function(toolbar, i) {
+=======
+			tinymce.each(settings.toolbar, function(toolbar, i) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			tinymce.each(settings.toolbar, function(toolbar, i) {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -625,6 +662,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 				items: toolbars
 			};
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	};
 
@@ -876,6 +914,8 @@ define('tinymce.modern.ui.Menubar', [
 	var createMenuButtons = function (editor) {
 		var name, menuButtons = [], settings = editor.settings;
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	}
 
 	/**
@@ -962,6 +1002,9 @@ define('tinymce.modern.ui.Menubar', [
 
 			return menuButton;
 		}
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 		var defaultMenuBar = [];
@@ -979,7 +1022,11 @@ define('tinymce.modern.ui.Menubar', [
 		for (var i = 0; i < enabledMenuNames.length; i++) {
 			var menu = enabledMenuNames[i];
 <<<<<<< HEAD
+<<<<<<< HEAD
 			menu = createMenu(editor.menuItems, editor.settings, menu);
+=======
+			menu = createMenu(menu);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			menu = createMenu(menu);
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -990,6 +1037,7 @@ define('tinymce.modern.ui.Menubar', [
 		}
 
 		return menuButtons;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	};
 
@@ -1543,6 +1591,8 @@ define('tinymce.modern.ui.ContextToolbars', [
 
 			pos = DOM.getPos(editor.getContentAreaContainer());
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	}
 
 	/**
@@ -1628,13 +1678,20 @@ define('tinymce.modern.ui.ContextToolbars', [
 			var pos, targetRect, root;
 
 			pos = tinymce.DOM.getPos(editor.getContentAreaContainer());
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			targetRect = editor.dom.getRect(elm);
 			root = editor.dom.getRoot();
 
 			// Adjust targetPos for scrolling in the editor
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (root.nodeName === 'BODY') {
+=======
+			if (root.nodeName == 'BODY') {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			if (root.nodeName == 'BODY') {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1647,12 +1704,15 @@ define('tinymce.modern.ui.ContextToolbars', [
 
 			return targetRect;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
 
 		var reposition = function (match, shouldShow) {
 			var relPos, panelRect, elementRect, contentAreaRect, panel, relRect, testPositions, smallElementWidthThreshold;
 			var handler = settings.inline_toolbar_position_handler;
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		}
 
 		function hideAllFloatingPanels() {
@@ -1712,6 +1772,9 @@ define('tinymce.modern.ui.ContextToolbars', [
 
 		function reposition(match) {
 			var relPos, panelRect, elementRect, contentAreaRect, panel, relRect, testPositions, smallElementWidthThreshold;
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			if (editor.removed) {
@@ -1720,7 +1783,11 @@ define('tinymce.modern.ui.ContextToolbars', [
 
 			if (!match || !match.toolbar.panel) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				hideAllFloatingPanels(editor);
+=======
+				hideAllFloatingPanels();
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				hideAllFloatingPanels();
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1734,6 +1801,7 @@ define('tinymce.modern.ui.ContextToolbars', [
 			];
 
 			panel = match.toolbar.panel;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 			// Only show the panel on some events not for example nodeChange since that fires when context menu is opened
@@ -1753,6 +1821,8 @@ define('tinymce.modern.ui.ContextToolbars', [
 				elementRect.h = match.element.clientHeight;
 			}
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			panel.show();
 
 			elementRect = getElementRect(match.element);
@@ -1764,6 +1834,9 @@ define('tinymce.modern.ui.ContextToolbars', [
 			// size properites might not be the same as the real size for a table
 			elementRect.w = match.element.clientWidth;
 			elementRect.h = match.element.clientHeight;
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 			if (!editor.inline) {
@@ -1781,7 +1854,11 @@ define('tinymce.modern.ui.ContextToolbars', [
 			if (relPos) {
 				relRect = Rect.relativePosition(panelRect, elementRect, relPos);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				movePanelTo(panel, userConstrain(handler, relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
+=======
+				movePanelTo(panel, userConstrain(relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				movePanelTo(panel, userConstrain(relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1798,9 +1875,15 @@ define('tinymce.modern.ui.ContextToolbars', [
 					if (relPos) {
 						relRect = Rect.relativePosition(panelRect, elementRect, relPos);
 <<<<<<< HEAD
+<<<<<<< HEAD
 						movePanelTo(panel, userConstrain(handler, relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
 					} else {
 						movePanelTo(panel, userConstrain(handler, elementRect.x, elementRect.y, elementRect, contentAreaRect, panelRect));
+=======
+						movePanelTo(panel, userConstrain(relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
+					} else {
+						movePanelTo(panel, userConstrain(elementRect.x, elementRect.y, elementRect, contentAreaRect, panelRect));
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 						movePanelTo(panel, userConstrain(relRect.x, relRect.y, elementRect, contentAreaRect, panelRect));
 					} else {
@@ -1819,6 +1902,7 @@ define('tinymce.modern.ui.ContextToolbars', [
 			//drawRect(contentAreaRect, 'blue');
 			//drawRect(elementRect, 'red');
 			//drawRect(panelRect, 'green');
+<<<<<<< HEAD
 <<<<<<< HEAD
 		};
 
@@ -1847,6 +1931,8 @@ define('tinymce.modern.ui.ContextToolbars', [
 
 		var showContextToolbar = function (match) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		}
 
 		function repositionHandler() {
@@ -1871,6 +1957,9 @@ define('tinymce.modern.ui.ContextToolbars', [
 		}
 
 		function showContextToolbar(match) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 			var panel;
 
@@ -1895,7 +1984,11 @@ define('tinymce.modern.ui.ContextToolbars', [
 				fixed: true,
 				border: 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				items: Toolbar.createToolbar(editor, match.toolbar.items),
+=======
+				items: createToolbar(match.toolbar.items),
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				items: createToolbar(match.toolbar.items),
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1908,24 +2001,36 @@ define('tinymce.modern.ui.ContextToolbars', [
 			panel.renderTo(document.body).reflow();
 			reposition(match);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
 
 		var hideAllContextToolbars = function () {
 			Tools.each(getContextToolbars(), function(toolbar) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		}
 
 		function hideAllContextToolbars() {
 			tinymce.each(getContextToolbars(), function(toolbar) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 				if (toolbar.panel) {
 					toolbar.panel.hide();
 				}
 			});
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
 
 		var findFrontMostMatch = function (targetElm) {
+=======
+		}
+
+		function findFrontMostMatch(targetElm) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		}
 
@@ -1947,24 +2052,34 @@ define('tinymce.modern.ui.ContextToolbars', [
 
 			return null;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
 
 		editor.on('click keyup setContent ObjectResized', function(e) {
 			// Only act on partial inserts
 			if (e.type === 'setcontent' && !e.selection) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		}
 
 		editor.on('click keyup setContent', function(e) {
 			// Only act on partial inserts
 			if (e.type == 'setcontent' && !e.selection) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 				return;
 			}
 
 			// Needs to be delayed to avoid Chrome img focus out bug
 <<<<<<< HEAD
+<<<<<<< HEAD
 			Delay.setEditorTimeout(editor, function() {
+=======
+			tinymce.util.Delay.setEditorTimeout(editor, function() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			tinymce.util.Delay.setEditorTimeout(editor, function() {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1981,7 +2096,11 @@ define('tinymce.modern.ui.ContextToolbars', [
 		});
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		editor.on('blur hide contextmenu', hideAllContextToolbars);
+=======
+		editor.on('blur hide', hideAllContextToolbars);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		editor.on('blur hide', hideAllContextToolbars);
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -1995,16 +2114,22 @@ define('tinymce.modern.ui.ContextToolbars', [
 		});
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		editor.on('ResizeEditor ResizeWindow', repositionHandler(true));
 		editor.on('nodeChange', repositionHandler(false));
 
 		editor.on('remove', function() {
 			Tools.each(getContextToolbars(), function(toolbar) {
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		editor.on('nodeChange ResizeEditor ResizeWindow', repositionHandler);
 
 		editor.on('remove', function() {
 			tinymce.each(getContextToolbars(), function(toolbar) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 				if (toolbar.panel) {
 					toolbar.panel.remove();
@@ -2020,6 +2145,7 @@ define('tinymce.modern.ui.ContextToolbars', [
 				match.toolbar.panel.items()[0].focus();
 			}
 		});
+<<<<<<< HEAD
 <<<<<<< HEAD
 	};
 
@@ -2983,6 +3109,8 @@ define('tinymce.modern.modes.Inline', [
 	var render = function (editor, theme, args) {
 		var panel, inlineToolbarContainer, settings = editor.settings;
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	}
 
 	function fireSkinLoaded(editor) {
@@ -3004,6 +3132,9 @@ define('tinymce.modern.modes.Inline', [
 	 */
 	function renderInlineUI(args) {
 		var panel, inlineToolbarContainer;
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 		if (settings.fixed_toolbar_container) {
@@ -3011,7 +3142,11 @@ define('tinymce.modern.modes.Inline', [
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		var reposition = function () {
+=======
+		function reposition() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		function reposition() {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -3030,9 +3165,15 @@ define('tinymce.modern.modes.Inline', [
 				panel.fixed(false).moveRel(body, editor.rtl ? ['tr-br', 'br-tr'] : ['tl-bl', 'bl-tl', 'tr-br']).moveBy(deltaX, deltaY);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
 
 		var show = function () {
+=======
+		}
+
+		function show() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		}
 
@@ -3044,9 +3185,15 @@ define('tinymce.modern.modes.Inline', [
 				DOM.addClass(editor.getBody(), 'mce-edit-focus');
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
 
 		var hide = function () {
+=======
+		}
+
+		function hide() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		}
 
@@ -3062,9 +3209,15 @@ define('tinymce.modern.modes.Inline', [
 				DOM.removeClass(editor.getBody(), 'mce-edit-focus');
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
 
 		var render = function () {
+=======
+		}
+
+		function render() {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		}
 
@@ -3080,7 +3233,11 @@ define('tinymce.modern.modes.Inline', [
 
 			// Render a plain panel inside the inlineToolbarContainer if it's defined
 <<<<<<< HEAD
+<<<<<<< HEAD
 			panel = theme.panel = Factory.create({
+=======
+			panel = self.panel = Factory.create({
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			panel = self.panel = Factory.create({
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -3096,8 +3253,13 @@ define('tinymce.modern.modes.Inline', [
 				border: 1,
 				items: [
 <<<<<<< HEAD
+<<<<<<< HEAD
 					settings.menubar === false ? null : {type: 'menubar', border: '0 0 1 0', items: Menubar.createMenuButtons(editor)},
 					Toolbar.createToolbars(editor, settings.toolbar_items_size)
+=======
+					settings.menubar === false ? null : {type: 'menubar', border: '0 0 1 0', items: createMenuButtons()},
+					createToolbars(settings.toolbar_items_size)
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 					settings.menubar === false ? null : {type: 'menubar', border: '0 0 1 0', items: createMenuButtons()},
 					createToolbars(settings.toolbar_items_size)
@@ -3116,9 +3278,15 @@ define('tinymce.modern.modes.Inline', [
 			panel.renderTo(inlineToolbarContainer || document.body).reflow();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			A11y.addKeys(editor, panel);
 			show();
 			ContextToolbars.addContextualToolbars(editor);
+=======
+			addAccessibilityKeys(panel);
+			show();
+			addContextualToolbars();
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			addAccessibilityKeys(panel);
 			show();
@@ -3131,7 +3299,11 @@ define('tinymce.modern.modes.Inline', [
 
 			editor.nodeChanged();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		};
+=======
+		}
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		}
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -3142,7 +3314,11 @@ define('tinymce.modern.modes.Inline', [
 			// Render only when the CSS file has been loaded
 			if (args.skinUiCss) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				DOM.styleSheetLoader.load(args.skinUiCss, render, render);
+=======
+				tinymce.DOM.styleSheetLoader.load(args.skinUiCss, render, render);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				tinymce.DOM.styleSheetLoader.load(args.skinUiCss, render, render);
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -3163,6 +3339,7 @@ define('tinymce.modern.modes.Inline', [
 
 		// Preload skin css
 		if (args.skinUiCss) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 			DOM.styleSheetLoader.load(args.skinUiCss, SkinLoaded.fireSkinLoaded(editor));
 		}
@@ -3327,6 +3504,8 @@ define('tinymce.modern.Theme', [
 	var renderUI = function(editor, theme, args) {
 		var settings = editor.settings;
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 			tinymce.DOM.styleSheetLoader.load(args.skinUiCss, fireSkinLoaded(editor));
 		}
 
@@ -3438,6 +3617,9 @@ define('tinymce.modern.Theme', [
 	 * @return {Object} Theme UI data items.
 	 */
 	self.renderUI = function(args) {
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		var skin = settings.skin !== false ? settings.skin || 'lightgray' : false;
 
@@ -3448,7 +3630,11 @@ define('tinymce.modern.Theme', [
 				skinUrl = editor.documentBaseURI.toAbsolute(skinUrl);
 			} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				skinUrl = EditorManager.baseURL + '/skins/' + skin;
+=======
+				skinUrl = tinymce.baseURL + '/skins/' + skin;
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				skinUrl = tinymce.baseURL + '/skins/' + skin;
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -3457,7 +3643,11 @@ define('tinymce.modern.Theme', [
 			// Load special skin for IE7
 			// TODO: Remove this when we drop IE7 support
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (Env.documentMode <= 7) {
+=======
+			if (tinymce.Env.documentMode <= 7) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			if (tinymce.Env.documentMode <= 7) {
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -3470,6 +3660,7 @@ define('tinymce.modern.Theme', [
 			editor.contentCSS.push(skinUrl + '/content' + (editor.inline ? '.inline' : '') + '.min.css');
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		ProgressState.setup(editor, theme);
 
@@ -3502,6 +3693,8 @@ dem('tinymce.modern.Theme')();
 >>>>>>> origin/master
 })();
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		// Handle editor setProgressState change
 		editor.on('ProgressState', function(e) {
 			self.throbber = self.throbber || new tinymce.ui.Throbber(self.panel.getEl('body'));
@@ -3523,4 +3716,7 @@ dem('tinymce.modern.Theme')();
 	self.resizeTo = resizeTo;
 	self.resizeBy = resizeBy;
 });
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

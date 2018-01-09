@@ -1111,9 +1111,15 @@
 
 		/**
 		 * Update UI to reflect expanded state.
+<<<<<<< HEAD
 		 *
 		 * @since 4.1.0
 		 *
+=======
+		 *
+		 * @since 4.1.0
+		 *
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		 * @param {Boolean} expanded
 		 */
 		onChangeExpanded: function( expanded ) {
@@ -1510,6 +1516,7 @@
 		 */
 		_setupTitleUI: function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 			var control = this, titleEl;
 <<<<<<< HEAD
 
@@ -1527,6 +1534,10 @@
 
 >>>>>>> origin/master
 			titleEl = control.container.find( '.menu-item-title' );
+=======
+			var control = this;
+
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 			var control = this;
 
@@ -2228,9 +2239,14 @@
 			} );
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 			control.container.find( '.menu-delete-item' ).on( 'click', function( event ) {
+=======
+
+			control.container.find( '.menu-delete' ).on( 'click', function( event ) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 
 			control.container.find( '.menu-delete' ).on( 'click', function( event ) {
@@ -2240,7 +2256,10 @@
 				control.setting.set( false );
 			});
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		},

@@ -335,12 +335,17 @@
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		// Ignore links with href="#", href="#id", or non-HTTP protocols (e.g. javascript: and mailto:).
 <<<<<<< HEAD
 		if ( '#' === $element.attr( 'href' ).substr( 0, 1 ) || ! /^https?:$/.test( element.protocol ) ) {
 =======
 		if ( '#' === $( element ).attr( 'href' ).substr( 0, 1 ) || ! /^https?:$/.test( element.protocol ) ) {
 >>>>>>> origin/master
+=======
+		// Ignore links with href="#" or href="#id".
+		if ( '#' === $( element ).attr( 'href' ).substr( 0, 1 ) ) {
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		// Ignore links with href="#" or href="#id".
 		if ( '#' === $( element ).attr( 'href' ).substr( 0, 1 ) ) {

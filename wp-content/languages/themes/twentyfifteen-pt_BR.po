@@ -161,6 +161,7 @@ msgstr "Pular para o conteúdo"
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #: functions.php:283
 msgid "collapse child menu"
@@ -169,11 +170,16 @@ msgstr "fechar submenu"
 >>>>>>> origin/master
 #: functions.php:282
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 #: functions.php:270
 msgid "collapse child menu"
 msgstr "colapsar submenu"
 
 #: functions.php:269
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 msgid "expand child menu"
 msgstr "expandir submenu"
@@ -232,10 +238,14 @@ msgstr "Orgulhosamente mantido com %s"
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.9)  #-#-#-#-#
 =======
 #. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.7)  #-#-#-#-#
 >>>>>>> origin/master
+=======
+#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.6)  #-#-#-#-#
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 #. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.6)  #-#-#-#-#
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

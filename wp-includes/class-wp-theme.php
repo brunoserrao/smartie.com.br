@@ -1140,6 +1140,7 @@ final class WP_Theme implements ArrayAccess {
 		$files = array();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/**
 		 * Filters the array of excluded directories and files while scanning theme folder.
 		 *
@@ -1159,16 +1160,22 @@ final class WP_Theme implements ArrayAccess {
 
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		foreach ( $results as $result ) {
 			if ( '.' == $result[0] )
 				continue;
 			if ( is_dir( $path . '/' . $result ) ) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if ( ! $depth ) {
 =======
 				if ( ! $depth )
 >>>>>>> origin/master
+=======
+				if ( ! $depth || 'CVS' == $result )
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 				if ( ! $depth || 'CVS' == $result )
 >>>>>>> parent of 6188f9c... WordPress 4.9.1

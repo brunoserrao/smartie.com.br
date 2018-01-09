@@ -578,6 +578,7 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 <div class="wrap">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<h1 class="wp-heading-inline"><?php echo esc_html( __( 'Menus' ) ); ?></h1>
 	<?php
 	if ( current_user_can( 'customize' ) ) :
@@ -598,6 +599,8 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	<h1><?php echo esc_html( __( 'Menus' ) ); ?>
 		<?php
 		if ( current_user_can( 'customize' ) ) :
@@ -607,7 +610,11 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 				esc_url( add_query_arg( array(
 					array( 'autofocus' => $focus ),
 <<<<<<< HEAD
+<<<<<<< HEAD
 					'return' => urlencode( remove_query_arg( wp_removable_query_args(), wp_unslash( $_SERVER['REQUEST_URI'] ) ) ),
+=======
+					'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ),
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 					'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ),
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -618,7 +625,10 @@ require_once( ABSPATH . 'wp-admin/admin-header.php' );
 		?>
 	</h1>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 	<h2 class="nav-tab-wrapper wp-clearfix">

@@ -143,6 +143,7 @@ define('tinymce/inlite/alien/Type', [
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 define(
   'tinymce.core.ui.Api',
   [
@@ -156,13 +157,18 @@ define(
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 define('tinymce/inlite/ui/Toolbar', [
 	'global!tinymce.util.Tools',
 	'global!tinymce.ui.Factory',
 	'tinymce/inlite/alien/Type'
 ], function (Tools, Factory, Type) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	var setActiveItem = function (item, name) {
 		return function(state, args) {
 			var nodeName, i = args.parents.length;
@@ -178,6 +184,9 @@ define('tinymce/inlite/ui/Toolbar', [
 		};
 	};
 
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 	var getSelectorStateResult = function (itemName, item) {
 		var result = function (selector, handler) {
@@ -196,7 +205,10 @@ define('tinymce/inlite/ui/Toolbar', [
 		};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 		if (itemName == 'bullist') {
 			return result('ul > li', setActiveItem(item, 'UL'));
 		}
@@ -205,6 +217,9 @@ define('tinymce/inlite/ui/Toolbar', [
 			return result('ol > li', setActiveItem(item, 'OL'));
 		}
 
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		if (item.settings.stateSelector) {
 			return result(item.settings.stateSelector, activeHandler);
@@ -292,7 +307,10 @@ define('tinymce/inlite/ui/Toolbar', [
 
 defineGlobal("global!tinymce.util.Promise", tinymce.util.Promise);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 /**
@@ -317,6 +335,7 @@ define("tinymce/inlite/alien/Uuid", [
 		var rnd = function () {
 			return Math.round(Math.random() * 0xFFFFFFFF).toString(36);
 		};
+<<<<<<< HEAD
 
 		return 's' + Date.now().toString(36) + rnd() + rnd() + rnd();
 	};
@@ -459,12 +478,30 @@ define('tinymce/inlite/alien/Bookmark', [
 	};
 });
 
+=======
+
+		return 's' + Date.now().toString(36) + rnd() + rnd() + rnd();
+	};
+
+	var uuid = function (prefix) {
+		return prefix + (count++) + seed();
+	};
+
+	return {
+		uuid: uuid
+	};
+});
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 
 defineGlobal("global!tinymce.dom.TreeWalker", tinymce.dom.TreeWalker);
 defineGlobal("global!tinymce.dom.RangeUtils", tinymce.dom.RangeUtils);
 /**
+<<<<<<< HEAD
  * Unlink.js
+=======
+ * Bookmark.js
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
  *
  * Released under LGPL License.
  * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
@@ -473,6 +510,7 @@ defineGlobal("global!tinymce.dom.RangeUtils", tinymce.dom.RangeUtils);
  * Contributing: http://www.tinymce.com/contributing
  */
 
+<<<<<<< HEAD
 /**
  * Unlink implementation that doesn't leave partial links for example it would produce:
  *  a[b<a href="x">c]d</a>e -> a[bc]de
@@ -811,6 +849,133 @@ defineGlobal("global!tinymce.geom.Rect", tinymce.geom.Rect);
 >>>>>>> origin/master
 /**
  * PredicateId.js
+=======
+define('tinymce/inlite/alien/Bookmark', [
+], function () {
+	/**
+	 * Returns a range bookmark. This will convert indexed bookmarks into temporary span elements with
+	 * index 0 so that they can be restored properly after the DOM has been modified. Text bookmarks will not have spans
+	 * added to them since they can be restored after a dom operation.
+	 *
+	 * So this: <p><b>|</b><b>|</b></p>
+	 * becomes: <p><b><span data-mce-type="bookmark">|</span></b><b data-mce-type="bookmark">|</span></b></p>
+	 *
+	 * @param  {DOMRange} rng DOM Range to get bookmark on.
+	 * @return {Object} Bookmark object.
+	 */
+	var create = function (dom, rng) {
+		var bookmark = {};
+
+		function setupEndPoint(start) {
+			var offsetNode, container, offset;
+
+			container = rng[start ? 'startContainer' : 'endContainer'];
+			offset = rng[start ? 'startOffset' : 'endOffset'];
+
+			if (container.nodeType == 1) {
+				offsetNode = dom.create('span', {'data-mce-type': 'bookmark'});
+
+				if (container.hasChildNodes()) {
+					offset = Math.min(offset, container.childNodes.length - 1);
+
+					if (start) {
+						container.insertBefore(offsetNode, container.childNodes[offset]);
+					} else {
+						dom.insertAfter(offsetNode, container.childNodes[offset]);
+					}
+				} else {
+					container.appendChild(offsetNode);
+				}
+
+				container = offsetNode;
+				offset = 0;
+			}
+
+			bookmark[start ? 'startContainer' : 'endContainer'] = container;
+			bookmark[start ? 'startOffset' : 'endOffset'] = offset;
+		}
+
+		setupEndPoint(true);
+
+		if (!rng.collapsed) {
+			setupEndPoint();
+		}
+
+		return bookmark;
+	};
+
+	/**
+	 * Moves the selection to the current bookmark and removes any selection container wrappers.
+	 *
+	 * @param {Object} bookmark Bookmark object to move selection to.
+	 */
+	var resolve = function (dom, bookmark) {
+		function restoreEndPoint(start) {
+			var container, offset, node;
+
+			function nodeIndex(container) {
+				var node = container.parentNode.firstChild, idx = 0;
+
+				while (node) {
+					if (node == container) {
+						return idx;
+					}
+
+					// Skip data-mce-type=bookmark nodes
+					if (node.nodeType != 1 || node.getAttribute('data-mce-type') != 'bookmark') {
+						idx++;
+					}
+
+					node = node.nextSibling;
+				}
+
+				return -1;
+			}
+
+			container = node = bookmark[start ? 'startContainer' : 'endContainer'];
+			offset = bookmark[start ? 'startOffset' : 'endOffset'];
+
+			if (!container) {
+				return;
+			}
+
+			if (container.nodeType == 1) {
+				offset = nodeIndex(container);
+				container = container.parentNode;
+				dom.remove(node);
+			}
+
+			bookmark[start ? 'startContainer' : 'endContainer'] = container;
+			bookmark[start ? 'startOffset' : 'endOffset'] = offset;
+		}
+
+		restoreEndPoint(true);
+		restoreEndPoint();
+
+		var rng = dom.createRng();
+
+		rng.setStart(bookmark.startContainer, bookmark.startOffset);
+
+		if (bookmark.endContainer) {
+			rng.setEnd(bookmark.endContainer, bookmark.endOffset);
+		}
+
+		return rng;
+	};
+
+	return {
+		create: create,
+		resolve: resolve
+	};
+});
+
+
+
+defineGlobal("global!tinymce.dom.TreeWalker", tinymce.dom.TreeWalker);
+defineGlobal("global!tinymce.dom.RangeUtils", tinymce.dom.RangeUtils);
+/**
+ * Unlink.js
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
  *
  * Released under LGPL License.
  * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
@@ -825,11 +990,91 @@ defineGlobal("global!tinymce.geom.Rect", tinymce.geom.Rect);
 	};
 });
 
+<<<<<<< HEAD
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 
 
 /**
  * Forms.js
+=======
+/**
+ * Unlink implementation that doesn't leave partial links for example it would produce:
+ *  a[b<a href="x">c]d</a>e -> a[bc]de
+ * instead of:
+ *  a[b<a href="x">c]d</a>e -> a[bc]<a href="x">d</a>e
+ */
+define("tinymce/inlite/alien/Unlink", [
+	'tinymce/inlite/alien/Bookmark',
+	'global!tinymce.util.Tools',
+	'global!tinymce.dom.TreeWalker',
+	'global!tinymce.dom.RangeUtils'
+], function (Bookmark, Tools, TreeWalker, RangeUtils) {
+	var getSelectedElements = function (rootElm, startNode, endNode) {
+		var walker, node, elms = [];
+
+		walker = new TreeWalker(startNode, rootElm);
+		for (node = startNode; node; node = walker.next()) {
+			if (node.nodeType === 1) {
+				elms.push(node);
+			}
+
+			if (node === endNode) {
+				break;
+			}
+		}
+
+		return elms;
+	};
+
+	var unwrapElements = function (editor, elms) {
+		var bookmark, dom, selection;
+
+		dom = editor.dom;
+		selection = editor.selection;
+		bookmark = Bookmark.create(dom, selection.getRng());
+
+		Tools.each(elms, function (elm) {
+			editor.dom.remove(elm, true);
+		});
+
+		selection.setRng(Bookmark.resolve(dom, bookmark));
+	};
+
+	var isLink = function (elm) {
+		return elm.nodeName === 'A' && elm.hasAttribute('href');
+	};
+
+	var getParentAnchorOrSelf = function (dom, elm) {
+		var anchorElm = dom.getParent(elm, isLink);
+		return anchorElm ? anchorElm : elm;
+	};
+
+	var getSelectedAnchors = function (editor) {
+		var startElm, endElm, rootElm, anchorElms, selection, dom, rng;
+
+		selection = editor.selection;
+		dom = editor.dom;
+		rng = selection.getRng();
+		startElm = getParentAnchorOrSelf(dom, RangeUtils.getNode(rng.startContainer, rng.startOffset));
+		endElm = RangeUtils.getNode(rng.endContainer, rng.endOffset);
+		rootElm = editor.getBody();
+		anchorElms = Tools.grep(getSelectedElements(rootElm, startElm, endElm), isLink);
+
+		return anchorElms;
+	};
+
+	var unlinkSelection = function (editor) {
+		unwrapElements(editor, getSelectedAnchors(editor));
+	};
+
+	return {
+		unlinkSelection: unlinkSelection
+	};
+});
+
+/**
+ * Actions.js
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
  *
  * Released under LGPL License.
  * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
@@ -838,6 +1083,7 @@ defineGlobal("global!tinymce.geom.Rect", tinymce.geom.Rect);
  * Contributing: http://www.tinymce.com/contributing
  */
 
+<<<<<<< HEAD
 define('tinymce/inlite/ui/Forms', [
 	'global!tinymce.util.Tools',
 	'global!tinymce.ui.Factory',
@@ -934,6 +1180,107 @@ define('tinymce/inlite/ui/Forms', [
 defineGlobal("global!tinymce.geom.Rect", tinymce.geom.Rect);
 /**
  * Convert.js
+=======
+define('tinymce/inlite/core/Actions', [
+	'tinymce/inlite/alien/Uuid',
+	'tinymce/inlite/alien/Unlink'
+], function (Uuid, Unlink) {
+	var createTableHtml = function (cols, rows) {
+		var x, y, html;
+
+		html = '<table data-mce-id="mce" style="width: 100%">';
+		html += '<tbody>';
+
+		for (y = 0; y < rows; y++) {
+			html += '<tr>';
+
+			for (x = 0; x < cols; x++) {
+				html += '<td><br></td>';
+			}
+
+			html += '</tr>';
+		}
+
+		html += '</tbody>';
+		html += '</table>';
+
+		return html;
+	};
+
+	var getInsertedElement = function (editor) {
+		var elms = editor.dom.select('*[data-mce-id]');
+		return elms[0];
+	};
+
+	var insertTable = function (editor, cols, rows) {
+		editor.undoManager.transact(function () {
+			var tableElm, cellElm;
+
+			editor.insertContent(createTableHtml(cols, rows));
+
+			tableElm = getInsertedElement(editor);
+			tableElm.removeAttribute('data-mce-id');
+			cellElm = editor.dom.select('td,th', tableElm);
+			editor.selection.setCursorLocation(cellElm[0], 0);
+		});
+	};
+
+	var formatBlock = function (editor, formatName) {
+		editor.execCommand('FormatBlock', false, formatName);
+	};
+
+	var insertBlob = function (editor, base64, blob) {
+		var blobCache, blobInfo;
+
+		blobCache = editor.editorUpload.blobCache;
+		blobInfo = blobCache.create(Uuid.uuid('mceu'), blob, base64);
+		blobCache.add(blobInfo);
+
+		editor.insertContent(editor.dom.createHTML('img', {src: blobInfo.blobUri()}));
+	};
+
+	var collapseSelectionToEnd = function (editor) {
+		editor.selection.collapse(false);
+	};
+
+	var unlink = function (editor) {
+		editor.focus();
+		Unlink.unlinkSelection(editor);
+		collapseSelectionToEnd(editor);
+	};
+
+	var changeHref = function (editor, elm, url) {
+		editor.focus();
+		editor.dom.setAttrib(elm, 'href', url);
+		collapseSelectionToEnd(editor);
+	};
+
+	var insertLink = function (editor, url) {
+		editor.execCommand('mceInsertLink', false, {href: url});
+		collapseSelectionToEnd(editor);
+	};
+
+	var updateOrInsertLink = function (editor, url) {
+		var elm = editor.dom.getParent(editor.selection.getStart(), 'a[href]');
+		elm ? changeHref(editor, elm, url) : insertLink(editor, url);
+	};
+
+	var createLink = function (editor, url) {
+		url.trim().length === 0 ? unlink(editor) : updateOrInsertLink(editor, url);
+	};
+
+	return {
+		insertTable: insertTable,
+		formatBlock: formatBlock,
+		insertBlob: insertBlob,
+		createLink: createLink,
+		unlink: unlink
+	};
+});
+
+/**
+ * UrlType.js
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
  *
  * Released under LGPL License.
  * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
@@ -942,6 +1289,7 @@ defineGlobal("global!tinymce.geom.Rect", tinymce.geom.Rect);
  * Contributing: http://www.tinymce.com/contributing
  */
 
+<<<<<<< HEAD
 define('tinymce/inlite/core/Convert', [
 ], function () {
 	var fromClientRect = function (clientRect) {
@@ -1454,6 +1802,694 @@ define('tinymce/inlite/alien/EditorSettings', [
 
 /**
  * Panel.js
+=======
+define('tinymce/inlite/core/UrlType', [
+], function () {
+	var isDomainLike = function (href) {
+		return /^www\.|\.(com|org|edu|gov|uk|net|ca|de|jp|fr|au|us|ru|ch|it|nl|se|no|es|mil)$/i.test(href.trim());
+	};
+
+	var isAbsolute = function (href) {
+		return /^https?:\/\//.test(href.trim());
+	};
+
+	return {
+		isDomainLike: isDomainLike,
+		isAbsolute: isAbsolute
+	};
+});
+
+
+
+/**
+ * Forms.js
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+<<<<<<< HEAD
+define('tinymce/inlite/ui/Panel', [
+	'global!tinymce.util.Tools',
+	'global!tinymce.ui.Factory',
+	'global!tinymce.DOM',
+	'tinymce/inlite/ui/Toolbar',
+	'tinymce/inlite/ui/Forms',
+	'tinymce/inlite/core/Measure',
+	'tinymce/inlite/core/Layout',
+	'tinymce/inlite/alien/EditorSettings'
+], function (Tools, Factory, DOM, Toolbar, Forms, Measure, Layout, EditorSettings) {
+	return function () {
+		var DEFAULT_TEXT_SELECTION_ITEMS = ['bold', 'italic', '|', 'quicklink', 'h2', 'h3', 'blockquote'];
+		var DEFAULT_INSERT_TOOLBAR_ITEMS = ['quickimage', 'quicktable'];
+		var panel, currentRect;
+
+		var createToolbars = function (editor, toolbars) {
+			return Tools.map(toolbars, function (toolbar) {
+				return Toolbar.create(editor, toolbar.id, toolbar.items);
+			});
+		};
+
+		var getTextSelectionToolbarItems = function (editor) {
+			return EditorSettings.getToolbarItemsOr(editor, 'selection_toolbar', DEFAULT_TEXT_SELECTION_ITEMS);
+		};
+
+		var getInsertToolbarItems = function (editor) {
+			return EditorSettings.getToolbarItemsOr(editor, 'insert_toolbar', DEFAULT_INSERT_TOOLBAR_ITEMS);
+		};
+
+		var hasToolbarItems = function (toolbar) {
+			return toolbar.items().length > 0;
+		};
+
+		var create = function (editor, toolbars) {
+			var items = createToolbars(editor, toolbars).concat([
+				Toolbar.create(editor, 'text', getTextSelectionToolbarItems(editor)),
+				Toolbar.create(editor, 'insert', getInsertToolbarItems(editor)),
+				Forms.createQuickLinkForm(editor, hide)
+			]);
+
+			return Factory.create({
+				type: 'floatpanel',
+				role: 'dialog',
+				classes: 'tinymce tinymce-inline arrow',
+				ariaLabel: 'Inline toolbar',
+				layout: 'flex',
+				direction: 'column',
+				align: 'stretch',
+				autohide: false,
+				autofix: true,
+				fixed: true,
+				border: 1,
+				items: Tools.grep(items, hasToolbarItems),
+				oncancel: function() {
+					editor.focus();
+				}
+			});
+		};
+
+		var showPanel = function (panel) {
+			if (panel) {
+				panel.show();
+			}
+		};
+
+		var movePanelTo = function (panel, pos) {
+			panel.moveTo(pos.x, pos.y);
+		};
+
+		var togglePositionClass = function (panel, relPos) {
+			relPos = relPos ? relPos.substr(0, 2) : '';
+
+			Tools.each({
+				t: 'down',
+				b: 'up',
+				c: 'center'
+			}, function(cls, pos) {
+				panel.classes.toggle('arrow-' + cls, pos === relPos.substr(0, 1));
+			});
+
+			if (relPos === 'cr') {
+				panel.classes.toggle('arrow-left', true);
+				panel.classes.toggle('arrow-right', false);
+			} else if (relPos === 'cl') {
+				panel.classes.toggle('arrow-left', true);
+				panel.classes.toggle('arrow-right', true);
+			} else {
+				Tools.each({
+					l: 'left',
+					r: 'right'
+				}, function(cls, pos) {
+					panel.classes.toggle('arrow-' + cls, pos === relPos.substr(1, 1));
+				});
+			}
+		};
+
+		var showToolbar = function (panel, id) {
+			var toolbars = panel.items().filter('#' + id);
+
+			if (toolbars.length > 0) {
+				toolbars[0].show();
+				panel.reflow();
+				return true;
+			}
+
+			return false;
+		};
+
+		var showPanelAt = function (panel, id, editor, targetRect) {
+			var contentAreaRect, panelRect, result, userConstainHandler;
+
+			showPanel(panel);
+			panel.items().hide();
+
+			if (!showToolbar(panel, id)) {
+				hide(panel);
+				return;
+			}
+
+			userConstainHandler = EditorSettings.getHandlerOr(editor, 'inline_toolbar_position_handler', Layout.defaultHandler);
+			contentAreaRect = Measure.getContentAreaRect(editor);
+			panelRect = DOM.getRect(panel.getEl());
+
+			if (id === 'insert') {
+				result = Layout.calcInsert(targetRect, contentAreaRect, panelRect);
+			} else {
+				result = Layout.calc(targetRect, contentAreaRect, panelRect);
+			}
+
+			if (result) {
+				panelRect = result.rect;
+				currentRect = targetRect;
+				movePanelTo(panel, Layout.userConstrain(userConstainHandler, targetRect, contentAreaRect, panelRect));
+				togglePositionClass(panel, result.position);
+			} else {
+				hide(panel);
+			}
+		};
+
+		var hasFormVisible = function () {
+			return panel.items().filter('form:visible').length > 0;
+		};
+
+		var showForm = function (editor, id) {
+			if (panel) {
+				panel.items().hide();
+
+				if (!showToolbar(panel, id)) {
+					hide(panel);
+					return;
+				}
+
+				var contentAreaRect, panelRect, result, userConstainHandler;
+
+				showPanel(panel);
+				panel.items().hide();
+				showToolbar(panel, id);
+
+				userConstainHandler = EditorSettings.getHandlerOr(editor, 'inline_toolbar_position_handler', Layout.defaultHandler);
+				contentAreaRect = Measure.getContentAreaRect(editor);
+				panelRect = DOM.getRect(panel.getEl());
+
+				result = Layout.calc(currentRect, contentAreaRect, panelRect);
+
+				if (result) {
+					panelRect = result.rect;
+					movePanelTo(panel, Layout.userConstrain(userConstainHandler, currentRect, contentAreaRect, panelRect));
+					togglePositionClass(panel, result.position);
+				}
+			}
+		};
+
+		var show = function (editor, id, targetRect, toolbars) {
+			if (!panel) {
+				panel = create(editor, toolbars);
+				panel.renderTo(document.body).reflow().moveTo(targetRect.x, targetRect.y);
+				editor.nodeChanged();
+			}
+
+			showPanelAt(panel, id, editor, targetRect);
+		};
+
+		var hide = function () {
+			if (panel) {
+				panel.hide();
+			}
+		};
+
+		var focus = function () {
+			if (panel) {
+				panel.find('toolbar:visible').eq(0).each(function (item) {
+					item.focus(true);
+				});
+			}
+		};
+
+		var remove = function () {
+			if (panel) {
+				panel.remove();
+				panel = null;
+			}
+		};
+
+		var inForm = function () {
+			return panel && panel.visible() && hasFormVisible();
+		};
+
+		return {
+			show: show,
+			showForm: showForm,
+			inForm: inForm,
+			hide: hide,
+			focus: focus,
+			remove: remove
+		};
+	};
+});
+
+/**
+ * Conversions.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define('tinymce/inlite/file/Conversions', [
+	'global!tinymce.util.Promise'
+], function (Promise) {
+	var blobToBase64 = function (blob) {
+		return new Promise(function(resolve) {
+			var reader = new FileReader();
+
+			reader.onloadend = function() {
+				resolve(reader.result.split(',')[1]);
+			};
+
+			reader.readAsDataURL(blob);
+=======
+define('tinymce/inlite/ui/Forms', [
+	'global!tinymce.util.Tools',
+	'global!tinymce.ui.Factory',
+	'global!tinymce.util.Promise',
+	'tinymce/inlite/core/Actions',
+	'tinymce/inlite/core/UrlType'
+], function (Tools, Factory, Promise, Actions, UrlType) {
+	var focusFirstTextBox = function (form) {
+		form.find('textbox').eq(0).each(function (ctrl) {
+			ctrl.focus();
+		});
+	};
+
+	var createForm = function (name, spec) {
+		var form = Factory.create(
+			Tools.extend({
+				type: 'form',
+				layout: 'flex',
+				direction: 'row',
+				padding: 5,
+				name: name,
+				spacing: 3
+			}, spec)
+		);
+
+		form.on('show', function () {
+			focusFirstTextBox(form);
+		});
+
+		return form;
+	};
+
+	var toggleVisibility = function (ctrl, state) {
+		return state ? ctrl.show() : ctrl.hide();
+	};
+
+	var askAboutPrefix = function (editor, href) {
+		return new Promise(function (resolve) {
+			editor.windowManager.confirm(
+				'The URL you entered seems to be an external link. Do you want to add the required http:// prefix?',
+				function (result) {
+					var output = result === true ? 'http://' + href : href;
+					resolve(output);
+				}
+			);
+		});
+	};
+
+	var convertLinkToAbsolute = function (editor, href) {
+		return !UrlType.isAbsolute(href) && UrlType.isDomainLike(href) ? askAboutPrefix(editor, href) : Promise.resolve(href);
+	};
+
+	var createQuickLinkForm = function (editor, hide) {
+		var unlink = function () {
+			editor.focus();
+			Actions.unlink(editor);
+			hide();
+		};
+
+		return createForm('quicklink', {
+			items: [
+				{type: 'button', name: 'unlink', icon: 'unlink', onclick: unlink, tooltip: 'Remove link'},
+				{type: 'textbox', name: 'linkurl', placeholder: 'Paste or type a link'},
+				{type: 'button', icon: 'checkmark', subtype: 'primary', tooltip: 'Ok', onclick: 'submit'}
+			],
+			onshow: function () {
+				var elm, linkurl = '';
+
+				elm = editor.dom.getParent(editor.selection.getStart(), 'a[href]');
+				if (elm) {
+					linkurl = editor.dom.getAttrib(elm, 'href');
+				}
+
+				this.fromJSON({
+					linkurl: linkurl
+				});
+
+				toggleVisibility(this.find('#unlink'), elm);
+			},
+			onsubmit: function (e) {
+				convertLinkToAbsolute(editor, e.data.linkurl).then(function (url) {
+					Actions.createLink(editor, url);
+					hide();
+				});
+			}
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+		});
+	};
+
+	return {
+<<<<<<< HEAD
+		blobToBase64: blobToBase64
+	};
+});
+
+
+
+/**
+ * Picker.js
+=======
+		createQuickLinkForm: createQuickLinkForm
+	};
+});
+
+defineGlobal("global!tinymce.geom.Rect", tinymce.geom.Rect);
+/**
+ * Convert.js
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+<<<<<<< HEAD
+define('tinymce/inlite/file/Picker', [
+	'global!tinymce.util.Promise'
+], function (Promise) {
+	var pickFile = function () {
+		return new Promise(function (resolve) {
+			var fileInput;
+
+			fileInput = document.createElement("input");
+			fileInput.type = "file";
+			fileInput.style.position = 'fixed';
+			fileInput.style.left = 0;
+			fileInput.style.top = 0;
+			fileInput.style.opacity = 0.001;
+			document.body.appendChild(fileInput);
+
+			fileInput.onchange = function(e) {
+				resolve(Array.prototype.slice.call(e.target.files));
+			};
+
+			fileInput.click();
+			fileInput.parentNode.removeChild(fileInput);
+		});
+	};
+
+	return {
+		pickFile: pickFile
+	};
+});
+
+
+
+/**
+=======
+define('tinymce/inlite/core/Convert', [
+], function () {
+	var fromClientRect = function (clientRect) {
+		return {
+			x: clientRect.left,
+			y: clientRect.top,
+			w: clientRect.width,
+			h: clientRect.height
+		};
+	};
+
+	var toClientRect = function (geomRect) {
+		return {
+			left: geomRect.x,
+			top: geomRect.y,
+			width: geomRect.w,
+			height: geomRect.h,
+			right: geomRect.x + geomRect.w,
+			bottom: geomRect.y + geomRect.h
+		};
+	};
+
+	return {
+		fromClientRect: fromClientRect,
+		toClientRect: toClientRect
+	};
+});
+
+/**
+ * Measure.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define('tinymce/inlite/core/Measure', [
+	'global!tinymce.DOM',
+	'global!tinymce.geom.Rect',
+	'tinymce/inlite/core/Convert'
+], function (DOM, Rect, Convert) {
+	var toAbsolute = function (rect) {
+		var vp = DOM.getViewPort();
+
+		return {
+			x: rect.x + vp.x,
+			y: rect.y + vp.y,
+			w: rect.w,
+			h: rect.h
+		};
+	};
+
+	var measureElement = function (elm) {
+		var clientRect = elm.getBoundingClientRect();
+
+		return toAbsolute({
+			x: clientRect.left,
+			y: clientRect.top,
+			w: Math.max(elm.clientWidth, elm.offsetWidth),
+			h: Math.max(elm.clientHeight, elm.offsetHeight)
+		});
+	};
+
+	var getElementRect = function (editor, elm) {
+		return measureElement(elm);
+	};
+
+	var getPageAreaRect = function (editor) {
+		return measureElement(editor.getElement().ownerDocument.body);
+	};
+
+	var getContentAreaRect = function (editor) {
+		return measureElement(editor.getContentAreaContainer() || editor.getBody());
+	};
+
+	var getSelectionRect = function (editor) {
+		var clientRect = editor.selection.getBoundingClientRect();
+		return clientRect ? toAbsolute(Convert.fromClientRect(clientRect)) : null;
+	};
+
+	return {
+		getElementRect: getElementRect,
+		getPageAreaRect: getPageAreaRect,
+		getContentAreaRect: getContentAreaRect,
+		getSelectionRect: getSelectionRect
+	};
+});
+
+/**
+ * Layout.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define('tinymce/inlite/core/Layout', [
+	'global!tinymce.geom.Rect',
+	'tinymce/inlite/core/Convert'
+], function (Rect, Convert) {
+	var result = function (rect, position) {
+		return {
+			rect: rect,
+			position: position
+		};
+	};
+
+	var moveTo = function (rect, toRect) {
+		return {x: toRect.x, y: toRect.y, w: rect.w, h: rect.h};
+	};
+
+	var calcByPositions = function (testPositions1, testPositions2, targetRect, contentAreaRect, panelRect) {
+		var relPos, relRect, outputPanelRect;
+
+		relPos = Rect.findBestRelativePosition(panelRect, targetRect, contentAreaRect, testPositions1);
+		targetRect = Rect.clamp(targetRect, contentAreaRect);
+
+		if (relPos) {
+			relRect = Rect.relativePosition(panelRect, targetRect, relPos);
+			outputPanelRect = moveTo(panelRect, relRect);
+			return result(outputPanelRect, relPos);
+		}
+
+		targetRect = Rect.intersect(contentAreaRect, targetRect);
+		if (targetRect) {
+			relPos = Rect.findBestRelativePosition(panelRect, targetRect, contentAreaRect, testPositions2);
+			if (relPos) {
+				relRect = Rect.relativePosition(panelRect, targetRect, relPos);
+				outputPanelRect = moveTo(panelRect, relRect);
+				return result(outputPanelRect, relPos);
+			}
+
+			outputPanelRect = moveTo(panelRect, targetRect);
+			return result(outputPanelRect, relPos);
+		}
+
+		return null;
+	};
+
+	var calcInsert = function (targetRect, contentAreaRect, panelRect) {
+		return calcByPositions(
+			['cr-cl', 'cl-cr'],
+			['bc-tc', 'bl-tl', 'br-tr'],
+			targetRect,
+			contentAreaRect,
+			panelRect
+		);
+	};
+
+	var calc = function (targetRect, contentAreaRect, panelRect) {
+		return calcByPositions(
+			['tc-bc', 'bc-tc', 'tl-bl', 'bl-tl', 'tr-br', 'br-tr'],
+			['bc-tc', 'bl-tl', 'br-tr'],
+			targetRect,
+			contentAreaRect,
+			panelRect
+		);
+	};
+
+	var userConstrain = function (handler, targetRect, contentAreaRect, panelRect) {
+		var userConstrainedPanelRect;
+
+		if (typeof handler === 'function') {
+			userConstrainedPanelRect = handler({
+				elementRect: Convert.toClientRect(targetRect),
+				contentAreaRect: Convert.toClientRect(contentAreaRect),
+				panelRect: Convert.toClientRect(panelRect)
+			});
+
+			return Convert.fromClientRect(userConstrainedPanelRect);
+		}
+
+		return panelRect;
+	};
+
+	var defaultHandler = function (rects) {
+		return rects.panelRect;
+	};
+
+	return {
+		calcInsert: calcInsert,
+		calc: calc,
+		userConstrain: userConstrain,
+		defaultHandler: defaultHandler
+	};
+});
+
+/**
+ * EditorSettings.js
+ *
+ * Released under LGPL License.
+ * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
+ *
+ * License: http://www.tinymce.com/license
+ * Contributing: http://www.tinymce.com/contributing
+ */
+
+define('tinymce/inlite/alien/EditorSettings', [
+	'tinymce/inlite/alien/Type'
+], function (Type) {
+	var validDefaultOrDie = function (value, predicate) {
+		if (predicate(value)) {
+			return true;
+		}
+
+		throw new Error('Default value doesn\'t match requested type.');
+	};
+
+	var getByTypeOr = function (predicate) {
+		return function (editor, name, defaultValue) {
+			var settings = editor.settings;
+			validDefaultOrDie(defaultValue, predicate);
+			return name in settings && predicate(settings[name]) ? settings[name] : defaultValue;
+		};
+	};
+
+	var splitNoEmpty = function (str, delim) {
+		return str.split(delim).filter(function (item) {
+			return item.length > 0;
+		});
+	};
+
+	var itemsToArray = function (value, defaultValue) {
+		var stringToItemsArray = function (value) {
+			return typeof value === 'string' ? splitNoEmpty(value, /[ ,]/) : value;
+		};
+
+		var boolToItemsArray = function (value, defaultValue) {
+			return value === false ? [ ] : defaultValue;
+		};
+
+		if (Type.isArray(value)) {
+			return value;
+		} else if (Type.isString(value)) {
+			return stringToItemsArray(value);
+		} else if (Type.isBoolean(value)) {
+			return boolToItemsArray(value, defaultValue);
+		}
+
+		return defaultValue;
+	};
+
+	var getToolbarItemsOr = function (predicate) {
+		return function (editor, name, defaultValue) {
+			var value = name in editor.settings ? editor.settings[name] : defaultValue;
+			validDefaultOrDie(defaultValue, predicate);
+			return itemsToArray(value, defaultValue);
+		};
+	};
+
+	return {
+		// TODO: Add Option based getString, getBool if merged with core
+		getStringOr: getByTypeOr(Type.isString),
+		getBoolOr: getByTypeOr(Type.isBoolean),
+		getNumberOr: getByTypeOr(Type.isNumber),
+		getHandlerOr: getByTypeOr(Type.isFunction),
+		getToolbarItemsOr: getToolbarItemsOr(Type.isArray)
+	};
+});
+
+/**
+ * Panel.js
  *
  * Released under LGPL License.
  * Copyright (c) 1999-2016 Ephox Corp. All rights reserved
@@ -1754,6 +2790,7 @@ define('tinymce/inlite/file/Picker', [
 
 
 /**
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
  * Buttons.js
  *
  * Released under LGPL License.
@@ -1763,6 +2800,7 @@ define('tinymce/inlite/file/Picker', [
  * Contributing: http://www.tinymce.com/contributing
  */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 define(
@@ -1886,6 +2924,8 @@ define('tinymce/inlite/core/SkinLoader', [
 >>>>>>> origin/master
 
 =======
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 define('tinymce/inlite/ui/Buttons', [
 	'tinymce/inlite/ui/Panel',
 	'tinymce/inlite/file/Conversions',
@@ -1958,6 +2998,9 @@ define('tinymce/inlite/ui/Buttons', [
 });
 
 defineGlobal("global!tinymce.EditorManager", tinymce.EditorManager);
+<<<<<<< HEAD
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 /**
  * SkinLoader.js
@@ -1968,6 +3011,7 @@ defineGlobal("global!tinymce.EditorManager", tinymce.EditorManager);
  * License: http://www.tinymce.com/license
  * Contributing: http://www.tinymce.com/contributing
  */
+<<<<<<< HEAD
 
 define('tinymce/inlite/core/SkinLoader', [
 	'global!tinymce.EditorManager',
@@ -1995,6 +3039,35 @@ define('tinymce/inlite/core/SkinLoader', [
 		return editor.documentBaseURI.toAbsolute(url);
 	};
 
+=======
+
+define('tinymce/inlite/core/SkinLoader', [
+	'global!tinymce.EditorManager',
+	'global!tinymce.DOM'
+], function (EditorManager, DOM) {
+	var fireSkinLoaded = function (editor, callback) {
+		var done = function () {
+			editor.fire('SkinLoaded');
+			callback();
+		};
+
+		if (editor.initialized) {
+			done();
+		} else {
+			editor.on('init', done);
+		}
+	};
+
+	var urlFromName = function (name) {
+		var prefix = EditorManager.baseURL + '/skins/';
+		return name ? prefix + name : prefix + 'lightgray';
+	};
+
+	var toAbsoluteUrl = function (editor, url) {
+		return editor.documentBaseURI.toAbsolute(url);
+	};
+
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 	var load = function (editor, callback) {
 		var settings = editor.settings;
 		var skinUrl = settings.skin_url ? toAbsoluteUrl(editor, settings.skin_url) : urlFromName(settings.skin);
@@ -2226,6 +3299,7 @@ define('tinymce/inlite/core/PredicateId', [
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 define(
   'tinymce.themes.inlite.Theme',
   [
@@ -2392,6 +3466,8 @@ dem('tinymce.themes.inlite.Theme')();
 =======
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 define('tinymce/inlite/Theme', [
 	'global!tinymce.ThemeManager',
 	'global!tinymce.util.Delay',
@@ -2468,6 +3544,7 @@ define('tinymce/inlite/Theme', [
 	};
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	var repositionPanel = function (editor, panel) {
 		return function () {
 			var toolbars = getToolbars(editor);
@@ -2479,6 +3556,8 @@ define('tinymce/inlite/Theme', [
 		};
 	};
 
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 	var ignoreWhenFormIsVisible = function (panel, f) {
@@ -2497,8 +3576,12 @@ define('tinymce/inlite/Theme', [
 		editor.on('click', throttledTogglePanel);
 		editor.on('nodeChange mouseup', throttledTogglePanelWhenNotInForm);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		editor.on('ResizeEditor keyup', throttledTogglePanel);
 		editor.on('ResizeWindow', repositionPanel(editor, panel));
+=======
+		editor.on('ResizeEditor ResizeWindow keyup', throttledTogglePanel);
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 		editor.on('ResizeEditor ResizeWindow keyup', throttledTogglePanel);
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
@@ -2553,7 +3636,10 @@ define('tinymce/inlite/Theme', [
 
 dem('tinymce/inlite/Theme')();
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 })();

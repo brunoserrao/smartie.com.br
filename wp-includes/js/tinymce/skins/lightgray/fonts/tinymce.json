@@ -2,6 +2,7 @@
 	"IcoMoonType": "selection",
 	"icons": [
 <<<<<<< HEAD
+<<<<<<< HEAD
     {
       "icon": {
         "paths": [
@@ -90,6 +91,8 @@
       "setId": 6,
       "iconIdx": 1
     },
+=======
+>>>>>>> parent of 6188f9c... WordPress 4.9.1
 =======
 >>>>>>> parent of 6188f9c... WordPress 4.9.1
 		{
