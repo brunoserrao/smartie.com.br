@@ -132,6 +132,7 @@ function mc4wp_get_debug_log()
  *
  * @return string
  */
+<<<<<<< HEAD
 function mc4wp_get_request_url() {
      global $wp;
 
@@ -178,6 +179,26 @@ function mc4wp_get_request_ip_address()
     }
 
     return $_SERVER['REMOTE_ADDR'];
+=======
+function mc4wp_get_current_url()
+{
+
+    global $wp;
+
+    // get requested url from global $wp object
+    $site_request_uri = $wp->request;
+
+    // fix for IIS servers using index.php in the URL
+    if (false !== stripos($_SERVER['REQUEST_URI'], '/index.php/' . $site_request_uri)) {
+        $site_request_uri = 'index.php/' . $site_request_uri;
+    }
+
+    // concatenate request url to home url
+    $url = home_url($site_request_uri);
+    $url = trailingslashit($url);
+
+    return esc_url($url);
+>>>>>>> origin/master
 }
 
 /**

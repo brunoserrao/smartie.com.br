@@ -9,7 +9,7 @@ final class SS_WC_MailChimp_Plugin {
 	 * Plugin version
 	 * @var string
 	 */
-	private static $version = '2.0.19';
+	private static $version = '2.1.0';
 
 	/**
 	 * Plugin singleton instance
@@ -440,6 +440,10 @@ final class SS_WC_MailChimp_Plugin {
 	 * Add the MailChimp settings tab to WooCommerce
 	 */
 	function add_mailchimp_settings( $settings ) {
+
+		if ( ! is_array( $settings ) ) {
+			$settings = [];
+		}
 
 		$settings[] = require_once( SS_WC_MAILCHIMP_DIR . 'includes/class-ss-wc-settings-mailchimp.php' );
 

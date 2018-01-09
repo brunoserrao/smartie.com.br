@@ -17,6 +17,7 @@ class MC4WP_Form {
      */
     public static $instances = array();
 
+<<<<<<< HEAD
     /**
      * Get a shared form instance.
      *
@@ -56,6 +57,35 @@ class MC4WP_Form {
 
         // store instance
         self::$instances[ $post_id ] = $form;
+=======
+
+    /**
+     * Get a shared form instance.
+     *
+     * @param int|WP_Post $form_id
+     * @return MC4WP_Form
+     * @throws Exception
+     */
+    public static function get_instance( $form_id = 0 ) {
+
+        if( $form_id instanceof WP_Post ) {
+            $form_id = $form_id->ID;
+        } else {
+            $form_id = (int) $form_id;
+
+            if( empty( $form_id ) ) {
+                $form_id = (int) get_option( 'mc4wp_default_form_id', 0 );
+            }
+        }
+
+        if( isset( self::$instances[ $form_id ] ) ) {
+            return self::$instances[ $form_id ];
+        }
+
+        $form = new MC4WP_Form( $form_id );
+
+        self::$instances[ $form_id ] = $form;
+>>>>>>> origin/master
 
         return $form;
     }
@@ -81,14 +111,34 @@ class MC4WP_Form {
     public $settings = array();
 
     /**
+<<<<<<< HEAD
      * @var array Array of messages
+=======
+     * @var array Array of message codes that will show when this form renders
+>>>>>>> origin/master
      */
     public $messages = array();
 
     /**
+<<<<<<< HEAD
      * @var array Array of notices to be shown when this form is rendered
      */
     public $notices = array();
+=======
+     * @var array
+     */
+    private $message_objects = array();
+
+    /**
+     * @var WP_Post The internal post object that represents this form.
+     */
+    public $post;
+
+    /**
+     * @var array Raw array or post_meta values.
+     */
+    protected $post_meta = array();
+>>>>>>> origin/master
 
     /**
      * @var array Array of error codes
@@ -98,7 +148,11 @@ class MC4WP_Form {
     /**
      * @var bool Was this form submitted?
      */
+<<<<<<< HEAD
 	public $is_submitted = false;
+=======
+    public $is_submitted = false;
+>>>>>>> origin/master
 
     /**
      * @var array Array of the data that was submitted, in name => value pairs.
@@ -123,6 +177,7 @@ class MC4WP_Form {
     );
 
     /**
+<<<<<<< HEAD
     * @var string
     */
     public $last_event = '';
@@ -138,6 +193,24 @@ class MC4WP_Form {
         $this->content = $post->post_content;
         $this->settings = $this->load_settings( $post_meta );
         $this->messages = $this->load_messages( $post_meta );
+=======
+     * @param int $id The post ID
+     * @throws Exception
+     */
+    public function __construct( $id ) {
+        $this->ID = $id = (int) $id;
+        $this->post = $post = get_post( $this->ID );
+        $this->post_meta = get_post_meta( $this->ID );
+
+        if( ! is_object( $post ) || ! isset( $post->post_type ) || $post->post_type !== 'mc4wp-form' ) {
+            $message = sprintf( __( 'There is no form with ID %d, perhaps it was deleted?', 'mailchimp-for-wp' ), $id );
+            throw new Exception( $message );
+        }
+
+        $this->name = $post->post_title;
+        $this->content = $post->post_content;
+        $this->settings = $this->load_settings();
+>>>>>>> origin/master
 
         // update config from settings
         $this->config['lists'] = $this->settings['lists'];
@@ -199,6 +272,7 @@ class MC4WP_Form {
      * @staticvar $defaults
      * @return array
      */
+<<<<<<< HEAD
     protected function load_settings( $post_meta = array() ) {
 
         $form = $this;
@@ -215,6 +289,24 @@ class MC4WP_Form {
         // get custom settings from meta
         if( ! empty( $post_meta['_mc4wp_settings'] ) ) {
             $meta = $post_meta['_mc4wp_settings'][0];
+=======
+    protected function load_settings() {
+
+        $form = $this;
+        static $defaults;
+
+        // get default settings
+        if( ! $defaults ) {
+            $defaults = include MC4WP_PLUGIN_DIR . 'config/default-form-settings.php';
+        }
+
+        // start with defaults
+        $settings = $defaults;
+
+        // get custom settings from meta
+        if( ! empty( $this->post_meta['_mc4wp_settings'] ) ) {
+            $meta = $this->post_meta['_mc4wp_settings'][0];
+>>>>>>> origin/master
             $meta = (array) maybe_unserialize( $meta );
 
             // ensure lists is an array
@@ -243,7 +335,11 @@ class MC4WP_Form {
      * @staticvar $default_messages
      * @return array
      */
+<<<<<<< HEAD
     protected function load_messages( $post_meta = array() ) {
+=======
+    protected function load_messages() {
+>>>>>>> origin/master
 
         $form = $this;
 
@@ -266,6 +362,7 @@ class MC4WP_Form {
          */
         $messages = (array) apply_filters( 'mc4wp_form_messages', $messages, $form );
 
+<<<<<<< HEAD
         foreach( $messages as $key => $message_text ) {
 
             // overwrite default text with text in form meta.
@@ -274,6 +371,20 @@ class MC4WP_Form {
             }
 
             $messages[ $key ] = $message_text;
+=======
+        foreach( $messages as $key => $message ) {
+
+            $type = ! empty( $message['type'] ) ? $message['type'] : '';
+            $text = isset( $message['text'] ) ? $message['text'] : $message;
+
+            // overwrite default text with text in form meta.
+            if( isset( $this->post_meta[ 'text_' . $key ][0] ) ) {
+                $text = $this->post_meta[ 'text_' . $key ][0];
+            }
+
+            $message = new MC4WP_Form_Message( $text, $type );
+            $messages[ $key ] = $message;
+>>>>>>> origin/master
         }
 
         return $messages;
@@ -302,12 +413,41 @@ class MC4WP_Form {
     }
 
     /**
+<<<<<<< HEAD
     * Add notice to this form when it is rendered
     * @param string $text
     * @param string $type
     */
     public function add_notice( $text, $type = 'notice' ) {
         $this->notices[] = new MC4WP_Form_Notice( $text, $type );
+=======
+     * @param $key
+     */
+    public function add_message( $key ) {
+        $this->messages[] = $key;
+    }
+
+    /**
+     * Get message object
+     *
+     * @param string $key
+     *
+     * @return MC4WP_Form_Message
+     */
+    public function get_message( $key ) {
+
+        // load messages once
+        if( empty( $this->message_objects ) ) {
+            $this->message_objects = $this->load_messages();
+        }
+
+        if( isset( $this->message_objects[ $key ] ) ) {
+            return $this->message_objects[ $key ];
+        }
+
+        // default to general error message
+        return $this->message_objects['error'];
+>>>>>>> origin/master
     }
 
     /**
@@ -355,6 +495,7 @@ class MC4WP_Form {
         }
 
         $form = $this;
+<<<<<<< HEAD
         $errors = array();
 
         if( empty( $this->config['lists'] ) ) {
@@ -382,6 +523,38 @@ class MC4WP_Form {
             }
         }
 
+=======
+
+        // validate config
+        $validator = new MC4WP_Validator( $this->config );
+        $validator->add_rule( 'lists', 'not_empty', 'no_lists_selected' );
+        $valid = $validator->validate();
+
+        // validate internal fields
+        if( $valid ) {
+            $validator = new MC4WP_Validator( $this->raw_data );
+            $validator->add_rule( '_mc4wp_timestamp', 'range', 'spam', array( 'max' => time() - 2 ) );
+            $validator->add_rule( '_mc4wp_honeypot', 'empty', 'spam' );
+            $valid = $validator->validate();
+
+            // validate actual (visible) fields
+            if( $valid ) {
+                $validator = new MC4WP_Validator( $this->data );
+
+                $validator->add_rule( 'EMAIL', 'email', 'invalid_email' );
+
+                foreach( $this->get_required_fields() as $field ) {
+                    $validator->add_rule( $field, 'not_empty', 'required_field_missing' );
+                }
+
+                $valid = $validator->validate();
+            }
+        }
+
+        // get validation errors
+        $errors = $validator->get_errors();
+
+>>>>>>> origin/master
         /**
          * Filters whether this form has errors. Runs only when a form is submitted.
          * Expects an array of message keys with an error type (string).
@@ -407,8 +580,13 @@ class MC4WP_Form {
         // filter out all non-string values
         $errors = array_filter( $errors, 'is_string' );
 
+<<<<<<< HEAD
         // set property on self
         $this->errors = $errors;
+=======
+        // add each error to this form
+        array_map( array( $this, 'add_error' ), $errors );
+>>>>>>> origin/master
 
         // return whether we have errors
         return ! $this->has_errors();
@@ -418,6 +596,7 @@ class MC4WP_Form {
      * Handle an incoming request. Should be called before calling validate() method.
      *
      * @see MC4WP_Form::validate
+<<<<<<< HEAD
      * @param array $data
      * @return void
      */
@@ -426,6 +605,15 @@ class MC4WP_Form {
         $this->raw_data = $data;
         $this->data = $this->parse_request_data( $data );
         $this->last_event = '';
+=======
+     * @param MC4WP_Request $request
+     * @return void
+     */
+    public function handle_request( MC4WP_Request $request ) {
+        $this->is_submitted = true;
+        $this->raw_data = $request->post->all();
+        $this->data = $this->parse_request_data( $request );
+>>>>>>> origin/master
 
         // update form configuration from given data
         $config = array();
@@ -439,12 +627,16 @@ class MC4WP_Form {
         // use isset here to allow empty lists (which should show a notice)
         foreach( $map as $param_key => $config_key ) {
             if( isset( $this->raw_data[ $param_key ] ) ) {
+<<<<<<< HEAD
                 $value = $this->raw_data[ $param_key ];
                 if( is_array( $value ) ) {
                     $value = array_filter( $value );
                 }
 
                 $config[ $config_key ] = $value;
+=======
+                $config[ $config_key ] = $this->raw_data[ $param_key ];
+>>>>>>> origin/master
             }
         }
 
@@ -462,6 +654,7 @@ class MC4WP_Form {
      * - Remove fields which are set to be ignored.
      * - Uppercase all field names
      *
+<<<<<<< HEAD
      * @param array $data
      *
      * @return array
@@ -473,6 +666,22 @@ class MC4WP_Form {
         $ignored_field_names = array();
 
          /**
+=======
+     * @param MC4WP_Request $request
+     *
+     * @return array
+     */
+    protected function parse_request_data( MC4WP_Request $request ) {
+        $form = $this;
+
+        // get all fields that do NOT start with an underscore.
+        $data = $request->post->all_without_prefix( '_' );
+
+        // get rid of ignored field names
+        $ignored_field_names = array();
+
+        /**
+>>>>>>> origin/master
          * Filters field names which should be ignored when showing data.
          *
          * @since 3.0
@@ -481,6 +690,7 @@ class MC4WP_Form {
          * @param MC4WP_Form $form The form instance.
          */
         $ignored_field_names = apply_filters( 'mc4wp_form_ignored_field_names', $ignored_field_names, $form );
+<<<<<<< HEAD
 
         foreach( $data as $key => $value ) {
             // skip fields that start with underscore
@@ -505,6 +715,14 @@ class MC4WP_Form {
         }
 
         return $filtered;
+=======
+        $data = array_diff_key( $data, array_flip( $ignored_field_names ) );
+
+        // uppercase all field keys
+        $data = array_change_key_case( $data, CASE_UPPER );
+
+        return $data;
+>>>>>>> origin/master
     }
 
     /**
@@ -559,9 +777,12 @@ class MC4WP_Form {
          */
         $lists = (array) apply_filters( 'mc4wp_form_lists', $lists, $form );
 
+<<<<<<< HEAD
         // filter out empty array elements
         $lists = array_filter( $lists );
 
+=======
+>>>>>>> origin/master
         return $lists;
     }
 
@@ -586,6 +807,10 @@ class MC4WP_Form {
         // only add each error once
         if( ! in_array( $error_code, $this->errors ) ) {
             $this->errors[] = $error_code;
+<<<<<<< HEAD
+=======
+            $this->add_message( $error_code );
+>>>>>>> origin/master
         }
     }
 
@@ -697,6 +922,7 @@ class MC4WP_Form {
     }
 
     /**
+<<<<<<< HEAD
     * @param string $key
     * @return string
     */
@@ -711,6 +937,8 @@ class MC4WP_Form {
     }
 
     /**
+=======
+>>>>>>> origin/master
      * Get HTML string for a message, including wrapper element.
      *
      * @deprecated 3.1
@@ -724,6 +952,7 @@ class MC4WP_Form {
         return '';
     }
 
+<<<<<<< HEAD
     /**
     * Add a notice to this form
     */
@@ -733,3 +962,6 @@ class MC4WP_Form {
     }
 
 }
+=======
+}
+>>>>>>> origin/master

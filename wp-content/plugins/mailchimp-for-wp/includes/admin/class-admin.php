@@ -294,10 +294,58 @@ class MC4WP_Admin {
 		wp_enqueue_script( array( 'jquery', 'es5-shim', 'mc4wp-admin' ) );
 
 		wp_localize_script( 'mc4wp-admin', 'mc4wp_vars',
+<<<<<<< HEAD
 		array(
 			'mailchimp' => array(
 				'api_connected' => ! empty( $opts['api_key'] ),
 				'lists' => $this->mailchimp->get_cached_lists()
+=======
+			array(
+				'mailchimp' => array(
+				    'api_connected' => ! empty( $opts['api_key'] ),
+					'lists' => $this->mailchimp->get_cached_lists()
+				),
+				'countries' => MC4WP_Tools::get_countries(),
+				'i18n' => array(
+					'pro_only' => __( 'This is a pro-only feature. Please upgrade to the premium version to be able to use it.', 'mailchimp-for-wp' ),
+                    'renew_mailchimp_lists' => __( 'Renew MailChimp lists', 'mailchimp-for-wp' ),
+                    'fetching_mailchimp_lists' => __( 'Fetching MailChimp lists', 'mailchimp-for-wp' ),
+                    'fetching_mailchimp_lists_done' => __( 'Done! MailChimp lists renewed.', 'mailchimp-for-wp' ),
+					'fetching_mailchimp_lists_can_take_a_while' => __( 'This can take a while if you have many MailChimp lists.', 'mailchimp-for-wp' ),
+					'fetching_mailchimp_lists_error' => __( 'Failed to renew your lists. An error occured.', 'mailchimp-for-wp' ),
+				)
+			)
+		);
+
+		/**
+		 * Hook to enqueue your own custom assets on the MailChimp for WordPress setting pages.
+		 *
+		 * @since 3.0
+		 *
+		 * @param string $suffix
+		 * @param string $page
+		 */
+		do_action( 'mc4wp_admin_enqueue_assets', $suffix, $page );
+
+		return true;
+	}
+
+
+
+	/**
+	 * Register the setting pages and their menu items
+	 */
+	public function build_menu() {
+		$required_cap = $this->tools->get_required_capability();
+
+		$menu_items = array(
+			'general' => array(
+				'title' => __( 'MailChimp API Settings', 'mailchimp-for-wp' ),
+				'text' => __( 'MailChimp', 'mailchimp-for-wp' ),
+				'slug' => '',
+				'callback' => array( $this, 'show_generals_setting_page' ),
+				'position' => 0
+>>>>>>> origin/master
 			),
 			'countries' => MC4WP_Tools::get_countries(),
 			'i18n' => array(

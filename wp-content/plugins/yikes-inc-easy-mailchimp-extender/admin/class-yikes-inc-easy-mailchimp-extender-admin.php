@@ -1547,9 +1547,15 @@ class Yikes_Inc_Easy_Mailchimp_Forms_Admin {
 			);
 			?>
 			<h3><?php _e( 'Create a New Signup Form' , 'yikes-inc-easy-mailchimp-extender' ); ?></h3>
+<<<<<<< HEAD
 
 			<div class="inside">
 
+=======
+
+			<div class="inside">
+
+>>>>>>> origin/master
 				<p class="description"><?php _e( "Give your form a name, select a MailChimp list to assign users to, then click 'Create'.", 'yikes-inc-easy-mailchimp-extender' ); ?></p>
 
 				<form id="import-list-to-site" method="POST" action="<?php echo $url; ?>">
@@ -1574,6 +1580,7 @@ class Yikes_Inc_Easy_Mailchimp_Forms_Admin {
 								}
 							} else {
 								if( get_option( 'yikes-mc-api-validation' , 'invalid_api_key' ) == 'invalid_api_key' ) {
+<<<<<<< HEAD
 									?>
 									<option><?php echo __( "Please enter a valid API key." , 'yikes-inc-easy-mailchimp-extender' ); ?></option>
 									<?php
@@ -1581,6 +1588,15 @@ class Yikes_Inc_Easy_Mailchimp_Forms_Admin {
 									?>
 									<option><?php echo __( "No lists were found on the account." , 'yikes-inc-easy-mailchimp-extender' ); ?></option>
 									<?php
+=======
+									?>
+									<option><?php echo __( "Please enter a valid API key." , 'yikes-inc-easy-mailchimp-extender' ); ?></option>
+									<?php
+								} else {
+									?>
+									<option><?php echo __( "No lists were found on the account." , 'yikes-inc-easy-mailchimp-extender' ); ?></option>
+									<?php
+>>>>>>> origin/master
 
 								}
 							}
@@ -2925,7 +2941,25 @@ class Yikes_Inc_Easy_Mailchimp_Forms_Admin {
 				wp_die( __( "We've run into an error. The security check didn't pass. Please try again." , 'yikes-inc-easy-mailchimp-extender' ) , __( "Failed nonce validation" , 'yikes-inc-easy-mailchimp-extender' ) , array( 'response' => 500 , 'back_link' => true ) );
 			}
 
+<<<<<<< HEAD
 			$this->delete_yikes_mailchimp_transients();
+=======
+			// delete all of the list_id transients
+			$list_ids = $this->get_mailchimp_list_ids_on_account();
+			foreach ( $list_ids as $id ) {
+				delete_transient( "yikes_eme_list_{$id}" );
+				delete_transient( "yikes_eme_merge_variables_{$id}" );
+				delete_transient( "yikes_eme_interest_categories_{$id}" );
+				delete_transient( "yikes_eme_segments_{$id}" );
+				delete_transient( "yikes_eme_members_{$id}" );
+			}
+
+			delete_transient( 'yikes-easy-mailchimp-list-data' );
+			delete_transient( 'yikes-easy-mailchimp-account-data' );
+			delete_transient( 'yikes-easy-mailchimp-profile-data' );
+			delete_transient( 'yikesinc_eme_list_ids' );
+			delete_transient( 'yikes_eme_lists' );
+>>>>>>> origin/master
 
 			// if the request came from the settings page, redirect to the settings page
 			$referer = wp_get_referer();

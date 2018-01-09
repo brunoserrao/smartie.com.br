@@ -2,8 +2,13 @@
 /*
 Plugin Name: Category Order and Taxonomy Terms Order
 Plugin URI: http://www.nsp-code.com
+<<<<<<< HEAD
 Description: Order Categories and all custom taxonomies terms (hierarchically) and child terms using a Drag and Drop Sortable javascript capability. 
 Version: 1.5.2.2
+=======
+Description: Category Order and Taxonomy Terms Order
+Version: 1.5
+>>>>>>> origin/master
 Author: Nsp-Code
 Author URI: http://www.nsp-code.com
 Author Email: electronice_delphi@yahoo.com

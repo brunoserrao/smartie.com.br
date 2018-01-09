@@ -371,8 +371,13 @@ function process_mailchimp_shortcode( $atts ) {
 				'ajax_url'                      => esc_url( admin_url( 'admin-ajax.php' ) ),
 				'page_data'                     => apply_filters( 'yikes-mailchimp-page-data', $page_data, $form_id ),
 				'interest_group_checkbox_error' => apply_filters( 'yikes-mailchimp-interest-group-checkbox-error', __( 'This field is required.', 'yikes-inc-easy-mailchimp-extender' ), $form_id ),
+<<<<<<< HEAD
 				'preloader_url'                 => apply_filters( 'yikes-mailchimp-preloader', YIKES_MC_URL . 'includes/images/ripple.svg' ),
 				'loading_dots'                  => apply_filters( 'yikes-mailchimp-loading-dots', YIKES_MC_URL . 'includes/images/bars.svg' ),
+=======
+				'preloader_url'                 => apply_filters( 'yikes-mailchimp-preloader', esc_url_raw( admin_url( 'images/wpspin_light.gif' ) ) ),
+				'loading_dots'                  => apply_filters( 'yikes-mailchimp-loading-dots', YIKES_MC_URL . 'includes/images/loading-dots.gif' ),
+>>>>>>> origin/master
 				'ajax_security_nonce'			=> wp_create_nonce( 'yikes_mc_form_submission_security_nonce' ),
 			) );
 		}
@@ -396,7 +401,11 @@ function process_mailchimp_shortcode( $atts ) {
 
 		// render the form!
 		?>
+<<<<<<< HEAD
 			<form id="<?php echo sanitize_title( $form_data['form_name'] ); ?>-<?php echo $form_id; ?>" class="yikes-easy-mc-form yikes-easy-mc-form-<?php echo $form_id . ' '; if ( $form_inline )  { echo 'yikes-mailchimp-form-inline '; } echo ' ' . apply_filters( 'yikes-mailchimp-form-class', $form_classes, $form_id ); if( !empty( $_POST ) && $form_submitted == 1 && $form_data['submission_settings']['hide_form_post_signup'] == 1 ) { echo ' yikes-easy-mc-display-none'; } ?>" method="POST" data-attr-form-id="<?php echo esc_attr( $form_id ); ?>">
+=======
+			<form id="<?php echo sanitize_title( $form_data['form_name'] ); ?>-<?php echo $form_id; ?>" class="yikes-easy-mc-form yikes-easy-mc-form-<?php echo $form_id . ' '; if ( $form_inline )  { echo 'yikes-mailchimp-form-inline '; } echo ' ' . apply_filters( 'yikes-mailchimp-form-class', $form_classes, $form_id ); if( !empty( $_POST ) && $form_submitted == 1 && $form_data['submission_settings']['hide_form_post_signup'] == 1 ) { echo ' yikes-easy-mc-display-none'; } ?>" action="" method="POST" data-attr-form-id="<?php echo esc_attr( $form_id ); ?>">
+>>>>>>> origin/master
 
 				<?php
 				// Set a default constant for hidden fields
@@ -485,8 +494,12 @@ function process_mailchimp_shortcode( $atts ) {
 					}
 
 					// build up our array
+<<<<<<< HEAD
 					$field_id_string   = 'yikes-easy-mc-form-' . $form_id . '-' . $field[ $tag ];
 					$field_array['id'] = 'id="' . esc_attr( $field_id_string ) . '" ';
+=======
+					$field_array['id'] = 'id="yikes-easy-mc-form-' . $form_id . '-' . esc_attr( $field[$tag] ) . '" ';
+>>>>>>> origin/master
 					$field_array['name'] = 'name="' . $group . esc_attr( $field[ $tag ] ) . '" ';
 					$field_array['placeholder'] = isset( $field['placeholder'] ) ? 'placeholder="' . esc_attr( stripslashes( $field['placeholder'] ) ) . '" ' : '';
 					$field_array['classes'] = 'class="yikes-easy-mc-'.$field['type'] . ' ' .  esc_attr( trim( implode( ' ' , $custom_classes ) ) ) . '" ';
@@ -554,10 +567,16 @@ function process_mailchimp_shortcode( $atts ) {
 								// pass our default value through our filter to parse dynamic data by tag (used solely for 'text' type)
 								$default_value = ( isset( $field['default'] ) ? esc_attr( $field['default'] ) : '' );
 								$default_value = apply_filters( 'yikes-mailchimp-process-default-tag', $default_value );
+<<<<<<< HEAD
 								$default_value = apply_filters( 'yikes-mailchimp-' . $field['merge'] . '-default-value', $default_value, $field, $form_id );
 
 									?>
 									<label for="<?php echo esc_attr( $field_id_string ); ?>" <?php echo implode( ' ' , $label_array ); ?>>
+=======
+
+									?>
+									<label for="<?php echo esc_attr( $field['merge'] ); ?>" <?php echo implode( ' ' , $label_array ); ?>>
+>>>>>>> origin/master
 
 										<!-- dictate label visibility -->
 										<?php if( !isset( $field['hide-label'] ) ) { ?>
@@ -597,7 +616,11 @@ function process_mailchimp_shortcode( $atts ) {
 										}
 									</script>
 
+<<<<<<< HEAD
 									<label for="<?php echo esc_attr( $field_id_string ); ?>" <?php echo implode( ' ' , $label_array ); ?>>
+=======
+									<label for="<?php echo esc_attr( $field['merge'] ); ?>" <?php echo implode( ' ' , $label_array ); ?>>
+>>>>>>> origin/master
 
 										<!-- dictate label visibility -->
 										<?php if( !isset( $field['hide-label'] ) ) { ?>
@@ -635,7 +658,11 @@ function process_mailchimp_shortcode( $atts ) {
 										}
 									</script>
 
+<<<<<<< HEAD
 									<label for="<?php echo esc_attr( $field_id_string ) ?>" <?php echo implode( ' ' , $label_array ); ?>>
+=======
+									<label for="<?php echo esc_attr( $field['merge'] ) ?>" <?php echo implode( ' ' , $label_array ); ?>>
+>>>>>>> origin/master
 
 										<!-- dictate label visibility -->
 										<?php if( !isset( $field['hide-label'] ) ) { ?>
@@ -661,7 +688,11 @@ function process_mailchimp_shortcode( $atts ) {
 								$default_value = apply_filters( 'yikes-mailchimp-' . $field['merge'] . '-default-value', $default_value, $field, $form_id );
 
 									?>
+<<<<<<< HEAD
 									<label for="<?php echo esc_attr( $field_id_string ); ?>" <?php echo implode( ' ' , $label_array ); ?>>
+=======
+									<label for="<?php echo esc_attr( $field['merge'] ); ?>" <?php echo implode( ' ' , $label_array ); ?>>
+>>>>>>> origin/master
 
 									<!-- dictate label visibility -->
 									<?php if( ! isset( $field['hide-label'] ) ) { ?>
@@ -700,6 +731,7 @@ function process_mailchimp_shortcode( $atts ) {
 
 								// <!-- Description Above -->
 								if ( $show_description === true && $description_above === true ) { echo $description; }
+<<<<<<< HEAD
 
 								// Placeholder logic
 								if ( ! empty( $field_array['placeholder'] ) ) {
@@ -709,6 +741,8 @@ function process_mailchimp_shortcode( $atts ) {
 									// Don't use the address field's array placeholder - use the custom placeholder
 									unset( $field_array['placeholder'] );
 								}
+=======
+>>>>>>> origin/master
 
 								// store number for looping
 								$x = 1;
@@ -716,9 +750,12 @@ function process_mailchimp_shortcode( $atts ) {
 
 									// set the field names for the address fields
 									$field_array['name'] = 'name="' . $field[$tag] . '[' . $type . ']' . '"';
+<<<<<<< HEAD
 
 									// Set the placeholder value if we need to
 									$placeholder = isset( $use_address_placeholder ) ? apply_filters( 'yikes-mailchimp-address-' . $type . '-placeholder', ucwords( $label ) ) : '';
+=======
+>>>>>>> origin/master
 
 									// reset the label classes for left-half/right-half for addresses
 									if( isset( $label_array['class'] ) ) {
@@ -740,6 +777,10 @@ function process_mailchimp_shortcode( $atts ) {
 										case 'addr1':
 										case 'addr2':
 										case 'city':
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 											?>
 											<label for="<?php echo esc_attr( $field['merge'] ); ?>" data-attr-name="<?php echo esc_attr( $type ); ?>-field" <?php echo implode( ' ' , $label_array ); ?>>
 
@@ -750,7 +791,11 @@ function process_mailchimp_shortcode( $atts ) {
 													</span>
 												<?php } ?>
 												
+<<<<<<< HEAD
 												<input <?php echo implode( ' ' , $field_array ); ?> placeholder="<?php echo $placeholder; ?>" type="text" value="<?php if( isset( $_POST[$field['merge']][$type] ) && $form_submitted != 1 ) { echo esc_attr( $_POST[$field['merge']][$type] ); } ?>">
+=======
+												<input <?php echo implode( ' ' , $field_array ); ?> type="text" value="<?php if( isset( $_POST[$field['merge']][$type] ) && $form_submitted != 1 ) { echo esc_attr( $_POST[$field['merge']][$type] ); } ?>">
+>>>>>>> origin/master
 
 											</label>
 											<?php
@@ -777,7 +822,11 @@ function process_mailchimp_shortcode( $atts ) {
 															*	Filter the HTML options for the states dropdown
 															*
 															* 	@param string  | $state_and_province_list | HTML string of state/province options
+<<<<<<< HEAD
 															*	@param int	   | $form_id				  | The form ID
+=======
+															*	@param int	   | $form_id				 | The form ID
+>>>>>>> origin/master
 															*
 															*	@return string | $state_and_province_list | Filtered HTML string of state/province options
 															*/
@@ -794,7 +843,11 @@ function process_mailchimp_shortcode( $atts ) {
 										case 'zip':
 
 											?>
+<<<<<<< HEAD
 											<label for="<?php echo esc_attr( $field['merge'] ); ?>"  placeholder="<?php echo $placeholder; ?>" <?php echo implode( ' ' , $label_array ); ?> data-attr-name="zip-input"<?php if ( ! isset( $countries_with_zip_code_field[ $default_country ] ) ) { ?> style="display: none;"<?php } ?>>
+=======
+											<label for="<?php echo esc_attr( $field['merge'] ); ?>" <?php echo implode( ' ' , $label_array ); ?> data-attr-name="zip-input"<?php if ( ! isset( $countries_with_zip_code_field[ $default_country ] ) ) { ?> style="display: none;"<?php } ?>>
+>>>>>>> origin/master
 
 												<?php if( ! isset( $field['hide-label'] ) ) { ?>
 													<span class="<?php echo esc_attr( $field['merge'] ) . '-label'; ?>">
@@ -828,7 +881,11 @@ function process_mailchimp_shortcode( $atts ) {
 													}
 												?>
 
+<<<<<<< HEAD
 												<input <?php echo implode( ' ' , $field_array ); ?>  placeholder="<?php echo $placeholder; ?>" type="text" pattern="<?php echo apply_filters( 'yikes-mailchimp-zip-pattern', '\d{5,5}(-\d{4,4})?', $form_id ); ?>" title="<?php _e( '5 digit zip code, numbers only' , 'yikes-inc-easy-mailchimp-extender' ); ?>" value="<?php echo esc_attr( $zip_value ); ?>">
+=======
+												<input <?php echo implode( ' ' , $field_array ); ?> type="text" pattern="<?php echo apply_filters( 'yikes-mailchimp-zip-pattern', '\d{5,5}(-\d{4,4})?', $form_id ); ?>" title="<?php _e( '5 digit zip code, numbers only' , 'yikes-inc-easy-mailchimp-extender' ); ?>" value="<?php echo esc_attr( $zip_value ); ?>">
+>>>>>>> origin/master
 
 											</label>
 											<?php
@@ -1006,6 +1063,7 @@ function process_mailchimp_shortcode( $atts ) {
 								$x = 0;
 
 								?>
+<<<<<<< HEAD
 								<label for="<?php echo esc_attr( $field_id_string ); ?>" <?php echo implode( ' ' , $label_array ); ?>>
 
 									<!-- dictate label visibility -->
@@ -1018,6 +1076,20 @@ function process_mailchimp_shortcode( $atts ) {
 									// <!-- Description Above -->
 									if ( $show_description === true && $description_above === true ) { echo $description; }
 
+=======
+								<label for="<?php echo esc_attr( $field['merge'] ); ?>" <?php echo implode( ' ' , $label_array ); ?>>
+
+									<!-- dictate label visibility -->
+									<?php if( ! isset( $field['hide-label'] ) ) { ?>
+										<span class="<?php echo esc_attr( $field['merge'] ). '-label'; ?> checkbox-parent-label">
+											<?php echo esc_attr( apply_filters( 'yikes-mailchimp-'.$field['merge'].'-label', stripslashes( $field['label'] ) ) ); ?>
+										</span>
+									<?php }
+
+									// <!-- Description Above -->
+									if ( $show_description === true && $description_above === true ) { echo $description; }
+
+>>>>>>> origin/master
 									foreach( $choices as $choice ) {
 										?>
 										<label for="<?php echo esc_attr( $field['merge'] ) . '-' . $i; ?>" class="yikes-easy-mc-checkbox-label <?php echo implode( ' ' , $custom_classes ); if( $i === $count ) { ?> last-selection<?php } ?>" <?php if( $i == 1 ) { echo $field_array['required']; } ?>>

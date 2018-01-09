@@ -1,10 +1,17 @@
 === Category Order and Taxonomy Terms Order  ===
 Contributors: nsp-code
 Donate link: http://www.nsp-code.com/donate.php
+<<<<<<< HEAD
 Tags: category order,terms order, taxonomy order, admin order, categories sort, order category
 Requires at least: 2.8
 Tested up to: 4.8.1
 Stable tag: 1.5.2.2
+=======
+Tags: category order,terms order, taxonomy order, admin order
+Requires at least: 2.8
+Tested up to: 4.7.5
+Stable tag: 1.5
+>>>>>>> origin/master
 
 Order Categories and all custom taxonomies terms (hierarchically) and child terms using a Drag and Drop Sortable javascript capability. 
 
@@ -51,6 +58,7 @@ Absolutely, the plugin can do that. In fact you can configure so only the admin 
 
 All ideas are welcome and i put them on my list to be implemented into the new versions. Anyway this may take time, but if you are in a rush, please consider a small donation and we can arrange something.
 
+<<<<<<< HEAD
 = I still need more features =
 
 Consider upgrading to our advanced version of this plugin at a very resonable price <a target="_blank" href="http://www.nsp-code.com/premium-plugins/wordpress-plugins/advanced-taxonomy-terms-order/">Advanced Taxonomy Terms Order Order</a>
@@ -63,6 +71,10 @@ Consider upgrading to our advanced version of this plugin at a very resonable pr
   - Interface table th elements titles left align
   - Interface Taxonomy terms count fix
 
+=======
+== Change Log ==
+
+>>>>>>> origin/master
 = 1.5 =
   - Included 'ignore_term_order' to force menu_order ignore when autosort active.
   - Translations issues update

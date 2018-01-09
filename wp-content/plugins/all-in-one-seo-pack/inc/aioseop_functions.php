@@ -958,11 +958,14 @@ function aioseop_woo_upgrade_notice_dismissed() {
 	update_user_meta( get_current_user_id(), 'aioseop_woo_upgrade_notice_dismissed', true );
 }
 
+<<<<<<< HEAD
 function aioseop_sitemap_max_url_notice_dismissed() {
 
 	update_user_meta( get_current_user_id(), 'aioseop_sitemap_max_url_notice_dismissed', true );
 }
 
+=======
+>>>>>>> origin/master
 /**
  * Returns home_url() value compatible for any use.
  * Thought for compatibility purposes.
@@ -978,6 +981,7 @@ function aioseop_home_url( $path = '/' ) {
 	$url = apply_filters( 'aioseop_home_url', $path );
 	return $path === $url ? home_url( $path ) : $url;
 }
+<<<<<<< HEAD
 
 
 if ( ! function_exists('aiosp_include_images') ) {
@@ -999,3 +1003,5 @@ if ( ! function_exists('aiosp_include_images') ) {
 		return true;	
 	}
 }
+=======
+>>>>>>> origin/master

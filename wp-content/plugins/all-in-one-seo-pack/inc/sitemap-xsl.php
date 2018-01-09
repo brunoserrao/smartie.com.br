@@ -76,6 +76,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 					tr.stripe {
 						background-color: #f7f7f7;
 					}
+<<<<<<< HEAD
 					table td a {
 						display: block;
 					}
@@ -83,6 +84,8 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 						max-height: 30px;
 						margin: 6px 3px;
 					}
+=======
+>>>>>>> origin/master
 				</style>
 			</head>
 			<body>

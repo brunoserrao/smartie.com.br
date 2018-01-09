@@ -24,14 +24,22 @@ class MC4WP_Form_Listener {
 	 */
 	public function listen() {
 
+<<<<<<< HEAD
 		$request = array_merge( $_GET, $_POST );
 		if( empty( $request['_mc4wp_form_id'] ) ) {
+=======
+		$form_id = $request->post->get( '_mc4wp_form_id' );
+		if( empty( $form_id ) ) {
+>>>>>>> origin/master
 			return false;
 		}
 
 		// get form instance
 		try {
+<<<<<<< HEAD
 			$form_id = (int) $request['_mc4wp_form_id'];
+=======
+>>>>>>> origin/master
 			$form = mc4wp_get_form( $form_id );
 		} catch( Exception $e ) {
 			return false;

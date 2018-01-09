@@ -32,6 +32,7 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 
 		<div class="changelog point-releases">
 			<h3><?php _e( 'Maintenance and Security Releases' ); ?></h3>
+<<<<<<< HEAD
 			<p>
 				<?php
 				printf(
@@ -49,6 +50,26 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 				/* translators: %s: Codex URL */
 				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.1' );
 				?>
+=======
+			<p><?php printf( _n( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
+					'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.', 3 ), '4.7.5', number_format_i18n( 3 ) ); ?>
+				<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.7.5' ); ?>
+			</p>
+			<p><?php printf( _n( '<strong>Version %1$s</strong> addressed %2$s bug.',
+					'<strong>Version %1$s</strong> addressed %2$s bugs.', 47 ), '4.7.4', number_format_i18n( 47 ) ); ?>
+				<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.7.4' ); ?>
+			</p>
+			<p><?php printf( _n( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
+					'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.', 39 ), '4.7.3', number_format_i18n( 39 ) ); ?>
+				<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.7.3' ); ?>
+			</p>
+			<p><?php printf( __( '<strong>Version %s</strong> addressed some security issues.' ), '4.7.2' ); ?>
+				<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.7.2' ); ?>
+			</p>
+			<p><?php printf( _n( '<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug.',
+					'<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs.', 62 ), '4.7.1', number_format_i18n( 62 ) ); ?>
+				<?php printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.7.1' ); ?>
+>>>>>>> origin/master
 			</p>
 		</div>
 
@@ -78,6 +99,7 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 			<div class="section-header">
 				<h2><?php _e( 'Customizer Workflow Improved' ); ?></h2>
 			</div>
+<<<<<<< HEAD
 
 			<div class="section-content">
 				<div class="section-item">
@@ -138,6 +160,47 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 					<h3><?php _e( 'Warning: Potential Danger Ahead!' ); ?></h3>
 					<p><?php _e( 'When you edit themes and plugins directly, WordPress 4.9 will politely warn you that this is a dangerous practice. It will recommend that you backup your files before saving, so they don&#8217;t get overwritten by the next update. Take the safe route: your future self will thank you. Your team and customers will thank you.' );?></p>
 				</div>
+=======
+			<div class="col">
+				<?php
+				echo wp_video_shortcode( array(
+					'mp4'      => 'https://s.w.org/images/core/4.7/starter-content-v1.mp4',
+					'poster'   => 'https://s.w.org/images/core/4.7/starter-content.jpg?v2',
+					'width'    => 1140,
+					'height'   => 624,
+					// 'class'    => 'wp-video-shortcode feature-video',
+				) );
+				?>
+			</div>
+		</div>
+
+		<div class="feature-section two-col">
+			<div class="col">
+				<h3><?php _e( 'Edit Shortcuts' ); ?></h3>
+				<?php
+				echo wp_video_shortcode( array(
+					'mp4'      => 'https://s.w.org/images/core/4.7/edit-shortcuts-v1.mp4',
+					'poster'   => 'https://s.w.org/images/core/4.7/edit-shortcuts.jpg?v2',
+					'width'    => 2520,
+					'height'   => 1454,
+					// 'class'    => 'wp-video-shortcode feature-video',
+				) );
+				?>
+				<p><?php _e( 'Visible icons appear to show you which parts of your site can be customized while live previewing. Click on a shortcut and get straight to editing. Paired with starter content, getting started with customizing your site is faster than ever.' );?></p>
+			</div>
+			<div class="col">
+				<h3><?php _e( 'Video Headers' ); ?></h3>
+				<?php
+				echo wp_video_shortcode( array(
+					'mp4'      => 'https://s.w.org/images/core/4.7/header-video-v1.mp4',
+					'poster'   => 'https://s.w.org/images/core/4.7/header-video.jpg?v2',
+					'width'    => 2520,
+					'height'   => 1454,
+					// 'class'    => 'wp-video-shortcode feature-video',
+				) );
+				?>
+				<p><?php _e( 'Sometimes a big atmospheric video as a moving header image is just what you need to showcase your wares; go ahead and try it out with Twenty Seventeen. Need some video inspiration? Try searching for sites with video headers available for download and use.' ); ?></p>
+>>>>>>> origin/master
 			</div>
 		</div>
 

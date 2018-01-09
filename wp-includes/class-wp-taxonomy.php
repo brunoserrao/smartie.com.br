@@ -174,6 +174,10 @@ final class WP_Taxonomy {
 	 * respect to $rest_base and $rest_controller_class.
 	 *
 	 * @since 4.7.4
+<<<<<<< HEAD
+=======
+	 * @access public
+>>>>>>> origin/master
 	 * @var bool $show_in_rest
 	 */
 	public $show_in_rest;
@@ -182,6 +186,10 @@ final class WP_Taxonomy {
 	 * The base path for this taxonomy's REST API endpoints.
 	 *
 	 * @since 4.7.4
+<<<<<<< HEAD
+=======
+	 * @access public
+>>>>>>> origin/master
 	 * @var string|bool $rest_base
 	 */
 	public $rest_base;
@@ -192,6 +200,10 @@ final class WP_Taxonomy {
 	 * Custom controllers must extend WP_REST_Controller.
 	 *
 	 * @since 4.7.4
+<<<<<<< HEAD
+=======
+	 * @access public
+>>>>>>> origin/master
 	 * @var string|bool $rest_controller_class
 	 */
 	public $rest_controller_class;

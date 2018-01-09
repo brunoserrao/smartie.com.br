@@ -4,7 +4,11 @@
 
 namespace Composer\Autoload;
 
+<<<<<<< HEAD
 class ComposerStaticInitabc72b64e84efd76b3cb10d2a10a9768
+=======
+class ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72
+>>>>>>> origin/master
 {
     public static $files = array (
         'fca581ae5268210490253d58378748c5' => __DIR__ . '/../..' . '/includes/functions.php',
@@ -107,8 +111,12 @@ class ComposerStaticInitabc72b64e84efd76b3cb10d2a10a9768
         'MC4WP_Upgrade_Routines' => __DIR__ . '/../..' . '/includes/admin/class-upgrade-routines.php',
         'MC4WP_Usage_Tracking' => __DIR__ . '/../..' . '/includes/admin/class-usage-tracking.php',
         'MC4WP_User_Integration' => __DIR__ . '/../..' . '/includes/integrations/class-user-integration.php',
+<<<<<<< HEAD
         'MC4WP_WPForms_Field' => __DIR__ . '/../..' . '/integrations/wpforms/class-field.php',
         'MC4WP_WPForms_Integration' => __DIR__ . '/../..' . '/integrations/wpforms/class-wpforms.php',
+=======
+        'MC4WP_Validator' => __DIR__ . '/../..' . '/includes/class-validator.php',
+>>>>>>> origin/master
         'MC4WP_WooCommerce_Integration' => __DIR__ . '/../..' . '/integrations/woocommerce/class-woocommerce.php',
         'xrstf\\Composer52\\AutoloadGenerator' => __DIR__ . '/..' . '/xrstf/composer-php52/lib/xrstf/Composer52/AutoloadGenerator.php',
         'xrstf\\Composer52\\Generator' => __DIR__ . '/..' . '/xrstf/composer-php52/lib/xrstf/Composer52/Generator.php',
@@ -117,10 +125,15 @@ class ComposerStaticInitabc72b64e84efd76b3cb10d2a10a9768
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+<<<<<<< HEAD
             $loader->prefixLengthsPsr4 = ComposerStaticInitabc72b64e84efd76b3cb10d2a10a9768::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitabc72b64e84efd76b3cb10d2a10a9768::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitabc72b64e84efd76b3cb10d2a10a9768::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitabc72b64e84efd76b3cb10d2a10a9768::$classMap;
+=======
+            $loader->prefixesPsr0 = ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitc16a50fb3cb50a786a944e8e9cbf2f72::$classMap;
+>>>>>>> origin/master
 
         }, null, ClassLoader::class);
     }

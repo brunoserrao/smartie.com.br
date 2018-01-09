@@ -341,7 +341,11 @@
 		}
 
 		// Ignore links with href="#", href="#id", or non-HTTP protocols (e.g. javascript: and mailto:).
+<<<<<<< HEAD
 		if ( '#' === $element.attr( 'href' ).substr( 0, 1 ) || ! /^https?:$/.test( element.protocol ) ) {
+=======
+		if ( '#' === $( element ).attr( 'href' ).substr( 0, 1 ) || ! /^https?:$/.test( element.protocol ) ) {
+>>>>>>> origin/master
 			return;
 		}
 

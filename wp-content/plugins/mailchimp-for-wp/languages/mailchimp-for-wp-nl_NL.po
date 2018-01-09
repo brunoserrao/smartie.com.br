@@ -11,8 +11,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MailChimp for WordPress\n"
+<<<<<<< HEAD
 "PO-Revision-Date: 2017-11-18 16:12+0000\n"
 "Last-Translator: Syrene Mos <syrenemos@gmail.com>\n"
+=======
+"PO-Revision-Date: 2017-05-08 08:23+0000\n"
+"Last-Translator: Maartje L <maartje2@hotmail.com>\n"
+>>>>>>> origin/master
 "Language-Team: Dutch (Netherlands) (http://www.transifex.com/ibericode/mailchimp-for-wordpress/language/nl_NL/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,6 +80,7 @@ msgstr "MailChimp"
 #: includes/views/other-settings.php:70
 msgid "Other Settings"
 msgstr "Andere instellingen"
+<<<<<<< HEAD
 
 #: includes/admin/class-admin.php:344
 msgid "Other"
@@ -132,6 +138,65 @@ msgid ""
 "features. <a href=\"%s\">Find out about all benefits now</a>."
 msgstr ""
 
+=======
+
+#: includes/admin/class-admin.php:344
+msgid "Other"
+msgstr "Overig"
+
+#: includes/admin/class-admin.php:458
+msgid "Log successfully emptied."
+msgstr ""
+
+#: includes/admin/class-admin.php:488
+msgid ""
+"To get started with MailChimp for WordPress, please <a href=\"%s\">enter "
+"your MailChimp API key on the settings page of the plugin</a>."
+msgstr "Ga aan de slag met MailChimp voor WordPress. <a href=\"%s\">Vul je MailChimp API-sleutel in op de instellingenpagina van de plugin</a>."
+
+#: includes/admin/class-ads.php:39
+msgid ""
+"Want to customize the style of your form? <a href=\"%s\">Try our Styles "
+"Builder</a> & edit the look of your forms with just a few clicks."
+msgstr "Wil je de stijl van het formulier aanpassen? <a href=\"%s\">Probeer onze Styles Builder</a> en pas het uiterlijk van je formulieren aan in een paar klikjes."
+
+#: includes/admin/class-ads.php:54
+msgid ""
+"Be notified whenever someone subscribes? <a href=\"%s\">MailChimp for "
+"WordPress Premium</a> allows you to set up email notifications for your "
+"forms."
+msgstr "Wil je een melding bij een nieuwe inschrijving? Met <a href=\"%s\">MailChimp for WordPress Premium</a> kun je e-mailmeldingen instellen bij je formulieren."
+
+#: includes/admin/class-ads.php:56
+msgid ""
+"Increased conversions? <a href=\"%s\">MailChimp for WordPress Premium</a> "
+"submits forms without reloading the entire page, resulting in a much better "
+"experience for your visitors."
+msgstr ""
+
+#: includes/admin/class-ads.php:70
+msgid "Upgrade to Premium"
+msgstr "Upgraden naar Premium"
+
+#: includes/admin/class-ads.php:83
+msgid ""
+"Do you want translated forms for all of your languages? <a href=\"%s\">Try "
+"MailChimp for WordPress Premium</a>, which does just that plus more."
+msgstr ""
+
+#: includes/admin/class-ads.php:88
+msgid ""
+"Do you want to create more than one form? Our Premium add-on does just that!"
+" <a href=\"%s\">Have a look at all Premium benefits</a>."
+msgstr ""
+
+#: includes/admin/class-ads.php:93
+msgid ""
+"Are you enjoying this plugin? The Premium add-on unlocks several powerful "
+"features. <a href=\"%s\">Find out about all benefits now</a>."
+msgstr ""
+
+>>>>>>> origin/master
 #: includes/admin/class-ads.php:112
 msgid "More subscribers, better newsletters."
 msgstr "Meer abonnees, betere nieuwsbrieven."
@@ -170,6 +235,7 @@ msgstr ""
 msgid ""
 "You've been using MailChimp for WordPress for some time now; we hope you "
 "love it!"
+<<<<<<< HEAD
 msgstr "Je gebruikt MailChimp voor WordPress nu al een tijdje; we hopen dat je het leuk vindt! "
 
 #: includes/admin/class-review-notice.php:69
@@ -182,6 +248,20 @@ msgstr ""
 msgid "Dismiss this notice."
 msgstr "Verberg dit bericht."
 
+=======
+msgstr ""
+
+#: includes/admin/class-review-notice.php:69
+msgid ""
+"If you do, please <a href=\"%s\">leave us a 5★ rating on WordPress.org</a>. "
+"It would be of great help to us."
+msgstr ""
+
+#: includes/admin/class-review-notice.php:71
+msgid "Dismiss this notice."
+msgstr ""
+
+>>>>>>> origin/master
 #: includes/api/class-api.php:84
 msgid "Read more about common connectivity issues."
 msgstr "Lees meer over veel voorkomende verbindingsproblemen."
@@ -196,7 +276,11 @@ msgstr "Stad"
 
 #: includes/forms/class-admin.php:64
 msgid "Checkboxes"
+<<<<<<< HEAD
 msgstr "Selectievakjes"
+=======
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/forms/class-admin.php:65
 msgid "Choices"
@@ -254,7 +338,11 @@ msgstr "Beginwaarde"
 
 #: includes/forms/class-admin.php:78
 msgid "Interest categories"
+<<<<<<< HEAD
 msgstr "Interessecategorieën"
+=======
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/forms/class-admin.php:79
 msgid "Is this field required?"
@@ -291,7 +379,11 @@ msgstr "Optioneel"
 
 #: includes/forms/class-admin.php:87
 msgid "Placeholder"
+<<<<<<< HEAD
 msgstr "Placeholder"
+=======
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/forms/class-admin.php:88
 msgid "Text to show when field has no value."
@@ -311,6 +403,7 @@ msgstr "Radioknoppen"
 
 #: includes/forms/class-admin.php:92
 msgid "Street Address"
+<<<<<<< HEAD
 msgstr "Adres"
 
 #: includes/forms/class-admin.php:93
@@ -324,6 +417,21 @@ msgstr "Verzendknop"
 #: includes/forms/class-admin.php:96
 msgid "Wrap in paragraph tags?"
 msgstr "Omsluiten in alinea tags?"
+=======
+msgstr ""
+
+#: includes/forms/class-admin.php:93
+msgid "State"
+msgstr ""
+
+#: includes/forms/class-admin.php:95
+msgid "Submit button"
+msgstr ""
+
+#: includes/forms/class-admin.php:96
+msgid "Wrap in paragraph tags?"
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/forms/class-admin.php:97
 msgid "Value"
@@ -369,11 +477,19 @@ msgstr "Wordt vervangen door de formulier response (fout- en succesmeldingen)."
 #: includes/forms/class-form-tags.php:65
 msgid "Data from the URL or a submitted form."
 msgstr "Data uit de URL of een verzonden formulier"
+<<<<<<< HEAD
 
 #: includes/forms/class-form-tags.php:71
 msgid "Data from a cookie."
 msgstr "Data van een cookie"
 
+=======
+
+#: includes/forms/class-form-tags.php:71
+msgid "Data from a cookie."
+msgstr "Data van een cookie"
+
+>>>>>>> origin/master
 #: includes/forms/class-form-tags.php77,
 #: includes/integrations/class-integration-tags.php:45
 msgid "Replaced with the number of subscribers on the selected list(s)"
@@ -514,6 +630,7 @@ msgstr ""
 
 #: includes/views/other-settings.php:99
 msgid "Debug Log"
+<<<<<<< HEAD
 msgstr "Debug log"
 
 #: includes/views/other-settings.php:99
@@ -523,6 +640,17 @@ msgstr "Filter.."
 #: includes/views/other-settings.php:104
 msgid "Log file is not writable."
 msgstr "Log bestand is niet schrijfbaar."
+=======
+msgstr ""
+
+#: includes/views/other-settings.php:99
+msgid "Filter.."
+msgstr ""
+
+#: includes/views/other-settings.php:104
+msgid "Log file is not writable."
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/views/other-settings.php:105
 msgid "Please ensure %s has the proper <a href=\"%s\">file permissions</a>."
@@ -530,7 +658,11 @@ msgstr ""
 
 #: includes/views/other-settings.php:123
 msgid "Nothing here. Which means there are no errors!"
+<<<<<<< HEAD
 msgstr "Er is hier niets. Wat betekent dat er geen fouten zijn!"
+=======
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/views/other-settings.php:133
 msgid "Empty Log"
@@ -733,12 +865,17 @@ msgstr "Configureer deze integratie"
 
 #: includes/integrations/views/integrations.php:71
 msgid "The table below shows all available integrations."
+<<<<<<< HEAD
 msgstr "De onderstaande tabel geeft alle beschikbare integraties weer."
+=======
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/integrations/views/integrations.php:72
 msgid ""
 "Click on the name of an integration to edit all settings specific to that "
 "integration."
+<<<<<<< HEAD
 msgstr "Klik op de naam van een integratie om alle instellingen voor de betreffende integratie te wijzigen."
 
 #: includes/integrations/views/integrations.php:79
@@ -748,6 +885,17 @@ msgstr "Ingeschakelde integraties"
 #: includes/integrations/views/integrations.php:84
 msgid "Available integrations"
 msgstr "Beschikbare integraties"
+=======
+msgstr ""
+
+#: includes/integrations/views/integrations.php:79
+msgid "Enabled integrations"
+msgstr ""
+
+#: includes/integrations/views/integrations.php:84
+msgid "Available integrations"
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/views/parts/admin-footer.php:15
 msgid ""
@@ -768,11 +916,19 @@ msgstr "Hulp nodig?"
 
 #: includes/views/parts/admin-sidebar.php:12
 msgid "We have some resources available to help you in the right direction."
+<<<<<<< HEAD
 msgstr "We hebben enkele middelen beschikbaar om je in de juiste richting te helpen."
 
 #: includes/views/parts/admin-sidebar.php:14
 msgid "Knowledge Base"
 msgstr "Kennisbank"
+=======
+msgstr ""
+
+#: includes/views/parts/admin-sidebar.php:14
+msgid "Knowledge Base"
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/views/parts/admin-sidebar.php:15
 msgid "Frequently Asked Questions"
@@ -802,6 +958,7 @@ msgid ""
 "applied changes to your MailChimp lists, please use the following button to "
 "renew the cached lists configuration."
 msgstr "The tabel hieronder toont je MailChimp lijst configuratie. Wanneer je hier veranderingen aan hebt doorgevoerd die nog niet weergegeven worden kun je de volgende button gebruiken om je configuratie opnieuw in te laden."
+<<<<<<< HEAD
 
 #: includes/views/parts/lists-overview.php:17
 msgid "No lists were found in your MailChimp account"
@@ -827,6 +984,33 @@ msgstr "Abonnees"
 msgid "Edit this list in MailChimp"
 msgstr "Bewerk deze lijst in MailChimp"
 
+=======
+
+#: includes/views/parts/lists-overview.php:17
+msgid "No lists were found in your MailChimp account"
+msgstr "Geen lijsten gevonden in je MailChimp account."
+
+#: includes/views/parts/lists-overview.php:19
+msgid "A total of %d lists were found in your MailChimp account."
+msgstr "Een totaal van %d aan lijsten zijn gevonden in uw MailChimp account."
+
+#: includes/views/parts/lists-overview.php:24
+msgid "List Name"
+msgstr "Lijstnaam"
+
+#: includes/views/parts/lists-overview.php:25
+msgid "ID"
+msgstr "ID"
+
+#: includes/views/parts/lists-overview.php:26
+msgid "Subscribers"
+msgstr "Abonnees"
+
+#: includes/views/parts/lists-overview.php:48
+msgid "Edit this list in MailChimp"
+msgstr "Bewerk deze lijst in MailChimp"
+
+>>>>>>> origin/master
 #: includes/views/parts/lists-overview.php:62
 msgid "%s (%s) with field type %s."
 msgstr "%s(%s) met veldtype %s."
@@ -1062,13 +1246,21 @@ msgstr "Gebruik dubbele opt-in?"
 
 #: includes/forms/views/tabs/form-settings.php:44
 msgid "Are you sure you want to disable double opt-in?"
+<<<<<<< HEAD
 msgstr "Weet je zeker dat je de dubbele opt-in wil deactiveren?"
+=======
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/forms/views/tabs/form-settings.php:47
 msgid ""
 "We strongly suggest keeping double opt-in enabled. Disabling double opt-in "
 "may result in abuse."
+<<<<<<< HEAD
 msgstr "We raden je sterk aan om de dubbele opt-in ingeschakeld te houden. Deactivering kan resulteren in misbruik."
+=======
+msgstr ""
+>>>>>>> origin/master
 
 #: includes/forms/views/tabs/form-settings.php:94
 msgid "Form behaviour"

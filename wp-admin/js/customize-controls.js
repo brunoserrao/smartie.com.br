@@ -3559,7 +3559,21 @@
 				alt: control.altNotice
 			});
 
+<<<<<<< HEAD
 			control.elements = [];
+=======
+				// Prepare the new page as an available menu item.
+				// See api.Menus.submitNew().
+				availableItem = new api.Menus.AvailableItemModel( {
+					'id': 'post-' + data.post_id, // Used for available menu item Backbone models.
+					'title': title,
+					'type': 'post_type',
+					'type_label': api.Menus.data.l10n.page_label,
+					'object': 'page',
+					'object_id': data.post_id,
+					'url': data.url
+				} );
+>>>>>>> origin/master
 
 			control.active.bind( function ( active ) {
 				var args = control.activeArgumentsQueue.shift();
@@ -7818,6 +7832,16 @@
 			});
 		});
 
+		// Ensure preview nonce is included with every customized request, to allow post data to be read.
+		$.ajaxPrefilter( function injectPreviewNonce( options ) {
+			if ( ! /wp_customize=on/.test( options.data ) ) {
+				return;
+			}
+			options.data += '&' + $.param({
+				customize_preview_nonce: api.settings.nonce.preview
+			});
+		});
+
 		// Refresh the nonces if the preview sends updated nonces over.
 		api.previewer.bind( 'nonce', function( nonce ) {
 			$.extend( this.nonce, nonce );
@@ -8016,6 +8040,10 @@
 			api.bind( 'change', function() {
 				if ( state( 'saved' ).get() ) {
 					state( 'saved' ).set( false );
+<<<<<<< HEAD
+=======
+					populateChangesetUuidParam( true );
+>>>>>>> origin/master
 				}
 			});
 
@@ -8083,6 +8111,7 @@
 				history.replaceState( {}, document.title, urlParser.href );
 			};
 
+<<<<<<< HEAD
 			// Show changeset UUID in URL when in branching mode and there is a saved changeset.
 			if ( api.settings.changeset.branching ) {
 				changesetStatus.bind( function( newStatus ) {
@@ -8090,6 +8119,11 @@
 				} );
 			}
 		}( api.state ) );
+=======
+			changesetStatus.bind( function( newStatus ) {
+				populateChangesetUuidParam( '' !== newStatus && 'publish' !== newStatus );
+			} );
+>>>>>>> origin/master
 
 		/**
 		 * Handles lock notice and take over request.

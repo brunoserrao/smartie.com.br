@@ -313,6 +313,10 @@ final class WP_Post_Type {
 	 * respect to $rest_base and $rest_controller_class.
 	 *
 	 * @since 4.7.4
+<<<<<<< HEAD
+=======
+	 * @access public
+>>>>>>> origin/master
 	 * @var bool $show_in_rest
 	 */
 	public $show_in_rest;
@@ -321,6 +325,10 @@ final class WP_Post_Type {
 	 * The base path for this post type's REST API endpoints.
 	 *
 	 * @since 4.7.4
+<<<<<<< HEAD
+=======
+	 * @access public
+>>>>>>> origin/master
 	 * @var string|bool $rest_base
 	 */
 	public $rest_base;
@@ -331,6 +339,10 @@ final class WP_Post_Type {
 	 * Custom controllers must extend WP_REST_Controller.
 	 *
 	 * @since 4.7.4
+<<<<<<< HEAD
+=======
+	 * @access public
+>>>>>>> origin/master
 	 * @var string|bool $rest_controller_class
 	 */
 	public $rest_controller_class;

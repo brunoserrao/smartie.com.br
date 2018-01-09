@@ -24,6 +24,7 @@ function mc4wp_get_form( $form_id = 0 ) {
  * @return MC4WP_Form[]
  */
 function mc4wp_get_forms( array $args = array() ) {
+<<<<<<< HEAD
     $default_args = array(
         'post_status' => 'publish',
         'numberposts' => -1,
@@ -43,6 +44,17 @@ function mc4wp_get_forms( array $args = array() ) {
         $forms[] = $form;
     }
     return $forms;
+=======
+	$default_args = array(
+		'post_status' => 'publish',
+		'numberposts' => -1,
+	);
+	$args = array_merge( $default_args, $args );
+	$args['post_type'] = 'mc4wp-form';
+	$forms = get_posts( $args );
+	$forms = array_map( 'mc4wp_get_form', $forms );
+	return $forms;
+>>>>>>> origin/master
 }
 
 /**

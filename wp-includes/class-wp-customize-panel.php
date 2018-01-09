@@ -98,6 +98,10 @@ class WP_Customize_Panel {
 	 * Auto-expand a section in a panel when the panel is expanded when the panel only has the one section.
 	 *
 	 * @since 4.7.4
+<<<<<<< HEAD
+=======
+	 * @access public
+>>>>>>> origin/master
 	 * @var bool
 	 */
 	public $auto_expand_sole_section = false;

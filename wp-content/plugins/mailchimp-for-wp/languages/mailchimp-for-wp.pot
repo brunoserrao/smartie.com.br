@@ -65,6 +65,7 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
+<<<<<<< HEAD
 #: includes/admin/class-admin.php:415
 msgid "Error connecting to MailChimp:"
 msgstr ""
@@ -117,6 +118,44 @@ msgstr ""
 msgid "Are you enjoying this plugin? The Premium add-on unlocks several powerful features. <a href=\"%s\">Find out about all benefits now</a>."
 msgstr ""
 
+=======
+#: includes/admin/class-admin.php:459
+msgid "Log successfully emptied."
+msgstr ""
+
+#: includes/admin/class-admin.php:489
+msgid "To get started with MailChimp for WordPress, please <a href=\"%s\">enter your MailChimp API key on the settings page of the plugin</a>."
+msgstr ""
+
+#: includes/admin/class-ads.php:39
+msgid "Want to customize the style of your form? <a href=\"%s\">Try our Styles Builder</a> & edit the look of your forms with just a few clicks."
+msgstr ""
+
+#: includes/admin/class-ads.php:54
+msgid "Be notified whenever someone subscribes? <a href=\"%s\">MailChimp for WordPress Premium</a> allows you to set up email notifications for your forms."
+msgstr ""
+
+#: includes/admin/class-ads.php:56
+msgid "Increased conversions? <a href=\"%s\">MailChimp for WordPress Premium</a> submits forms without reloading the entire page, resulting in a much better experience for your visitors."
+msgstr ""
+
+#: includes/admin/class-ads.php:70
+msgid "Upgrade to Premium"
+msgstr ""
+
+#: includes/admin/class-ads.php:83
+msgid "Do you want translated forms for all of your languages? <a href=\"%s\">Try MailChimp for WordPress Premium</a>, which does just that plus more."
+msgstr ""
+
+#: includes/admin/class-ads.php:88
+msgid "Do you want to create more than one form? Our Premium add-on does just that! <a href=\"%s\">Have a look at all Premium benefits</a>."
+msgstr ""
+
+#: includes/admin/class-ads.php:93
+msgid "Are you enjoying this plugin? The Premium add-on unlocks several powerful features. <a href=\"%s\">Find out about all benefits now</a>."
+msgstr ""
+
+>>>>>>> origin/master
 #: includes/admin/class-ads.php:114
 msgid "More subscribers, better newsletters."
 msgstr ""
@@ -133,7 +172,11 @@ msgstr ""
 msgid "First Name"
 msgstr ""
 
+<<<<<<< HEAD
 #: includes/admin/class-ads.php:129, includes/forms/class-admin.php:90
+=======
+#: includes/admin/class-ads.php:129, includes/forms/class-admin.php:94
+>>>>>>> origin/master
 msgid "Subscribe"
 msgstr ""
 
@@ -143,6 +186,7 @@ msgstr ""
 
 #: includes/admin/class-ads.php:155
 msgid "<a href=\"%s\">Upgrade to MailChimp for WordPress Premium</a> or <a href=\"%s\">read more about MailChimp's E-Commerce features</a>."
+<<<<<<< HEAD
 msgstr ""
 
 #: includes/admin/class-review-notice.php:68
@@ -339,12 +383,199 @@ msgstr ""
 
 #: includes/forms/class-form-element.php:82
 msgid "Leave this field empty if you're human:"
+=======
+msgstr ""
+
+#: includes/admin/class-review-notice.php:68
+msgid "You've been using MailChimp for WordPress for some time now; we hope you love it!"
+msgstr ""
+
+#: includes/admin/class-review-notice.php:69
+msgid "If you do, please <a href=\"%s\">leave us a 5★ rating on WordPress.org</a>. It would be of great help to us."
+msgstr ""
+
+#: includes/admin/class-review-notice.php:71
+msgid "Dismiss this notice."
+msgstr ""
+
+#: includes/api/class-api.php:84
+msgid "Read more about common connectivity issues."
+msgstr ""
+
+#: includes/forms/class-admin.php:62
+msgid "Add to form"
+msgstr ""
+
+#: includes/forms/class-admin.php:63
+msgid "City"
+msgstr ""
+
+#: includes/forms/class-admin.php:64
+msgid "Checkboxes"
+msgstr ""
+
+#: includes/forms/class-admin.php:65
+msgid "Choices"
+msgstr ""
+
+#: includes/forms/class-admin.php:66
+msgid "Choice type"
+msgstr ""
+
+#: includes/forms/class-admin.php:67
+msgid "Choose a field to add to the form"
+msgstr ""
+
+#: includes/forms/class-admin.php:68
+msgid "Close"
+msgstr ""
+
+#: includes/forms/class-admin.php:69
+msgid "Country"
+msgstr ""
+
+#: includes/forms/class-admin.php:70
+msgid "Dropdown"
+msgstr ""
+
+#: includes/forms/class-admin.php:71
+msgid "Field type"
+msgstr ""
+
+#: includes/forms/class-admin.php:72
+msgid "Field label"
+msgstr ""
+
+#: includes/forms/class-admin.php:73
+msgid "Form action"
+msgstr ""
+
+#: includes/forms/class-admin.php:74
+msgid "This field will allow your visitors to choose whether they would like to subscribe or unsubscribe"
+msgstr ""
+
+#: includes/forms/class-admin.php:75
+msgid "Form fields"
+msgstr ""
+
+#: includes/forms/class-admin.php:76
+msgid "This field is marked as required in MailChimp."
+msgstr ""
+
+#: includes/forms/class-admin.php:77
+msgid "Initial value"
+msgstr ""
+
+#: includes/forms/class-admin.php:78
+msgid "Interest categories"
+msgstr ""
+
+#: includes/forms/class-admin.php:79
+msgid "Is this field required?"
+msgstr ""
+
+#: includes/forms/class-admin.php:80
+msgid "List choice"
+msgstr ""
+
+#: includes/forms/class-admin.php:81
+msgid "This field will allow your visitors to choose a list to subscribe to."
+msgstr ""
+
+#: includes/forms/class-admin.php:82
+msgid "List fields"
+msgstr ""
+
+#: includes/forms/class-admin.php:83
+msgid "Min"
+msgstr ""
+
+#: includes/forms/class-admin.php:84
+msgid "Max"
+msgstr ""
+
+#: includes/forms/class-admin.php:85
+msgid "No available fields. Did you select a MailChimp list in the form settings?"
+msgstr ""
+
+#: includes/forms/class-admin.php:86
+msgid "Optional"
+msgstr ""
+
+#: includes/forms/class-admin.php:87
+msgid "Placeholder"
+msgstr ""
+
+#: includes/forms/class-admin.php:88
+msgid "Text to show when field has no value."
+msgstr ""
+
+#: includes/forms/class-admin.php:89
+msgid "Preselect"
+msgstr ""
+
+#: includes/forms/class-admin.php:90
+msgid "Remove"
+msgstr ""
+
+#: includes/forms/class-admin.php:91
+msgid "Radio buttons"
+msgstr ""
+
+#: includes/forms/class-admin.php:92
+msgid "Street Address"
+msgstr ""
+
+#: includes/forms/class-admin.php:93
+msgid "State"
+msgstr ""
+
+#: includes/forms/class-admin.php:95
+msgid "Submit button"
+msgstr ""
+
+#: includes/forms/class-admin.php:96
+msgid "Wrap in paragraph tags?"
+msgstr ""
+
+#: includes/forms/class-admin.php:97
+msgid "Value"
+msgstr ""
+
+#: includes/forms/class-admin.php:98
+msgid "Text to prefill this field with."
+msgstr ""
+
+#: includes/forms/class-admin.php:99
+msgid "ZIP"
+msgstr ""
+
+#: includes/forms/class-admin.php:111, includes/forms/class-admin.php:112, includes/forms/views/edit-form.php:24
+msgid "Forms"
+msgstr ""
+
+#: includes/forms/class-admin.php:152, includes/forms/class-admin.php:276
+msgid "<strong>Success!</strong> Form successfully saved."
+msgstr ""
+
+#: includes/forms/class-admin.php:276
+msgid "Preview form"
+msgstr ""
+
+#: includes/forms/class-admin.php:449, includes/forms/class-widget.php:30
+msgid "MailChimp Sign-Up Form"
+msgstr ""
+
+#: includes/forms/class-admin.php:453
+msgid "Select the form to show"
+>>>>>>> origin/master
 msgstr ""
 
 #: includes/forms/class-form-previewer.php:146
 msgid "Form preview"
 msgstr ""
 
+<<<<<<< HEAD
 #: includes/forms/class-form-tags.php:54
 msgid "Replaced with the form response (error or success messages)."
 msgstr ""
@@ -398,6 +629,61 @@ msgid "Property of the current page or post."
 msgstr ""
 
 #: includes/forms/class-form.php:50
+=======
+#: includes/forms/class-form-tags.php:60
+msgid "Replaced with the form response (error or success messages)."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:65
+msgid "Data from the URL or a submitted form."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:71
+msgid "Data from a cookie."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:77, includes/integrations/class-integration-tags.php:45
+msgid "Replaced with the number of subscribers on the selected list(s)"
+msgstr ""
+
+#: includes/forms/class-form-tags.php:82
+msgid "The email address of the current visitor (if known)."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:87
+msgid "The URL of the page."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:92
+msgid "The path of the page."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:97
+msgid "The current date. Example: %s."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:102
+msgid "The current time. Example: %s."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:107
+msgid "The site's language. Example: %s."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:112
+msgid "The visitor's IP address. Example: %s."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:117
+msgid "The property of the currently logged-in user."
+msgstr ""
+
+#: includes/forms/class-form-tags.php:123
+msgid "Property of the current page or post."
+msgstr ""
+
+#: includes/forms/class-form.php:133
+>>>>>>> origin/master
 msgid "There is no form with ID %d, perhaps it was deleted?"
 msgstr ""
 
@@ -545,6 +831,7 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
+<<<<<<< HEAD
 #: includes/forms/views/edit-form.php:36
 msgid "Edit Form"
 msgstr ""
@@ -566,6 +853,33 @@ msgid "Get shortcode"
 msgstr ""
 
 #: includes/forms/views/edit-form.php:84
+=======
+#: includes/forms/views/edit-form.php:25
+msgid "Form"
+msgstr ""
+
+#: includes/forms/views/edit-form.php:34
+msgid "Edit Form"
+msgstr ""
+
+#: includes/forms/views/edit-form.php:58
+msgid "Enter form title here"
+msgstr ""
+
+#: includes/forms/views/edit-form.php:59
+msgid "Enter the title of your sign-up form"
+msgstr ""
+
+#: includes/forms/views/edit-form.php:65
+msgid "Shortcode"
+msgstr ""
+
+#: includes/forms/views/edit-form.php:67
+msgid "Get shortcode"
+msgstr ""
+
+#: includes/forms/views/edit-form.php:72
+>>>>>>> origin/master
 msgid "Preview this form"
 msgstr ""
 
@@ -717,6 +1031,7 @@ msgstr ""
 msgid "Frequently Asked Questions"
 msgstr ""
 
+<<<<<<< HEAD
 #: includes/views/parts/admin-sidebar.php:29
 msgid "Other plugins by ibericode"
 msgstr ""
@@ -727,6 +1042,18 @@ msgstr ""
 
 #: includes/views/parts/admin-sidebar.php:42
 msgid "Super flexible forms using native HTML. Just like with MailChimp for WordPress forms but for other purposes, like a contact form."
+=======
+#: includes/views/parts/admin-sidebar.php:16
+msgid "Code reference for developers"
+msgstr ""
+
+#: includes/views/parts/admin-sidebar.php:36
+msgid "Looking to improve your sign-up rates?"
+msgstr ""
+
+#: includes/views/parts/admin-sidebar.php:37
+msgid "Our <a href=\"%s\">Boxzilla plugin</a> allows you to create pop-ups or slide-ins with a subscribe form. A sure way to grow your lists faster."
+>>>>>>> origin/master
 msgstr ""
 
 #: includes/views/parts/lists-overview.php:1

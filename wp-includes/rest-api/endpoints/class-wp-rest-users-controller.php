@@ -562,6 +562,7 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 			return $user;
 		}
 
+<<<<<<< HEAD
 		if ( ! empty( $request['roles'] ) ) {
 			if ( ! current_user_can( 'promote_user', $user->ID ) ) {
 				return new WP_Error( 'rest_cannot_edit_roles', __( 'Sorry, you are not allowed to edit roles of this user.' ), array( 'status' => rest_authorization_required_code() ) );
@@ -574,6 +575,10 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 			if ( $request_params === array( 'id', 'roles' ) ) {
 				return true;
 			}
+=======
+		if ( ! current_user_can( 'edit_user', $user->ID ) ) {
+			return new WP_Error( 'rest_cannot_edit', __( 'Sorry, you are not allowed to edit this user.' ), array( 'status' => rest_authorization_required_code() ) );
+>>>>>>> origin/master
 		}
 
 		if ( ! current_user_can( 'edit_user', $user->ID ) ) {
@@ -741,8 +746,12 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 
 		// We don't support trashing for users.
 		if ( ! $force ) {
+<<<<<<< HEAD
 			/* translators: %s: force=true */
 			return new WP_Error( 'rest_trash_not_supported', sprintf( __( "Users do not support trashing. Set '%s' to delete." ), 'force=true' ), array( 'status' => 501 ) );
+=======
+			return new WP_Error( 'rest_trash_not_supported', __( 'Users do not support trashing. Set force=true to delete.' ), array( 'status' => 501 ) );
+>>>>>>> origin/master
 		}
 
 		if ( ! empty( $reassign ) ) {
@@ -1347,7 +1356,11 @@ class WP_REST_Users_Controller extends WP_REST_Controller {
 		);
 
 		$query_params['slug']    = array(
+<<<<<<< HEAD
 			'description'        => __( 'Limit result set to users with one or more specific slugs.' ),
+=======
+			'description'        => __( 'Limit result set to users with a specific slug.' ),
+>>>>>>> origin/master
 			'type'               => 'array',
 			'items'              => array(
 				'type'               => 'string',

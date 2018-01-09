@@ -361,9 +361,12 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 	*/
 	public function get_submitted_merge_values( $data, $form_fields ) {
 
+<<<<<<< HEAD
 		// Array to return
 		$merge_variables = array();
 
+=======
+>>>>>>> origin/master
 		// loop to push variables to our array
 		foreach ( $data as $merge_tag => $value ) {
 
@@ -521,9 +524,15 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 
 			// Loop through the interest groups and create a single array like {group_id} => false
 			foreach ( $interest_groupings as $group_data ) {
+<<<<<<< HEAD
 				foreach ( $group_data['items'] as $item ) {
 					$groups[$item['id']] = false;
 				}
+=======
+				$item_ids = array_keys( $group_data['items'] );
+				$keyed    = array_fill_keys( $item_ids, false );
+				$groups   = array_merge( $groups, $keyed );
+>>>>>>> origin/master
 			}
 			return $groups;
 		} else {
@@ -762,7 +771,11 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 			*	@param string | $form_id		| The ID of the current form being subscribed to
 			*	@param array  | $page_data		| An array of data related to the page the form is on
 			*/
+<<<<<<< HEAD
 			$redirect_url = apply_filters( 'yikes-mailchimp-redirect-url', $redirect_url, $this->form_id, $page_data );
+=======
+			$redirect_url = apply_filters( 'yikes-mailchimp-redirect-url', esc_url( $redirect_url ), $this->form_id, $page_data );
+>>>>>>> origin/master
 
 			/**
 			*	yikes-mailchimp-redirect-timer
@@ -775,6 +788,10 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 
 			$redirect_array['redirect_timer'] = $redirect_timer;
 
+<<<<<<< HEAD
+=======
+			// Well this definitely has to change... why are we writing JavaScript in PHP?
+>>>>>>> origin/master
 			$redirect_array['redirect'] = $redirect_url;
 		}
 
@@ -948,7 +965,11 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 			*	@param string | $recaptcha_errors | A string of recaptcha errors separated by a space
 			*/
 			$response = apply_filters( 'yikes-mailchimp-recaptcha-required-error', $this->handle_non_filled_recaptcha_message_message, $this->form_id );
+<<<<<<< HEAD
 			return $this->yikes_fail( $hide = 0, $error = 1, $response, array(), $return_response_non_ajax = true );
+=======
+			return $this->yikes_fail( $hide = 0, $error = 1, $response, false, $return_response_non_ajax = true );
+>>>>>>> origin/master
 		}
 
 		// Construct the API URL
@@ -985,7 +1006,11 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 			*	@param string | $recaptcha_errors | A string of recaptcha errors separated by a space
 			*/
 			$response = apply_filters( 'yikes-mailchimp-recaptcha-required-error', implode( ' ', $recaptcha_errors ), $this->form_id );
+<<<<<<< HEAD
 			return $this->yikes_fail( $hide = 0, $error = 1, $response, array(), $return_response_non_ajax = true );
+=======
+			return $this->yikes_fail( $hide = 0, $error = 1, $response, false, $return_response_non_ajax = true );
+>>>>>>> origin/master
 		}
 	}
 
@@ -1033,7 +1058,11 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 	* @param string | $message  | The message shown to the user
 	*/
 	public function handle_merge_variables_error( $error, $message ) {
+<<<<<<< HEAD
 		return $this->yikes_fail( $hide = 0, $error, $message, array(), $return_response_non_ajax = true );
+=======
+		return $this->yikes_fail( $hide = 0, $error, $message, false, $return_response_non_ajax = true );
+>>>>>>> origin/master
 	}
 
 	/**
@@ -1129,7 +1158,11 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 		// Run the default response through our function to check for a user-defined response message
 		$response = $this->check_for_user_defined_response_message( 'already-subscribed', $default_response );
 
+<<<<<<< HEAD
 		return $this->yikes_fail( $hide = 0, $error = 1, $response, array(), $return_response_non_ajax = true );	
+=======
+		return $this->yikes_fail( $hide = 0, $error = 1, $response, false, $return_response_non_ajax = true );	
+>>>>>>> origin/master
 	}
 
 	/**
@@ -1155,7 +1188,11 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 		// Check for a user-defined message
 		$response = $this->check_for_user_defined_response_message( 'update-link', $response, $link_array );
 
+<<<<<<< HEAD
 		return $this->yikes_fail( $hide = 0, $error = 1, $response, array(), $return_response_non_ajax = true );
+=======
+		return $this->yikes_fail( $hide = 0, $error = 1, $response, false, $return_response_non_ajax = true );
+>>>>>>> origin/master
 	}
 
 	/**** Helper Functions ****/
@@ -1283,10 +1320,15 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 
 			case 'general-error':
 
+<<<<<<< HEAD
 				$original_response_text = $response_text;
 
 				if ( isset( $this->error_messages['general-error'] ) && ! empty( $this->error_messages['general-error'] ) ) {
 					$user_defined_response_text = $this->error_messages['general-error'];
+=======
+				if ( isset( $this->error_messages['general-error'] ) && ! empty( $this->error_messages['general-error'] ) ) {
+					$response_text = $this->error_messages['general-error'];
+>>>>>>> origin/master
 				}
 
 				/**
@@ -1294,6 +1336,7 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 				*
 				*	Filter the error message displayed to the user
 				*
+<<<<<<< HEAD
 				*	@param string | $original_response_text     | The original response message returned from the API
 				*	@param string | $user_defined_response_text | The response message defined by the user
 				*	@param string | $form_id                    | The form ID
@@ -1301,6 +1344,13 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 				* 	@return string | $response_text | The message that will be shown to the user 
 				*/
 				$response_text = apply_filters( 'yikes-mailchimp-general-error-response', $original_response_text, $user_defined_response_text, $this->form_id );
+=======
+				*	@param string | $response_text	| The response message that will be shown to the user
+				*	@param string | $form_id 		| The form ID
+				*
+				*/
+				$response_text = apply_filters( 'yikes-mailchimp-general-error-response', $response_text, $this->form_id );
+>>>>>>> origin/master
 
 				return $response_text;
 			break;
@@ -1386,7 +1436,10 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 	* @param int	| $error					| Flag whether this is an error (1 = error, 0 = no error)
 	* @param string | $translated_string		| The response message to display to the user
 	* @param array  | $additional_fields		| An array of additional fields to return
+<<<<<<< HEAD
 	*
+=======
+>>>>>>> origin/master
 	* @return func  | wp_send_json_error()
 	*/
 	protected function yikes_send_json_error( $hide, $error, $translated_string, $additional_fields = array() ) {
@@ -1399,14 +1452,23 @@ class Yikes_Inc_Easy_MailChimp_Extender_Process_Submission_Handler {
 		);
 
 		// Add additional fields we've been supplied
+<<<<<<< HEAD
 		if ( ! empty( $additional_fields ) ) {
 
 			foreach( $additional_fields as $key => $value ) {
 				$response_array[$key] = $value;
 			}
+=======
+		foreach( $additional_fields as $key => $value ) {
+			$response_array[$key] = $value;
+>>>>>>> origin/master
 		}
 
 		wp_send_json_error( $response_array );
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

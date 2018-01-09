@@ -682,7 +682,11 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Sitemap' ) ) {
 			$options[ $this->prefix . 'link' ] = sprintf( __( 'Click here to %s.', 'all-in-one-seo-pack' ), '<a href="' . esc_url( $url ) . '" target="_blank">' . __( 'view your sitemap', 'all-in-one-seo-pack' ) . '</a>' );
 			$options[ $this->prefix . 'link' ] .= __( ' Your sitemap has been created with content and images.', 'all-in-one-seo-pack' );
 			if ( '0' !== get_option( 'blog_public' ) ){
+<<<<<<< HEAD
 				$options[ $this->prefix . 'link' ] .= ' ' . __( 'Changes are automatically submitted to search engines.', 'all-in-one-seo-pack' );
+=======
+				$options[ $this->prefix . 'link' ] .= __( ' and changes are automatically submitted to search engines.', 'all-in-one-seo-pack' );
+>>>>>>> origin/master
 			}
 
 			if ( $this->option_isset( 'rewrite' ) ) {
@@ -1873,7 +1877,15 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Sitemap' ) ) {
 			}
 			$prio = $this->get_all_post_priority_data( $options["{$this->prefix}posttypes"] );
 
+<<<<<<< HEAD
 			$posts = $postspageid = (int) get_option( 'page_for_posts' ); // It's 0 if posts are on homepage, otherwise it's the id of the posts page.
+=======
+			$home           = array(
+				'loc'        => aioseop_home_url(),
+				'priority'   => $this->get_default_priority( 'homepage' ),
+				'changefreq' => $this->get_default_frequency( 'homepage' ),
+			);
+>>>>>>> origin/master
 
 			$home = array(
 				'loc'         => aioseop_home_url(),
@@ -2353,10 +2365,16 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Sitemap' ) ) {
 		function get_addl_pages() {
 			$home  = array();
 			$home  = array(
+<<<<<<< HEAD
 				'loc'         => aioseop_home_url(),
 				'priority'    => $this->get_default_priority( 'homepage' ),
 				'changefreq'  => $this->get_default_frequency( 'homepage' ),
 				'image:image' => $this->get_images_from_post( (int) get_option( 'page_on_front' ) ),
+=======
+				'loc'        => aioseop_home_url(),
+				'priority'   => $this->get_default_priority( 'homepage' ),
+				'changefreq' => $this->get_default_frequency( 'homepage' ),
+>>>>>>> origin/master
 			);
 
 			$posts = (int) get_option( 'page_for_posts' );

@@ -1124,18 +1124,30 @@ final class WP_Theme implements ArrayAccess {
 		/**
 		 * Filters the array of excluded directories and files while scanning theme folder.
 		 *
+<<<<<<< HEAD
 		 * @since 4.7.4
 		 *
 		 * @param array $exclusions Array of excluded directories and files.
 		 */
 		$exclusions = (array) apply_filters( 'theme_scandir_exclusions', array( 'CVS', 'node_modules', 'vendor', 'bower_components' ) );
+=======
+ 		 * @since 4.7.4
+		 *
+		 * @param array $exclusions Array of excluded directories and files.
+		 */
+		$exclusions = (array) apply_filters( 'theme_scandir_exclusions', array( 'CVS', 'node_modules' ) );
+>>>>>>> origin/master
 
 		foreach ( $results as $result ) {
 			if ( '.' == $result[0] || in_array( $result, $exclusions, true ) ) {
 				continue;
 			}
 			if ( is_dir( $path . '/' . $result ) ) {
+<<<<<<< HEAD
 				if ( ! $depth ) {
+=======
+				if ( ! $depth )
+>>>>>>> origin/master
 					continue;
 				}
 				$found = self::scandir( $path . '/' . $result, $extensions, $depth - 1 , $relative_path . $result );

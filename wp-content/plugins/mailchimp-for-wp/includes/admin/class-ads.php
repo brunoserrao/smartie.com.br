@@ -101,7 +101,11 @@ class MC4WP_Admin_Ads {
 		echo '<div class="mc4wp-box">';
 			echo '<div style="border: 5px dotted #cc4444; padding: 0 20px; background: white;">';
 				echo '<h3>MailChimp for WordPress Premium</h3>';
+<<<<<<< HEAD
 				echo '<p>This plugin has a Premium add-on, unlocking several powerful features. <a href="https://mc4wp.com/premium-features/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&utm_campaign=upgrade-box">Have a look at its benefits</a>!</p>';
+=======
+				echo '<p>This plugin has a Premium add-on, unlocking several powerful features. <a href="https://mc4wp.com/features/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&utm_campaign=upgrade-box">Have a look at its benefits</a>!</p>';
+>>>>>>> origin/master
 			echo '</div>';
 		echo '</div>';
 

@@ -145,8 +145,12 @@ ListFetcher.prototype.fetch = function (e) {
     this.done = false;
 
     $.post(ajaxurl, {
+<<<<<<< HEAD
         action: "mc4wp_renew_mailchimp_lists",
         timeout: 180000
+=======
+        action: "mc4wp_renew_mailchimp_lists"
+>>>>>>> origin/master
     }).done(function (data) {
         this.success = true;
 
@@ -497,7 +501,11 @@ function compileSelector(selector) {
 			var attrValue = match[6]
 			if (attrValue) attrValue = attrValue.replace(/\\(["'])/g, "$1").replace(/\\\\/g, "\\")
 			if (match[4] === "class") classes.push(attrValue)
+<<<<<<< HEAD
 			else attrs[match[4]] = attrValue === "" ? attrValue : attrValue || true
+=======
+			else attrs[match[4]] = attrValue || true
+>>>>>>> origin/master
 		}
 	}
 	if (classes.length > 0) attrs.className = classes.join(" ")
@@ -743,10 +751,17 @@ var _8 = function($window, Promise) {
 				_abort.call(xhr)
 			}
 			xhr.open(args.method, args.url, typeof args.async === "boolean" ? args.async : true, typeof args.user === "string" ? args.user : undefined, typeof args.password === "string" ? args.password : undefined)
+<<<<<<< HEAD
 			if (args.serialize === JSON.stringify && useBody && !(args.headers && args.headers.hasOwnProperty("Content-Type"))) {
 				xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8")
 			}
 			if (args.deserialize === deserialize && !(args.headers && args.headers.hasOwnProperty("Accept"))) {
+=======
+			if (args.serialize === JSON.stringify && useBody) {
+				xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8")
+			}
+			if (args.deserialize === deserialize) {
+>>>>>>> origin/master
 				xhr.setRequestHeader("Accept", "application/json, text/*")
 			}
 			if (args.withCredentials) xhr.withCredentials = args.withCredentials
@@ -844,6 +859,7 @@ var requestService = _8(window, PromisePolyfill)
 var coreRenderer = function($window) {
 	var $doc = $window.document
 	var $emptyFragment = $doc.createDocumentFragment()
+<<<<<<< HEAD
 	var nameSpace = {
 		svg: "http://www.w3.org/2000/svg",
 		math: "http://www.w3.org/1998/Math/MathML"
@@ -853,6 +869,10 @@ var coreRenderer = function($window) {
 	function getNameSpace(vnode) {
 		return vnode.attrs && vnode.attrs.xmlns || nameSpace[vnode.tag]
 	}
+=======
+	var onevent
+	function setEventCallback(callback) {return onevent = callback}
+>>>>>>> origin/master
 	//create
 	function createNodes(parent, vnodes, start, end, hooks, nextSibling, ns) {
 		for (var i = start; i < end; i++) {
@@ -909,9 +929,18 @@ var coreRenderer = function($window) {
 	}
 	function createElement(parent, vnode, hooks, ns, nextSibling) {
 		var tag = vnode.tag
+<<<<<<< HEAD
 		var attrs2 = vnode.attrs
 		var is = attrs2 && attrs2.is
 		ns = getNameSpace(vnode) || ns
+=======
+		switch (vnode.tag) {
+			case "svg": ns = "http://www.w3.org/2000/svg"; break
+			case "math": ns = "http://www.w3.org/1998/Math/MathML"; break
+		}
+		var attrs2 = vnode.attrs
+		var is = attrs2 && attrs2.is
+>>>>>>> origin/master
 		var element = ns ?
 			is ? $doc.createElementNS(ns, tag, {is: is}) : $doc.createElementNS(ns, tag) :
 			is ? $doc.createElement(tag, {is: is}) : $doc.createElement(tag)
@@ -974,7 +1003,11 @@ var coreRenderer = function($window) {
 	//update
 	function updateNodes(parent, old, vnodes, recycling, hooks, nextSibling, ns) {
 		if (old === vnodes || old == null && vnodes == null) return
+<<<<<<< HEAD
 		else if (old == null) createNodes(parent, vnodes, 0, vnodes.length, hooks, nextSibling, ns)
+=======
+		else if (old == null) createNodes(parent, vnodes, 0, vnodes.length, hooks, nextSibling, undefined)
+>>>>>>> origin/master
 		else if (vnodes == null) removeNodes(old, 0, old.length, vnodes)
 		else {
 			if (old.length === vnodes.length) {
@@ -1051,7 +1084,11 @@ var coreRenderer = function($window) {
 							if (movable.dom != null) nextSibling = movable.dom
 						}
 						else {
+<<<<<<< HEAD
 							var dom = createNode(parent, v, hooks, ns, nextSibling)
+=======
+							var dom = createNode(parent, v, hooks, undefined, nextSibling)
+>>>>>>> origin/master
 							nextSibling = dom
 						}
 					}
@@ -1122,7 +1159,14 @@ var coreRenderer = function($window) {
 	}
 	function updateElement(old, vnode, recycling, hooks, ns) {
 		var element = vnode.dom = old.dom
+<<<<<<< HEAD
 		ns = getNameSpace(vnode) || ns
+=======
+		switch (vnode.tag) {
+			case "svg": ns = "http://www.w3.org/2000/svg"; break
+			case "math": ns = "http://www.w3.org/1998/Math/MathML"; break
+		}
+>>>>>>> origin/master
 		if (vnode.tag === "textarea") {
 			if (vnode.attrs == null) vnode.attrs = {}
 			if (vnode.text != null) {
@@ -1302,6 +1346,7 @@ var coreRenderer = function($window) {
 		else if (key2[0] === "o" && key2[1] === "n" && typeof value === "function") updateEvent(vnode, key2, value)
 		else if (key2 === "style") updateStyle(element, old, value)
 		else if (key2 in element && !isAttribute(key2) && ns === undefined && !isCustomElement(vnode)) {
+<<<<<<< HEAD
 			if (key2 === "value") {
 				var normalized0 = "" + value // eslint-disable-line no-implicit-coercion
 				//setting input[value] to same value by typing on focused element moves cursor to end in Chrome
@@ -1317,6 +1362,14 @@ var coreRenderer = function($window) {
 				//setting option[value] to same value while having select open blinks select dropdown in Chrome
 				if (vnode.tag === "option" && old != null && vnode.dom.value === normalized0) return
 			}
+=======
+			//setting input[value] to same value by typing on focused element moves cursor to end in Chrome
+			if (vnode.tag === "input" && key2 === "value" && vnode.dom.value == value && vnode.dom === $doc.activeElement) return
+			//setting select[value] to same value while having select open blinks select dropdown in Chrome
+			if (vnode.tag === "select" && key2 === "value" && vnode.dom.value == value && vnode.dom === $doc.activeElement) return
+			//setting option[value] to same value while having select open blinks select dropdown in Chrome
+			if (vnode.tag === "option" && key2 === "value" && vnode.dom.value == value) return
+>>>>>>> origin/master
 			// If you assign an input type1 that is not supported by IE 11 with an assignment expression, an error0 will occur.
 			if (vnode.tag === "input" && key2 === "type") {
 				element.setAttribute(key2, value)
@@ -1431,6 +1484,7 @@ var coreRenderer = function($window) {
 		if (!dom) throw new Error("Ensure the DOM element being passed to m.route/m.mount/m.render is not undefined.")
 		var hooks = []
 		var active = $doc.activeElement
+<<<<<<< HEAD
 		var namespace = dom.namespaceURI
 		// First time0 rendering into a node clears it out
 		if (dom.vnodes == null) dom.textContent = ""
@@ -1440,6 +1494,15 @@ var coreRenderer = function($window) {
 		for (var i = 0; i < hooks.length; i++) hooks[i]()
 		// document.activeElement can return null in IE https://developer.mozilla.org/en-US/docs/Web/API/Document/activeElement
 		if (active != null && $doc.activeElement !== active) active.focus()
+=======
+		// First time0 rendering into a node clears it out
+		if (dom.vnodes == null) dom.textContent = ""
+		if (!Array.isArray(vnodes)) vnodes = [vnodes]
+		updateNodes(dom, dom.vnodes, Vnode.normalizeChildren(vnodes), false, hooks, null, undefined)
+		dom.vnodes = vnodes
+		for (var i = 0; i < hooks.length; i++) hooks[i]()
+		if ($doc.activeElement !== active) active.focus()
+>>>>>>> origin/master
 	}
 	return {render: render, setEventCallback: setEventCallback}
 }
@@ -1466,8 +1529,12 @@ function throttle(callback) {
 var _11 = function($window) {
 	var renderService = coreRenderer($window)
 	renderService.setEventCallback(function(e) {
+<<<<<<< HEAD
 		if (e.redraw === false) e.redraw = undefined
 		else redraw()
+=======
+		if (e.redraw !== false) redraw()
+>>>>>>> origin/master
 	})
 	var callbacks = []
 	function subscribe(key1, callback) {
@@ -1666,10 +1733,14 @@ var _20 = function($window, redrawService0) {
 		redrawService0.subscribe(root, run1)
 	}
 	route.set = function(path, data, options) {
+<<<<<<< HEAD
 		if (lastUpdate != null) {
 			options = options || {}
 			options.replace = true
 		}
+=======
+		if (lastUpdate != null) options = {replace: true}
+>>>>>>> origin/master
 		lastUpdate = null
 		routeService.setPath(path, data, options)
 	}
@@ -1705,7 +1776,11 @@ m.request = requestService.request
 m.jsonp = requestService.jsonp
 m.parseQueryString = parseQueryString
 m.buildQueryString = buildQueryString
+<<<<<<< HEAD
 m.version = "1.1.5"
+=======
+m.version = "1.1.1"
+>>>>>>> origin/master
 m.vnode = Vnode
 if (typeof module !== "undefined") module["exports"] = m
 else window.m = m
@@ -1713,7 +1788,11 @@ else window.m = m
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],8:[function(require,module,exports){
 /*!
+<<<<<<< HEAD
  * EventEmitter v5.2.4 - git.io/ee
+=======
+ * EventEmitter v5.1.0 - git.io/ee
+>>>>>>> origin/master
  * Unlicense - http://unlicense.org/
  * Oliver Caldwell - http://oli.me.uk/
  * @preserve

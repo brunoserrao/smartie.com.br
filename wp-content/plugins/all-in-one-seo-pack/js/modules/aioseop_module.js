@@ -259,6 +259,7 @@ jQuery( document ).ready(function() {
  * @summary Custom jQuery plugin that enables image uploader in wordpress.
  * 
  * @since 2.3.13
+<<<<<<< HEAD
  * @since 2.4.14 Added success callback and options.
  * @see http://www.webmaster-source.com/2013/02/06/using-the-wordpress-3-5-media-uploader-in-your-plugin-or-theme/
  *
@@ -273,6 +274,14 @@ jQuery.fn.aioseopImageUploader = function( options ) {
         success: undefined,
     }, options);
 
+=======
+ * @see http://www.webmaster-source.com/2013/02/06/using-the-wordpress-3-5-media-uploader-in-your-plugin-or-theme/
+ */
+jQuery.fn.aioseopImageUploader = function() {
+    // Keep reference to this.
+    var self = this;
+
+>>>>>>> origin/master
     // Set input target when to update image url value
     self.target = jQuery( self ).next();
 
@@ -290,11 +299,18 @@ jQuery.fn.aioseopImageUploader = function( options ) {
      * Event handler that will be called when an image is selected from media uploader.
      */
     self.onSelect = function() {
+<<<<<<< HEAD
         var url = self.uploader.state().get( 'selection' ).first().toJSON().url;
         if ( self.target.length >= 0 )
             jQuery( self.target ).val( url );
         if ( self.options.success !== undefined )
             self.options.success( url, self );
+=======
+        if ( self.target.length >= 0 )
+            jQuery( self.target ).val(
+                self.uploader.state().get( 'selection' ).first().toJSON().url
+            );
+>>>>>>> origin/master
     }
 
     /**
@@ -325,6 +341,7 @@ jQuery.fn.aioseopImageUploader = function( options ) {
 jQuery(document).ready(function($){
 
     jQuery( '.aioseop_upload_image_button' ).each(function() {
+<<<<<<< HEAD
         jQuery( this ).aioseopImageUploader({
             success: function( url, el ) {
                 // Update checker
@@ -332,6 +349,9 @@ jQuery(document).ready(function($){
                     jQuery( el ).prev().val( 1 );
             },
         });
+=======
+        jQuery( this ).aioseopImageUploader();
+>>>>>>> origin/master
     });
 
 });

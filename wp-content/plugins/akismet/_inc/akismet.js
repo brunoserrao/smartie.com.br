@@ -3,8 +3,11 @@ jQuery( function ( $ ) {
 	var mshotSecondTryTimer = null
 	var mshotThirdTryTimer = null
 	
+<<<<<<< HEAD
 	var mshotEnabledLinkSelector = 'a[id^="author_comment_url"], tr.pingback td.column-author a:first-of-type, td.comment p a';
 	
+=======
+>>>>>>> origin/master
 	$('.akismet-status').each(function () {
 		var thisId = $(this).attr('commentid');
 		$(this).prependTo('#comment-' + thisId + ' .column-comment');
@@ -84,7 +87,11 @@ jQuery( function ( $ ) {
 	});
 
 	// Show a preview image of the hovered URL. Applies to author URLs and URLs inside the comments.
+<<<<<<< HEAD
 	$( '#the-comment-list' ).on( 'mouseover', mshotEnabledLinkSelector, function () {
+=======
+	$( '#the-comment-list' ).on( 'mouseover', 'a[id^="author_comment_url"], tr.pingback td.column-author a:first-of-type, td.comment p a', function () {
+>>>>>>> origin/master
 		clearTimeout( mshotRemovalTimer );
 
 		if ( $( '.akismet-mshot' ).length > 0 ) {
@@ -101,7 +108,11 @@ jQuery( function ( $ ) {
 		clearTimeout( mshotSecondTryTimer );
 		clearTimeout( mshotThirdTryTimer );
 
+<<<<<<< HEAD
 		var thisHref = $( this ).attr( 'href' );
+=======
+		var thisHref = encodeURIComponent( $( this ).attr( 'href' ) );
+>>>>>>> origin/master
 
 		var mShot = $( '<div class="akismet-mshot mshot-container"><div class="mshot-arrow"></div><img src="' + akismet_mshot_url( thisHref ) + '" width="450" height="338" class="mshot-image" /></div>' );
 		mShot.data( 'link', this );
@@ -162,6 +173,7 @@ jQuery( function ( $ ) {
 	var recheck_count = 0;
 
 	function akismet_check_for_spam(offset, limit) {
+<<<<<<< HEAD
 		var check_for_spam_buttons = $( '.checkforspam' );
 		
 		// We show the percentage complete down to one decimal point so even queues with 100k
@@ -170,6 +182,10 @@ jQuery( function ( $ ) {
 		
 		// Update the progress counter on the "Check for Spam" button.
 		$( '.checkforspam-progress' ).text( check_for_spam_buttons.data( 'progress-label-format' ).replace( '%1$s', percentage_complete ) );
+=======
+		// Update the progress counter on the "Check for Spam" button.
+		$( '.checkforspam-progress' ).text( $( '.checkforspam' ).data( 'progress-label-format' ).replace( '%1$s', offset ) );
+>>>>>>> origin/master
 
 		$.post(
 			ajaxurl,
@@ -183,7 +199,11 @@ jQuery( function ( $ ) {
 				spam_count += result.counts.spam;
 				
 				if (result.counts.processed < limit) {
+<<<<<<< HEAD
 					window.location.href = check_for_spam_buttons.data( 'success-url' ).replace( '__recheck_count__', recheck_count ).replace( '__spam_count__', spam_count );
+=======
+					window.location.href = $( '.checkforspam' ).data( 'success-url' ).replace( '__recheck_count__', recheck_count ).replace( '__spam_count__', spam_count );
+>>>>>>> origin/master
 				}
 				else {
 					// Account for comments that were caught as spam and moved out of the queue.
@@ -246,6 +266,7 @@ jQuery( function ( $ ) {
 			}
 		});
 	}
+<<<<<<< HEAD
 	
 	/**
 	 * Generate an mShot URL if given a link URL.
@@ -273,4 +294,6 @@ jQuery( function ( $ ) {
 		var img = new Image();
 		img.src = akismet_mshot_url( linkUrl );
 	}
+=======
+>>>>>>> origin/master
 });

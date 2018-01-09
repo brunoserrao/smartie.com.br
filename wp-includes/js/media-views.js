@@ -3621,8 +3621,25 @@ Post = Select.extend(/** @lends wp.media.view.MediaFrame.Post.prototype */{
 			}
 		});
 
+<<<<<<< HEAD
 		// Browse our library of attachments.
 		this.content.set( view );
+=======
+		this.controller.on( 'toggle:upload:attachment', this.toggleUploader, this );
+		this.controller.on( 'edit:selection', this.editSelection );
+		this.createToolbar();
+		// In the Media Library, the sidebar is used to display errors before the attachments grid.
+		if ( this.options.sidebar && 'errors' === this.options.sidebar ) {
+			this.createSidebar();
+		}
+		this.createUploader();
+		this.createAttachments();
+		// For accessibility reasons, place the normal sidebar after the attachments, see ticket #36909.
+		if ( this.options.sidebar && 'errors' !== this.options.sidebar ) {
+			this.createSidebar();
+		}
+		this.updateContent();
+>>>>>>> origin/master
 
 		// Trigger the controller to set focus
 		this.trigger( 'edit:selection', this );

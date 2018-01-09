@@ -1,6 +1,7 @@
 Changelog
 =========
 
+<<<<<<< HEAD
 #### 4.1.12 - December 11, 2017
 
 **Fixes**
@@ -110,6 +111,8 @@ Changelog
 - Notice that asks for a plugin review would re-appear after dismissing it.
 
 
+=======
+>>>>>>> origin/master
 #### 4.1.3 - May 24, 2017
 
 **Improvements**

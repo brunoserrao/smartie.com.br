@@ -246,7 +246,10 @@ class WC_Google_Analytics extends WC_Integration {
 			'support_enhanced_link_attribution' => $this->ga_support_enhanced_link_attribution,
 			'use_universal_analytics'     		=> $this->ga_use_universal_analytics,
 			'anonymize_enabled'           		=> $this->ga_anonymize_enabled,
+<<<<<<< HEAD
 			'ga_404_tracking_enabled'           => $this->ga_404_tracking_enabled,
+=======
+>>>>>>> origin/master
 			'ecommerce_tracking_enabled'  		=> $this->ga_ecommerce_tracking_enabled,
 			'event_tracking_enabled'      		=> $this->ga_event_tracking_enabled
 		);

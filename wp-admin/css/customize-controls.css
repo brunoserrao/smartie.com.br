@@ -640,6 +640,10 @@ body.trashing #publish-settings {
 }
 
 #customize-theme-controls .customize-pane-child.skip-transition {
+<<<<<<< HEAD
+=======
+	-webkit-transition: none;
+>>>>>>> origin/master
 	transition: none;
 }
 

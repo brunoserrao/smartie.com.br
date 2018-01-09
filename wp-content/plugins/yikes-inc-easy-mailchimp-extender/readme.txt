@@ -3,8 +3,13 @@ Contributors: yikesinc, eherman24, liljimmi, hiwhatsup, JPry, yikesitskevin
 Donate link: https://yikesplugins.com/?utm_source=wp_plugin_repo&utm_medium=donate_link&utm_campaign=easy_forms_for_mailchimp
 Tags: MailChimp, MailChimp forms, MailChimp lists, opt-in forms, sign up form, MailChimp, email, forms, mailing lists, marketing, newsletter, sign up
 Requires at least: 4.0
+<<<<<<< HEAD
 Tested up to: 4.8.2
 Stable tag: 6.3.29
+=======
+Tested up to: 4.7.5
+Stable tag: 6.3.20
+>>>>>>> origin/master
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -245,6 +250,7 @@ Below you'll find a complete list of the hooks and filters available in Easy For
 * `yikes-mailchimp-datepicker-options` - Filter all of the options for the jQuery datepicker. @params: $datepicker_options, $form_id
 * 6.3.20:
 * `yikes-mailchimp-integration-is-user-subscribed` - Override the integration checkbox for already subscribed users. @params: $subscribed, $integration_type.
+<<<<<<< HEAD
 * 6.3.26:
 * `yikes-mailchimp-{$merge_tag}-default-value` - Set the default value for a field based on its merge tag. @params: $default_value, $field, $form_id
 * `yikes-mailchimp-wooco-integration-checkbox-placement` - Filter where the subscribe checkbox is placed for the WooCommerce integration. @params: $placement
@@ -252,6 +258,8 @@ Below you'll find a complete list of the hooks and filters available in Easy For
 * `yikes-mailchimp-address-{$addr_type}-placeholder` - Filter the placeholder values for the address fields. Available values for $addr_type are 'address', 'address2', 'city', 'zip'. @params: $placeholder_value 
 * 6.3.29:
 * `yikes-mailchimp-page-data` - Filter the page data being passed to the JS during a subscription request. @params: $page_data, $form_id
+=======
+>>>>>>> origin/master
 
 **Actions**
 
@@ -275,6 +283,7 @@ Below you'll find a complete list of the hooks and filters available in Easy For
 
 == Changelog ==
 
+<<<<<<< HEAD
 = Easy Forms for MailChimp 6.3.29 - November 8th, 2017 =
 * Refactored the way the support form works and integrates with add-ons
 * Refactored the way the transients are deleted when the API key is cleared - adding a new API key should now properly clear all cached data
@@ -312,6 +321,8 @@ Below you'll find a complete list of the hooks and filters available in Easy For
 * Cleaned up some HTML on the form
 * Fixed an issue with comment integration subscriptions - the commenter's name will now populate the First Name field in your MailChimp list.
 
+=======
+>>>>>>> origin/master
 = Easy Forms for MailChimp 6.3.20 - May 31st, 2017 =
 * Added a filter - `yikes-mailchimp-integration-is-user-subscribed` - for the integration checkbox. You can override whether the checkbox will display for already subscribed users (by default, the checkbox will not display).
 * Updated the way we're logging errors for the homepage dashboard widgets - an error should no longer break your dashboard!

@@ -301,6 +301,15 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 						echo "<div class='sfwd_debug_error'>" . __( 'Form submission error: verification check failed.', 'all-in-one-seo-pack' ) . '</div>';
 						break;
 					}
+<<<<<<< HEAD
+=======
+					if ( ! empty( $_REQUEST['sfwd_update_check'] ) ) {
+						global $aioseop_update_checker;
+						$aioseop_update_checker->checkForUpdates();
+						echo "<div class='sfwd_debug_mail_sent'>" . sprintf( __( '%s has checked for updates.', 'all-in-one-seo-pack' ), AIOSEOP_PLUGIN_NAME ) . '</div>';
+						break;
+					}
+>>>>>>> origin/master
 					$email = '';
 					if ( ! empty( $_REQUEST['sfwd_debug_send_email'] ) ) {
 						$email = sanitize_email( $_REQUEST['sfwd_debug_send_email'] );
@@ -351,6 +360,26 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 			$buf   = '<input name="sfwd_debug_send_email" type="text" value="" placeholder="' . __( 'E-mail debug information', 'all-in-one-seo-pack' ) . '"><input name="sfwd_debug_nonce" type="hidden" value="' .
 			         $nonce . '"><input name="sfwd_debug_submit" type="submit" value="' . __( 'Submit', 'all-in-one-seo-pack' ) . '" class="button-primary">';
 			return $buf;
+		}
+
+		function get_exporter_choices() {
+			return array( 1, 2 );
+		}
+
+		function get_exporter_post_types() {
+			$post_types = $this->get_post_type_titles();
+			$rempost    = array(
+				'customize_changeset' => 1,
+				'custom_css'          => 1,
+				'revision'            => 1,
+				'nav_menu_item'       => 1,
+			);
+			$post_types = array_diff_key(
+				$post_types,
+				$rempost
+			);
+
+			return array_keys( $post_types );
 		}
 
 		function get_exporter_choices() {

@@ -23,6 +23,7 @@ class MC4WP_Ninja_Forms_Integration extends MC4WP_Integration {
 	/**
 	 * Add hooks
 	 */
+<<<<<<< HEAD
 	public function add_hooks() {
 	    add_action( 'mc4wp_integration_ninja_forms_subscribe', array( $this, 'subscribe_from_ninja_forms' ), 10, 7 );
     }
@@ -43,6 +44,9 @@ class MC4WP_Ninja_Forms_Integration extends MC4WP_Integration {
         // revert to original options
         $this->options = $orig_options;
     }
+=======
+	public function add_hooks() {}
+>>>>>>> origin/master
 
 	/**
 	 * @return bool
@@ -57,6 +61,7 @@ class MC4WP_Ninja_Forms_Integration extends MC4WP_Integration {
      */
     public function get_ui_elements() {
         return array();
+<<<<<<< HEAD
     }
 
     /**
@@ -65,6 +70,8 @@ class MC4WP_Ninja_Forms_Integration extends MC4WP_Integration {
      */
     public function get_object_link( $form_id ) {
         return '<a href="' . admin_url( sprintf( 'admin.php?page=ninja-forms&form_id=%d', $form_id ) ) . '">Ninja Forms</a>';
+=======
+>>>>>>> origin/master
     }
 
 }

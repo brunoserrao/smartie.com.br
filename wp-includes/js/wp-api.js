@@ -1321,8 +1321,28 @@
 						// Include the array of route methods for easy reference.
 						methods: modelRoute.route.methods,
 
+<<<<<<< HEAD
 						// Include the array of route endpoints for easy reference.
 						endpoints: modelRoute.route.endpoints
+=======
+						initialize: function( attributes, options ) {
+							wp.api.WPApiBaseModel.prototype.initialize.call( this, attributes, options );
+
+							/**
+							 * Posts and pages support trashing, other types don't support a trash
+							 * and require that you pass ?force=true to actually delete them.
+							 *
+							 * @todo we should be getting trashability from the Schema, not hard coding types here.
+							 */
+							if (
+								'Posts' !== this.name &&
+								'Pages' !== this.name &&
+								_.includes( this.methods, 'DELETE' )
+							) {
+								this.requireForceForDelete = true;
+							}
+						}
+>>>>>>> origin/master
 					} );
 				} else {
 
@@ -1473,12 +1493,19 @@
 	wp.api.init = function( args ) {
 		var endpoint, attributes = {}, deferred, promise;
 
+<<<<<<< HEAD
 		args                      = args || {};
 		attributes.nonce          = args.nonce || wpApiSettings.nonce || '';
 		attributes.apiRoot        = args.apiRoot || wpApiSettings.root || '/wp-json';
 		attributes.versionString  = args.versionString || wpApiSettings.versionString || 'wp/v2/';
 		attributes.schema         = args.schema || null;
 		attributes.modelEndpoints = args.modelEndpoints || [ 'me', 'settings' ];
+=======
+		args                     = args || {};
+		attributes.apiRoot       = args.apiRoot || wpApiSettings.root || '/wp-json';
+		attributes.versionString = args.versionString || wpApiSettings.versionString || 'wp/v2/';
+		attributes.schema        = args.schema || null;
+>>>>>>> origin/master
 		if ( ! attributes.schema && attributes.apiRoot === wpApiSettings.root && attributes.versionString === wpApiSettings.versionString ) {
 			attributes.schema = wpApiSettings.schema;
 		}

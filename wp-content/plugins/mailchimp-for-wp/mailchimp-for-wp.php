@@ -3,7 +3,11 @@
 Plugin Name: MailChimp for WordPress
 Plugin URI: https://mc4wp.com/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&utm_campaign=plugins-page
 Description: MailChimp for WordPress by ibericode. Adds various highly effective sign-up methods to your site.
+<<<<<<< HEAD
 Version: 4.1.12
+=======
+Version: 4.1.3
+>>>>>>> origin/master
 Author: ibericode
 Author URI: https://ibericode.com/
 Text Domain: mailchimp-for-wp
@@ -47,7 +51,11 @@ function _mc4wp_load_plugin() {
 	}
 
 	// bootstrap the core plugin
+<<<<<<< HEAD
 	define( 'MC4WP_VERSION', '4.1.12' );
+=======
+	define( 'MC4WP_VERSION', '4.1.3' );
+>>>>>>> origin/master
 	define( 'MC4WP_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
 	define( 'MC4WP_PLUGIN_URL', plugins_url( '/' , __FILE__ ) );
 	define( 'MC4WP_PLUGIN_FILE', __FILE__ );
@@ -74,6 +82,12 @@ function _mc4wp_load_plugin() {
 	$mc4wp['integrations'] = new MC4WP_Integration_Manager();
 	$mc4wp['integrations']->add_hooks();
 
+<<<<<<< HEAD
+=======
+	// bootstrapping of core integrations
+	_mc4wp_bootstrap_integrations();
+
+>>>>>>> origin/master
 	// Doing cron? Load Usage Tracking class.
 	if( defined( 'DOING_CRON' ) && DOING_CRON ) {
 		MC4WP_Usage_Tracking::instance()->add_hooks();
@@ -113,7 +127,10 @@ function _mc4wp_bootstrap_integrations() {
 }
 
 add_action( 'plugins_loaded', '_mc4wp_load_plugin', 8 );
+<<<<<<< HEAD
 add_action( 'plugins_loaded', '_mc4wp_bootstrap_integrations', 90 );
+=======
+>>>>>>> origin/master
 
 /**
  * Flushes transient cache & schedules refresh hook.
@@ -142,5 +159,8 @@ function _mc4wp_on_plugin_deactivation() {
 register_activation_hook( __FILE__, '_mc4wp_on_plugin_activation' );
 register_deactivation_hook( __FILE__, '_mc4wp_on_plugin_deactivation' );
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master

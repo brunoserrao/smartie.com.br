@@ -28,6 +28,7 @@ $form_data = $interface->get_form( $form_id );
 
 // Send an error if for some reason we can't find the form.
 $submission_handler->handle_empty_form( $form_data ); 
+<<<<<<< HEAD
 
 // Set up some variables from the form data -- these are required
 $list_id             = isset( $form_data['list_id'] ) ? $form_data['list_id'] : null;
@@ -53,6 +54,33 @@ $notifications       = isset( $form_data['custom_notifications'] ) ? $form_data[
 // Set the error messages in our class
 $submission_handler->set_error_messages( $error_messages );
 
+=======
+
+// Set up some variables from the form data -- these are required
+$list_id             = isset( $form_data['list_id'] ) ? $form_data['list_id'] : null;
+$submission_settings = isset( $form_data['submission_settings'] ) ? $form_data['submission_settings'] : null;
+$optin_settings      = isset( $form_data['optin_settings'] ) ? $form_data['optin_settings'] : null;
+$form_fields         = isset( $form_data['fields'] ) ? $form_data['fields'] : null;
+
+// Send an error if for some reason we can't find the required form data
+$submission_handler->handle_empty_fields_generic( array( $list_id, $submission_settings, $optin_settings, $form_fields ) );
+
+// Set the list id in our class
+$submission_handler->set_list_id( $list_id );
+
+// Check for required fields and send an error if a required field is empty
+// This is a server side check for required fields because some browsers (e.g. Safari) do not recognize the `required` HTML 5 attribute
+$submission_handler->check_for_required_form_fields( $data, $form_fields );
+$submission_handler->check_for_required_interest_groups( $data, $form_fields );
+
+// Set up some variables from the form data -- these are not required
+$error_messages      = isset( $form_data['error_messages'] ) ? $form_data['error_messages'] : array();
+$notifications       = isset( $form_data['custom_notifications'] ) ? $form_data['custom_notifications'] : array();
+
+// Set the error messages in our class
+$submission_handler->set_error_messages( $error_messages );
+
+>>>>>>> origin/master
 // Some other variables we'll need.
 $page_data       = $_POST['page_data'];
 $merge_variables = array();
@@ -69,6 +97,7 @@ $submission_handler->set_email( $sanitized_email );
 
 // Send an error if for some reason we can't find the email
 $submission_handler->handle_empty_email( $sanitized_email );
+<<<<<<< HEAD
 
 // Check for Honeypot filled
 $honey_pot_filled = ( isset( $data['yikes-mailchimp-honeypot'] ) && '' !== $data['yikes-mailchimp-honeypot'] ) ? true : false;
@@ -76,6 +105,15 @@ $honey_pot_filled = ( isset( $data['yikes-mailchimp-honeypot'] ) && '' !== $data
 // Send an error if honey pot is not empty
 $submission_handler->handle_non_empty_honeypot( $honey_pot_filled ); 
 
+=======
+
+// Check for Honeypot filled
+$honey_pot_filled = ( isset( $data['yikes-mailchimp-honeypot'] ) && '' !== $data['yikes-mailchimp-honeypot'] ) ? true : false;
+
+// Send an error if honey pot is not empty
+$submission_handler->handle_non_empty_honeypot( $honey_pot_filled ); 
+
+>>>>>>> origin/master
 // Check if reCAPTCHA Response was submitted with the form data, and handle it if needed
 if ( isset( $data['g-recaptcha-response'] ) ) {
 	$recaptcha_response = $data['g-recaptcha-response'];
@@ -117,6 +155,10 @@ $member_data = array(
 	'email_address' => $sanitized_email,
 	'merge_fields'  => $merge_variables,
 	'timestamp_opt' => current_time( 'Y-m-d H:i:s', 1 ),
+<<<<<<< HEAD
+=======
+	'status'		=> 'subscribed'
+>>>>>>> origin/master
 );
 
 // Only add groups if they exist
@@ -125,6 +167,7 @@ if ( ! empty( $groups ) ) {
 }
 
 // Check if this member already exists
+<<<<<<< HEAD
 $member_exists = $list_handler->get_member( $list_id, md5( strtolower( $sanitized_email ) ), $use_transient = false );
 
 // If this member does not exist, then we need to add the status_if_new flag and set our $new_subscriber variable
@@ -134,6 +177,12 @@ $member_exists = $list_handler->get_member( $list_id, md5( strtolower( $sanitize
 $double_optin_resubscribe = is_array( $member_exists ) && isset( $member_exists['status'] ) && ( $member_exists['status'] === 'pending' || $member_exists['status'] === 'unsubscribed' );
 
 if ( is_wp_error( $member_exists ) || $double_optin_resubscribe === true ) {
+=======
+$member_exists = $list_handler->get_member( $list_id, md5( strtolower( $sanitized_email ) ), $use_transient = true );
+
+// If this member does not exist, then we need to add the status_if_new flag and set our $new_subscriber variable
+if ( is_wp_error( $member_exists ) ) {
+>>>>>>> origin/master
 
 	$new_subscriber = true;
 
@@ -141,6 +190,7 @@ if ( is_wp_error( $member_exists ) || $double_optin_resubscribe === true ) {
 	// Double opt-in means 'status_if_new' => 'pending'
 	$double_optin = isset( $optin_settings['optin'] ) ? (int) $optin_settings['optin'] : 0;
 
+<<<<<<< HEAD
 	// If the user was unsubscribed and is re-subscribing, we set the status to 'pending', which
 	// causes Mailchimp to send them a confirmation email.  This is the only way Mailchimp will
 	// allow us to re-subscribe the user.
@@ -151,20 +201,34 @@ if ( is_wp_error( $member_exists ) || $double_optin_resubscribe === true ) {
 		// Double opt-in
 		$member_data['status_if_new'] = 'pending';
 		$member_data['status']        = 'pending';
+=======
+	if ( $double_optin === 1 ) {
+
+		// Double opt-in
+		$member_data['status_if_new'] = 'pending';
+>>>>>>> origin/master
 	} else {
 
 		// Single opt-in
 		$member_data['status_if_new'] = 'subscribed';
+<<<<<<< HEAD
 		$member_data['status']        = 'subscribed';
+=======
+>>>>>>> origin/master
 	}
 	
 } else {
 
 	// If this member already exists, then we need to go through our optin settings and run some more logic
 
+<<<<<<< HEAD
 	// But first let's set our flag, and set the MailChimp status flag
 	$new_subscriber = false;
 	$member_data['status'] = 'subscribed';
+=======
+	// But first let's set our flag
+	$new_subscriber = false;
+>>>>>>> origin/master
 
 	// Check our update_existing_user optin setting
 	$update_existing_user = ( $optin_settings['update_existing_user'] === '1' ) ? true : false;
@@ -208,5 +272,9 @@ if ( is_wp_error( $subscribe_response ) ) {
 	$submission_handler->handle_submission_response_success( $submission_settings, $page_data, $merge_variables, $notifications, $optin_settings, $new_subscriber );
 }
 
+<<<<<<< HEAD
 // That's all folks.
 // :)
+=======
+// That's all folks.
+>>>>>>> origin/master

@@ -379,6 +379,23 @@ class Akismet_Admin {
 		echo '</a>';
 		echo '<span class="checkforspam-spinner"></span>';
 
+<<<<<<< HEAD
+=======
+		echo '</div>';
+		echo '<div class="alignleft">';
+		echo '<a
+				class="button-secondary checkforspam"
+				href="' . esc_url( $link ) . '"
+				data-active-label="' . esc_attr( __( 'Checking for Spam', 'akismet' ) ) . '"
+				data-progress-label-format="' . esc_attr( __( '(%1$s...)', 'akismet' ) ) . '"
+				data-success-url="' . esc_attr( remove_query_arg( 'akismet_recheck', add_query_arg( array( 'akismet_recheck_complete' => 1, 'recheck_count' => urlencode( '__recheck_count__' ), 'spam_count' => urlencode( '__spam_count__' ) ) ) ) ) . '"
+				>';
+			echo '<span class="akismet-label">' . esc_html__('Check for Spam', 'akismet') . '</span>';
+			echo '<span class="checkforspam-progress"></span>';
+		echo '</a>';
+		echo '<span class="checkforspam-spinner"></span>';
+
+>>>>>>> origin/master
 	}
 
 	public static function recheck_queue() {
@@ -919,11 +936,14 @@ class Akismet_Admin {
 		if ( get_option( 'akismet_strictness' ) === false ) {
 			add_option( 'akismet_strictness', ( get_option( 'akismet_discard_month' ) === 'false' ? '0' : '1' ) );
 		}
+<<<<<<< HEAD
 		
 		// Sync the local "Total spam blocked" count with the authoritative count from the server.
 		if ( isset( $stat_totals['all'], $stat_totals['all']->spam ) ) {
 			update_option( 'akismet_spam_count', $stat_totals['all']->spam );
 		}
+=======
+>>>>>>> origin/master
 
 		$notices = array();
 
@@ -1028,7 +1048,11 @@ class Akismet_Admin {
 
 	public static function display_status() {
 		if ( ! self::get_server_connectivity() ) {
+<<<<<<< HEAD
 			Akismet::view( 'notice', array( 'type' => 'servers-be-down' ) );
+=======
+			Akismet::view( 'notice', compact( 'servers-be-down' ) );
+>>>>>>> origin/master
 		}
 		else if ( ! empty( self::$notices ) ) {
 			foreach ( self::$notices as $index => $type ) {
@@ -1128,4 +1152,8 @@ class Akismet_Admin {
 		
 		return $all_plugins;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

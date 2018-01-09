@@ -92,7 +92,11 @@ var tagBox, array_unique_noempty;
 					 */
 					xbutton = $( '<button type="button" id="' + id + '-check-num-' + key + '" class="ntdelbutton">' +
 						'<span class="remove-tag-icon" aria-hidden="true"></span>' +
+<<<<<<< HEAD
 						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + listItem.html() + '</span>' +
+=======
+						'<span class="screen-reader-text">' + window.tagsSuggestL10n.removeTerm + ' ' + span.html() + '</span>' +
+>>>>>>> origin/master
 						'</button>' );
 
 					xbutton.on( 'click keypress', function( e ) {

@@ -3,7 +3,11 @@ Contributors: woothemes, claudiosanches, bor0
 Tags: woocommerce, google analytics
 Requires at least: 3.8
 Tested up to: 4.5.2
+<<<<<<< HEAD
 Stable tag: 1.4.3
+=======
+Stable tag: 1.4.2
+>>>>>>> origin/master
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,10 +68,13 @@ Exact wording depends on the national data privacy laws and should be adjusted.
 
 == Changelog ==
 
+<<<<<<< HEAD
 = 1.4.3 - 15/06/2017 =
 * Fix - WC 3.x notice by using proper variation data.
 * Add - Option to track 404 (Not found) errors.
 
+=======
+>>>>>>> origin/master
 = 1.4.2 - 09/05/2017 =
 * Fix - Missing Google Analytics ID.
 

@@ -1,7 +1,11 @@
 {
   "name": "woocommerce-google-analytics-integration",
   "title": "WooCommerce Google Analytics Integration",
+<<<<<<< HEAD
   "version": "1.4.3",
+=======
+  "version": "1.4.2",
+>>>>>>> origin/master
   "homepage": "https://wordpress.org/plugins/woocommerce-google-analytics-integration/",
   "repository": {
     "type": "git",

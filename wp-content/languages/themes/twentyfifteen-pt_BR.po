@@ -160,6 +160,13 @@ msgstr "Menu e widgets"
 msgid "Skip to content"
 msgstr "Pular para o conteúdo"
 
+<<<<<<< HEAD
+=======
+#: functions.php:283
+msgid "collapse child menu"
+msgstr "fechar submenu"
+
+>>>>>>> origin/master
 #: functions.php:282
 msgid "expand child menu"
 msgstr "expandir submenu"
@@ -220,7 +227,11 @@ msgstr "Menu principal"
 msgid "Proudly powered by %s"
 msgstr "Orgulhosamente mantido com %s"
 
+<<<<<<< HEAD
 #. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.9)  #-#-#-#-#
+=======
+#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.7)  #-#-#-#-#
+>>>>>>> origin/master
 #. Author URI of the plugin/theme
 #: footer.php:25
 msgid "https://wordpress.org/"

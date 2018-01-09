@@ -1874,6 +1874,7 @@ function wp_get_object_terms($object_ids, $taxonomies, $args = array()) {
 
 	$args = wp_parse_args( $args );
 
+<<<<<<< HEAD
 	/**
 	 * Filter arguments for retrieving object terms.
 	 *
@@ -1886,6 +1887,8 @@ function wp_get_object_terms($object_ids, $taxonomies, $args = array()) {
 	 */
 	$args = apply_filters( 'wp_get_object_terms_args', $args, $object_ids, $taxonomies );
 
+=======
+>>>>>>> origin/master
 	/*
 	 * When one or more queried taxonomies is registered with an 'args' array,
 	 * those params override the `$args` passed to this function.
@@ -1909,6 +1912,7 @@ function wp_get_object_terms($object_ids, $taxonomies, $args = array()) {
 	$args['taxonomy'] = $taxonomies;
 	$args['object_ids'] = $object_ids;
 
+<<<<<<< HEAD
 	// Taxonomies registered without an 'args' param are handled here.
 	if ( ! empty( $taxonomies ) ) {
 		$terms_from_remaining_taxonomies = get_terms( $args );
@@ -1920,6 +1924,9 @@ function wp_get_object_terms($object_ids, $taxonomies, $args = array()) {
 			$terms = array_merge( $terms, $terms_from_remaining_taxonomies );
 		}
 	}
+=======
+	$terms = array_merge( $terms, get_terms( $args ) );
+>>>>>>> origin/master
 
 	/**
 	 * Filters the terms for a given object or objects.

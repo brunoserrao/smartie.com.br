@@ -155,6 +155,10 @@ $member_data = array(
 	'email_address' => $sanitized_email,
 	'merge_fields'  => $merge_variables,
 	'timestamp_opt' => current_time( 'Y-m-d H:i:s', 1 ),
+<<<<<<< HEAD
+=======
+	'status'		=> 'subscribed'
+>>>>>>> origin/master
 );
 
 // Only add groups if they exist
@@ -163,6 +167,7 @@ if ( ! empty( $groups ) ) {
 }
 
 // Check if this member already exists
+<<<<<<< HEAD
 $member_exists = $list_handler->get_member( $list_id, md5( strtolower( $sanitized_email ) ), $use_transient = false );
 
 // If this member does not exist, then we need to add the status_if_new flag and set our $new_subscriber variable
@@ -172,12 +177,19 @@ $member_exists = $list_handler->get_member( $list_id, md5( strtolower( $sanitize
 $double_optin_resubscribe = is_array( $member_exists ) && isset( $member_exists['status'] ) && ( $member_exists['status'] === 'pending' || $member_exists['status'] === 'unsubscribed' );
 
 if ( is_wp_error( $member_exists ) || $double_optin_resubscribe === true ) {
+=======
+$member_exists = $list_handler->get_member( $list_id, md5( strtolower( $sanitized_email ) ), $use_transient = true );
+
+// If this member does not exist, then we need to add the status_if_new flag and set our $new_subscriber variable
+if ( is_wp_error( $member_exists ) ) {
+>>>>>>> origin/master
 	$new_subscriber = true;
 
 	// Check the opt-in value - is it double or single?
 	// Double opt-in means 'status_if_new' => 'pending'
 	$double_optin = isset( $optin_settings['optin'] ) ? (int) $optin_settings['optin'] : 0;
 
+<<<<<<< HEAD
 	// If the user was unsubscribed and is re-subscribing, we set the status to 'pending', which
 	// causes Mailchimp to send them a confirmation email.  This is the only way Mailchimp will
 	// allow us to re-subscribe the user.
@@ -188,13 +200,24 @@ if ( is_wp_error( $member_exists ) || $double_optin_resubscribe === true ) {
 		// Double opt-in
 		$member_data['status_if_new'] = 'pending';
 		$member_data['status']        = 'pending';
+=======
+	if ( $double_optin === 1 ) {
+
+		// Double opt-in
+		$member_data['status_if_new'] = 'pending';
+>>>>>>> origin/master
 	} else {
 
 		// Single opt-in
 		$member_data['status_if_new'] = 'subscribed';
+<<<<<<< HEAD
 		$member_data['status']        = 'subscribed';
+=======
+>>>>>>> origin/master
 	}
+} else {
 
+<<<<<<< HEAD
 } else {
 
 	// If this member already exists, then we need to go through our optin settings and run some more logic
@@ -202,6 +225,12 @@ if ( is_wp_error( $member_exists ) || $double_optin_resubscribe === true ) {
 	// But first let's set our flag, and set the MailChimp status flag
 	$new_subscriber = false;
 	$member_data['status'] = 'subscribed';
+=======
+	// If this member already exists, then we need to go through our optin settings and run some more logic
+
+	// But first let's set our flag
+	$new_subscriber = false;
+>>>>>>> origin/master
 
 	// Check our update_existing_user optin setting
 	$update_existing_user = ( $optin_settings['update_existing_user'] === '1' ) ? true : false;
@@ -273,5 +302,9 @@ if ( $new_subscriber === true ) {
 // End execution
 return;
 
+<<<<<<< HEAD
 // That's all folks.
 // :)
+=======
+// That's all folks.
+>>>>>>> origin/master

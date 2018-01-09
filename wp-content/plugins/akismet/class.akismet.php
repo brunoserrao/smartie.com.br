@@ -202,6 +202,7 @@ class Akismet {
 			if ( $discard ) {
 				// The spam is obvious, so we're bailing out early. 
 				// akismet_result_spam() won't be called so bump the counter here
+<<<<<<< HEAD
 				if ( $incr = apply_filters( 'akismet_spam_count_incr', 1 ) ) {
 					update_option( 'akismet_spam_count', get_option( 'akismet_spam_count' ) + $incr );
 				}
@@ -219,6 +220,15 @@ class Akismet {
 			else if ( self::$is_rest_api_call ) {
 				// The way the REST API structures its calls, we can set the comment_approved value right away.
 				$commentdata['comment_approved'] = 'spam';
+=======
+				if ( $incr = apply_filters('akismet_spam_count_incr', 1) )
+					update_option( 'akismet_spam_count', get_option('akismet_spam_count') + $incr );
+				// The spam is obvious, so we're bailing out early. Redirect back to the previous page,
+				// or failing that, the post permalink, or failing that, the homepage of the blog.
+				$redirect_to = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : ( $post ? get_permalink( $post ) : home_url() );
+				wp_safe_redirect( esc_url_raw( $redirect_to ) );
+				die();
+>>>>>>> origin/master
 			}
 		}
 		
@@ -271,6 +281,14 @@ class Akismet {
 	// this fires on wp_insert_comment.  we can't update comment_meta when auto_check_comment() runs
 	// because we don't know the comment ID at that point.
 	public static function auto_check_update_meta( $id, $comment ) {
+<<<<<<< HEAD
+=======
+
+		// failsafe for old WP versions
+		if ( !function_exists('add_comment_meta') )
+			return false;
+
+>>>>>>> origin/master
 		// wp_insert_comment() might be called in other contexts, so make sure this is the same comment
 		// as was checked by auto_check_comment
 		if ( is_object( $comment ) && !empty( self::$last_comment ) && is_array( self::$last_comment ) ) {

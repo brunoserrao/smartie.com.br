@@ -3,7 +3,11 @@
  * Plugin Name: Easy Forms for MailChimp
  * Plugin URI:  https://yikesplugins.com/plugin/easy-forms-for-mailchimp/
  * Description: The ultimate MailChimp WordPress plugin. Easily build <strong>unlimited forms for your MailChimp lists</strong>, add them to your site and track subscriber activity. To get started, go to the settings page and enter your <a href="https://yikesplugins.com/support/knowledge-base/finding-your-mailchimp-api-key/" target="_blank">MailChimp API key</a>.
+<<<<<<< HEAD
  * Version:     6.3.29
+=======
+ * Version:     6.3.20
+>>>>>>> origin/master
  * Author:      YIKES, Inc.
  * Author URI:  https://www.yikesplugins.com/
  * License:     GPL-3.0+
@@ -43,7 +47,11 @@ if ( ! defined( 'WPINC' ) ) {
  * 	@since 6.1.3
  */
 if ( ! defined( 'YIKES_MC_VERSION' ) ) {
+<<<<<<< HEAD
 	define( 'YIKES_MC_VERSION' , '6.3.29' );
+=======
+	define( 'YIKES_MC_VERSION' , '6.3.20' );
+>>>>>>> origin/master
 }
 
 /**

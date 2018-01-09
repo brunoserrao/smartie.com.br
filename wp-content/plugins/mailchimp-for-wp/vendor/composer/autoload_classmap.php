@@ -72,8 +72,12 @@ return array(
     'MC4WP_Upgrade_Routines' => $baseDir . '/includes/admin/class-upgrade-routines.php',
     'MC4WP_Usage_Tracking' => $baseDir . '/includes/admin/class-usage-tracking.php',
     'MC4WP_User_Integration' => $baseDir . '/includes/integrations/class-user-integration.php',
+<<<<<<< HEAD
     'MC4WP_WPForms_Field' => $baseDir . '/integrations/wpforms/class-field.php',
     'MC4WP_WPForms_Integration' => $baseDir . '/integrations/wpforms/class-wpforms.php',
+=======
+    'MC4WP_Validator' => $baseDir . '/includes/class-validator.php',
+>>>>>>> origin/master
     'MC4WP_WooCommerce_Integration' => $baseDir . '/integrations/woocommerce/class-woocommerce.php',
     'xrstf\\Composer52\\AutoloadGenerator' => $vendorDir . '/xrstf/composer-php52/lib/xrstf/Composer52/AutoloadGenerator.php',
     'xrstf\\Composer52\\Generator' => $vendorDir . '/xrstf/composer-php52/lib/xrstf/Composer52/Generator.php',
