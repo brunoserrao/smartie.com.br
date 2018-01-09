@@ -622,10 +622,14 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Sitemap' ) ) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				$options[ $this->prefix . 'link' ] .= ' ' . __( 'Changes are automatically submitted to search engines.', 'all-in-one-seo-pack' );
 =======
 				$options[ $this->prefix . 'link' ] .= __( ' and changes are automatically submitted to search engines.', 'all-in-one-seo-pack' );
 >>>>>>> origin/master
+=======
+				$options[ $this->prefix . 'link' ] .= __( ' and changes are automatically submitted to search engines' );
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 				$options[ $this->prefix . 'link' ] .= __( ' and changes are automatically submitted to search engines' );
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
@@ -1817,6 +1821,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Sitemap' ) ) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			$posts = $postspageid = (int) get_option( 'page_for_posts' ); // It's 0 if posts are on homepage, otherwise it's the id of the posts page.
 =======
 			$home           = array(
@@ -1834,11 +1839,16 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Sitemap' ) ) {
 =======
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 			$home           = array(
 				'loc'        => get_home_url(),
 				'priority'   => $this->get_default_priority( 'homepage' ),
 				'changefreq' => $this->get_default_frequency( 'homepage' ),
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
+=======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
@@ -2310,6 +2320,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Sitemap' ) ) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				'loc'         => aioseop_home_url(),
 				'priority'    => $this->get_default_priority( 'homepage' ),
 				'changefreq'  => $this->get_default_frequency( 'homepage' ),
@@ -2319,6 +2330,11 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Sitemap' ) ) {
 				'priority'   => $this->get_default_priority( 'homepage' ),
 				'changefreq' => $this->get_default_frequency( 'homepage' ),
 >>>>>>> origin/master
+=======
+				'loc'        => get_home_url(),
+				'priority'   => $this->get_default_priority( 'homepage' ),
+				'changefreq' => $this->get_default_frequency( 'homepage' ),
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 				'loc'        => get_home_url(),
 				'priority'   => $this->get_default_priority( 'homepage' ),

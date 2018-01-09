@@ -165,6 +165,7 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 			                                 __( '%post_title% - The original title of the post', 'all-in-one-seo-pack' ) . '</li><li>' .
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			                                 __( '%wp_title% - The original WordPress title, e.g. post_title for posts', 'all-in-one-seo-pack' ) . '</li><li>' .
 <<<<<<< HEAD
 			                                 __( '%current_date% - The current date (localized)', 'all-in-one-seo-pack' ) . '</li><li>' .
@@ -174,6 +175,10 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 =======
 			                                 __( '%current_date% - The current date (localized)', 'all-in-one-seo-pack' ) . '</li></ul>',
 >>>>>>> origin/master
+=======
+			                                 __( '%wp_title% - The original wordpress title, e.g. post_title for posts', 'all-in-one-seo-pack' ) . '</li><li>' .
+			                                 __( '%current_date% - The current date (localized)', 'all-in-one-seo-pack' ) . '</li></ul>',
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 			                                 __( '%wp_title% - The original wordpress title, e.g. post_title for posts', 'all-in-one-seo-pack' ) . '</li><li>' .
 			                                 __( '%current_date% - The current date (localized)', 'all-in-one-seo-pack' ) . '</li></ul>',
@@ -1299,6 +1304,7 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$args['value']   = sprintf( $args['value'], $title, esc_url( $url ), esc_attr( $description ) );
 <<<<<<< HEAD
 		$args['value'] .= '<script>var aiosp_title_extra = '. (int) $extra_title_len . ';</script>';
@@ -1306,6 +1312,11 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 		$extra_title_len = (int) $extra_title_len;
 		$args['value'] .= "<script>var aiosp_title_extra = {$extra_title_len};</script>";
 >>>>>>> origin/master
+=======
+		$args['value']   = sprintf( $args['value'], $title, esc_url( $url ), esc_attr( wp_strip_all_tags( $description ) ) );
+		$extra_title_len = (int) $extra_title_len;
+		$args['value'] .= "<script>var aiosp_title_extra = {$extra_title_len};</script>";
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 		$args['value']   = sprintf( $args['value'], $title, esc_url( $url ), esc_attr( wp_strip_all_tags( $description ) ) );
 		$extra_title_len = (int) $extra_title_len;
@@ -2548,12 +2559,18 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		$description = htmlspecialchars( wp_strip_all_tags( htmlspecialchars_decode( $description ) ) );
 		if ( empty( $aioseop_options['aiosp_dont_truncate_descriptions'] ) ) {
 			$description = $this->trim_excerpt_without_filters( $description );
 		}
 >>>>>>> origin/master
+=======
+		if ( empty( $aioseop_options['aiosp_dont_truncate_descriptions'] ) ) {
+			$description = $this->trim_excerpt_without_filters( $description );
+		}
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 		if ( empty( $aioseop_options['aiosp_dont_truncate_descriptions'] ) ) {
 			$description = $this->trim_excerpt_without_filters( $description );
@@ -2623,6 +2640,7 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 	/**
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * Gets post description.
 	 * Auto-generates description if settings are ON.
 	 *
@@ -2634,6 +2652,9 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 >>>>>>> origin/master
 	 *
 	 * @param object $post Post object.
+=======
+	 * @param $post
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 	 * @param $post
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
@@ -2670,6 +2691,12 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		// Internal whitespace trim.
+		$description = preg_replace( '/\s\s+/u', ' ', $description );
+
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 		// Internal whitespace trim.
 		$description = preg_replace( '/\s\s+/u', ' ', $description );
@@ -3697,6 +3724,7 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/**
 	 * Adds wordpress hooks.
 	 *
@@ -3707,6 +3735,8 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 =======
 >>>>>>> origin/master
 	 */
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
@@ -3754,11 +3784,14 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		add_filter( 'aioseop_description', array( &$this, 'filter_description' ), 10, 2 );
 		add_filter( 'aioseop_title', array( &$this, 'filter_title' ) );
 =======
 		add_filter( 'aioseop_description', array( &$this, 'filter_description' ) );
 >>>>>>> origin/master
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
@@ -3834,6 +3867,7 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/**
 	 * Adds meta description to AMP pages.
      *
@@ -3874,6 +3908,8 @@ class All_in_One_SEO_Pack extends All_in_One_SEO_Pack_Module {
      */
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
@@ -4663,6 +4699,7 @@ EOF;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				// Don't show if we're on the home page and the home page is the latest posts.
 =======
 							// Don't show if we're on the home page and the home page is the latest posts.
@@ -4729,6 +4766,9 @@ EOF;
 =======
 				if ( ! is_home() || ( ! is_front_page() && ! is_home() ) ) {
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
+=======
+				if ( ! is_home() || ( ! is_front_page() && ! is_home() ) ) {
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 					// Don't show if we're on the home page and the home page is the latest posts.
 					$wp_admin_bar->add_menu( array(
 						'id'     => 'aiosp_edit_' . $post->ID,
@@ -4737,6 +4777,9 @@ EOF;
 						'href'   => get_edit_post_link( $post->ID ) . '#aiosp',
 					) );
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
+=======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
@@ -5024,6 +5067,7 @@ EOF;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/**
 <<<<<<< HEAD
 	 * Filters title and meta titles and applies cleanup.
@@ -5175,6 +5219,8 @@ EOF;
 >>>>>>> origin/master
 	}
 
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======

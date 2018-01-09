@@ -28,6 +28,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 		<html xmlns="http://www.w3.org/1999/xhtml">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<head>
 				<title>
 					<xsl:choose><xsl:when test="$fileType='Sitemap'">Sitemap</xsl:when>
@@ -104,6 +105,8 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 =======
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 		<head>
 			<title>
 				<xsl:choose><xsl:when test="$fileType='Sitemap'">Sitemap</xsl:when>
@@ -162,6 +165,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 					You can find more information about XML sitemaps at <a href="http://sitemaps.org">sitemaps.org</a>.</p>
 				<p><xsl:choose>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
+=======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1

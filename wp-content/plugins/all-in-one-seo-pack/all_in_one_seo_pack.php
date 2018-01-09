@@ -3,6 +3,7 @@
 Plugin Name: All In One SEO Pack
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Plugin URI: https://semperplugins.com/all-in-one-seo-pack-pro-version/
 Description: Out-of-the-box SEO for your WordPress blog. Features like XML Sitemaps, SEO for custom post types, SEO for blogs or business sites, SEO for ecommerce sites, and much more. More than 30 million downloads since 2007.
 <<<<<<< HEAD
@@ -10,6 +11,11 @@ Version: 2.4.3.1
 =======
 Version: 2.3.13.2
 >>>>>>> origin/master
+=======
+Plugin URI: https://semperfiwebdesign.com
+Description: Out-of-the-box SEO for your WordPress blog. Features like XML Sitemaps, SEO for custom post types, SEO for blogs or business sites, SEO for ecommerce sites, and much more. Almost 30 million downloads since 2007.
+Version: 2.3.11.1
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 Plugin URI: https://semperfiwebdesign.com
 Description: Out-of-the-box SEO for your WordPress blog. Features like XML Sitemaps, SEO for custom post types, SEO for blogs or business sites, SEO for ecommerce sites, and much more. Almost 30 million downloads since 2007.
@@ -50,10 +56,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @version 2.4.3.1
 =======
  * @version 2.3.13.2
 >>>>>>> origin/master
+=======
+ * @version 2.3.11.1
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
  * @version 2.3.11.1
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
@@ -69,10 +79,14 @@ if ( ! defined( 'AIOSEOP_VERSION' ) ) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	define( 'AIOSEOP_VERSION', '2.4.3.1' );
 =======
 	define( 'AIOSEOP_VERSION', '2.3.13.2' );
 >>>>>>> origin/master
+=======
+	define( 'AIOSEOP_VERSION', '2.3.11.1' );
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 	define( 'AIOSEOP_VERSION', '2.3.11.1' );
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1

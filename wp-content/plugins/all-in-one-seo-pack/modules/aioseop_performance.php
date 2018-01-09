@@ -291,8 +291,12 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 					if ( ! empty( $_REQUEST['sfwd_update_check'] ) ) {
+=======
+					if ( $_REQUEST['sfwd_update_check'] ) {
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 					if ( $_REQUEST['sfwd_update_check'] ) {
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
@@ -306,7 +310,10 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 					}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
@@ -331,6 +338,7 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 			         '<input name="sfwd_debug_send_email" type="text" value="" placeholder="' . __( 'E-mail debug information', 'all-in-one-seo-pack' ) . '"><input name="sfwd_debug_nonce" type="hidden" value="' .
 			         $nonce . '"><input name="sfwd_debug_submit" type="submit" value="' . __( 'Submit', 'all-in-one-seo-pack' ) . '" class="button-primary">';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			if ( AIOSEOPPRO ) {
 				$buf .= '<p><input name="sfwd_update_check" type="submit" value="' . __( 'Check For Updates', 'all-in-one-seo-pack' ) . '" class="button-primary">';
@@ -342,6 +350,8 @@ if ( ! class_exists( 'All_in_One_SEO_Pack_Performance' ) ) {
 		function get_exporter_choices() {
 			return array( 1, 2 );
 		}
+=======
+>>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 =======
 >>>>>>> parent of fdee1f1... All in One SEO Pack 2.4.3.1
 
