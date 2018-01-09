@@ -164,12 +164,7 @@ class MC4WP_MailChimp {
 	 * @return boolean
 	 */
 	public function list_has_subscriber( $list_id, $email_address ) {
-        try{
-		    $data = $this->api->get_list_member( $list_id, $email_address );
-        } catch( MC4WP_API_Resource_Not_Found_Exception $e ) {
-            return false;
-        }
-
+		$data = $this->api->get_list_member( $list_id, $email_address );
 		return ! empty( $data->id ) && $data->status === 'subscribed';
 	}
 

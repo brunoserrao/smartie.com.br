@@ -6,6 +6,7 @@ require_once dirname(__FILE__) . '/composer'.'/autoload_real_52.php';
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 return ComposerAutoloaderInita1ed0494cfc3f6407584f55896c35bcf::getLoader();
 =======
 return ComposerAutoloaderInit4dc707105fc640cf229f5c568acd354f::getLoader();
@@ -13,3 +14,6 @@ return ComposerAutoloaderInit4dc707105fc640cf229f5c568acd354f::getLoader();
 =======
 return ComposerAutoloaderInit541c0dc3d2f08af0d23e4f44958746d3::getLoader();
 >>>>>>> parent of 142d053... MailChimp for WordPress
+=======
+return ComposerAutoloaderInite220b9cdf73db6b31110859155e3018a::getLoader();
+>>>>>>> parent of e5b28b8... Mailchimp updates

@@ -56,20 +56,14 @@ function handleFormRequest(form, action, errors, data){
 		}
 
 		// trigger events
-		forms.trigger('submitted', [form]);
-		forms.trigger(form.id + '.submitted', [form]);
+		forms.trigger( 'submitted', [form]);
 
 		if( errors ) {
 			forms.trigger('error', [form, errors]);
-			forms.trigger(form.id + '.error', [form, errors]);
 		} else {
 			// form was successfully submitted
 			forms.trigger('success', [form, data]);
-			forms.trigger(form.id + ',success', [form, data]);
-
-			// subscribed / unsubscribed
 			forms.trigger(action + "d", [form, data]);
-			forms.trigger(form.id + "." + action + "d", [form, data]);
 		}
 	});
 }
@@ -112,7 +106,6 @@ for(var i=0; i<listeners.length;i++) {
 Gator(document.body).on('submit', '.mc4wp-form', function(event) {
 	var form = forms.getByElement(event.target || event.srcElement);
 	forms.trigger('submit', [form, event]);
-	forms.trigger(form.id + '.submit', [ form, event]);
 });
 
 Gator(document.body).on('focus', '.mc4wp-form', function(event) {
@@ -120,7 +113,6 @@ Gator(document.body).on('focus', '.mc4wp-form', function(event) {
 
 	if( ! form.started ) {
 		forms.trigger('started', [form, event]);
-		forms.trigger(form.id + '.started', [form, event]);
 		form.started = true;
 	}
 });
@@ -128,7 +120,6 @@ Gator(document.body).on('focus', '.mc4wp-form', function(event) {
 Gator(document.body).on('change', '.mc4wp-form', function(event) {
 	var form = forms.getByElement(event.target || event.srcElement);
 	forms.trigger('change', [form,event]);
-	forms.trigger(form.id + '.change', [form,event]);
 });
 
 if( config.submitted_form ) {
@@ -257,13 +248,25 @@ function all() {
 	return forms;
 }
 
+function on(event,callback) {
+	return events.on(event,callback);
+}
+
+function trigger(event,args) {
+	return events.trigger(event,args);
+}
+
+function off(event,callback) {
+	return events.off(event,callback);
+}
+
 module.exports = {
 	"all": all,
 	"get": get,
 	"getByElement": getByElement,
-	"on": events.on.bind(events),
-	"trigger": events.trigger.bind(events),
-	"off": events.off.bind(events)
+	"on": on,
+	"trigger": trigger,
+	"off": off
 };
 
 

@@ -3,6 +3,7 @@ Changelog
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #### 4.1.12 - December 11, 2017
 
 **Fixes**
@@ -192,6 +193,8 @@ Changelog
 - Throw form specific JavaScript events, like `15.subscribed` to hook into "subscribed" events for form with ID 15.
 
 
+=======
+>>>>>>> parent of e5b28b8... Mailchimp updates
 #### 4.0.11 - December 9, 2016
 
 **Fixes**

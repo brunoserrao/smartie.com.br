@@ -3,8 +3,13 @@
  * Plugin Name: WooCommerce
  * Plugin URI: https://woocommerce.com/
  * Description: An e-commerce toolkit that helps you sell anything. Beautifully.
+<<<<<<< HEAD
  * Version: 3.0.8
  * Author: Automattic
+=======
+ * Version: 2.6.9
+ * Author: WooThemes
+>>>>>>> parent of e5b28b8... Mailchimp updates
  * Author URI: https://woocommerce.com
  * Requires at least: 4.4
  * Tested up to: 4.7
@@ -35,7 +40,11 @@ final class WooCommerce {
 	 *
 	 * @var string
 	 */
+<<<<<<< HEAD
 	public $version = '3.0.8';
+=======
+	public $version = '2.6.9';
+>>>>>>> parent of e5b28b8... Mailchimp updates
 
 	/**
 	 * The single instance of the class.

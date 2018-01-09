@@ -502,7 +502,14 @@ abstract class WC_Abstract_Order extends WC_Abstract_Legacy_Order {
 			}
 		}
 
+<<<<<<< HEAD
 		$this->set_prop( 'status', $new_status );
+=======
+		do_action( 'woocommerce_order_add_shipping', $this->id, $item_id, $shipping_rate );
+
+		// Update total
+		$this->set_total( $this->order_shipping + wc_format_decimal( $shipping_rate->cost ), 'shipping' );
+>>>>>>> parent of e5b28b8... Mailchimp updates
 
 		return array(
 			'from' => $old_status,

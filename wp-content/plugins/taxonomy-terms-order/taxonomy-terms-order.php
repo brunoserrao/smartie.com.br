@@ -7,8 +7,12 @@ Description: Order Categories and all custom taxonomies terms (hierarchically) a
 Version: 1.5.2.2
 =======
 Description: Category Order and Taxonomy Terms Order
+<<<<<<< HEAD
 Version: 1.5
 >>>>>>> origin/master
+=======
+Version: 1.4.8
+>>>>>>> parent of e5b28b8... Mailchimp updates
 Author: Nsp-Code
 Author URI: http://www.nsp-code.com
 Author Email: electronice_delphi@yahoo.com
@@ -109,7 +113,7 @@ Domain Path: /languages/
                     foreach ($post_type_taxonomies as $key => $taxonomy_name)
                         {
                             $taxonomy_info = get_taxonomy($taxonomy_name);  
-                            if (empty($taxonomy_info->hierarchical) ||  $taxonomy_info->hierarchical !== TRUE) 
+                            if ($taxonomy_info->hierarchical !== TRUE) 
                                 unset($post_type_taxonomies[$key]);
                         }
                         
@@ -119,11 +123,15 @@ Domain Path: /languages/
                     if ($post_type == 'post')
                         add_submenu_page('edit.php', __('Taxonomy Order', 'taxonomy-terms-order'), __('Taxonomy Order', 'taxonomy-terms-order'), $capability, 'to-interface-'.$post_type, 'TOPluginInterface' );
                         elseif ($post_type == 'attachment')
-                        add_submenu_page('upload.php', __('Taxonomy Order', 'taxonomy-terms-order'), __('Taxonomy Order', 'taxonomy-terms-order'), $capability, 'to-interface-'.$post_type, 'TOPluginInterface' );   
+                        $hookID =   add_submenu_page('upload.php', __('Taxonomy Order', 'taxonomy-terms-order'), __('Taxonomy Order', 'taxonomy-terms-order'), $capability, 'to-interface-'.$post_type, 'TOPluginInterface' );   
                         else
                         add_submenu_page('edit.php?post_type='.$post_type, __('Taxonomy Order', 'taxonomy-terms-order'), __('Taxonomy Order', 'taxonomy-terms-order'), $capability, 'to-interface-'.$post_type, 'TOPluginInterface' );
                 }
         }
+        
+        
+    add_action( 'wp_ajax_update-custom-type-order-hierarchical', array(&$this, 'saveAjaxOrderHierarchical') );
+        
 
     function TO_applyorderfilter($orderby, $args)
         {

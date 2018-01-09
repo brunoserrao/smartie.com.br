@@ -851,8 +851,61 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @since 3.0.0
 	 * @param int $total Total of sales.
 	 */
+<<<<<<< HEAD
 	public function set_total_sales( $total ) {
 		$this->set_prop( 'total_sales', absint( $total ) );
+=======
+	public function get_price_including_tax( $qty = 1, $price = '' ) {
+
+		if ( $price === '' ) {
+			$price = $this->get_price();
+		}
+
+		if ( $this->is_taxable() ) {
+
+			if ( get_option( 'woocommerce_prices_include_tax' ) === 'no' ) {
+
+				$tax_rates  = WC_Tax::get_rates( $this->get_tax_class() );
+				$taxes      = WC_Tax::calc_tax( $price * $qty, $tax_rates, false );
+				$tax_amount = WC_Tax::get_tax_total( $taxes );
+				$price      = round( $price * $qty + $tax_amount, wc_get_price_decimals() );
+
+			} else {
+
+				$tax_rates      = WC_Tax::get_rates( $this->get_tax_class() );
+				$base_tax_rates = WC_Tax::get_base_tax_rates( $this->tax_class );
+
+				if ( ! empty( WC()->customer ) && WC()->customer->is_vat_exempt() ) {
+
+					$base_taxes         = WC_Tax::calc_tax( $price * $qty, $base_tax_rates, true );
+					$base_tax_amount    = array_sum( $base_taxes );
+					$price              = round( $price * $qty - $base_tax_amount, wc_get_price_decimals() );
+
+				/**
+				 * The woocommerce_adjust_non_base_location_prices filter can stop base taxes being taken off when dealing with out of base locations.
+				 * e.g. If a product costs 10 including tax, all users will pay 10 regardless of location and taxes.
+				 * This feature is experimental @since 2.4.7 and may change in the future. Use at your risk.
+				 */
+				} elseif ( $tax_rates !== $base_tax_rates && apply_filters( 'woocommerce_adjust_non_base_location_prices', true ) ) {
+
+					$base_taxes         = WC_Tax::calc_tax( $price * $qty, $base_tax_rates, true );
+					$modded_taxes       = WC_Tax::calc_tax( ( $price * $qty ) - array_sum( $base_taxes ), $tax_rates, false );
+					$price              = round( ( $price * $qty ) - array_sum( $base_taxes ) + array_sum( $modded_taxes ), wc_get_price_decimals() );
+
+				} else {
+
+					$price = $price * $qty;
+
+				}
+
+			}
+
+		} else {
+			$price = $price * $qty;
+		}
+
+		return apply_filters( 'woocommerce_get_price_including_tax', $price, $qty, $this );
+>>>>>>> parent of e5b28b8... Mailchimp updates
 	}
 
 	/**

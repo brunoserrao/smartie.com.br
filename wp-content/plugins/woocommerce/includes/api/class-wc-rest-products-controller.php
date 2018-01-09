@@ -706,10 +706,215 @@ class WC_REST_Products_Controller extends WC_REST_Legacy_Products_Controller {
 		}
 
 		// Comment status.
+<<<<<<< HEAD
 		if ( isset( $request['reviews_allowed'] ) ) {
 			$product->set_reviews_allowed( $request['reviews_allowed'] );
 		}
 
+=======
+		if ( ! empty( $request['reviews_allowed'] ) ) {
+			$data->comment_status = $request['reviews_allowed'] ? 'open' : 'closed';
+		}
+
+		// Only when creating products.
+		if ( empty( $request['id'] ) ) {
+			// Post type.
+			$data->post_type = $this->post_type;
+
+			// Ping status.
+			$data->ping_status = 'closed';
+		}
+
+		/**
+		 * Filter the query_vars used in `get_items` for the constructed query.
+		 *
+		 * The dynamic portion of the hook name, $this->post_type, refers to post_type of the post being
+		 * prepared for insertion.
+		 *
+		 * @param stdClass        $data An object representing a single item prepared
+		 *                                       for inserting or updating the database.
+		 * @param WP_REST_Request $request       Request object.
+		 */
+		return apply_filters( "woocommerce_rest_pre_insert_{$this->post_type}", $data, $request );
+	}
+
+	/**
+	 * Save product images.
+	 *
+	 * @param int $product_id
+	 * @param array $images
+	 * @throws WC_REST_Exception
+	 */
+	protected function save_product_images( $product_id, $images ) {
+		if ( is_array( $images ) ) {
+			$gallery = array();
+
+			foreach ( $images as $image ) {
+				$attachment_id = isset( $image['id'] ) ? absint( $image['id'] ) : 0;
+
+				if ( 0 === $attachment_id && isset( $image['src'] ) ) {
+					$upload = wc_rest_upload_image_from_url( esc_url_raw( $image['src'] ) );
+
+					if ( is_wp_error( $upload ) ) {
+						throw new WC_REST_Exception( 'woocommerce_product_image_upload_error', $upload->get_error_message(), 400 );
+					}
+
+					$attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload, $product_id );
+				}
+
+				if ( isset( $image['position'] ) && 0 === $image['position'] ) {
+					set_post_thumbnail( $product_id, $attachment_id );
+				} else {
+					$gallery[] = $attachment_id;
+				}
+
+				// Set the image alt if present.
+				if ( ! empty( $image['alt'] ) ) {
+					update_post_meta( $attachment_id, '_wp_attachment_image_alt', wc_clean( $image['alt'] ) );
+				}
+
+				// Set the image name if present.
+				if ( ! empty( $image['name'] ) ) {
+					wp_update_post( array( 'ID' => $attachment_id, 'post_title' => $image['name'] ) );
+				}
+			}
+
+			if ( ! empty( $gallery ) ) {
+				update_post_meta( $product_id, '_product_image_gallery', implode( ',', $gallery ) );
+			}
+		} else {
+			delete_post_meta( $product_id, '_thumbnail_id' );
+			update_post_meta( $product_id, '_product_image_gallery', '' );
+		}
+	}
+
+	/**
+	 * Save product shipping data.
+	 *
+	 * @param int $product_id
+	 * @param array $data
+	 */
+	private function save_product_shipping_data( $product_id, $data ) {
+		// Virtual.
+		if ( isset( $data['virtual'] ) && true === $data['virtual'] ) {
+			update_post_meta( $product_id, '_weight', '' );
+			update_post_meta( $product_id, '_length', '' );
+			update_post_meta( $product_id, '_width', '' );
+			update_post_meta( $product_id, '_height', '' );
+		} else {
+			if ( isset( $data['weight'] ) ) {
+				update_post_meta( $product_id, '_weight', '' === $data['weight'] ? '' : wc_format_decimal( $data['weight'] ) );
+			}
+
+			// Height.
+			if ( isset( $data['dimensions']['height'] ) ) {
+				update_post_meta( $product_id, '_height', '' === $data['dimensions']['height'] ? '' : wc_format_decimal( $data['dimensions']['height'] ) );
+			}
+
+			// Width.
+			if ( isset( $data['dimensions']['width'] ) ) {
+				update_post_meta( $product_id, '_width', '' === $data['dimensions']['width'] ? '' : wc_format_decimal( $data['dimensions']['width'] ) );
+			}
+
+			// Length.
+			if ( isset( $data['dimensions']['length'] ) ) {
+				update_post_meta( $product_id, '_length', '' === $data['dimensions']['length'] ? '' : wc_format_decimal( $data['dimensions']['length'] ) );
+			}
+		}
+
+		// Shipping class.
+		if ( isset( $data['shipping_class'] ) ) {
+			wp_set_object_terms( $product_id, wc_clean( $data['shipping_class'] ), 'product_shipping_class' );
+		}
+	}
+
+	/**
+	 * Save downloadable files.
+	 *
+	 * @param in $product_id
+	 * @param array $downloads
+	 * @param int $variation_id
+	 */
+	private function save_downloadable_files( $product_id, $downloads, $variation_id = 0 ) {
+		$files = array();
+
+		// File paths will be stored in an array keyed off md5(file path).
+		foreach ( $downloads as $key => $file ) {
+			if ( isset( $file['url'] ) ) {
+				$file['file'] = $file['url'];
+			}
+
+			if ( ! isset( $file['file'] ) ) {
+				continue;
+			}
+
+			$file_name = isset( $file['name'] ) ? wc_clean( $file['name'] ) : '';
+
+			if ( 0 === strpos( $file['file'], 'http' ) ) {
+				$file_url = esc_url_raw( $file['file'] );
+			} else {
+				$file_url = wc_clean( $file['file'] );
+			}
+
+			$files[ md5( $file_url ) ] = array(
+				'name' => $file_name,
+				'file' => $file_url,
+			);
+		}
+
+		// Grant permission to any newly added files on any existing orders for this product prior to saving.
+		do_action( 'woocommerce_process_product_file_download_paths', $product_id, $variation_id, $files );
+
+		$id = ( 0 === $variation_id ) ? $product_id : $variation_id;
+
+		update_post_meta( $id, '_downloadable_files', $files );
+	}
+
+	/**
+	 * Save taxonomy terms.
+	 *
+	 * @param int $product_id
+	 * @param array $terms
+	 * @param string $taxonomy
+	 * @return array
+	 */
+	protected function save_taxonomy_terms( $product_id, $terms, $taxonomy = 'cat' ) {
+		$term_ids = wp_list_pluck( $terms, 'id' );
+		$term_ids = array_unique( array_map( 'intval', $term_ids ) );
+
+		wp_set_object_terms( $product_id, $term_ids, 'product_' . $taxonomy );
+
+		return $terms;
+	}
+
+	/**
+	 * Save product meta.
+	 *
+	 * @param WC_Product $product
+	 * @param WP_REST_Request $request
+	 * @return bool
+	 * @throws WC_REST_Exception
+	 */
+	protected function save_product_meta( $product, $request ) {
+		global $wpdb;
+
+		// Product Type.
+		$product_type = null;
+		if ( isset( $request['type'] ) ) {
+			$product_type = wc_clean( $request['type'] );
+			wp_set_object_terms( $product->id, $product_type, 'product_type' );
+		} else {
+			$_product_type = get_the_terms( $product->id, 'product_type' );
+			if ( is_array( $_product_type ) ) {
+				$_product_type = current( $_product_type );
+				$product_type  = $_product_type->slug;
+			}
+		}
+
+		// Default total sales.
+		add_post_meta( $product->id, 'total_sales', '0', true );
+
+>>>>>>> parent of e5b28b8... Mailchimp updates
 		// Virtual.
 		if ( isset( $request['virtual'] ) ) {
 			$product->set_virtual( $request['virtual'] );

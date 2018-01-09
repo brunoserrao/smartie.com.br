@@ -4,6 +4,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 class ComposerAutoloaderInita1ed0494cfc3f6407584f55896c35bcf {
 =======
 class ComposerAutoloaderInit4dc707105fc640cf229f5c568acd354f {
@@ -11,6 +12,9 @@ class ComposerAutoloaderInit4dc707105fc640cf229f5c568acd354f {
 =======
 class ComposerAutoloaderInit541c0dc3d2f08af0d23e4f44958746d3 {
 >>>>>>> parent of 142d053... MailChimp for WordPress
+=======
+class ComposerAutoloaderInite220b9cdf73db6b31110859155e3018a {
+>>>>>>> parent of e5b28b8... Mailchimp updates
 	private static $loader;
 
 	public static function loadClassLoader($class) {
@@ -29,6 +33,7 @@ class ComposerAutoloaderInit541c0dc3d2f08af0d23e4f44958746d3 {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		spl_autoload_register(array('ComposerAutoloaderInita1ed0494cfc3f6407584f55896c35bcf', 'loadClassLoader'), true /*, true */);
 		self::$loader = $loader = new xrstf_Composer52_ClassLoader();
 		spl_autoload_unregister(array('ComposerAutoloaderInita1ed0494cfc3f6407584f55896c35bcf', 'loadClassLoader'));
@@ -42,6 +47,11 @@ class ComposerAutoloaderInit541c0dc3d2f08af0d23e4f44958746d3 {
 		self::$loader = $loader = new xrstf_Composer52_ClassLoader();
 		spl_autoload_unregister(array('ComposerAutoloaderInit541c0dc3d2f08af0d23e4f44958746d3', 'loadClassLoader'));
 >>>>>>> parent of 142d053... MailChimp for WordPress
+=======
+		spl_autoload_register(array('ComposerAutoloaderInite220b9cdf73db6b31110859155e3018a', 'loadClassLoader'), true /*, true */);
+		self::$loader = $loader = new xrstf_Composer52_ClassLoader();
+		spl_autoload_unregister(array('ComposerAutoloaderInite220b9cdf73db6b31110859155e3018a', 'loadClassLoader'));
+>>>>>>> parent of e5b28b8... Mailchimp updates
 
 		$vendorDir = dirname(dirname(__FILE__));
 		$baseDir   = dirname($vendorDir);

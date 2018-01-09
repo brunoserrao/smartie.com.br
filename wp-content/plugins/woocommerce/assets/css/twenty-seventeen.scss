@@ -76,7 +76,6 @@
 
 	ul.page-numbers {
 		padding: 0;
-		display: block;
 	}
 
 	span.page-numbers,
@@ -347,9 +346,6 @@ dl.variation, .wc-item-meta {
 		.button {
 			padding-top: .72em;
 			padding-bottom: .72em;
-		}
-		.button.disabled {
-			opacity: 0.2;
 		}
 	}
 }

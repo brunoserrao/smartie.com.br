@@ -13,8 +13,12 @@ Stable tag: 4.1.3
 >>>>>>> origin/master
 =======
 Tested up to: 4.7
+<<<<<<< HEAD
 Stable tag: 4.0.12
 >>>>>>> parent of 142d053... MailChimp for WordPress
+=======
+Stable tag: 4.0.11
+>>>>>>> parent of e5b28b8... Mailchimp updates
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -209,6 +213,7 @@ MailChimp for WordPress is being developed on GitHub. If you want to collaborate
 
 == Changelog == 
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -401,6 +406,8 @@ MailChimp for WordPress is being developed on GitHub. If you want to collaborate
 - Throw form specific JavaScript events, like `15.subscribed` to hook into "subscribed" events for form with ID 15.
 
 
+=======
+>>>>>>> parent of e5b28b8... Mailchimp updates
 #### 4.0.11 - December 9, 2016
 
 **Fixes**

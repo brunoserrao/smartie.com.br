@@ -5,6 +5,7 @@ Plugin URI: https://mc4wp.com/#utm_source=wp-plugin&utm_medium=mailchimp-for-wp&
 Description: MailChimp for WordPress by ibericode. Adds various highly effective sign-up methods to your site.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Version: 4.1.12
 =======
 Version: 4.1.3
@@ -12,6 +13,9 @@ Version: 4.1.3
 =======
 Version: 4.0.12
 >>>>>>> parent of 142d053... MailChimp for WordPress
+=======
+Version: 4.0.11
+>>>>>>> parent of e5b28b8... Mailchimp updates
 Author: ibericode
 Author URI: https://ibericode.com/
 Text Domain: mailchimp-for-wp
@@ -19,7 +23,7 @@ Domain Path: /languages
 License: GPL v3
 
 MailChimp for WordPress
-Copyright (C) 2012-2017, Danny van Kooten, hi@dannyvankooten.com
+Copyright (C) 2012-2016, Danny van Kooten, hi@dannyvankooten.com
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -57,6 +61,7 @@ function _mc4wp_load_plugin() {
 	// bootstrap the core plugin
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	define( 'MC4WP_VERSION', '4.1.12' );
 =======
 	define( 'MC4WP_VERSION', '4.1.3' );
@@ -64,6 +69,9 @@ function _mc4wp_load_plugin() {
 =======
 	define( 'MC4WP_VERSION', '4.0.12' );
 >>>>>>> parent of 142d053... MailChimp for WordPress
+=======
+	define( 'MC4WP_VERSION', '4.0.11' );
+>>>>>>> parent of e5b28b8... Mailchimp updates
 	define( 'MC4WP_PLUGIN_DIR', dirname( __FILE__ ) . '/' );
 	define( 'MC4WP_PLUGIN_URL', plugins_url( '/' , __FILE__ ) );
 	define( 'MC4WP_PLUGIN_FILE', __FILE__ );

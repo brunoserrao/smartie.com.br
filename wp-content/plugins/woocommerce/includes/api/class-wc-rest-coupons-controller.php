@@ -197,11 +197,53 @@ class WC_REST_Coupons_Controller extends WC_REST_Legacy_Coupons_Controller {
 	 * @param  WP_REST_Request $request Request object.
 	 * @return WP_REST_Response
 	 */
+<<<<<<< HEAD
 	public function prepare_object_for_response( $object, $request ) {
 		$data 	  = $this->get_formatted_item_data( $object );
 		$context  = ! empty( $request['context'] ) ? $request['context'] : 'view';
 		$data     = $this->add_additional_fields_to_object( $data, $request );
 		$data     = $this->filter_response_by_context( $data, $context );
+=======
+	public function prepare_item_for_response( $post, $request ) {
+		global $wpdb;
+
+		// Get the coupon code.
+		$code = $wpdb->get_var( $wpdb->prepare( "SELECT post_title FROM $wpdb->posts WHERE id = %s AND post_type = 'shop_coupon' AND post_status = 'publish'", $post->ID ) );
+
+		$coupon = new WC_Coupon( $code );
+
+		$data = array(
+			'id'                           => $coupon->id,
+			'code'                         => $coupon->code,
+			'date_created'                 => wc_rest_prepare_date_response( $post->post_date_gmt ),
+			'date_modified'                => wc_rest_prepare_date_response( $post->post_modified_gmt ),
+			'discount_type'                => $coupon->type,
+			'description'                  => $post->post_excerpt,
+			'amount'                       => wc_format_decimal( $coupon->coupon_amount, 2 ),
+			'expiry_date'                  => wc_rest_prepare_date_response( $coupon->expiry_date ),
+			'usage_count'                  => (int) $coupon->usage_count,
+			'individual_use'               => ( 'yes' === $coupon->individual_use ),
+			'product_ids'                  => array_map( 'absint', (array) $coupon->product_ids ),
+			'exclude_product_ids'          => array_map( 'absint', (array) $coupon->exclude_product_ids ),
+			'usage_limit'                  => ( ! empty( $coupon->usage_limit ) ) ? $coupon->usage_limit : null,
+			'usage_limit_per_user'         => ( ! empty( $coupon->usage_limit_per_user ) ) ? $coupon->usage_limit_per_user : null,
+			'limit_usage_to_x_items'       => (int) $coupon->limit_usage_to_x_items,
+			'free_shipping'                => $coupon->enable_free_shipping(),
+			'product_categories'           => array_map( 'absint', (array) $coupon->product_categories ),
+			'excluded_product_categories'  => array_map( 'absint', (array) $coupon->exclude_product_categories ),
+			'exclude_sale_items'           => $coupon->exclude_sale_items(),
+			'minimum_amount'               => wc_format_decimal( $coupon->minimum_amount, 2 ),
+			'maximum_amount'               => wc_format_decimal( $coupon->maximum_amount, 2 ),
+			'email_restrictions'           => $coupon->customer_email,
+			'used_by'                      => $coupon->get_used_by(),
+		);
+
+		$context = ! empty( $request['context'] ) ? $request['context'] : 'view';
+		$data    = $this->add_additional_fields_to_object( $data, $request );
+		$data    = $this->filter_response_by_context( $data, $context );
+
+		// Wrap the data in a response object.
+>>>>>>> parent of e5b28b8... Mailchimp updates
 		$response = rest_ensure_response( $data );
 		$response->add_links( $this->prepare_links( $object, $request ) );
 
@@ -236,7 +278,44 @@ class WC_REST_Coupons_Controller extends WC_REST_Legacy_Coupons_Controller {
 		// Get only ids.
 		$args['fields'] = 'ids';
 
+<<<<<<< HEAD
 		return $args;
+=======
+		// Post status.
+		$data->post_status = 'publish';
+
+		// Comment status.
+		$data->comment_status = 'closed';
+
+		// Ping status.
+		$data->ping_status = 'closed';
+
+		/**
+		 * Filter the query_vars used in `get_items` for the constructed query.
+		 *
+		 * The dynamic portion of the hook name, $this->post_type, refers to post_type of the post being
+		 * prepared for insertion.
+		 *
+		 * @param stdClass        $data An object representing a single item prepared
+		 *                                       for inserting or updating the database.
+		 * @param WP_REST_Request $request       Request object.
+		 */
+		return apply_filters( "woocommerce_rest_pre_insert_{$this->post_type}", $data, $request );
+	}
+
+	/**
+	 * Expiry date format.
+	 *
+	 * @param string $expiry_date
+	 * @return string
+	 */
+	protected function get_coupon_expiry_date( $expiry_date ) {
+		if ( '' != $expiry_date ) {
+			return date( 'Y-m-d', strtotime( $expiry_date ) );
+		}
+
+		return '';
+>>>>>>> parent of e5b28b8... Mailchimp updates
 	}
 
 	/**
